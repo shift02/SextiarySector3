@@ -1,6 +1,6 @@
-[submodule "lib/additionalstatus"]
-	path = lib/additionalstatus
-	url = https://github.com/shift02/AdditionalStatus
 [submodule "additionalstatus"]
 	path = additionalstatus
 	url = https://github.com/shift02/AdditionalStatus
+[submodule "lib/mceconomy3"]
+	path = lib/mceconomy3
+	url = https://github.com/shift02/MCEconomy3
