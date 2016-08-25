@@ -14,6 +14,8 @@ public class SextiarySector3 {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 
+		SSCreativeTabs.initCreativeTabs();
+
 		SSBlocks.initBlock();
 
 	}
