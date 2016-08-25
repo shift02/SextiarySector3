@@ -1,0 +1,23 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pressure_plate_up",
+    "textures": {
+      "texture": "sextiarysector3:blocks/ore/orichalcum_block"
+    },
+    "transform": "forge:default-block",
+    "uvlock": true
+  },
+  "variants": {
+    "normal":[{}],
+    "inventory":[{}],
+    "powered": {
+      "true": {
+          "model": "pressure_plate_down"
+      },
+      "false": {
+          "model": "pressure_plate_up"
+      }
+    }
+  }
+}
