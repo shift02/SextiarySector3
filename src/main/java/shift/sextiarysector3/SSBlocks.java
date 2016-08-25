@@ -10,6 +10,8 @@ import shift.sextiarysector3.util.UtilRegistry;
 public class SSBlocks {
 
 	//Core
+	public static Block lapisPressurePlate;
+
 	/** 銅の感圧板 */
 	public static Block copperPressurePlate;
 	/** 銀の感圧板 */
@@ -25,13 +27,16 @@ public class SSBlocks {
 	public static void initBlock() {
 
 		//Core
+		lapisPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.XPORB).setUnlocalizedName("ss.lapis_pressure_plate");
+		UtilRegistry.registerNormalBlock(lapisPressurePlate, "LapisPressurePlate", "lapis_pressure_plate");
+
 		copperPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.AGEABLE).setUnlocalizedName("ss.copper_pressure_plate");
 		UtilRegistry.registerNormalBlock(copperPressurePlate, "CopperPressurePlate", "copper_pressure_plate");
 
 		silverPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.ENEMY).setUnlocalizedName("ss.silver_pressure_plate");
 		UtilRegistry.registerNormalBlock(silverPressurePlate, "SilverPressurePlate", "silver_pressure_plate");
 
-		orichalcumPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.XPORB).setUnlocalizedName("ss.orichalcum_pressure_plate");
+		orichalcumPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.PLAYER).setUnlocalizedName("ss.orichalcum_pressure_plate");
 		UtilRegistry.registerNormalBlock(orichalcumPressurePlate, "OrichalcumPressurePlate", "orichalcum_pressure_plate");
 
 		//鉱石

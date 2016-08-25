@@ -67,6 +67,9 @@ public class BlockSSPressurePlate extends BlockSSBasePressurePlate {
 		case XPORB:
 			list = worldIn.<Entity> getEntitiesWithinAABB(EntityXPOrb.class, axisalignedbb);
 			break;
+		case PLAYER:
+			list = worldIn.<Entity> getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+			break;
 		default:
 			return 0;
 		}
@@ -101,7 +104,7 @@ public class BlockSSPressurePlate extends BlockSSBasePressurePlate {
 	}
 
 	public static enum Sensitivity {
-		AGEABLE, ENEMY, XPORB;
+		AGEABLE, ENEMY, XPORB, PLAYER;
 	}
 
 }
