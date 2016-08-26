@@ -3,6 +3,7 @@ package shift.sextiarysector3.util;
 import java.io.File;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -47,7 +48,7 @@ public class UtilRegistry {
 		GameRegistry.register(block.setRegistryName(SextiarySector3.MODID, registryName));
 		GameRegistry.register(itemBlock.setRegistryName(SextiarySector3.MODID, registryName));
 
-		if (getSide().isClient()) {
+		if (getSide().isClient() && block.getMaterial(null) != Material.AIR) {
 
 			ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
 

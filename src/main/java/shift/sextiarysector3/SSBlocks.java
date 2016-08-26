@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import shift.sextiarysector3.block.BlockSSOre;
 import shift.sextiarysector3.block.BlockSSPressurePlate;
 import shift.sextiarysector3.block.BlockSSPressurePlate.Sensitivity;
+import shift.sextiarysector3.block.BlockSanctuary;
 import shift.sextiarysector3.util.UtilRegistry;
 
 public class SSBlocks {
@@ -18,6 +19,9 @@ public class SSBlocks {
 	public static Block silverPressurePlate;
 	/** オリハルコンの感圧板 */
 	public static Block orichalcumPressurePlate;
+
+	public static Block sanctuary;
+	public static Block sanctuaryAir;
 
 	//鉱石
 	public static Block copperOre;
@@ -38,6 +42,9 @@ public class SSBlocks {
 
 		orichalcumPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.PLAYER).setUnlocalizedName("ss.orichalcum_pressure_plate");
 		UtilRegistry.registerNormalBlock(orichalcumPressurePlate, "OrichalcumPressurePlate", "orichalcum_pressure_plate");
+
+		sanctuary = new BlockSanctuary();
+		UtilRegistry.registerNormalBlock(sanctuary, "Sanctuary", "sanctuary");
 
 		//鉱石
 		copperOre = new BlockSSOre().setUnlocalizedName("ss.copper_ore");
