@@ -1,9 +1,12 @@
 package shift.sextiarysector3.util;
 
+import java.io.File;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -14,6 +17,28 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.SextiarySector3;
 
 public class UtilRegistry {
+
+	public static File itemModel;
+
+	public static void registerNormalItem(Item item, String registryName, String resource) {
+
+		GameRegistry.register(item.setRegistryName(SextiarySector3.MODID, registryName));
+
+		if (getSide().isClient()) {
+
+			ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
+			// アイテム状態の登録
+			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(l, "inventory"));
+
+		}
+
+		File f = new File(itemModel, resource + ".json");
+
+		if (SextiarySector3.isDebug && !f.exists()) {
+			ItemJsonUtil.generationItemGson(f, resource);
+		}
+
+	}
 
 	public static void registerNormalBlock(Block block, String registryName, String resource) {
 
