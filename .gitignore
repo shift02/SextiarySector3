@@ -29,6 +29,7 @@ out
 # gradle
 build
 .gradle
+!gradle-wrapper.jar
 
 # other
 eclipse
