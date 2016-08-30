@@ -6,6 +6,8 @@ import shift.sextiarysector3.block.BlockSSOre;
 import shift.sextiarysector3.block.BlockSSPressurePlate;
 import shift.sextiarysector3.block.BlockSSPressurePlate.Sensitivity;
 import shift.sextiarysector3.block.BlockSanctuary;
+import shift.sextiarysector3.block.BlockSapCauldron;
+import shift.sextiarysector3.block.BlockSpile;
 import shift.sextiarysector3.util.UtilRegistry;
 
 public class SSBlocks {
@@ -21,7 +23,11 @@ public class SSBlocks {
 	public static Block orichalcumPressurePlate;
 
 	public static Block sanctuary;
-	public static Block sanctuaryAir;
+
+	public static Block spile;
+
+	//樹液
+	public static Block sapCauldron;
 
 	//鉱石
 	public static Block copperOre;
@@ -45,6 +51,12 @@ public class SSBlocks {
 
 		sanctuary = new BlockSanctuary();
 		UtilRegistry.registerNormalBlock(sanctuary, "Sanctuary", "sanctuary");
+
+		spile = new BlockSpile().setUnlocalizedName("ss.spile");
+		UtilRegistry.registerNormalBlock(spile, "Spile", "spile");
+
+		sapCauldron = new BlockSapCauldron();
+		UtilRegistry.registerNormalBlock(sapCauldron, "SapCauldron", "cauldron/sap_cauldron");
 
 		//鉱石
 		copperOre = new BlockSSOre().setUnlocalizedName("ss.copper_ore");

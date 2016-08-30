@@ -1,0 +1,73 @@
+{
+  "textures": {
+    "base": "sextiarysector3:blocks/spile"
+  },
+  "elements":
+[
+  {
+    "name": "Base",
+    "from": [ 6.0, 4.0, 0.0 ],
+    "to": [ 10.0, 8.0, 1.0 ],
+    "faces": {
+      "down":  { "texture": "#base" },
+      "up":    { "texture": "#base" },
+      "north": { "texture": "#base" },
+      "south": { "texture": "#base" },
+      "west":  { "texture": "#base" },
+      "east":  { "texture": "#base" }
+    }
+  },
+  {
+    "name": "Side",
+    "from": [ 6.0, 4.0, 1.0 ],
+    "to": [ 7.0, 8.0, 5.0 ],
+    "faces": {
+      "down":  { "texture": "#base" },
+      "up":    { "texture": "#base" },
+      "north": { "texture": "#base" },
+      "south": { "texture": "#base" },
+      "west":  { "texture": "#base" },
+      "east":  { "texture": "#base" }
+    }
+  },
+  {
+    "name": "Side",
+    "from": [ 9.0, 4.0, 1.0 ],
+    "to": [ 10.0, 8.0, 5.0 ],
+    "faces": {
+      "down":  { "texture": "#base" },
+      "up":    { "texture": "#base" },
+      "north": { "texture": "#base" },
+      "south": { "texture": "#base" },
+      "west":  { "texture": "#base" },
+      "east":  { "texture": "#base" }
+    }
+  },
+  {
+    "name": "Side",
+    "from": [ 7.0, 7.0, 1.0 ],
+    "to": [ 9.0, 8.0, 5.0 ],
+    "faces": {
+      "down":  { "texture": "#base" },
+      "up":    { "texture": "#base" },
+      "north": { "texture": "#base" },
+      "south": { "texture": "#base" },
+      "west":  { "texture": "#base" },
+      "east":  { "texture": "#base" }
+    }
+  },
+  {
+    "name": "Side",
+    "from": [ 7.0, 4.0, 1.0 ],
+    "to": [ 9.0, 5.0, 5.0 ],
+    "faces": {
+      "down":  { "texture": "#base" },
+      "up":    { "texture": "#base" },
+      "north": { "texture": "#base" },
+      "south": { "texture": "#base" },
+      "west":  { "texture": "#base" },
+      "east":  { "texture": "#base" }
+    }
+  }
+]
+}

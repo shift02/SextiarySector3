@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "sextiarysector3:spile",
+    "textures": {
+      "particle": "sextiarysector3:blocks/stone_side"
+    },
+    "uvlock": true
+
+  },
+  "variants": {
+    "normal":[{
+
+    }],
+    "inventory":[{}]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cauldron_empty",
+    "textures": {
+      "water": "sextiarysector3:fluids/sap"
+    },
+    "transform": "forge:default-block",
+    "uvlock": true
+  },
+  "variants": {
+    "normal":[{}],
+    "inventory":[{}],
+    "level": {
+      0: {
+          "model": "cauldron_empty"
+      },
+      1: {
+        "model": "cauldron_level1"
+      },
+      2: {
+        "model": "cauldron_level2"
+      },
+      3: {
+          "model": "cauldron_level3"
+      }
+    }
+  }
+}
