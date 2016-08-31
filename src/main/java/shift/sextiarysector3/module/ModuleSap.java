@@ -40,6 +40,8 @@ public class ModuleSap implements IModule {
 		saps.add(new SapEntry(Blocks.LOG, SSBlocks.sapCauldron));
 		saps.add(new SapEntry(Blocks.LOG2, SSBlocks.sapCauldron));
 
+		saps.add(new SapEntry(SSBlocks.rubberLog, SSBlocks.rubberCauldron));
+
 	}
 
 	@Override

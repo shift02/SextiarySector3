@@ -104,8 +104,7 @@ public class BlockSapCauldron extends BlockSSBase {
 					this.setWaterLevel(worldIn, pos, state, 3);
 				}
 				
-				return true;
-				*/
+				return true;*/
 
 			} else if (item == Items.BUCKET) {
 

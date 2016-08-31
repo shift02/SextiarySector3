@@ -1,13 +1,18 @@
 package shift.sextiarysector3;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
+import shift.sextiarysector3.block.BlockSSLeaves;
+import shift.sextiarysector3.block.BlockSSLog;
 import shift.sextiarysector3.block.BlockSSOre;
 import shift.sextiarysector3.block.BlockSSPressurePlate;
 import shift.sextiarysector3.block.BlockSSPressurePlate.Sensitivity;
+import shift.sextiarysector3.block.BlockSSSapling;
 import shift.sextiarysector3.block.BlockSanctuary;
 import shift.sextiarysector3.block.BlockSapCauldron;
 import shift.sextiarysector3.block.BlockSpile;
+import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.util.UtilRegistry;
 
 public class SSBlocks {
@@ -24,10 +29,15 @@ public class SSBlocks {
 
 	public static Block sanctuary;
 
+	public static Block rubberSapling;
+	public static Block rubberLog;
+	public static Block rubberLeaves;
+
 	public static Block spile;
 
 	//樹液
 	public static Block sapCauldron;
+	public static Block rubberCauldron;
 
 	//鉱石
 	public static Block copperOre;
@@ -49,14 +59,27 @@ public class SSBlocks {
 		orichalcumPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.PLAYER).setUnlocalizedName("ss.orichalcum_pressure_plate");
 		UtilRegistry.registerNormalBlock(orichalcumPressurePlate, "OrichalcumPressurePlate", "orichalcum_pressure_plate");
 
-		sanctuary = new BlockSanctuary();
+		sanctuary = new BlockSanctuary().setUnlocalizedName("ss.sanctuary");
 		UtilRegistry.registerNormalBlock(sanctuary, "Sanctuary", "sanctuary");
 
-		spile = new BlockSpile().setUnlocalizedName("ss.spile");
+		//林業
+		rubberSapling = new BlockSSSapling().setUnlocalizedName("ss.rubber_sapling");
+		UtilRegistry.registerNormalBlock(rubberSapling, "RubberSapling", "forestry/rubber_sapling");
+
+		rubberLog = new BlockSSLog().setUnlocalizedName("ss.rubber_log");
+		UtilRegistry.registerNormalBlock(rubberLog, "RubberLog", "forestry/rubber_log");
+
+		rubberLeaves = new BlockSSLeaves(rubberSapling).setUnlocalizedName("ss.rubber_leaves");
+		UtilRegistry.registerNormalBlock(rubberLeaves, new ItemSSLeaves((BlockLeaves) rubberLeaves), "RubberLeaves", "forestry/rubber_leaves");
+
+		spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");
 		UtilRegistry.registerNormalBlock(spile, "Spile", "spile");
 
-		sapCauldron = new BlockSapCauldron();
+		sapCauldron = new BlockSapCauldron().setUnlocalizedName("ss.sap_cauldron");
 		UtilRegistry.registerNormalBlock(sapCauldron, "SapCauldron", "cauldron/sap_cauldron");
+
+		rubberCauldron = new BlockSapCauldron().setUnlocalizedName("ss.rubber_cauldron");
+		UtilRegistry.registerNormalBlock(rubberCauldron, "RubberCauldron", "cauldron/rubber_cauldron");
 
 		//鉱石
 		copperOre = new BlockSSOre().setUnlocalizedName("ss.copper_ore");

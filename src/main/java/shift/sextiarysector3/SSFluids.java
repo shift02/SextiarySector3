@@ -7,11 +7,15 @@ import shift.sextiarysector3.fluid.FluidSSBase;
 public class SSFluids {
 
 	public static Fluid sap;
+	public static Fluid rubber;
 
 	public static void initFluid() {
 
 		sap = new FluidSSBase("sap", "water_still", "nwater_still");
 		FluidRegistry.registerFluid(sap);
+
+		rubber = new FluidSSBase("rubber", "water_still", "nwater_still");
+		FluidRegistry.registerFluid(rubber);
 
 	}
 

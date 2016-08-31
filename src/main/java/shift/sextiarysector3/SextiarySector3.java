@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.module.IModule;
+import shift.sextiarysector3.module.ModuleColor;
 import shift.sextiarysector3.module.ModuleSap;
 import shift.sextiarysector3.util.UtilRegistry;
 
@@ -42,6 +43,7 @@ public class SextiarySector3 {
 
 		//Module
 		modules.add(ModuleSap.getInstance());
+		modules.add(ModuleColor.getInstance());
 
 		for (IModule m : modules) {
 			m.preInit(event);

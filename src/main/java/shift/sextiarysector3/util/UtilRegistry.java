@@ -44,6 +44,11 @@ public class UtilRegistry {
 	public static void registerNormalBlock(Block block, String registryName, String resource) {
 
 		ItemBlock itemBlock = new ItemBlock(block);
+		registerNormalBlock(block, itemBlock, registryName, resource);
+
+	}
+
+	public static void registerNormalBlock(Block block, Item itemBlock, String registryName, String resource) {
 
 		GameRegistry.register(block.setRegistryName(SextiarySector3.MODID, registryName));
 		GameRegistry.register(itemBlock.setRegistryName(SextiarySector3.MODID, registryName));

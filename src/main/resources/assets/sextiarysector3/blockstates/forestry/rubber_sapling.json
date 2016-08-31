@@ -1,0 +1,23 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross",
+    "textures": {
+      "cross": "sextiarysector3:blocks/forestry/sapling_rubber"
+    },
+    "uvlock": true
+  },
+  "variants": {
+    "normal":[{}],
+    "inventory":[{
+      "model": "sextiarysector3:item",
+      "textures": {
+        "item": "sextiarysector3:blocks/forestry/sapling_rubber"
+      }
+    }],
+    "stage": {
+      0: {},
+      1: {}
+    }
+  }
+}

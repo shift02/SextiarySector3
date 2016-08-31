@@ -1,0 +1,28 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column",
+    "textures": {
+      "end": "sextiarysector3:blocks/forestry/log_rubber_top",
+      "side": "sextiarysector3:blocks/forestry/log_rubber"
+    },
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "normal":[{}],
+    "inventory":[{}],
+    "axis": {
+      "x": {
+        "x": 90, "y": 90
+      },
+      "y": {
+
+      },
+      "z": {
+        "x": 90
+      },
+      "none": {
+      }
+    }
+  }
+}
