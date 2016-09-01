@@ -4,3 +4,6 @@
 [submodule "lib/additionalstatus"]
 	path = lib/additionalstatus
 	url = https://github.com/shift02/AdditionalStatus
+[submodule "lang"]
+	path = lang
+	url = https://github.com/shift02/SextiarySector3-Localization.git
