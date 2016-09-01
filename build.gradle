@@ -33,6 +33,7 @@ archivesBaseName = "sextiarysector3"
 
 ext.libMCEconomy3 = "./lib/mceconomy3"
 ext.libAdditionalStatus = "./lib/additionalstatus"
+ext.lang = "./lang"
 
 minecraft {
     version = "1.10.2-12.18.1.2011"
@@ -59,6 +60,7 @@ sourceSets {
 		srcDir project.libAdditionalStatus + "/src/main/java"
 	}
 	resources {
+		srcDir project.lang
 		srcDir project.libMCEconomy3 + "/src/main/resources"
 		srcDir project.libAdditionalStatus + "/src/main/resources"
 	}
@@ -100,7 +102,7 @@ processResources
     inputs.property "mcversion", project.minecraft.version
 
     // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
+    from(sourceSets.main.resources.srcDirs[0]) {
         include 'mcmod.info'
                 
         // replace version and mcversion
@@ -108,7 +110,13 @@ processResources
     }
         
     // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
+    from(sourceSets.main.resources.srcDirs[0]) {
         exclude 'mcmod.info'
+        exclude '**/*.md'
+    }
+
+    from(sourceSets.main.resources.srcDirs[1]) {
+        exclude 'mcmod.info'
+        exclude '**/*.md'
     }
 }
