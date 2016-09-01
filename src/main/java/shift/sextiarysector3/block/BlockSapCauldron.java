@@ -29,6 +29,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import shift.sextiarysector3.api.SextiarySectorAPI;
 
 public class BlockSapCauldron extends BlockSSBase {
 	public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 3);
@@ -40,6 +41,7 @@ public class BlockSapCauldron extends BlockSSBase {
 
 	public BlockSapCauldron() {
 		super(Material.IRON);
+		this.setCreativeTab(SextiarySectorAPI.TabSSForestry);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, Integer.valueOf(0)));
 	}
 

@@ -20,6 +20,7 @@ public class SextiarySectorAPI {
 	 */
 
 	public static CreativeTabs TabSSCore;
+	public static CreativeTabs TabSSForestry;
 	public static CreativeTabs TabSSMining;
 
 }

@@ -38,7 +38,7 @@ public class BlockSSLeaves extends BlockLeaves {
 	public BlockSSLeaves(Block sapling) {
 
 		this.sapling = sapling;
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		this.setCreativeTab(SextiarySectorAPI.TabSSForestry);
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)).withProperty(CHECK_DECAY, Boolean.valueOf(true))
 				.withProperty(DECAYABLE, Boolean.valueOf(true)));

@@ -14,6 +14,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.module.EnumWood;
 import shift.sextiarysector3.world.WorldGenRubberTree;
 
@@ -24,7 +25,9 @@ public class BlockSSSapling extends BlockSSBush implements IGrowable {
 			0.800000011920929D, 0.8999999761581421D);
 
 	public BlockSSSapling() {
+		super();
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
+		this.setCreativeTab(SextiarySectorAPI.TabSSForestry);
 	}
 
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

@@ -17,7 +17,7 @@ public class BlockSSLog extends BlockLog {
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
 
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		this.setCreativeTab(SextiarySectorAPI.TabSSForestry);
 	}
 
 	protected BlockStateContainer createBlockState() {

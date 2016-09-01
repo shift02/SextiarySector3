@@ -13,6 +13,7 @@ public class SSCreativeTabs {
 	public static void initCreativeTabs() {
 
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
+		SextiarySectorAPI.TabSSForestry = new CreativeTabSSForestry();
 		SextiarySectorAPI.TabSSMining = new CreativeTabSSMining();
 
 	}
@@ -32,6 +33,25 @@ public class SSCreativeTabs {
 		@SideOnly(Side.CLIENT)
 		public ItemStack getIconItemStack() {
 			return new ItemStack(Items.BOAT, 1);
+		}
+
+	}
+
+	private static class CreativeTabSSForestry extends CreativeTabs {
+
+		public CreativeTabSSForestry() {
+			super("ss.forestry");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;// SSBlocks.LargeFurnace.g;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public ItemStack getIconItemStack() {
+			return new ItemStack(SSBlocks.rubberLog, 1);
 		}
 
 	}

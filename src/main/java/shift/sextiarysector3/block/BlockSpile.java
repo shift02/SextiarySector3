@@ -16,6 +16,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.module.ModuleSap;
 
 public class BlockSpile extends BlockSSBase {
@@ -31,6 +32,7 @@ public class BlockSpile extends BlockSSBase {
 		super(Material.IRON);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		this.setLightLevel(0.4F);
+		this.setCreativeTab(SextiarySectorAPI.TabSSForestry);
 		this.setTickRandomly(true);
 	}
 
