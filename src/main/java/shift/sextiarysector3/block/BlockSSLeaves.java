@@ -14,6 +14,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -112,8 +113,9 @@ public class BlockSSLeaves extends BlockLeaves {
 
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+
 		return !Minecraft.getMinecraft().gameSettings.fancyGraphics && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false
-				: super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+				: Blocks.STONE.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 
 	public int damageDropped(IBlockState state) {

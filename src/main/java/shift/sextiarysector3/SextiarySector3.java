@@ -49,6 +49,8 @@ public class SextiarySector3 {
 			m.preInit(event);
 		}
 
+		SSEvents.initEvent();
+
 	}
 
 	@EventHandler
