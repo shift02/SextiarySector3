@@ -15,6 +15,7 @@ public class SSCreativeTabs {
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
 		SextiarySectorAPI.TabSSForestry = new CreativeTabSSForestry();
 		SextiarySectorAPI.TabSSMining = new CreativeTabSSMining();
+		SextiarySectorAPI.TabSSIndustry = new CreativeTabSSIndustry();
 
 	}
 
@@ -71,6 +72,25 @@ public class SSCreativeTabs {
 		@SideOnly(Side.CLIENT)
 		public ItemStack getIconItemStack() {
 			return new ItemStack(SSBlocks.orichalcumOre, 1);
+		}
+
+	}
+
+	private static class CreativeTabSSIndustry extends CreativeTabs {
+
+		public CreativeTabSSIndustry() {
+			super("ss.industry");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public ItemStack getIconItemStack() {
+			return new ItemStack(SSItems.plastic, 1);
 		}
 
 	}
