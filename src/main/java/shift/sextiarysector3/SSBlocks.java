@@ -11,6 +11,7 @@ import shift.sextiarysector3.block.BlockSSPressurePlate.Sensitivity;
 import shift.sextiarysector3.block.BlockSSSapling;
 import shift.sextiarysector3.block.BlockSanctuary;
 import shift.sextiarysector3.block.BlockSapCauldron;
+import shift.sextiarysector3.block.BlockSapCauldron.Sap;
 import shift.sextiarysector3.block.BlockSpile;
 import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.util.UtilRegistry;
@@ -75,10 +76,10 @@ public class SSBlocks {
 		spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");
 		UtilRegistry.registerNormalBlock(spile, "Spile", "spile");
 
-		sapCauldron = new BlockSapCauldron().setUnlocalizedName("ss.sap_cauldron");
+		sapCauldron = new BlockSapCauldron(Sap.SAP).setUnlocalizedName("ss.sap_cauldron");
 		UtilRegistry.registerNormalBlock(sapCauldron, "SapCauldron", "cauldron/sap_cauldron");
 
-		rubberCauldron = new BlockSapCauldron().setUnlocalizedName("ss.rubber_cauldron");
+		rubberCauldron = new BlockSapCauldron(Sap.RUBBER).setUnlocalizedName("ss.rubber_cauldron");
 		UtilRegistry.registerNormalBlock(rubberCauldron, "RubberCauldron", "cauldron/rubber_cauldron");
 
 		//鉱石

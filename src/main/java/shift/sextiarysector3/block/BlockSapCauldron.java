@@ -14,12 +14,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
-import net.minecraft.init.PotionTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBanner;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.util.EnumFacing;
@@ -29,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 
 public class BlockSapCauldron extends BlockSSBase {
@@ -39,8 +38,11 @@ public class BlockSapCauldron extends BlockSSBase {
 	protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
 
-	public BlockSapCauldron() {
+	private Sap sap;
+
+	public BlockSapCauldron(Sap sap) {
 		super(Material.IRON);
+		this.sap = sap;
 		this.setCreativeTab(SextiarySectorAPI.TabSSForestry);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, Integer.valueOf(0)));
 	}
@@ -128,9 +130,24 @@ public class BlockSapCauldron extends BlockSSBase {
 				}*/
 
 			} else if (item == Items.GLASS_BOTTLE) {
+
 				if (i > 0 && !worldIn.isRemote) {
+
 					if (!playerIn.capabilities.isCreativeMode) {
-						ItemStack itemstack1 = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER);
+
+						ItemStack itemstack1 = null;
+						switch (this.sap) {
+						case SAP:
+							itemstack1 = new ItemStack(SSItems.sapBottle);
+							break;
+						case RUBBER:
+							itemstack1 = new ItemStack(SSItems.rubberBottle);
+							break;
+						default:
+							break;
+						}
+
+						//ItemStack itemstack1 = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER);
 						playerIn.addStat(StatList.CAULDRON_USED);
 
 						if (--heldItem.stackSize == 0) {
@@ -263,5 +280,9 @@ public class BlockSapCauldron extends BlockSSBase {
 
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
 		return true;
+	}
+
+	public static enum Sap {
+		SAP, RUBBER;
 	}
 }
