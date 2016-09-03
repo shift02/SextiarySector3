@@ -51,6 +51,10 @@ public class SextiarySector3 {
 
 		SSEvents.initEvent();
 
+		SSRecipes.initRecipes();
+
+		SSOreDictionary.init();
+
 	}
 
 	@EventHandler
