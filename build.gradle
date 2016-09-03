@@ -36,7 +36,7 @@ ext.libAdditionalStatus = "./lib/additionalstatus"
 ext.lang = "./lang"
 
 minecraft {
-    version = "1.10.2-12.18.1.2011"
+    version = "1.10.2-12.18.1.2076"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -71,6 +71,12 @@ sourceSets {
     }
 }
 
+repositories {
+    maven { // JEI
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+}
+
 dependencies {
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
@@ -92,6 +98,11 @@ dependencies {
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    // compile against the JEI API
+    deobfCompile "mezz.jei:jei_1.10.2:3.9.0.244:api"
+    // at runtime, use the full JEI jar
+    runtime "mezz.jei:jei_1.10.2:3.9.0.244"
 
 }
 
