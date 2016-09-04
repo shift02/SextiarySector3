@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "sextiarysector3:ore",
+    "textures": {
+      "ore": "sextiarysector3:blocks/ore/gold_large_ore"
+    },
+    "transform": "forge:default-block",
+    "uvlock": true
+  },
+  "variants": {
+    "normal":[{}],
+    "inventory":[{}]
+  }
+}

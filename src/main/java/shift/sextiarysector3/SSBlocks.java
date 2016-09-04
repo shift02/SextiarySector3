@@ -3,6 +3,8 @@ package shift.sextiarysector3;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockSSLeaves;
 import shift.sextiarysector3.block.BlockSSLog;
 import shift.sextiarysector3.block.BlockSSOre;
@@ -44,6 +46,15 @@ public class SSBlocks {
 	public static Block copperOre;
 	public static Block silverOre;
 	public static Block orichalcumOre;
+
+	public static Block coalLargeOre;
+	public static Block ironLargeOre;
+	public static Block goldLargeOre;
+	//public static Block diamondLargeOre;
+
+	public static Block copperLargeOre;
+	public static Block silverLargeOre;
+	//public static Block orichalcumLargeOre;
 
 	public static void initBlock() {
 
@@ -91,6 +102,28 @@ public class SSBlocks {
 
 		orichalcumOre = new BlockSSOre(3).setUnlocalizedName("ss.orichalcum_ore");
 		UtilRegistry.registerNormalBlock(orichalcumOre, "Orichalcum", "ore/orichalcum_ore");
+
+		//Large鉱石
+		coalLargeOre = new BlockLargeOre(SSItems.coalDust, Blocks.COAL_ORE, 1).setUnlocalizedName("ss.coal_large_ore");
+		UtilRegistry.registerNormalBlock(coalLargeOre, "CoalLargeOre", "ore/coal_largeore");
+
+		ironLargeOre = new BlockLargeOre(SSItems.ironDust, Blocks.IRON_ORE, 2).setUnlocalizedName("ss.iron_large_ore");
+		UtilRegistry.registerNormalBlock(ironLargeOre, "IronLargeOre", "ore/iron_large_ore");
+
+		goldLargeOre = new BlockLargeOre(SSItems.goldDust, Blocks.GOLD_ORE, 3).setUnlocalizedName("ss.gold_large_ore");
+		UtilRegistry.registerNormalBlock(goldLargeOre, "GoldLargeOre", "ore/gold_large_ore");
+
+		///diamondLargeOre = new BlockLargeOre(Items.COAL, Blocks.DIAMOND_ORE, 1).setUnlocalizedName("ss.diamond_large_ore");
+		//UtilRegistry.registerNormalBlock(diamondLargeOre, "DiamondLargeOre", "ore/diamond_large_ore");
+
+		copperLargeOre = new BlockLargeOre(SSItems.coalDust, SSBlocks.copperOre, 2).setUnlocalizedName("ss.copper_large_ore");
+		UtilRegistry.registerNormalBlock(copperLargeOre, "CopperLargeOre", "ore/copper_large_ore");
+
+		silverLargeOre = new BlockLargeOre(SSItems.silverDust, SSBlocks.silverOre, 3).setUnlocalizedName("ss.silver_large_ore");
+		UtilRegistry.registerNormalBlock(silverLargeOre, "SilverLargeOre", "ore/silver_large_ore");
+
+		//orichalcumLargeOre = new BlockLargeOre(SSItems.orichalcumGem, SSBlocks.orichalcumOre, 1).setUnlocalizedName("ss.orichalcum_large_ore");
+		//UtilRegistry.registerNormalBlock(orichalcumLargeOre, "orichalcum_large_ore", "ore/orichalcum_large_ore");
 
 	}
 
