@@ -2,6 +2,7 @@ package shift.sextiarysector3;
 
 import net.minecraft.item.Item;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.item.ItemDust;
 import shift.sextiarysector3.item.ItemIngot;
 import shift.sextiarysector3.item.ItemSSBase;
 import shift.sextiarysector3.item.ItemSSShield;
@@ -20,6 +21,14 @@ public class SSItems {
 	public static Item copperIngot;
 	public static Item silverIngot;
 	public static Item orichalcumGem;
+
+	//鉱業
+	public static Item coalDust;
+	public static Item ironDust;
+	public static Item goldDust;
+
+	public static Item copperDust;
+	public static Item silverDust;
 
 	public static Item plastic;
 
@@ -46,6 +55,21 @@ public class SSItems {
 		UtilRegistry.registerNormalItem(orichalcumGem, "OrichalcumGem", "gem/orichalcum_gem");
 
 		//工業
+		coalDust = new ItemDust().setUnlocalizedName("ss.coal_dust");
+		UtilRegistry.registerNormalItem(coalDust, "CoalDust", "dust/coal_dust");
+
+		ironDust = new ItemDust().setUnlocalizedName("ss.iron_dust");
+		UtilRegistry.registerNormalItem(ironDust, "IronDust", "dust/iron_dust");
+
+		goldDust = new ItemDust().setUnlocalizedName("ss.gold_dust");
+		UtilRegistry.registerNormalItem(goldDust, "GoldDust", "dust/gold_dust");
+
+		copperDust = new ItemDust().setUnlocalizedName("ss.copper_dust");
+		UtilRegistry.registerNormalItem(copperDust, "CopperDust", "dust/copper_dust");
+
+		silverDust = new ItemDust().setUnlocalizedName("ss.silver_dust");
+		UtilRegistry.registerNormalItem(silverDust, "SilverDust", "dust/silver_dust");
+
 		plastic = new ItemSSBase().setUnlocalizedName("ss.plastic").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		UtilRegistry.registerNormalItem(plastic, "Plastic", "plastic");
 
