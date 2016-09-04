@@ -8,8 +8,9 @@ import shift.sextiarysector3.api.SextiarySectorAPI;
 
 public class BlockSSOre extends BlockSSBase {
 
-	public BlockSSOre() {
+	public BlockSSOre(int level) {
 		super(Material.ROCK);
+		this.setHarvestLevel("pickaxe", level);
 		this.setCreativeTab(SextiarySectorAPI.TabSSMining);
 	}
 

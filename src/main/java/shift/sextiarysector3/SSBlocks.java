@@ -83,13 +83,13 @@ public class SSBlocks {
 		UtilRegistry.registerNormalBlock(rubberCauldron, "RubberCauldron", "cauldron/rubber_cauldron");
 
 		//鉱石
-		copperOre = new BlockSSOre().setUnlocalizedName("ss.copper_ore");
+		copperOre = new BlockSSOre(1).setUnlocalizedName("ss.copper_ore");
 		UtilRegistry.registerNormalBlock(copperOre, "CopperOre", "ore/copper_ore");
 
-		silverOre = new BlockSSOre().setUnlocalizedName("ss.silver_ore");
+		silverOre = new BlockSSOre(2).setUnlocalizedName("ss.silver_ore");
 		UtilRegistry.registerNormalBlock(silverOre, "SilverOre", "ore/silver_ore");
 
-		orichalcumOre = new BlockSSOre().setUnlocalizedName("ss.orichalcum_ore");
+		orichalcumOre = new BlockSSOre(3).setUnlocalizedName("ss.orichalcum_ore");
 		UtilRegistry.registerNormalBlock(orichalcumOre, "Orichalcum", "ore/orichalcum_ore");
 
 	}
