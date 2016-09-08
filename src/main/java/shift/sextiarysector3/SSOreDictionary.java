@@ -13,6 +13,8 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("gemOrichalcum", SSItems.orichalcumGem);
 
 		//Dust
+		OreDictionary.registerOre("dustIron", SSItems.ironDust);
+		OreDictionary.registerOre("dustGold", SSItems.goldDust);
 		OreDictionary.registerOre("dustCopper", SSItems.copperDust);
 		OreDictionary.registerOre("dustSilver", SSItems.silverDust);
 
