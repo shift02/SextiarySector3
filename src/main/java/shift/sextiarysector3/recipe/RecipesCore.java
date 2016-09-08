@@ -1,7 +1,6 @@
 package shift.sextiarysector3.recipe;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -36,7 +35,7 @@ public class RecipesCore {
 						"xyx", "xzx", "xxx",
 						'x', "stone",
 						'y', "ingotSilver",
-						'z', Blocks.REDSTONE_BLOCK
+						'z', "blockRedstone"
 				}));
 
 	}
