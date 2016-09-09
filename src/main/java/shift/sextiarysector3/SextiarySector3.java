@@ -15,6 +15,7 @@ import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.module.IModule;
 import shift.sextiarysector3.module.ModuleColor;
 import shift.sextiarysector3.module.ModuleSap;
+import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.util.UtilRegistry;
 
 @Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION)
@@ -37,17 +38,18 @@ public class SextiarySector3 {
 
 		SSCreativeTabs.initCreativeTabs();
 
-		SSItems.initItem();
-		SSBlocks.initBlock();
-		SSFluids.initFluid();
-
 		//Module
 		modules.add(ModuleSap.getInstance());
 		modules.add(ModuleColor.getInstance());
+		modules.add(ModuleToolMaterial.getInstance());
 
 		for (IModule m : modules) {
 			m.preInit(event);
 		}
+
+		SSItems.initItem();
+		SSBlocks.initBlock();
+		SSFluids.initFluid();
 
 		SSEvents.initEvent();
 
