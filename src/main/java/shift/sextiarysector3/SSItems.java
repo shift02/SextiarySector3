@@ -4,20 +4,36 @@ import net.minecraft.item.Item;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.item.ItemDust;
 import shift.sextiarysector3.item.ItemIngot;
+import shift.sextiarysector3.item.ItemSSAxe;
 import shift.sextiarysector3.item.ItemSSBase;
+import shift.sextiarysector3.item.ItemSSHoe;
+import shift.sextiarysector3.item.ItemSSPickaxe;
 import shift.sextiarysector3.item.ItemSSShield;
+import shift.sextiarysector3.item.ItemSSSpade;
+import shift.sextiarysector3.item.ItemSSSword;
 import shift.sextiarysector3.item.ItemSapBottle;
+import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.renderer.RendererShield;
 import shift.sextiarysector3.tileentity.TileEntityShield;
 import shift.sextiarysector3.util.UtilRegistry;
 
 public class SSItems {
 
+	//Core
 	public static Item plasticShield;
 
+	//道具
+	public static Item copperShovel;
+	public static Item copperPickaxe;
+	public static Item copperAxe;
+	public static Item copperSword;
+	public static Item copperHoe;
+
+	//林業
 	public static Item sapBottle;
 	public static Item rubberBottle;
 
+	//鉱業
 	public static Item copperIngot;
 	public static Item silverIngot;
 	public static Item orichalcumGem;
@@ -36,6 +52,22 @@ public class SSItems {
 
 		plasticShield = new ItemSSShield().setUnlocalizedName("ss.plastic_shield");
 		UtilRegistry.registerCustomItem(plasticShield, "PlasticShield", "plastic_shield", TileEntityShield.class, new RendererShield());
+
+		//銅
+		copperShovel = new ItemSSSpade(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_shovel");
+		UtilRegistry.registerToolItem(copperShovel, "CopperShovel", "tool/copper_shovel");
+
+		copperPickaxe = new ItemSSPickaxe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_pickaxe");
+		UtilRegistry.registerToolItem(copperPickaxe, "CopperPickaxe", "tool/copper_pickaxe");
+
+		copperAxe = new ItemSSAxe(ModuleToolMaterial.copperTool, 8.0F, -3.2F).setUnlocalizedName("ss.copper_axe");
+		UtilRegistry.registerToolItem(copperAxe, "CopperAxe", "tool/copper_axe");
+
+		copperSword = new ItemSSSword(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_sword");
+		UtilRegistry.registerToolItem(copperSword, "CopperSword", "tool/copper_sword");
+
+		copperHoe = new ItemSSHoe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_hoe");
+		UtilRegistry.registerToolItem(copperHoe, "CopperHoe", "tool/copper_hoe");
 
 		//林業
 		sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");

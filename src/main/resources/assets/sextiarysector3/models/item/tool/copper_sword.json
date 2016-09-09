@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "sextiarysector3:items/tool/copper_sword"
+    }
+}
