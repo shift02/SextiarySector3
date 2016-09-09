@@ -30,7 +30,6 @@ public class ModuleSap implements IModule {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
@@ -46,7 +45,6 @@ public class ModuleSap implements IModule {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 

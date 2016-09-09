@@ -34,7 +34,6 @@ public class ModuleColor implements IModule {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
