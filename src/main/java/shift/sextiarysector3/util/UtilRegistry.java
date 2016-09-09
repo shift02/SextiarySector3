@@ -26,6 +26,14 @@ public class UtilRegistry {
 	public static File itemModel;
 
 	public static void registerNormalItem(Item item, String registryName, String resource) {
+		registerNormalItem(item, registryName, resource, null);
+	}
+
+	public static void registerToolItem(Item item, String registryName, String resource) {
+		registerNormalItem(item, registryName, resource, "item/handheld");
+	}
+
+	public static void registerNormalItem(Item item, String registryName, String resource, String parent) {
 
 		GameRegistry.register(item.setRegistryName(SextiarySector3.MODID, registryName));
 
@@ -40,7 +48,7 @@ public class UtilRegistry {
 		File f = new File(itemModel, resource + ".json");
 
 		if (SextiarySector3.isDebug && !f.exists()) {
-			ItemJsonUtil.generationItemGson(f, resource);
+			ItemJsonUtil.generationItemGson(f, resource, parent);
 		}
 
 	}
@@ -67,7 +75,7 @@ public class UtilRegistry {
 		File f = new File(itemModel, resource + ".json");
 
 		if (SextiarySector3.isDebug && !f.exists()) {
-			ItemJsonUtil.generationItemGson(f, resource);
+			ItemJsonUtil.generationItemGson(f, resource, null);
 		}
 
 	}

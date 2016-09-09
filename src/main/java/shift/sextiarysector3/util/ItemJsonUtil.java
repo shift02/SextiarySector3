@@ -17,14 +17,16 @@ public class ItemJsonUtil {
 
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	public static void generationItemGson(File file, String itemName) {
+	public static void generationItemGson(File file, String itemName, String parent) {
 
 		if (!file.isDirectory()) file.getParentFile().mkdirs();
 
 		SextiarySector3.log.info("ItemJsonUtil#generationItemGson(), " + file);
 
+		if (parent == null) parent = "item/generated";
+
 		JsonObject root = new JsonObject();
-		root.addProperty("parent", "item/generated");//親Model
+		root.addProperty("parent", parent);//親Model
 		JsonObject textures = new JsonObject();
 		textures.addProperty("layer0", "sextiarysector3:items/" + itemName);
 		root.add("textures", textures);
