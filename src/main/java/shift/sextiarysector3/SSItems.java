@@ -29,6 +29,18 @@ public class SSItems {
 	public static Item copperSword;
 	public static Item copperHoe;
 
+	public static Item silverShovel;
+	public static Item silverPickaxe;
+	public static Item silverAxe;
+	public static Item silverSword;
+	public static Item silverHoe;
+
+	public static Item orichalcumShovel;
+	public static Item orichalcumPickaxe;
+	public static Item orichalcumAxe;
+	public static Item orichalcumSword;
+	public static Item orichalcumHoe;
+
 	//林業
 	public static Item sapBottle;
 	public static Item rubberBottle;
@@ -68,6 +80,38 @@ public class SSItems {
 
 		copperHoe = new ItemSSHoe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_hoe");
 		UtilRegistry.registerToolItem(copperHoe, "CopperHoe", "tool/copper_hoe");
+
+		//銀
+		silverShovel = new ItemSSSpade(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_shovel");
+		UtilRegistry.registerToolItem(silverShovel, "SilverShovel", "tool/silver_shovel");
+
+		silverPickaxe = new ItemSSPickaxe(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_pickaxe");
+		UtilRegistry.registerToolItem(silverPickaxe, "SilverPickaxe", "tool/silver_pickaxe");
+
+		silverAxe = new ItemSSAxe(ModuleToolMaterial.silverTool, 8.0F, -3.2F).setUnlocalizedName("ss.silver_axe");
+		UtilRegistry.registerToolItem(silverAxe, "SilverAxe", "tool/silver_axe");
+
+		silverSword = new ItemSSSword(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_sword");
+		UtilRegistry.registerToolItem(silverSword, "SilverSword", "tool/silver_sword");
+
+		silverHoe = new ItemSSHoe(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_hoe");
+		UtilRegistry.registerToolItem(silverHoe, "SilverHoe", "tool/silver_hoe");
+
+		//オリハルコン
+		orichalcumShovel = new ItemSSSpade(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_shovel");
+		UtilRegistry.registerToolItem(orichalcumShovel, "OrichalcumShovel", "tool/orichalcum_shovel");
+
+		orichalcumPickaxe = new ItemSSPickaxe(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_pickaxe");
+		UtilRegistry.registerToolItem(orichalcumPickaxe, "OrichalcumPickaxe", "tool/orichalcum_pickaxe");
+
+		orichalcumAxe = new ItemSSAxe(ModuleToolMaterial.orichalcumTool, 8.0F, -3.2F).setUnlocalizedName("ss.orichalcum_axe");
+		UtilRegistry.registerToolItem(orichalcumAxe, "OrichalcumAxe", "tool/orichalcum_axe");
+
+		orichalcumSword = new ItemSSSword(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_sword");
+		UtilRegistry.registerToolItem(orichalcumSword, "OrichalcumSword", "tool/orichalcum_sword");
+
+		orichalcumHoe = new ItemSSHoe(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_hoe");
+		UtilRegistry.registerToolItem(orichalcumHoe, "OrichalcumHoe", "tool/orichalcum_hoe");
 
 		//林業
 		sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");
