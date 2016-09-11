@@ -1,7 +1,6 @@
 package shift.sextiarysector3;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,7 +32,7 @@ public class SSCreativeTabs {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public ItemStack getIconItemStack() {
-			return new ItemStack(Items.BOAT, 1);
+			return new ItemStack(SSItems.orichalcumGem, 1);
 		}
 
 	}
