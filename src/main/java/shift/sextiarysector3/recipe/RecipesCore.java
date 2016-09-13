@@ -15,7 +15,7 @@ public class RecipesCore {
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.plasticShield, 1),
 				new Object[] {
 						"x x", "xxx", " x ",
-						'x', SSItems.plastic
+						'x', "plastic"
 				}));
 
 		//鉱石 インゴット--プレート
