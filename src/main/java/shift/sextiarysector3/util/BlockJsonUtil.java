@@ -24,7 +24,7 @@ public class BlockJsonUtil {
 
 		SextiarySector3.log.info("BlockJsonUtil#generationBlockStateGson(), " + file);
 
-		if (model == null) model = "block/cube_all";
+		if (model == null) model = "cube_all";
 
 		JsonObject root = new JsonObject();
 		root.addProperty("forge_marker", 1);//Forge
