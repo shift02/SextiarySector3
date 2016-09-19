@@ -5,6 +5,7 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import shift.sextiarysector3.block.BlockLargeOre;
+import shift.sextiarysector3.block.BlockSSBase;
 import shift.sextiarysector3.block.BlockSSLeaves;
 import shift.sextiarysector3.block.BlockSSLog;
 import shift.sextiarysector3.block.BlockSSOre;
@@ -55,6 +56,8 @@ public class SSBlocks {
 	public static Block copperLargeOre;
 	public static Block silverLargeOre;
 	//public static Block orichalcumLargeOre;
+
+	public static Block copperBlock;
 
 	public static void initBlock() {
 
@@ -124,6 +127,9 @@ public class SSBlocks {
 
 		//orichalcumLargeOre = new BlockLargeOre(SSItems.orichalcumGem, SSBlocks.orichalcumOre, 1).setUnlocalizedName("ss.orichalcum_large_ore");
 		//UtilRegistry.registerNormalBlock(orichalcumLargeOre, "orichalcum_large_ore", "ore/orichalcum_large_ore");
+
+		copperBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.copper_block");
+		UtilRegistry.registerNormalBlock(copperBlock, "CopperBlock", "ore/copper_block");
 
 	}
 
