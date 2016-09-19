@@ -58,6 +58,8 @@ public class SSBlocks {
 	//public static Block orichalcumLargeOre;
 
 	public static Block copperBlock;
+	public static Block silverBlock;
+	public static Block orichalcumBlock;
 
 	public static void initBlock() {
 
@@ -130,6 +132,12 @@ public class SSBlocks {
 
 		copperBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.copper_block");
 		UtilRegistry.registerNormalBlock(copperBlock, "CopperBlock", "ore/copper_block");
+
+		silverBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.silver_block");
+		UtilRegistry.registerNormalBlock(silverBlock, "SilverBlock", "ore/silver_block");
+
+		orichalcumBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.orichalcum_block");
+		UtilRegistry.registerNormalBlock(orichalcumBlock, "OrichalcumBlock", "ore/orichalcum_block");
 
 	}
 
