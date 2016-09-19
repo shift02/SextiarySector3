@@ -20,6 +20,8 @@ import shift.sextiarysector3.util.UtilRegistry;
 public class SSItems {
 
 	//Core
+	public static Item bluestone;
+
 	public static Item plasticShield;
 
 	//道具
@@ -61,6 +63,9 @@ public class SSItems {
 	public static Item plastic;
 
 	public static void initItem() {
+
+		bluestone = new ItemSSBase().setUnlocalizedName("ss.bluestone");
+		UtilRegistry.registerNormalItem(bluestone, "Bluestone", "dust/bluestone");
 
 		plasticShield = new ItemSSShield().setUnlocalizedName("ss.plastic_shield");
 		UtilRegistry.registerCustomItem(plasticShield, "PlasticShield", "plastic_shield", TileEntityShield.class, new RendererShield());
