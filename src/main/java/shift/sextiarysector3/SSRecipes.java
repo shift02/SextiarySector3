@@ -4,6 +4,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import shift.sextiarysector3.recipe.RecipesCore;
 import shift.sextiarysector3.recipe.RecipesForestry;
 import shift.sextiarysector3.recipe.RecipesFurnace;
+import shift.sextiarysector3.recipe.RecipesMining;
 
 public class SSRecipes {
 
@@ -15,6 +16,7 @@ public class SSRecipes {
 
 		RecipesCore.addRecipes(m);
 		RecipesForestry.addRecipes(m);
+		RecipesMining.addRecipes(m);
 
 	}
 
