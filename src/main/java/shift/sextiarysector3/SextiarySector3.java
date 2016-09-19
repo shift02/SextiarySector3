@@ -35,6 +35,7 @@ public class SextiarySector3 {
 		//Json生成用
 		isDebug = event.getSourceFile().isDirectory();
 		UtilRegistry.itemModel = new File(event.getSourceFile().getParentFile(), "src/main/resources/assets/sextiarysector3/models/item");
+		UtilRegistry.blockState = new File(event.getSourceFile().getParentFile(), "src/main/resources/assets/sextiarysector3/blockstates");
 
 		SSCreativeTabs.initCreativeTabs();
 
@@ -42,6 +43,7 @@ public class SextiarySector3 {
 		modules.add(ModuleSap.getInstance());
 		modules.add(ModuleColor.getInstance());
 		modules.add(ModuleToolMaterial.getInstance());
+		//modules.add(ModuleTrain.getInstance());
 
 		for (IModule m : modules) {
 			m.preInit(event);

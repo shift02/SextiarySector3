@@ -25,6 +25,8 @@ public class UtilRegistry {
 
 	public static File itemModel;
 
+	public static File blockState;
+
 	public static void registerNormalItem(Item item, String registryName, String resource) {
 		registerNormalItem(item, registryName, resource, null);
 	}
@@ -84,6 +86,13 @@ public class UtilRegistry {
 
 		ItemBlock itemBlock = new ItemBlock(block);
 		registerNormalBlock(block, itemBlock, registryName, resource);
+
+		//Json生成
+		File f = new File(blockState, resource + ".json");
+
+		if (SextiarySector3.isDebug && !f.exists()) {
+			BlockJsonUtil.generationBlockStateGson(f, resource, null);
+		}
 
 	}
 
