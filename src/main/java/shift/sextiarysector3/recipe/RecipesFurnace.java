@@ -10,6 +10,8 @@ public class RecipesFurnace {
 
 	public static void addRecipes() {
 
+		GameRegistry.addSmelting(new ItemStack(Items.REDSTONE), new ItemStack(SSItems.bluestone), 0.1f);
+
 		GameRegistry.addSmelting(new ItemStack(SSItems.sapBottle), new ItemStack(SSItems.plastic), 0.1f);
 
 		GameRegistry.addSmelting(new ItemStack(SSBlocks.copperOre), new ItemStack(SSItems.copperIngot), 0.1f);
