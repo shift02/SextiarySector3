@@ -18,6 +18,8 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("dustCopper", SSItems.copperDust);
 		OreDictionary.registerOre("dustSilver", SSItems.silverDust);
 
+		OreDictionary.registerOre("dustBluestone", SSItems.bluestone);
+
 		//Ore_Block
 		OreDictionary.registerOre("blockCopper", SSBlocks.copperBlock);
 		OreDictionary.registerOre("blockSilver", SSBlocks.silverBlock);
