@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockSSBase;
 import shift.sextiarysector3.block.BlockSSLeaves;
@@ -32,6 +33,8 @@ public class SSBlocks {
 	public static Block orichalcumPressurePlate;
 
 	public static Block sanctuary;
+
+	public static Block enderStone;
 
 	public static Block rubberSapling;
 	public static Block rubberLog;
@@ -78,6 +81,9 @@ public class SSBlocks {
 
 		sanctuary = new BlockSanctuary().setUnlocalizedName("ss.sanctuary");
 		UtilRegistry.registerNormalBlock(sanctuary, "Sanctuary", "sanctuary");
+
+		enderStone = new BlockEnderStoneMonument().setUnlocalizedName("ss.ender_stone");
+		UtilRegistry.registerNormalBlock(enderStone, "EnderStone", "ender_stone");
 
 		//林業
 		rubberSapling = new BlockSSSapling().setUnlocalizedName("ss.rubber_sapling");

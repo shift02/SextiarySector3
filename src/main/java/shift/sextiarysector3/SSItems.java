@@ -3,6 +3,7 @@ package shift.sextiarysector3;
 import net.minecraft.item.Item;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.item.ItemDust;
+import shift.sextiarysector3.item.ItemEnderCard;
 import shift.sextiarysector3.item.ItemIngot;
 import shift.sextiarysector3.item.ItemSSAxe;
 import shift.sextiarysector3.item.ItemSSBase;
@@ -23,6 +24,8 @@ public class SSItems {
 	public static Item bluestone;
 
 	public static Item plasticShield;
+
+	public static Item enderCard;
 
 	//道具
 	public static Item copperShovel;
@@ -69,6 +72,9 @@ public class SSItems {
 
 		plasticShield = new ItemSSShield().setUnlocalizedName("ss.plastic_shield");
 		UtilRegistry.registerCustomItem(plasticShield, "PlasticShield", "plastic_shield", TileEntityShield.class, new RendererShield());
+
+		enderCard = new ItemEnderCard().setUnlocalizedName("ss.ender_card");
+		UtilRegistry.registerNormalItem(enderCard, "EnderCard", "ender_card");
 
 		//銅
 		copperShovel = new ItemSSSpade(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_shovel");
