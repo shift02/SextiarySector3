@@ -23,7 +23,7 @@ plugins {
 }
 */
 
-//ï∂éöÉRÅ[Éh
+//ÔøΩÔøΩÔøΩÔøΩÔøΩRÔøΩ[ÔøΩh
 tasks.withType(AbstractCompile)*.options*.encoding = tasks.withType(GroovyCompile)*.groovyOptions*.encoding = 'UTF-8'
 
 
@@ -38,7 +38,7 @@ ext.lang = "./lang"
 minecraft {
     version = "1.10.2-12.18.1.2076"
     runDir = "run"
-    
+
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
     // stable_#            stables are built at the discretion of the MCP team.
@@ -82,7 +82,7 @@ dependencies {
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
-      
+
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
@@ -100,9 +100,9 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     // compile against the JEI API
-    deobfCompile "mezz.jei:jei_1.10.2:3.9.0.244:api"
+    deobfCompile "mezz.jei:jei_1.10.2:3.10.0.261:api"
     // at runtime, use the full JEI jar
-    runtime "mezz.jei:jei_1.10.2:3.9.0.244"
+    runtime "mezz.jei:jei_1.10.2:3.10.0.261"
 
 }
 
@@ -115,11 +115,11 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs[0]) {
         include 'mcmod.info'
-                
+
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-        
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs[0]) {
         exclude 'mcmod.info'
@@ -131,3 +131,6 @@ processResources
         exclude '**/*.md'
     }
 }
+
+
+
