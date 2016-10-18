@@ -17,6 +17,12 @@ public class RecipesTool {
         addSword(craftingManager, "ingotCopper", new ItemStack(SSItems.copperSword));
         addHoe(craftingManager, "ingotCopper", new ItemStack(SSItems.copperHoe));
 
+        addShovel(craftingManager, "ingotSilver", new ItemStack(SSItems.silverShovel));
+        addPickaxe(craftingManager, "ingotSilver", new ItemStack(SSItems.silverPickaxe));
+        addAxe(craftingManager, "ingotSilver", new ItemStack(SSItems.silverAxe));
+        addSword(craftingManager, "ingotSilver", new ItemStack(SSItems.silverSword));
+        addHoe(craftingManager, "ingotSilver", new ItemStack(SSItems.silverHoe));
+
     }
 
     private static void addAxe(CraftingManager p_77608_1_, String material, ItemStack item) {
