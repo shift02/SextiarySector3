@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -18,65 +19,67 @@ import shift.sextiarysector3.module.ModuleSap;
 import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.util.UtilRegistry;
 
-@Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION)
+@Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION, updateJSON = SextiarySector3.UPDATE_JSON)
 public class SextiarySector3 {
-	public static final String MODID = "sextiarysector3";
-	public static final String VERSION = "1.0";
+    public static final String MODID = "sextiarysector3";
+    public static final String VERSION = "1.0.0";
 
-	public static final Logger log = LogManager.getLogger(SextiarySectorAPI.MODID);
+    public static final String UPDATE_JSON = "https://shift02.github.io/SextiarySector3/Update.json";
 
-	public static boolean isDebug = false;
+    public static final Logger log = LogManager.getLogger(SextiarySectorAPI.MODID);
 
-	public static final ArrayList<IModule> modules = new ArrayList<IModule>();
+    public static boolean isDebug = false;
 
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+    public static final ArrayList<IModule> modules = new ArrayList<IModule>();
 
-		//Json生成用
-		isDebug = event.getSourceFile().isDirectory();
-		UtilRegistry.itemModel = new File(event.getSourceFile().getParentFile(), "src/main/resources/assets/sextiarysector3/models/item");
-		UtilRegistry.blockState = new File(event.getSourceFile().getParentFile(), "src/main/resources/assets/sextiarysector3/blockstates");
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
 
-		SSCreativeTabs.initCreativeTabs();
+        //Json生成用
+        isDebug = event.getSourceFile().isDirectory() && (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
+        UtilRegistry.itemModel = new File(event.getSourceFile().getParentFile(), "src/main/resources/assets/sextiarysector3/models/item");
+        UtilRegistry.blockState = new File(event.getSourceFile().getParentFile(), "src/main/resources/assets/sextiarysector3/blockstates");
 
-		//Module
-		modules.add(ModuleSap.getInstance());
-		modules.add(ModuleColor.getInstance());
-		modules.add(ModuleToolMaterial.getInstance());
-		//modules.add(ModuleTrain.getInstance());
+        SSCreativeTabs.initCreativeTabs();
 
-		for (IModule m : modules) {
-			m.preInit(event);
-		}
+        //Module
+        modules.add(ModuleSap.getInstance());
+        modules.add(ModuleColor.getInstance());
+        modules.add(ModuleToolMaterial.getInstance());
+        //modules.add(ModuleTrain.getInstance());
 
-		SSItems.initItem();
-		SSBlocks.initBlock();
-		SSFluids.initFluid();
+        for (IModule m : modules) {
+            m.preInit(event);
+        }
 
-		SSEvents.initEvent();
+        SSItems.initItem();
+        SSBlocks.initBlock();
+        SSFluids.initFluid();
 
-		SSRecipes.initRecipes();
+        SSEvents.initEvent(event);
 
-		SSOreDictionary.init();
+        SSRecipes.initRecipes();
 
-	}
+        SSOreDictionary.init();
 
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
+    }
 
-		for (IModule m : modules) {
-			m.load(event);
-		}
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
 
-	}
+        for (IModule m : modules) {
+            m.load(event);
+        }
 
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
+    }
 
-		for (IModule m : modules) {
-			m.postInit(event);
-		}
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
 
-	}
+        for (IModule m : modules) {
+            m.postInit(event);
+        }
+
+    }
 
 }
