@@ -37,19 +37,71 @@ public class BlockEnderStoneMonument extends BlockSSBase {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem,
             EnumFacing side, float hitX, float hitY, float hitZ) {
 
-        if (heldItem == null) return false;
+        if (this.onSilver(worldIn, pos)) {
 
-        if (worldIn.isRemote) return true;
-        EntityItem eItem = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5);
-        eItem.motionX = 0;
-        eItem.motionY = 0;
-        eItem.motionZ = 0;
-        eItem.setEntityItemStack(heldItem);
-        eItem.setNoDespawn();
+            EntityItem eItem = this.getOnSilver(worldIn, pos);
+            eItem.getEntityItem().stackSize = 1;
+            //eItem.motionY += 0.2;
+            if (worldIn.isRemote) return true;
 
-        worldIn.spawnEntityInWorld(eItem);
+            eItem.setAgeToCreativeDespawnTime();
+            eItem.setNoPickupDelay();
 
-        return true;
+            return true;
+
+        } else {
+
+            if (heldItem == null) return true;
+
+            if (worldIn.isRemote) return true;
+            EntityItem eItem = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 1.3, pos.getZ() + 0.5);
+            eItem.motionX = 0;
+            eItem.motionY = 0;
+            eItem.motionZ = 0;
+            eItem.setEntityItemStack(heldItem.copy());
+            eItem.setNoDespawn();
+            eItem.setInfinitePickupDelay();
+
+            eItem.getEntityData().setBoolean("silver", true);
+
+            worldIn.spawnEntityInWorld(eItem);
+
+            return true;
+
+        }
+
+    }
+
+    private boolean onSilver(World worldIn, BlockPos pos) {
+
+        AxisAlignedBB axisalignedbb = FRAME_AABB.offset(pos.up());
+
+        List<? extends EntityItem> list = worldIn.getEntitiesWithinAABB(EntityItem.class, axisalignedbb);
+
+        for (EntityItem eI : list) {
+
+            if (eI.getEntityData().hasKey("silver")) return true;
+
+        }
+
+        return false;
+
+    }
+
+    private EntityItem getOnSilver(World worldIn, BlockPos pos) {
+
+        AxisAlignedBB axisalignedbb = FRAME_AABB.offset(pos.up());
+
+        List<? extends EntityItem> list = worldIn.getEntitiesWithinAABB(EntityItem.class, axisalignedbb);
+
+        for (EntityItem eI : list) {
+
+            if (eI.getEntityData().hasKey("silver")) return eI;
+
+        }
+
+        return null;
+
     }
 
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
