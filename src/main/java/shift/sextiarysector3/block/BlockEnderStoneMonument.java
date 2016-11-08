@@ -54,9 +54,10 @@ public class BlockEnderStoneMonument extends BlockSSBase {
 
         //if (!worldIn.isRemote) {
 
-        for (EnumFacing f : EnumFacing.HORIZONTALS) {
-            setEnder(worldIn, pos.offset(f), state, rand, f);
-        }
+        //for (EnumFacing f : EnumFacing.HORIZONTALS) {
+        EnumFacing f = (EnumFacing) state.getValue(FACING);
+        setEnder(worldIn, pos.offset(f), state, rand, f);
+        //}
 
         //}
     }
@@ -86,7 +87,7 @@ public class BlockEnderStoneMonument extends BlockSSBase {
         for (ItemStack silver : OreDictionary.getOres("ingotSilver")) {
             if (!OreDictionary.itemMatches(silver, item, false)) continue;
 
-            System.out.println("Hit");
+            //System.out.println("Hit");
 
             ItemStack card = new ItemStack(SSItems.enderCard);
 
@@ -136,9 +137,10 @@ public class BlockEnderStoneMonument extends BlockSSBase {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 
-        for (EnumFacing f : EnumFacing.HORIZONTALS) {
-            setEnder(worldIn, pos.offset(f), worldIn.getBlockState(pos), rand, f);
-        }
+        //for (EnumFacing f : EnumFacing.HORIZONTALS) {
+        EnumFacing f = (EnumFacing) stateIn.getValue(FACING);
+        setEnder(worldIn, pos.offset(f), worldIn.getBlockState(pos), rand, f);
+        //}
 
     }
 
