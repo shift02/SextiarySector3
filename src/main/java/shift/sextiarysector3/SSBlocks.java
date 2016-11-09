@@ -86,7 +86,7 @@ public class SSBlocks {
         enderStone = new BlockEnderStoneMonument().setUnlocalizedName("ss.ender_stone");
         UtilRegistry.registerNormalBlock(enderStone, "EnderStone", "ender_stone");
 
-        enderStoneFoundation = new BlockSSBase(Material.ROCK).setUnlocalizedName("ss.ender_stone");
+        enderStoneFoundation = new BlockSSBase(Material.ROCK).setUnlocalizedName("ss.ender_stone_foundation");
         UtilRegistry.registerNormalBlock(enderStoneFoundation, "EnderStoneFoundation", "ender_stone_foundation");
 
         //林業
