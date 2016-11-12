@@ -1,6 +1,3 @@
-
-
-
 // For those who want the bleeding edge
 buildscript {
     repositories {
@@ -23,7 +20,12 @@ plugins {
 }
 */
 
-//�����R�[�h
+sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
+//日本語
 tasks.withType(AbstractCompile)*.options*.encoding = tasks.withType(GroovyCompile)*.groovyOptions*.encoding = 'UTF-8'
 
 
@@ -106,6 +108,36 @@ dependencies {
 
 }
 
+jar {
+
+
+  exclude('shift/mceconomy3/**')
+  exclude('assets/mceconomy3/**')
+
+  exclude('shift/additionalstatus/**')
+  exclude('assets/additionalstatus/**')
+
+
+}
+
+task devJar(type: Jar) {
+
+    from sourceSets.main.output
+    from sourceSets.main.allSource
+
+    exclude('shift/mceconomy3/**')
+    exclude('assets/mceconomy3/**')
+    exclude('shift/additionalstatus/**')
+    exclude('assets/additionalstatus/**')
+
+
+    classifier = 'dev'
+}
+
+artifacts {
+    archives devJar
+}
+
 processResources
 {
     // this will ensure that this task is redone when the versions change.
@@ -121,12 +153,12 @@ processResources
     }
 
     // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs[0]) {
+    from(sourceSets.main.resources.srcDirs[1]) {
         exclude 'mcmod.info'
         exclude '**/*.md'
     }
 
-    from(sourceSets.main.resources.srcDirs[1]) {
+    from(sourceSets.main.resources.srcDirs[2]) {
         exclude 'mcmod.info'
         exclude '**/*.md'
     }
