@@ -35,6 +35,9 @@ public class BlockEnderStoneMonument extends BlockSSBase {
     public BlockEnderStoneMonument() {
         super(Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.setDropSize(0);
+        this.setHardness(100f);
+        this.setResistance(100.0F);
         //this.setTickRandomly(true);
     }
 
