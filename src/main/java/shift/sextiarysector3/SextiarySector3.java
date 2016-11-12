@@ -71,6 +71,8 @@ public class SextiarySector3 {
             m.load(event);
         }
 
+        SSWorlds.initVillages();
+
     }
 
     @Mod.EventHandler
