@@ -12,49 +12,49 @@ import shift.sextiarysector3.api.SextiarySectorAPI;
 
 public class BlockSSLog extends BlockLog {
 
-	public BlockSSLog() {
-		super();
+    public BlockSSLog() {
+        super();
+        this.setHardness(2.0F);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
 
-		this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
+        this.setCreativeTab(SextiarySectorAPI.TabSSForestry);
+    }
 
-		this.setCreativeTab(SextiarySectorAPI.TabSSForestry);
-	}
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[] { LOG_AXIS });
+    }
 
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { LOG_AXIS });
-	}
+    public IBlockState getStateFromMeta(int meta) {
+        BlockLog.EnumAxis enumfacing$axis = BlockLog.EnumAxis.Y;
+        int i = meta & 12;
 
-	public IBlockState getStateFromMeta(int meta) {
-		BlockLog.EnumAxis enumfacing$axis = BlockLog.EnumAxis.Y;
-		int i = meta & 12;
+        if (i == 4) {
+            enumfacing$axis = BlockLog.EnumAxis.X;
+        } else if (i == 8) {
+            enumfacing$axis = BlockLog.EnumAxis.Z;
+        }
 
-		if (i == 4) {
-			enumfacing$axis = BlockLog.EnumAxis.X;
-		} else if (i == 8) {
-			enumfacing$axis = BlockLog.EnumAxis.Z;
-		}
+        return this.getDefaultState().withProperty(LOG_AXIS, enumfacing$axis);
+    }
 
-		return this.getDefaultState().withProperty(LOG_AXIS, enumfacing$axis);
-	}
+    /**
+     * Convert the BlockState into the correct metadata value
+     */
+    public int getMetaFromState(IBlockState state) {
+        int i = 0;
+        BlockLog.EnumAxis enumfacing$axis = (BlockLog.EnumAxis) state.getValue(LOG_AXIS);
 
-	/**
-	 * Convert the BlockState into the correct metadata value
-	 */
-	public int getMetaFromState(IBlockState state) {
-		int i = 0;
-		BlockLog.EnumAxis enumfacing$axis = (BlockLog.EnumAxis) state.getValue(LOG_AXIS);
+        if (enumfacing$axis == BlockLog.EnumAxis.X) {
+            i |= 4;
+        } else if (enumfacing$axis == BlockLog.EnumAxis.Z) {
+            i |= 8;
+        }
 
-		if (enumfacing$axis == BlockLog.EnumAxis.X) {
-			i |= 4;
-		} else if (enumfacing$axis == BlockLog.EnumAxis.Z) {
-			i |= 8;
-		}
+        return i;
+    }
 
-		return i;
-	}
-
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return this.getStateFromMeta(meta).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
-	}
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        return this.getStateFromMeta(meta).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
+    }
 
 }

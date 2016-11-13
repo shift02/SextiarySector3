@@ -141,13 +141,13 @@ public class SSBlocks {
         //orichalcumLargeOre = new BlockLargeOre(SSItems.orichalcumGem, SSBlocks.orichalcumOre, 1).setUnlocalizedName("ss.orichalcum_large_ore");
         //UtilRegistry.registerNormalBlock(orichalcumLargeOre, "orichalcum_large_ore", "ore/orichalcum_large_ore");
 
-        copperBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.copper_block");
+        copperBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.copper_block").setHardness(4.0F).setResistance(10.0F);
         UtilRegistry.registerNormalBlock(copperBlock, "CopperBlock", "ore/copper_block");
 
-        silverBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.silver_block");
+        silverBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.silver_block").setHardness(3.0F).setResistance(10.0F);
         UtilRegistry.registerNormalBlock(silverBlock, "SilverBlock", "ore/silver_block");
 
-        orichalcumBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.orichalcum_block");
+        orichalcumBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.orichalcum_block").setHardness(8.0F).setResistance(20.0F);
         UtilRegistry.registerNormalBlock(orichalcumBlock, "OrichalcumBlock", "ore/orichalcum_block");
 
     }

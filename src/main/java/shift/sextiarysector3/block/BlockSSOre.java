@@ -8,15 +8,17 @@ import shift.sextiarysector3.api.SextiarySectorAPI;
 
 public class BlockSSOre extends BlockSSBase {
 
-	public BlockSSOre(int level) {
-		super(Material.ROCK);
-		this.setHarvestLevel("pickaxe", level);
-		this.setCreativeTab(SextiarySectorAPI.TabSSMining);
-	}
+    public BlockSSOre(int level) {
+        super(Material.ROCK);
+        this.setHarvestLevel("pickaxe", level);
+        this.setCreativeTab(SextiarySectorAPI.TabSSMining);
+        this.setHardness(3.0f);
+        this.setResistance(5.0f);
+    }
 
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT;
-	}
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
 
 }

@@ -18,51 +18,51 @@ import net.minecraft.world.World;
 
 public class BlockLargeOre extends BlockSSOre {
 
-	private final Item oreItem;
-	private final Block oreBlock;
+    private final Item oreItem;
+    private final Block oreBlock;
 
-	public BlockLargeOre(Item item, Block block, int level) {
-		super(level);
-		this.oreItem = item;
-		this.oreBlock = block;
-		this.setResistance(5.0F);
-		this.setHardness(3.0F);
+    public BlockLargeOre(Item item, Block block, int level) {
+        super(level);
+        this.oreItem = item;
+        this.oreBlock = block;
+        this.setResistance(6.0F);
+        this.setHardness(3.5F);
 
-	}
+    }
 
-	@Nullable
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    @Nullable
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 
-		return oreItem;
+        return oreItem;
 
-	}
+    }
 
-	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 
-		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
-		Random rand = world instanceof World ? ((World) world).rand : RANDOM;
+        Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 
-		int count = quantityDropped(state, fortune, rand);
-		for (int i = 0; i < count; i++) {
-			Item item = getItemDropped(state, rand, fortune);
-			if (item != null) {
-				ret.add(new ItemStack(item, 1, damageDropped(state)));
-				if (oreBlock == Blocks.COAL_ORE) {
-					ret.add(new ItemStack(Items.COAL, 2));
-				} else {
-					ret.add(new ItemStack(oreBlock, 1, damageDropped(state)));
-				}
+        int count = quantityDropped(state, fortune, rand);
+        for (int i = 0; i < count; i++) {
+            Item item = getItemDropped(state, rand, fortune);
+            if (item != null) {
+                ret.add(new ItemStack(item, 1, damageDropped(state)));
+                if (oreBlock == Blocks.COAL_ORE) {
+                    ret.add(new ItemStack(Items.COAL, 2));
+                } else {
+                    ret.add(new ItemStack(oreBlock, 1, damageDropped(state)));
+                }
 
-			}
-		}
-		return ret;
-	}
+            }
+        }
+        return ret;
+    }
 
-	@Override
-	protected boolean canSilkHarvest() {
-		return false;
-	}
+    @Override
+    protected boolean canSilkHarvest() {
+        return false;
+    }
 
 }
