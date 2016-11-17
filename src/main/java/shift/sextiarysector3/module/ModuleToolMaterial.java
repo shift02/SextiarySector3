@@ -1,5 +1,6 @@
 package shift.sextiarysector3.module;
 
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
@@ -29,6 +30,7 @@ public class ModuleToolMaterial implements IModule {
     public static ToolMaterial ninjaTool;
 
     public static ArmorMaterial copperArmor;
+    public static ArmorMaterial silverArmor;
     public static ArmorMaterial ninjaArmor;
 
     @Override
@@ -43,7 +45,10 @@ public class ModuleToolMaterial implements IModule {
         ninjaTool = EnumHelper.addToolMaterial("ninja", 4, 1172, 12.5F, 5.0F, 19);
 
         //耐久 それぞれの防御力 Enchant
-        copperArmor = EnumHelper.addArmorMaterial("copper", SextiarySector3.MODID + ":" + "copper", 13, new int[] { 2, 4, 4, 2 }, 7, null, 0);
+        copperArmor = EnumHelper.addArmorMaterial("copper", SextiarySector3.MODID + ":" + "copper", 13, new int[] { 2, 4, 4, 2 }, 7,
+                SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
+        silverArmor = EnumHelper.addArmorMaterial("silver", SextiarySector3.MODID + ":" + "silver", 7, new int[] { 1, 3, 5, 2 }, 7,
+                SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0);
 
         ninjaArmor = EnumHelper.addArmorMaterial("ninja", null, 29, new int[] { 4, 9, 6, 4 }, 22, null, 0);
 
