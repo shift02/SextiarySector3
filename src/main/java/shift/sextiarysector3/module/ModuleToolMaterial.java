@@ -31,6 +31,7 @@ public class ModuleToolMaterial implements IModule {
 
     public static ArmorMaterial copperArmor;
     public static ArmorMaterial silverArmor;
+    public static ArmorMaterial orichalcumArmor;
     public static ArmorMaterial ninjaArmor;
 
     @Override
@@ -49,6 +50,9 @@ public class ModuleToolMaterial implements IModule {
                 SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
         silverArmor = EnumHelper.addArmorMaterial("silver", SextiarySector3.MODID + ":" + "silver", 7, new int[] { 1, 3, 5, 2 }, 7,
                 SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0);
+
+        orichalcumArmor = EnumHelper.addArmorMaterial("silver", SextiarySector3.MODID + ":" + "orichalcum", 50, new int[] { 4, 7, 9, 4 }, 14,
+                SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0f);
 
         ninjaArmor = EnumHelper.addArmorMaterial("ninja", null, 29, new int[] { 4, 9, 6, 4 }, 22, null, 0);
 
