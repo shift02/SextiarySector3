@@ -55,6 +55,12 @@ public class SSItems {
     public static Item copperLeggings;
     public static Item copperBoots;
 
+    // シルバー
+    public static Item silverHelmet;
+    public static Item silverChestplate;
+    public static Item silverLeggings;
+    public static Item silverBoots;
+
     //林業
     public static Item sapBottle;
     public static Item rubberBottle;
@@ -146,6 +152,19 @@ public class SSItems {
 
         copperBoots = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("ss.copper_boots");
         UtilRegistry.registerNormalItem(copperBoots, "copper_boots", "armor/copper_boots");
+
+        //銀
+        silverHelmet = new ItemSSArmor(ModuleToolMaterial.silverArmor, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName("ss.silver_helmet");
+        UtilRegistry.registerNormalItem(silverHelmet, "silver_helmet", "armor/silver_helmet");
+
+        silverChestplate = new ItemSSArmor(ModuleToolMaterial.silverArmor, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName("ss.silver_chestplate");
+        UtilRegistry.registerNormalItem(silverChestplate, "silver_chestplate", "armor/silver_chestplate");
+
+        silverLeggings = new ItemSSArmor(ModuleToolMaterial.silverArmor, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName("ss.silver_leggings");
+        UtilRegistry.registerNormalItem(silverLeggings, "silver_leggings", "armor/silver_leggings");
+
+        silverBoots = new ItemSSArmor(ModuleToolMaterial.silverArmor, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("ss.silver_boots");
+        UtilRegistry.registerNormalItem(silverBoots, "silver_boots", "armor/silver_boots");
 
         //林業
         sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");
