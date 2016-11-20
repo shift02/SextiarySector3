@@ -61,6 +61,12 @@ public class SSItems {
     public static Item silverLeggings;
     public static Item silverBoots;
 
+    // オリハルコン
+    public static Item orichalcumHelmet;
+    public static Item orichalcumChestplate;
+    public static Item orichalcumLeggings;
+    public static Item orichalcumBoots;
+
     //林業
     public static Item sapBottle;
     public static Item rubberBottle;
@@ -165,6 +171,19 @@ public class SSItems {
 
         silverBoots = new ItemSSArmor(ModuleToolMaterial.silverArmor, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("ss.silver_boots");
         UtilRegistry.registerNormalItem(silverBoots, "silver_boots", "armor/silver_boots");
+
+        //オリハルコン
+        orichalcumHelmet = new ItemSSArmor(ModuleToolMaterial.orichalcumArmor, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName("ss.orichalcum_helmet");
+        UtilRegistry.registerNormalItem(orichalcumHelmet, "orichalcum_helmet", "armor/orichalcum_helmet");
+
+        orichalcumChestplate = new ItemSSArmor(ModuleToolMaterial.orichalcumArmor, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName("ss.orichalcum_chestplate");
+        UtilRegistry.registerNormalItem(orichalcumChestplate, "orichalcum_chestplate", "armor/orichalcum_chestplate");
+
+        orichalcumLeggings = new ItemSSArmor(ModuleToolMaterial.orichalcumArmor, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName("ss.orichalcum_leggings");
+        UtilRegistry.registerNormalItem(orichalcumLeggings, "orichalcum_leggings", "armor/orichalcum_leggings");
+
+        orichalcumBoots = new ItemSSArmor(ModuleToolMaterial.orichalcumArmor, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("ss.orichalcum_boots");
+        UtilRegistry.registerNormalItem(orichalcumBoots, "orichalcum_boots", "armor/orichalcum_boots");
 
         //林業
         sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");
