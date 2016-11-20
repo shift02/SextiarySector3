@@ -23,142 +23,162 @@ import shift.sextiarysector3.SextiarySector3;
 
 public class UtilRegistry {
 
-	public static File itemModel;
+    public static File itemModel;
 
-	public static File blockState;
+    public static File blockState;
 
-	public static void registerNormalItem(Item item, String registryName, String resource) {
-		registerNormalItem(item, registryName, resource, null);
-	}
+    public static void registerNormalItem(Item item, String registryName, String resource) {
+        registerNormalItem(item, registryName, resource, null);
+    }
 
-	public static void registerToolItem(Item item, String registryName, String resource) {
-		registerNormalItem(item, registryName, resource, "item/handheld");
-	}
+    public static void registerToolItem(Item item, String registryName, String resource) {
+        registerNormalItem(item, registryName, resource, "item/handheld");
+    }
 
-	public static void registerNormalItem(Item item, String registryName, String resource, String parent) {
+    public static void registerNormalItem(Item item, String registryName, String resource, String parent) {
 
-		GameRegistry.register(item.setRegistryName(SextiarySector3.MODID, registryName));
+        GameRegistry.register(item.setRegistryName(SextiarySector3.MODID, registryName));
 
-		if (getSide().isClient()) {
+        if (getSide().isClient()) {
 
-			ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
-			// アイテム状態の登録
-			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(l, "inventory"));
+            ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
+            // アイテム状態の登録
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(l, "inventory"));
 
-		}
+        }
 
-		File f = new File(itemModel, resource + ".json");
+        File f = new File(itemModel, resource + ".json");
 
-		if (SextiarySector3.isDebug && !f.exists()) {
-			ItemJsonUtil.generationItemGson(f, resource, parent);
-		}
+        if (SextiarySector3.isDebug && !f.exists()) {
+            ItemJsonUtil.generationItemGson(f, resource, parent);
+        }
 
-	}
+    }
 
-	public static <T extends TileEntity> void registerCustomItem(Item item, String registryName, String resource,
-			Class<T> tileEntityClass, TileEntitySpecialRenderer<? super T> specialRenderer) {
+    public static void registerAnimationItem(Item item, String registryName, String resource, int size) {
 
-		GameRegistry.register(item.setRegistryName(SextiarySector3.MODID, registryName));
+        GameRegistry.register(item.setRegistryName(SextiarySector3.MODID, registryName));
 
-		GameRegistry.registerTileEntity(tileEntityClass, SextiarySector3.MODID + ":" + registryName);
+        if (getSide().isClient()) {
 
-		if (getSide().isClient()) {
+            ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
+            // アイテム状態の登録
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(l, "inventory"));
 
-			ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
-			// アイテム状態の登録
-			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(l, "inventory"));
+        }
 
-			//C
-			ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
-			ForgeHooksClient.registerTESRItemStack(item, 0, tileEntityClass);
+        File f = new File(itemModel, resource + ".json");
 
-		}
+        if (SextiarySector3.isDebug && !f.exists()) {
+            ItemJsonUtil.generationAnimationItemGson(f, itemModel, resource, size);
+        }
 
-		File f = new File(itemModel, resource + ".json");
+    }
 
-		if (SextiarySector3.isDebug && !f.exists()) {
-			ItemJsonUtil.generationItemGson(f, resource, null);
-		}
+    public static <T extends TileEntity> void registerCustomItem(Item item, String registryName, String resource,
+            Class<T> tileEntityClass, TileEntitySpecialRenderer<? super T> specialRenderer) {
 
-	}
+        GameRegistry.register(item.setRegistryName(SextiarySector3.MODID, registryName));
 
-	public static void registerNormalBlock(Block block, String registryName, String resource) {
+        GameRegistry.registerTileEntity(tileEntityClass, SextiarySector3.MODID + ":" + registryName);
 
-		ItemBlock itemBlock = new ItemBlock(block);
-		registerNormalBlock(block, itemBlock, registryName, resource);
+        if (getSide().isClient()) {
 
-		//Json生成
-		File f = new File(blockState, resource + ".json");
+            ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
+            // アイテム状態の登録
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(l, "inventory"));
 
-		if (SextiarySector3.isDebug && !f.exists()) {
-			BlockJsonUtil.generationBlockStateGson(f, resource, null);
-		}
+            //C
+            ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
+            ForgeHooksClient.registerTESRItemStack(item, 0, tileEntityClass);
 
-	}
+        }
 
-	public static void registerNormalBlock(Block block, Item itemBlock, String registryName, String resource) {
+        File f = new File(itemModel, resource + ".json");
 
-		//登録
-		registerBlock(block, itemBlock, registryName);
+        if (SextiarySector3.isDebug && !f.exists()) {
+            ItemJsonUtil.generationItemGson(f, resource, null);
+        }
 
-		//描画の登録
-		if (getSide().isClient() && block.getMaterial(null) != Material.AIR) {
+    }
 
-			ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
+    public static void registerNormalBlock(Block block, String registryName, String resource) {
 
-			// ブロック状態の登録
-			ModelLoader.setCustomStateMapper(block, new DefaultStateMapper(l));
-			// アイテム状態の登録
-			ModelLoader.setCustomModelResourceLocation(itemBlock, 0, new ModelResourceLocation(l, "inventory"));
-		}
+        ItemBlock itemBlock = new ItemBlock(block);
+        registerNormalBlock(block, itemBlock, registryName, resource);
 
-	}
+        //Json生成
+        File f = new File(blockState, resource + ".json");
 
-	public static <T extends TileEntity> void registerTESRBlock(
-			Block block, Item itemBlock,
-			Class<T> tileEntityClass, TileEntitySpecialRenderer<? super T> specialRenderer,
-			String registryName, String resource) {
+        if (SextiarySector3.isDebug && !f.exists()) {
+            BlockJsonUtil.generationBlockStateGson(f, resource, null);
+        }
 
-		//登録
-		registerBlock(block, itemBlock, registryName);
+    }
 
-		//描画の登録
-		ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
-		ForgeHooksClient.registerTESRItemStack(itemBlock, 0, tileEntityClass);
+    public static void registerNormalBlock(Block block, Item itemBlock, String registryName, String resource) {
 
-	}
+        //登録
+        registerBlock(block, itemBlock, registryName);
 
-	/**
-	 * Blockを登録
-	 * @param block 登録するブロック
-	 * @param itemBlock アイテム状態のブロック
-	 * @param registryName 登録名
-	 */
-	private static void registerBlock(Block block, Item itemBlock, String registryName) {
+        //描画の登録
+        if (getSide().isClient() && block.getMaterial(null) != Material.AIR) {
 
-		GameRegistry.register(block.setRegistryName(SextiarySector3.MODID, registryName));
-		GameRegistry.register(itemBlock.setRegistryName(SextiarySector3.MODID, registryName));
+            ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
 
-	}
+            // ブロック状態の登録
+            ModelLoader.setCustomStateMapper(block, new DefaultStateMapper(l));
+            // アイテム状態の登録
+            ModelLoader.setCustomModelResourceLocation(itemBlock, 0, new ModelResourceLocation(l, "inventory"));
+        }
 
-	public static Side getSide() {
-		return FMLCommonHandler.instance().getSide();
-	}
+    }
 
-	@SideOnly(Side.CLIENT)
-	public static class DefaultStateMapper extends StateMapperBase {
+    public static <T extends TileEntity> void registerTESRBlock(
+            Block block, Item itemBlock,
+            Class<T> tileEntityClass, TileEntitySpecialRenderer<? super T> specialRenderer,
+            String registryName, String resource) {
 
-		ResourceLocation location;
+        //登録
+        registerBlock(block, itemBlock, registryName);
 
-		public DefaultStateMapper(ResourceLocation location) {
-			this.location = location;
-		}
+        //描画の登録
+        ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
+        ForgeHooksClient.registerTESRItemStack(itemBlock, 0, tileEntityClass);
 
-		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-			return new ModelResourceLocation(
-					new ResourceLocation(this.location.getResourceDomain(), this.location.getResourcePath()),
-					this.getPropertyString(state.getProperties()));
-		}
-	}
+    }
+
+    /**
+     * Blockを登録
+     * @param block 登録するブロック
+     * @param itemBlock アイテム状態のブロック
+     * @param registryName 登録名
+     */
+    private static void registerBlock(Block block, Item itemBlock, String registryName) {
+
+        GameRegistry.register(block.setRegistryName(SextiarySector3.MODID, registryName));
+        GameRegistry.register(itemBlock.setRegistryName(SextiarySector3.MODID, registryName));
+
+    }
+
+    public static Side getSide() {
+        return FMLCommonHandler.instance().getSide();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static class DefaultStateMapper extends StateMapperBase {
+
+        ResourceLocation location;
+
+        public DefaultStateMapper(ResourceLocation location) {
+            this.location = location;
+        }
+
+        protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+            return new ModelResourceLocation(
+                    new ResourceLocation(this.location.getResourceDomain(), this.location.getResourcePath()),
+                    this.getPropertyString(state.getProperties()));
+        }
+    }
 
 }
