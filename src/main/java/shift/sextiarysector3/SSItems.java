@@ -3,6 +3,7 @@ package shift.sextiarysector3;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.item.ItemDepthMeter;
 import shift.sextiarysector3.item.ItemDust;
 import shift.sextiarysector3.item.ItemEnderCard;
 import shift.sextiarysector3.item.ItemIngot;
@@ -28,6 +29,8 @@ public class SSItems {
     public static Item plasticShield;
 
     public static Item enderCard;
+
+    public static Item depthMeter;
 
     //道具
     public static Item copperShovel;
@@ -96,6 +99,9 @@ public class SSItems {
 
         enderCard = new ItemEnderCard().setUnlocalizedName("ss.ender_card");
         UtilRegistry.registerNormalItem(enderCard, "EnderCard", "ender_card");
+
+        depthMeter = new ItemDepthMeter().setUnlocalizedName("ss.depth_meter");
+        UtilRegistry.registerAnimationItem(depthMeter, "depth_meter", "depth_meter/depth_meter", 8);
 
         //銅
         copperShovel = new ItemSSSpade(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_shovel");

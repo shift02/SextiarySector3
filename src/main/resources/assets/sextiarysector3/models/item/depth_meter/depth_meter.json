@@ -1,0 +1,56 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "sextiarysector3:items/depth_meter/depth_meter"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "data": 0.0
+            },
+            "model": "sextiarysector3:item/depth_meter/depth_meter_00"
+        },
+        {
+            "predicate": {
+                "data": 0.125
+            },
+            "model": "sextiarysector3:item/depth_meter/depth_meter_01"
+        },
+        {
+            "predicate": {
+                "data": 0.25
+            },
+            "model": "sextiarysector3:item/depth_meter/depth_meter_02"
+        },
+        {
+            "predicate": {
+                "data": 0.375
+            },
+            "model": "sextiarysector3:item/depth_meter/depth_meter_03"
+        },
+        {
+            "predicate": {
+                "data": 0.5
+            },
+            "model": "sextiarysector3:item/depth_meter/depth_meter_04"
+        },
+        {
+            "predicate": {
+                "data": 0.625
+            },
+            "model": "sextiarysector3:item/depth_meter/depth_meter_05"
+        },
+        {
+            "predicate": {
+                "data": 0.75
+            },
+            "model": "sextiarysector3:item/depth_meter/depth_meter_06"
+        },
+        {
+            "predicate": {
+                "data": 0.875
+            },
+            "model": "sextiarysector3:item/depth_meter/depth_meter_07"
+        }
+    ]
+}
