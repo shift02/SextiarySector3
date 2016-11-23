@@ -7,3 +7,6 @@
 [submodule "lang"]
 	path = lang
 	url = https://github.com/shift02/SextiarySector3-Localization.git
+[submodule "api/season"]
+	path = api/season
+	url = https://github.com/shift02/Season-API.git
