@@ -36,6 +36,7 @@ archivesBaseName = "sextiarysector3"
 ext.libMCEconomy3 = "./lib/mceconomy3"
 ext.libAdditionalStatus = "./lib/additionalstatus"
 ext.lang = "./lang"
+ext.apiSeason = "./api/season"
 
 minecraft {
     version = "1.10.2-12.18.1.2076"
@@ -58,6 +59,7 @@ sourceSets {
     main {
         compileClasspath += configurations.provided
 	java {
+		srcDir project.apiSeason + "/src/main/java"
 		srcDir project.libMCEconomy3 + "/src/main/java"
 		srcDir project.libAdditionalStatus + "/src/main/java"
 	}
@@ -153,12 +155,12 @@ processResources
     }
 
     // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs[1]) {
+    from(sourceSets.main.resources.srcDirs[2]) {
         exclude 'mcmod.info'
         exclude '**/*.md'
     }
 
-    from(sourceSets.main.resources.srcDirs[2]) {
+    from(sourceSets.main.resources.srcDirs[3]) {
         exclude 'mcmod.info'
         exclude '**/*.md'
     }
