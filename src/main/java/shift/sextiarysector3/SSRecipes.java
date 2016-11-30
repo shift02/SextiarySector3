@@ -1,6 +1,7 @@
 package shift.sextiarysector3;
 
 import net.minecraft.item.crafting.CraftingManager;
+import shift.sextiarysector3.recipe.RecipesArmor;
 import shift.sextiarysector3.recipe.RecipesCore;
 import shift.sextiarysector3.recipe.RecipesForestry;
 import shift.sextiarysector3.recipe.RecipesFurnace;
@@ -16,6 +17,7 @@ public class SSRecipes {
         CraftingManager m = CraftingManager.getInstance();
 
         RecipesCore.addRecipes(m);
+        RecipesArmor.addRecipes(m);
         RecipesForestry.addRecipes(m);
         RecipesMining.addRecipes(m);
 
