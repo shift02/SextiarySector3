@@ -19,12 +19,14 @@ import shift.sextiarysector3.module.ModuleSap;
 import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.util.UtilRegistry;
 
-@Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION, updateJSON = SextiarySector3.UPDATE_JSON)
+@Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION, updateJSON = SextiarySector3.UPDATE_JSON, guiFactory = SextiarySector3.GUI_FACTORY)
 public class SextiarySector3 {
     public static final String MODID = "sextiarysector3";
     public static final String VERSION = "1.0.0";
 
     public static final String UPDATE_JSON = "https://shift02.github.io/SextiarySector3/Update.json";
+
+    public static final String GUI_FACTORY = "shift.sextiarysector3.config.SSConfigGuiFactory";
 
     public static final Logger log = LogManager.getLogger(SextiarySectorAPI.MODID);
 
@@ -39,6 +41,8 @@ public class SextiarySector3 {
         isDebug = event.getSourceFile().isDirectory() && (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
         UtilRegistry.itemModel = new File(event.getSourceFile().getParentFile(), "src/main/resources/assets/sextiarysector3/models/item");
         UtilRegistry.blockState = new File(event.getSourceFile().getParentFile(), "src/main/resources/assets/sextiarysector3/blockstates");
+
+        SSConfig.syncConfig();
 
         SSCreativeTabs.initCreativeTabs();
 
