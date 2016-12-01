@@ -10,12 +10,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import shift.sextiarysector3.api.SextiarySectorAPI;
-import shift.sextiarysector3.module.EnumWood;
 import shift.sextiarysector3.world.WorldGenRubberTree;
 
 public class BlockSSSapling extends BlockSSBush implements IGrowable {
@@ -38,9 +36,9 @@ public class BlockSSSapling extends BlockSSBush implements IGrowable {
     /**
      * Gets the localized name of this block. Used for the statistics page.
      */
-    public String getLocalizedName() {
-        return I18n.translateToLocal(this.getUnlocalizedName() + "." + EnumWood.RUBBER.getUnlocalizedName() + ".name");
-    }
+    //public String getLocalizedName() {
+    //    return I18n.translateToLocal(this.getUnlocalizedName() + "." + EnumWood.RUBBER.getUnlocalizedName() + ".name");
+    //}
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!worldIn.isRemote) {
