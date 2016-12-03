@@ -22,6 +22,20 @@ public class SSConfig {
     //General
     public static boolean fastDecayLeaves;
 
+    //World
+    public static boolean generateCopperOre;
+    public static boolean generateSilverOre;
+    public static boolean generateOrichalcumOre;
+
+    public static boolean generateCoalLargeOre;
+    public static boolean generateIronLargeOre;
+    public static boolean generateGoldLargeOre;
+
+    public static boolean generateCopperLargeOre;
+    public static boolean generateSilverLargeOre;
+
+    public static final String CATEGORY_WORLD = "world";
+
     public static void initConfig() {
 
         if (config != null) return;
@@ -54,6 +68,7 @@ public class SSConfig {
 
         initConfig();
 
+        //一般
         String category = Configuration.CATEGORY_GENERAL;
 
         Property prop;
@@ -70,6 +85,78 @@ public class SSConfig {
         config.setCategoryLanguageKey(category, SS_LANG + category);
         config.setCategoryPropertyOrder(category, propOrder);
 
+        //ワールド
+        category = CATEGORY_WORLD;
+        propOrder = Lists.newArrayList();
+
+        //Generate Copper Ore - 銅鉱石の生成
+        prop = config.get(category, "generate_copper_ore", true);
+        prop.setLanguageKey(SS_LANG + category + "." + prop.getName());
+        prop.setComment(I18n.translateToLocal(prop.getLanguageKey() + ".tooltip"));
+        prop.setComment(prop.getComment() + " [default: " + prop.getDefault() + "]");
+        propOrder.add(prop.getName());
+        generateCopperOre = prop.getBoolean(generateCopperOre);
+
+        //Generate Silver Ore - 銀鉱石の生成
+        prop = config.get(category, "generate_silver_ore", true);
+        prop.setLanguageKey(SS_LANG + category + "." + prop.getName());
+        prop.setComment(I18n.translateToLocal(prop.getLanguageKey() + ".tooltip"));
+        prop.setComment(prop.getComment() + " [default: " + prop.getDefault() + "]");
+        propOrder.add(prop.getName());
+        generateSilverOre = prop.getBoolean(generateSilverOre);
+
+        //Generate Orichalcum Ore - オリハルコンの生成
+        prop = config.get(category, "generate_orichalcum_ore", true);
+        prop.setLanguageKey(SS_LANG + category + "." + prop.getName());
+        prop.setComment(I18n.translateToLocal(prop.getLanguageKey() + ".tooltip"));
+        prop.setComment(prop.getComment() + " [default: " + prop.getDefault() + "]");
+        propOrder.add(prop.getName());
+        generateOrichalcumOre = prop.getBoolean(generateOrichalcumOre);
+
+        //Generate CoalLarge Ore - 大きな石炭の生成
+        prop = config.get(category, "generate_coal_large_ore", true);
+        prop.setLanguageKey(SS_LANG + category + "." + prop.getName());
+        prop.setComment(I18n.translateToLocal(prop.getLanguageKey() + ".tooltip"));
+        prop.setComment(prop.getComment() + " [default: " + prop.getDefault() + "]");
+        propOrder.add(prop.getName());
+        generateCoalLargeOre = prop.getBoolean(generateCoalLargeOre);
+
+        //Generate IronLarge Ore - 大きな鉄鉱石の生成
+        prop = config.get(category, "generate_iron_large_ore", true);
+        prop.setLanguageKey(SS_LANG + category + "." + prop.getName());
+        prop.setComment(I18n.translateToLocal(prop.getLanguageKey() + ".tooltip"));
+        prop.setComment(prop.getComment() + " [default: " + prop.getDefault() + "]");
+        propOrder.add(prop.getName());
+        generateIronLargeOre = prop.getBoolean(generateIronLargeOre);
+
+        //Generate GoldLarge Ore - 大きな金鉱石の生成
+        prop = config.get(category, "generate_gold_large_ore", true);
+        prop.setLanguageKey(SS_LANG + category + "." + prop.getName());
+        prop.setComment(I18n.translateToLocal(prop.getLanguageKey() + ".tooltip"));
+        prop.setComment(prop.getComment() + " [default: " + prop.getDefault() + "]");
+        propOrder.add(prop.getName());
+        generateGoldLargeOre = prop.getBoolean(generateGoldLargeOre);
+
+        //Generate CopperLarge Ore - 大きな銅鉱石の生成
+        prop = config.get(category, "generate_copper_large_ore", true);
+        prop.setLanguageKey(SS_LANG + category + "." + prop.getName());
+        prop.setComment(I18n.translateToLocal(prop.getLanguageKey() + ".tooltip"));
+        prop.setComment(prop.getComment() + " [default: " + prop.getDefault() + "]");
+        propOrder.add(prop.getName());
+        generateCopperLargeOre = prop.getBoolean(generateCopperLargeOre);
+
+        //Generate SilverLarge Ore - 大きな銀鉱石の生成
+        prop = config.get(category, "generate_silver_large_ore", true);
+        prop.setLanguageKey(SS_LANG + category + "." + prop.getName());
+        prop.setComment(I18n.translateToLocal(prop.getLanguageKey() + ".tooltip"));
+        prop.setComment(prop.getComment() + " [default: " + prop.getDefault() + "]");
+        propOrder.add(prop.getName());
+        generateSilverLargeOre = prop.getBoolean(generateSilverLargeOre);
+
+        config.setCategoryLanguageKey(category, SS_LANG + category);
+        config.setCategoryPropertyOrder(category, propOrder);
+
+        //更新
         if (config.hasChanged()) {
 
             config.save();
