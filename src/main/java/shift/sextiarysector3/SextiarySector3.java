@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -17,16 +18,24 @@ import shift.sextiarysector3.module.IModule;
 import shift.sextiarysector3.module.ModuleColor;
 import shift.sextiarysector3.module.ModuleSap;
 import shift.sextiarysector3.module.ModuleToolMaterial;
+import shift.sextiarysector3.proxy.CommonProxy;
 import shift.sextiarysector3.util.UtilRegistry;
 
 @Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION, updateJSON = SextiarySector3.UPDATE_JSON, guiFactory = SextiarySector3.GUI_FACTORY)
 public class SextiarySector3 {
+
     public static final String MODID = "sextiarysector3";
     public static final String VERSION = "1.0.0";
 
     public static final String UPDATE_JSON = "https://shift02.github.io/SextiarySector3/Update.json";
 
     public static final String GUI_FACTORY = "shift.sextiarysector3.config.SSConfigGuiFactory";
+
+    @Mod.Instance(MODID)
+    public static SextiarySector3 instance;
+
+    @SidedProxy(modId = MODID, clientSide = "shift.sextiarysector3.proxy.ClientProxy", serverSide = "shift.sextiarysector3.proxy.CommonProxy")
+    public static CommonProxy proxy;
 
     public static final Logger log = LogManager.getLogger(SextiarySectorAPI.MODID);
 
@@ -65,6 +74,8 @@ public class SextiarySector3 {
         SSRecipes.initRecipes();
 
         SSOreDictionary.init();
+
+        SSAchievements.initAchievements();
 
     }
 
