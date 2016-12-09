@@ -53,8 +53,8 @@ public class SSAchievements {
         silver = new AchievementFurnace("silver", 2, 1, new ItemStack(SSItems.silverIngot), (Achievement) newOre, mining).registerStat();
 
         //鉱業 -> コア
-        sanctuary = new AchievementCraft("sanctuary", 2, 1, new ItemStack(SSBlocks.sanctuary), (Achievement) silver, core).registerStat();
-        depthMeter = new AchievementFurnace("depth_meter", 2, -1, new ItemStack(SSItems.depthMeter), (Achievement) silver, core).registerStat();
+        sanctuary = new AchievementCraft("sanctuary", 2, 1, new ItemStack(SSBlocks.sanctuary), (Achievement) silver, core).registerStat().setSpecial();
+        depthMeter = new AchievementFurnace("depth_meter", 2, -1, new ItemStack(SSItems.depthMeter), (Achievement) silver, core).registerStat().setSpecial();
 
         //工業
         plastic = new AchievementFurnace("plastic", 0, 0, new ItemStack(SSItems.plastic), (Achievement) sapBottle, industry).registerStat();

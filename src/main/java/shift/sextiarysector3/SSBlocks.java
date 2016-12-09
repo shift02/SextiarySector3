@@ -109,6 +109,7 @@ public class SSBlocks {
         rubberCauldron = new BlockSapCauldron(Sap.RUBBER).setUnlocalizedName("ss.rubber_cauldron");
         UtilRegistry.registerNormalBlock(rubberCauldron, "RubberCauldron", "cauldron/rubber_cauldron");
 
+        //工業
         //鉱石
         copperOre = new BlockSSOre(1).setUnlocalizedName("ss.copper_ore");
         UtilRegistry.registerNormalBlock(copperOre, "CopperOre", "ore/copper_ore");
