@@ -27,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import shift.sextiarysector3.SSAchievements;
 import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 
@@ -140,9 +141,11 @@ public class BlockSapCauldron extends BlockSSBase {
                         switch (this.sap) {
                         case SAP:
                             itemstack1 = new ItemStack(SSItems.sapBottle);
+                            playerIn.addStat(SSAchievements.sapBottle, 1);
                             break;
                         case RUBBER:
                             itemstack1 = new ItemStack(SSItems.rubberBottle);
+                            playerIn.addStat(SSAchievements.rubberBottle, 1);
                             break;
                         default:
                             break;
