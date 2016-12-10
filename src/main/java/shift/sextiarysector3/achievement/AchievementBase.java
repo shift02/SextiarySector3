@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.SextiarySector3;
+import shift.sextiarysector3.util.Translator;
 
 public class AchievementBase extends Achievement {
 
@@ -24,7 +24,7 @@ public class AchievementBase extends Achievement {
     public String getDescription() {
 
         if (((EntityPlayerSP) SextiarySector3.proxy.getClientPlayer()).getStatFileWriter().hasAchievementUnlocked(this)) {
-            return I18n.translateToLocal(this.achievementDescription2);
+            return Translator.translateToLocal(this.achievementDescription2);
         } else {
             return super.getDescription();
         }
