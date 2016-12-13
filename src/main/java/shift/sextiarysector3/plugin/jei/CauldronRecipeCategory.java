@@ -36,7 +36,7 @@ public class CauldronRecipeCategory extends RecipeCategoryBase<CauldronRecipeWra
         super(guiHelper);
         ResourceLocation location = new ResourceLocation(SextiarySector3.MODID, "textures/guis/jei/jei_cauldron.png");
         background = guiHelper.createDrawable(location, 35, 16, 110, 54);
-        localizedName = Translator.translateToLocal("gui.jei.category.cauldron");
+        localizedName = Translator.translateToLocal("gui.ss3.category.cauldron");
 
         this.cauldron = Collections.singletonList(new ItemStack(Items.CAULDRON));
 
