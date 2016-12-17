@@ -31,4 +31,8 @@ public class FluidSSBase extends Fluid {
 
     }
 
+    public String getUnlocalizedName() {
+        return "fluid." + this.unlocalizedName + ".name";
+    }
+
 }
