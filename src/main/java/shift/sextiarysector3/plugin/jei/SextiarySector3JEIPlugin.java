@@ -8,6 +8,7 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import shift.sextiarysector3.SSBlocks;
 
 @JEIPlugin
 public class SextiarySector3JEIPlugin implements IModPlugin {
@@ -20,12 +21,16 @@ public class SextiarySector3JEIPlugin implements IModPlugin {
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
         registry.addRecipeCategories(new CauldronRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new SpileRecipeCategory(guiHelper));
 
         registry.addRecipeHandlers(new CauldronRecipeRecipeHandler());
+        registry.addRecipeHandlers(new SpileRecipeRecipeHandler());
 
         registry.addRecipeCategoryCraftingItem(new ItemStack(Items.CAULDRON), CauldronRecipeCategory.CAULDRON);
+        registry.addRecipeCategoryCraftingItem(new ItemStack(SSBlocks.spile), SpileRecipeCategory.SPILE);
 
         registry.addRecipes(CauldronRecipeWrapper.getCauldronRecipes(jeiHelpers));
+        registry.addRecipes(SpileRecipeWrapper.getSpileRecipes(jeiHelpers));
 
     }
 
