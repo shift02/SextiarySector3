@@ -9,12 +9,12 @@ import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
-import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import shift.sextiarysector3.SextiarySector3;
+import shift.sextiarysector3.util.Translator;
 
 public class CauldronRecipeCategory extends RecipeCategoryBase<CauldronRecipeWrapper> {
 

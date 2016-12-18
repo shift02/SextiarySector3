@@ -1,11 +1,12 @@
 {
   "homepage": "https://shift02.github.io/",
   "1.10.2": {
+    "1.1.0": "Add : Recipe function of JEI",
     "1.0.1": "Test2",
     "1.0.0": "Test"
   },
   "promos": {
-    "1.10.2-latest": "1.0.1",
-    "1.10.2-recommended": "1.0.1"
+    "1.10.2-latest": "1.1.0",
+    "1.10.2-recommended": "1.1.0"
   }
 }
