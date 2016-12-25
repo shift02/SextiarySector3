@@ -65,6 +65,9 @@ public class SSBlocks {
     public static Block silverBlock;
     public static Block orichalcumBlock;
 
+    //工業
+    public static Block plasticBlock;
+
     public static void initBlock() {
 
         //Core
@@ -109,7 +112,7 @@ public class SSBlocks {
         rubberCauldron = new BlockSapCauldron(Sap.RUBBER).setUnlocalizedName("ss.rubber_cauldron");
         UtilRegistry.registerNormalBlock(rubberCauldron, "RubberCauldron", "cauldron/rubber_cauldron");
 
-        //工業
+        //鉱業
         //鉱石
         copperOre = new BlockSSOre(1).setUnlocalizedName("ss.copper_ore");
         UtilRegistry.registerNormalBlock(copperOre, "CopperOre", "ore/copper_ore");
@@ -150,6 +153,10 @@ public class SSBlocks {
 
         orichalcumBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.orichalcum_block").setHardness(8.0F).setResistance(20.0F);
         UtilRegistry.registerNormalBlock(orichalcumBlock, "OrichalcumBlock", "ore/orichalcum_block");
+
+        //工業
+        plasticBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.plastic_block").setHardness(3.0F).setResistance(20.0F);
+        UtilRegistry.registerNormalBlock(plasticBlock, "PlasticBlock", "plastic_block");
 
     }
 
