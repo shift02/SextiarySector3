@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockSSBase;
@@ -155,7 +156,7 @@ public class SSBlocks {
         UtilRegistry.registerNormalBlock(orichalcumBlock, "OrichalcumBlock", "ore/orichalcum_block");
 
         //工業
-        plasticBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.plastic_block").setHardness(3.0F).setResistance(20.0F);
+        plasticBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.plastic_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalBlock(plasticBlock, "PlasticBlock", "plastic_block");
 
     }
