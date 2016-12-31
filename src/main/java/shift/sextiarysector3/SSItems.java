@@ -88,6 +88,7 @@ public class SSItems {
     public static Item silverDust;
 
     public static Item plastic;
+    public static Item rubber;
 
     public static void initItem() {
 
@@ -226,6 +227,9 @@ public class SSItems {
 
         plastic = new ItemSSBase().setUnlocalizedName("ss.plastic").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalItem(plastic, "Plastic", "plastic");
+
+        rubber = new ItemSSBase().setUnlocalizedName("ss.rubber").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        UtilRegistry.registerNormalItem(rubber, "Rubber", "rubber");
 
     }
 }
