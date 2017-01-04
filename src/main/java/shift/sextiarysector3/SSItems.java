@@ -7,6 +7,7 @@ import shift.sextiarysector3.item.ItemDepthMeter;
 import shift.sextiarysector3.item.ItemDust;
 import shift.sextiarysector3.item.ItemEnderCard;
 import shift.sextiarysector3.item.ItemIngot;
+import shift.sextiarysector3.item.ItemRubberGroves;
 import shift.sextiarysector3.item.ItemSSArmor;
 import shift.sextiarysector3.item.ItemSSAxe;
 import shift.sextiarysector3.item.ItemSSBase;
@@ -89,6 +90,8 @@ public class SSItems {
 
     public static Item plastic;
     public static Item rubber;
+
+    public static Item rubberGloves;
 
     public static void initItem() {
 
@@ -230,6 +233,9 @@ public class SSItems {
 
         rubber = new ItemSSBase().setUnlocalizedName("ss.rubber").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalItem(rubber, "Rubber", "rubber");
+
+        rubberGloves = new ItemRubberGroves().setUnlocalizedName("ss.rubber_gloves").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        UtilRegistry.registerToolItem(rubberGloves, "RubberGloves", "tool/rubber_gloves");
 
     }
 }

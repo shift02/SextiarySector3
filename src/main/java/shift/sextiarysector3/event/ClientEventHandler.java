@@ -1,74 +1,245 @@
 package shift.sextiarysector3.event;
 
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import shift.sextiarysector3.SSItems;
 
 public class ClientEventHandler {
 
-	//ツールチップ
-	@SubscribeEvent
-	public void RenderTooltipEvent(ItemTooltipEvent event) {
+    //ツールチップ
+    @SubscribeEvent
+    public void RenderTooltipEvent(ItemTooltipEvent event) {
 
-		//event.setScreenWidth(event.getScreenWidth() + 100);
-		//event.setScreenHeight(event.getScreenHeight() + 100);
+        //event.setScreenWidth(event.getScreenWidth() + 100);
+        //event.setScreenHeight(event.getScreenHeight() + 100);
 
-		/*event.getLines().add("");
-		event.getLines().add("");
-		event.getLines().add("");
-		event.getLines().add("");
-		event.getLines().add("");
-		event.getLines().add("");
-		event.getLines().add("");*/
+        /*event.getLines().add("");
+        event.getLines().add("");
+        event.getLines().add("");
+        event.getLines().add("");
+        event.getLines().add("");
+        event.getLines().add("");
+        event.getLines().add("");*/
 
-		return;
+        return;
 
-		/*
-		event.getToolTip().add("");
-		event.getToolTip().add("");
-		event.getToolTip().add("");
-		event.getToolTip().add("");*/
+        /*
+        event.getToolTip().add("");
+        event.getToolTip().add("");
+        event.getToolTip().add("");
+        event.getToolTip().add("");*/
 
-	}
+    }
 
-	public ItemStack bb;
+    public ItemStack bb;
 
-	//ツールチップ
-	@SubscribeEvent
-	public void RenderTooltipEvent(RenderTooltipEvent.PostText event) {
+    //ツールチップ
+    @SubscribeEvent
+    public void RenderTooltipEvent(RenderTooltipEvent.PostText event) {
 
-		return;
+        return;
 
-		/*
-		int x = event.getX();
-		int y = event.getY();
-		ItemStack item = event.getStack();
-		
-		Minecraft minecraft = Minecraft.getMinecraft();
-		RenderItem renderItem = minecraft.getRenderItem();
-		
-		//ツールチップ全般で呼ばれるのでアイテムがnullならスキップ
-		if (item == null) return;
-		
-		if (bb == null) {
-			bb = new ItemStack(Items.DIAMOND);
-		}
-		
-		RenderHelper.enableGUIStandardItemLighting();
-		GlStateManager.disableLighting();
-		GlStateManager.enableRescaleNormal();
-		GlStateManager.enableColorMaterial();
-		GlStateManager.enableLighting();
-		renderItem.zLevel = 100.0F;
-		renderItem.renderItemAndEffectIntoGUI(item, x, y + 30);
-		renderItem.renderItemAndEffectIntoGUI(bb, x + 16, y + 30);
-		renderItem.zLevel = 0.0F;
-		
-		GlStateManager.disableLighting();
-		GlStateManager.depthMask(true);
-		GlStateManager.enableDepth();*/
+        /*
+        int x = event.getX();
+        int y = event.getY();
+        ItemStack item = event.getStack();
+        
+        Minecraft minecraft = Minecraft.getMinecraft();
+        RenderItem renderItem = minecraft.getRenderItem();
+        
+        //ツールチップ全般で呼ばれるのでアイテムがnullならスキップ
+        if (item == null) return;
+        
+        if (bb == null) {
+        	bb = new ItemStack(Items.DIAMOND);
+        }
+        
+        RenderHelper.enableGUIStandardItemLighting();
+        GlStateManager.disableLighting();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableColorMaterial();
+        GlStateManager.enableLighting();
+        renderItem.zLevel = 100.0F;
+        renderItem.renderItemAndEffectIntoGUI(item, x, y + 30);
+        renderItem.renderItemAndEffectIntoGUI(bb, x + 16, y + 30);
+        renderItem.zLevel = 0.0F;
+        
+        GlStateManager.disableLighting();
+        GlStateManager.depthMask(true);
+        GlStateManager.enableDepth();*/
 
-	}
+    }
+
+    @SubscribeEvent
+    public void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
+
+        EntityPlayer player = event.getPlayer();
+        RayTraceResult movingObjectPositionIn = event.getTarget();
+        int execute = event.getSubID();
+        float partialTicks = event.getPartialTicks();
+        EnumFacing facing = movingObjectPositionIn.sideHit;
+
+        if (execute != 0) return;
+        if (movingObjectPositionIn.typeOfHit != RayTraceResult.Type.BLOCK) return;
+        if (player.getHeldItem(EnumHand.MAIN_HAND) == null && player.getHeldItem(EnumHand.OFF_HAND) == null) return;
+
+        boolean isRubber = false;
+
+        isRubber = (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == SSItems.rubberGloves);
+        if (!isRubber) isRubber = (player.getHeldItem(EnumHand.OFF_HAND) != null && player.getHeldItem(EnumHand.OFF_HAND).getItem() == SSItems.rubberGloves);
+
+        if (!isRubber) return;
+
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.glLineWidth(2.0F);
+        GlStateManager.disableTexture2D();
+        GlStateManager.depthMask(false);
+        BlockPos blockpos = movingObjectPositionIn.getBlockPos();
+        IBlockState iblockstate = player.worldObj.getBlockState(blockpos);
+
+        if (iblockstate.getMaterial() != Material.AIR && player.worldObj.getWorldBorder().contains(blockpos)) {
+            double d0 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) partialTicks;
+            double d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) partialTicks;
+            double d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) partialTicks;
+            func_189697_a(iblockstate.getSelectedBoundingBox(player.worldObj, blockpos).expandXyz(0.0020000000949949026D).offset(-d0, -d1, -d2), 0.0F, 0.0F, 0.0F, 0.4F, facing);
+        }
+
+        GlStateManager.depthMask(true);
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+
+    }
+
+    public static void func_189697_a(AxisAlignedBB p_189697_0_, float p_189697_1_, float p_189697_2_, float p_189697_3_, float p_189697_4_, EnumFacing facing) {
+        func_189694_a(p_189697_0_.minX, p_189697_0_.minY, p_189697_0_.minZ, p_189697_0_.maxX, p_189697_0_.maxY, p_189697_0_.maxZ, p_189697_1_, p_189697_2_, p_189697_3_, p_189697_4_, facing);
+    }
+
+    public static void func_189694_a(double p_189694_0_, double p_189694_2_, double p_189694_4_, double p_189694_6_, double p_189694_8_, double p_189694_10_, float p_189694_12_, float p_189694_13_,
+            float p_189694_14_, float p_189694_15_, EnumFacing facing) {
+
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        vertexbuffer.begin(3, DefaultVertexFormats.POSITION_COLOR);
+
+        if (facing.equals(EnumFacing.UP)) {
+            drawLineUpDoun(vertexbuffer, p_189694_0_, p_189694_2_, p_189694_4_, p_189694_6_, p_189694_8_, p_189694_10_, p_189694_12_, p_189694_13_, p_189694_14_, p_189694_15_);
+        }
+
+        if (facing.equals(EnumFacing.DOWN)) {
+            drawLineUpDoun(vertexbuffer, p_189694_0_, p_189694_2_, p_189694_4_, p_189694_6_, p_189694_8_ - 1.01, p_189694_10_, p_189694_12_, p_189694_13_, p_189694_14_, p_189694_15_);
+        }
+
+        if (facing.equals(EnumFacing.NORTH)) {
+            drawLineNorthSouth(vertexbuffer, p_189694_0_, p_189694_2_, p_189694_4_, p_189694_6_, p_189694_8_, p_189694_10_, p_189694_12_, p_189694_13_, p_189694_14_, p_189694_15_);
+        }
+
+        if (facing.equals(EnumFacing.SOUTH)) {
+            drawLineNorthSouth(vertexbuffer, p_189694_0_, p_189694_2_, p_189694_4_ + 1.01, p_189694_6_, p_189694_8_, p_189694_10_, p_189694_12_, p_189694_13_, p_189694_14_, p_189694_15_);
+        }
+
+        if (facing.equals(EnumFacing.WEST)) {
+            drawLineWE(vertexbuffer, p_189694_0_, p_189694_2_, p_189694_4_, p_189694_6_, p_189694_8_, p_189694_10_, p_189694_12_, p_189694_13_, p_189694_14_, p_189694_15_);
+        }
+
+        if (facing.equals(EnumFacing.EAST)) {
+            drawLineWE(vertexbuffer, p_189694_0_ + 1.01, p_189694_2_, p_189694_4_, p_189694_6_, p_189694_8_, p_189694_10_, p_189694_12_, p_189694_13_, p_189694_14_, p_189694_15_);
+        }
+
+        tessellator.draw();
+
+    }
+
+    public static void drawLineUpDoun(VertexBuffer p_189698_0_, double p_189698_1_, double p_189698_3_, double p_189698_5_, double p_189698_7_, double p_189698_9_, double p_189698_11_,
+            float p_189698_13_, float p_189698_14_, float p_189698_15_, float p_189698_16_) {
+
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_, p_189698_9_, p_189698_11_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_11_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+
+        p_189698_0_.pos(p_189698_1_ + 0.25, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_ + 0.25, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_ - 0.25, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_ - 0.25, p_189698_9_, p_189698_11_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_ + 0.25, p_189698_9_, p_189698_11_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_ + 0.25, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_, p_189698_9_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_, p_189698_9_, p_189698_11_ - 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_11_ - 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+    }
+
+    public static void drawLineNorthSouth(VertexBuffer p_189698_0_, double p_189698_1_, double p_189698_3_, double p_189698_5_, double p_189698_7_, double p_189698_9_, double p_189698_11_,
+            float p_189698_13_, float p_189698_14_, float p_189698_15_, float p_189698_16_) {
+
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+
+        p_189698_0_.pos(p_189698_1_ + 0.25, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_ + 0.25, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_ - 0.25, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_ - 0.25, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_ + 0.25, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_ + 0.25, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+
+        p_189698_0_.pos(p_189698_1_, p_189698_3_ + 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_ + 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_, p_189698_3_ + 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_7_, p_189698_9_ - 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_ - 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_ + 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+
+    }
+
+    public static void drawLineWE(VertexBuffer p_189698_0_, double p_189698_1_, double p_189698_3_, double p_189698_5_, double p_189698_7_, double p_189698_9_, double p_189698_11_,
+            float p_189698_13_, float p_189698_14_, float p_189698_15_, float p_189698_16_) {
+
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_11_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_11_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+
+        p_189698_0_.pos(p_189698_1_, p_189698_3_ + 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_ + 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_ + 0.25, p_189698_11_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_ - 0.25, p_189698_11_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_ - 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_ + 0.25, p_189698_5_).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, 0).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_11_ - 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_11_ - 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+        p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
+
+    }
 
 }
