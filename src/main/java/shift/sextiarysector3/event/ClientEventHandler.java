@@ -1,23 +1,35 @@
 package shift.sextiarysector3.event;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumHandSide;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import shift.sextiarysector3.SSItems;
+import shift.sextiarysector3.SextiarySector3;
+import shift.sextiarysector3.util.UtilCompat;
 
 public class ClientEventHandler {
 
@@ -105,19 +117,37 @@ public class ClientEventHandler {
 
         if (!isRubber) return;
 
+        BlockPos blockpos = movingObjectPositionIn.getBlockPos();
+
+        boolean isFacing = false;
+
+        for (IProperty<?> prop : player.worldObj.getBlockState(blockpos).getProperties().keySet()) {
+
+            if (prop.getName().equals("facing") && prop instanceof PropertyDirection) {
+                isFacing = true;
+            }
+
+        }
+
+        if (!isFacing) return;
+
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.glLineWidth(2.0F);
         GlStateManager.disableTexture2D();
         GlStateManager.depthMask(false);
-        BlockPos blockpos = movingObjectPositionIn.getBlockPos();
+        //BlockPos blockpos = movingObjectPositionIn.getBlockPos();
         IBlockState iblockstate = player.worldObj.getBlockState(blockpos);
+
+        AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+
+        FULL_BLOCK_AABB = FULL_BLOCK_AABB.offset(blockpos);
 
         if (iblockstate.getMaterial() != Material.AIR && player.worldObj.getWorldBorder().contains(blockpos)) {
             double d0 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) partialTicks;
             double d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) partialTicks;
             double d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) partialTicks;
-            func_189697_a(iblockstate.getSelectedBoundingBox(player.worldObj, blockpos).expandXyz(0.0020000000949949026D).offset(-d0, -d1, -d2), 0.0F, 0.0F, 0.0F, 0.4F, facing);
+            func_189697_a(FULL_BLOCK_AABB.expandXyz(0.0020000000949949026D).offset(-d0, -d1, -d2), 0.0F, 0.0F, 0.0F, 0.4F, facing);
         }
 
         GlStateManager.depthMask(true);
@@ -240,6 +270,64 @@ public class ClientEventHandler {
         p_189698_0_.pos(p_189698_1_, p_189698_9_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
         p_189698_0_.pos(p_189698_1_, p_189698_3_, p_189698_5_ + 0.25).color(p_189698_13_, p_189698_14_, p_189698_15_, p_189698_16_).endVertex();
 
+    }
+
+    //手の描画
+
+    @SubscribeEvent
+    public void onDrawBlockHighlight(RenderSpecificHandEvent event) {
+
+        if (UtilCompat.isNullFromItemStack(event.getItemStack())) return;
+
+        if (event.getItemStack().getItem() != SSItems.rubberGloves) return;
+
+        GlStateManager.pushMatrix();
+
+        AbstractClientPlayer abstractclientplayer = Minecraft.getMinecraft().thePlayer;
+        boolean flag = event.getHand() == EnumHand.MAIN_HAND;
+        EnumHandSide enumhandside = flag ? abstractclientplayer.getPrimaryHand() : abstractclientplayer.getPrimaryHand().opposite();
+
+        this.renderArmFirstPerson(Minecraft.getMinecraft().getRenderManager(), event.getEquipProgress(), event.getSwingProgress(), enumhandside);
+        event.setCanceled(true);
+
+        GlStateManager.popMatrix();
+
+    }
+
+    private ResourceLocation rubberSkin = new ResourceLocation(SextiarySector3.MODID, "textures/entity/rubber_gloves.png");
+
+    private void renderArmFirstPerson(RenderManager renderManager, float p_187456_1_, float p_187456_2_, EnumHandSide p_187456_3_) {
+
+        boolean flag = p_187456_3_ != EnumHandSide.LEFT;
+        float f = flag ? 1.0F : -1.0F;
+        float f1 = MathHelper.sqrt_float(p_187456_2_);
+        float f2 = -0.3F * MathHelper.sin(f1 * (float) Math.PI);
+        float f3 = 0.4F * MathHelper.sin(f1 * ((float) Math.PI * 2F));
+        float f4 = -0.4F * MathHelper.sin(p_187456_2_ * (float) Math.PI);
+        GlStateManager.translate(f * (f2 + 0.64000005F), f3 + -0.6F + p_187456_1_ * -0.6F, f4 + -0.71999997F);
+        GlStateManager.rotate(f * 45.0F, 0.0F, 1.0F, 0.0F);
+        float f5 = MathHelper.sin(p_187456_2_ * p_187456_2_ * (float) Math.PI);
+        float f6 = MathHelper.sin(f1 * (float) Math.PI);
+        GlStateManager.rotate(f * f6 * 70.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(f * f5 * -20.0F, 0.0F, 0.0F, 1.0F);
+        AbstractClientPlayer abstractclientplayer = Minecraft.getMinecraft().thePlayer;
+        //Minecraft.getMinecraft().getTextureManager().bindTexture(abstractclientplayer.getLocationSkin());
+        Minecraft.getMinecraft().getTextureManager().bindTexture(rubberSkin);
+        GlStateManager.translate(f * -1.0F, 3.6F, 3.5F);
+        GlStateManager.rotate(f * 120.0F, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(200.0F, 1.0F, 0.0F, 0.0F);
+        GlStateManager.rotate(f * -135.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.translate(f * 5.6F, 0.0F, 0.0F);
+        RenderPlayer renderplayer = (RenderPlayer) renderManager.getEntityRenderObject(abstractclientplayer);
+        GlStateManager.disableCull();
+
+        if (flag) {
+            renderplayer.renderRightArm(abstractclientplayer);
+        } else {
+            renderplayer.renderLeftArm(abstractclientplayer);
+        }
+
+        GlStateManager.enableCull();
     }
 
 }
