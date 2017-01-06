@@ -23,9 +23,16 @@ import net.minecraft.world.World;
 
 public class ItemRubberGroves extends ItemSSBase {
 
+    public ItemRubberGroves() {
+
+        super();
+        this.setMaxDamage(16);
+
+    }
+
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-        System.out.println(hitX + " : " + hitY + " : " + hitZ);
+        //System.out.println(hitX + " : " + hitY + " : " + hitZ);
 
         EnumFacing nextFacing = EnumFacing.NORTH;
 
@@ -93,6 +100,7 @@ public class ItemRubberGroves extends ItemSSBase {
                     SoundType sound = state.getBlock().getSoundType(state, worldIn, pos, playerIn);
                     worldIn.playSound((EntityPlayer) null, pos, sound.getStepSound(), SoundCategory.BLOCKS, 1.0F,
                             worldIn.rand.nextFloat() * 0.1F + 0.6F);
+                    stack.damageItem(1, playerIn);
                     return EnumActionResult.SUCCESS;
                 } catch (IllegalArgumentException e) {
 
@@ -103,7 +111,7 @@ public class ItemRubberGroves extends ItemSSBase {
         }
         //worldIn.getBlockState(pos)
 
-        System.out.println(nextFacing);
+        //System.out.println(nextFacing);
 
         return EnumActionResult.SUCCESS;
 
