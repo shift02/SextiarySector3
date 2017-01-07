@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import shift.sextiarysector3.SSConfig;
+import shift.sextiarysector3.util.UtilCompat;
 
 public class CommonEventHandler {
 
@@ -21,7 +22,7 @@ public class CommonEventHandler {
 
         if (!(event.getState().getBlock() instanceof BlockLeaves)) return;
 
-        if (event.getHarvester() != null && event.getHarvester().getActiveItemStack() != null
+        if (event.getHarvester() != null && !UtilCompat.isNullFromItemStack(event.getHarvester().getActiveItemStack())
                 && event.getHarvester().getActiveItemStack().getItem() instanceof ItemShears)
             return;
 

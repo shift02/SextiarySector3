@@ -25,6 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import shift.sextiarysector3.SSItems;
+import shift.sextiarysector3.util.UtilCompat;
 
 public class BlockEnderStoneMonument extends BlockSSBase {
 
@@ -78,7 +79,7 @@ public class BlockEnderStoneMonument extends BlockSSBase {
             if (!(eH instanceof EntityItemFrame)) continue;
 
             EntityItemFrame eF = (EntityItemFrame) eH;
-            if (eF.getDisplayedItem() == null) continue;
+            if (UtilCompat.isNullFromItemStack(eF.getDisplayedItem())) continue;
             if (!worldIn.isRemote) changeSilver(eF, eF.getDisplayedItem(), worldIn, pos, state, rand, f);
             if (worldIn.isRemote) changeSilverC(eF, eF.getDisplayedItem(), worldIn, pos, state, rand);
         }

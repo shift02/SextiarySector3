@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import shift.sextiarysector3.SSBlocks;
 import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
+import shift.sextiarysector3.util.UtilCompat;
 
 public class ModuleWarp implements IModule {
 
@@ -58,7 +59,7 @@ public class ModuleWarp implements IModule {
 
         EntityItemFrame eF = (EntityItemFrame) event.getTarget();
 
-        if (eF.getDisplayedItem() == null) return;
+        if (UtilCompat.isNullFromItemStack(eF.getDisplayedItem())) return;
 
         ItemStack item = eF.getDisplayedItem();
 

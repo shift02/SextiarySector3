@@ -108,12 +108,12 @@ public class ClientEventHandler {
 
         if (execute != 0) return;
         if (movingObjectPositionIn.typeOfHit != RayTraceResult.Type.BLOCK) return;
-        if (player.getHeldItem(EnumHand.MAIN_HAND) == null && player.getHeldItem(EnumHand.OFF_HAND) == null) return;
+        if (UtilCompat.isNullFromItemStack(player.getHeldItem(EnumHand.MAIN_HAND)) && UtilCompat.isNullFromItemStack(player.getHeldItem(EnumHand.OFF_HAND))) return;
 
         boolean isRubber = false;
 
-        isRubber = (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == SSItems.rubberGloves);
-        if (!isRubber) isRubber = (player.getHeldItem(EnumHand.OFF_HAND) != null && player.getHeldItem(EnumHand.OFF_HAND).getItem() == SSItems.rubberGloves);
+        isRubber = (!UtilCompat.isNullFromItemStack(player.getHeldItem(EnumHand.MAIN_HAND)) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == SSItems.rubberGloves);
+        if (!isRubber) isRubber = ((!UtilCompat.isNullFromItemStack(player.getHeldItem(EnumHand.OFF_HAND))) && player.getHeldItem(EnumHand.OFF_HAND).getItem() == SSItems.rubberGloves);
 
         if (!isRubber) return;
 

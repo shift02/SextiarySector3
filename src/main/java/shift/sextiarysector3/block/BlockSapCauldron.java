@@ -30,6 +30,7 @@ import net.minecraft.world.World;
 import shift.sextiarysector3.SSAchievements;
 import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.util.UtilCompat;
 
 public class BlockSapCauldron extends BlockSSBase {
     public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 3);
@@ -91,7 +92,7 @@ public class BlockSapCauldron extends BlockSSBase {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem,
             EnumFacing side, float hitX, float hitY, float hitZ) {
 
-        if (heldItem == null) {
+        if (UtilCompat.isNullFromItemStack(heldItem)) {
             return true;
         } else {
             int i = ((Integer) state.getValue(LEVEL)).intValue();
@@ -137,7 +138,7 @@ public class BlockSapCauldron extends BlockSSBase {
 
                     if (!playerIn.capabilities.isCreativeMode) {
 
-                        ItemStack itemstack1 = null;
+                        ItemStack itemstack1 = UtilCompat.getNullItemStack();
                         switch (this.sap) {
                         case SAP:
                             itemstack1 = new ItemStack(SSItems.sapBottle);
