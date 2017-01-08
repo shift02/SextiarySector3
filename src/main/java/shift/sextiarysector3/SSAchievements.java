@@ -37,6 +37,7 @@ public class SSAchievements {
 
     //工業
     public static Achievement plastic;
+    public static Achievement rubber;
 
     public static void initAchievements() {
 
@@ -58,6 +59,7 @@ public class SSAchievements {
 
         //工業
         plastic = new AchievementFurnace("plastic", 0, 0, new ItemStack(SSItems.plastic), (Achievement) sapBottle, industry).registerStat();
+        rubber = new AchievementFurnace("rubber", 0, 2, new ItemStack(SSItems.rubber), (Achievement) rubberBottle, industry).registerStat();
 
         //工業 -> コア
         shield = new AchievementCraft("shield", 4, -2, new ItemStack(SSItems.plasticShield), (Achievement) plastic, core).registerStat();
