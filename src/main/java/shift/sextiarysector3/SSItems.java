@@ -235,7 +235,7 @@ public class SSItems {
         UtilRegistry.registerNormalItem(rubber, "Rubber", "rubber");
 
         rubberGloves = new ItemRubberGroves().setUnlocalizedName("ss.rubber_gloves").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-        UtilRegistry.registerToolItem(rubberGloves, "RubberGloves", "tool/rubber_gloves");
+        UtilRegistry.registerToolItem(rubberGloves, "rubber_gloves", "tool/rubber_gloves");
 
     }
 }
