@@ -232,7 +232,7 @@ public class SSItems {
         UtilRegistry.registerNormalItem(plastic, "Plastic", "plastic");
 
         rubber = new ItemSSBase().setUnlocalizedName("ss.rubber").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-        UtilRegistry.registerNormalItem(rubber, "Rubber", "rubber");
+        UtilRegistry.registerNormalItem(rubber, "rubber", "rubber");
 
         rubberGloves = new ItemRubberGroves().setUnlocalizedName("ss.rubber_gloves").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerToolItem(rubberGloves, "rubber_gloves", "tool/rubber_gloves");
