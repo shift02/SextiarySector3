@@ -28,6 +28,8 @@ public class SSOreDictionary {
         OreDictionary.registerOre("plastic", SSItems.plastic);
         OreDictionary.registerOre("rubber", SSItems.rubber);
 
+        OreDictionary.registerOre("itemDepthMeter", SSItems.depthMeter);
+
     }
 
 }
