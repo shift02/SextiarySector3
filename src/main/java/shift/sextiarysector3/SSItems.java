@@ -229,7 +229,7 @@ public class SSItems {
         UtilRegistry.registerNormalItem(silverDust, "SilverDust", "dust/silver_dust");
 
         plastic = new ItemSSBase().setUnlocalizedName("ss.plastic").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-        UtilRegistry.registerNormalItem(plastic, "Plastic", "plastic");
+        UtilRegistry.registerNormalItem(plastic, "plastic", "plastic");
 
         rubber = new ItemSSBase().setUnlocalizedName("ss.rubber").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalItem(rubber, "rubber", "rubber");
