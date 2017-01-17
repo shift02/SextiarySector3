@@ -214,19 +214,19 @@ public class SSItems {
 
         //工業
         coalDust = new ItemDust().setUnlocalizedName("ss.coal_dust");
-        UtilRegistry.registerNormalItem(coalDust, "CoalDust", "dust/coal_dust");
+        UtilRegistry.registerNormalItem(coalDust, "coal_dust", "dust/coal_dust");
 
         ironDust = new ItemDust().setUnlocalizedName("ss.iron_dust");
-        UtilRegistry.registerNormalItem(ironDust, "IronDust", "dust/iron_dust");
+        UtilRegistry.registerNormalItem(ironDust, "iron_dust", "dust/iron_dust");
 
         goldDust = new ItemDust().setUnlocalizedName("ss.gold_dust");
-        UtilRegistry.registerNormalItem(goldDust, "GoldDust", "dust/gold_dust");
+        UtilRegistry.registerNormalItem(goldDust, "gold_dust", "dust/gold_dust");
 
         copperDust = new ItemDust().setUnlocalizedName("ss.copper_dust");
-        UtilRegistry.registerNormalItem(copperDust, "CopperDust", "dust/copper_dust");
+        UtilRegistry.registerNormalItem(copperDust, "copper_dust", "dust/copper_dust");
 
         silverDust = new ItemDust().setUnlocalizedName("ss.silver_dust");
-        UtilRegistry.registerNormalItem(silverDust, "SilverDust", "dust/silver_dust");
+        UtilRegistry.registerNormalItem(silverDust, "silver_dust", "dust/silver_dust");
 
         plastic = new ItemSSBase().setUnlocalizedName("ss.plastic").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalItem(plastic, "plastic", "plastic");
