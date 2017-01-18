@@ -204,10 +204,10 @@ public class SSItems {
 
         //鉱業
         copperIngot = new ItemIngot().setUnlocalizedName("ss.copper_ingot");
-        UtilRegistry.registerNormalItem(copperIngot, "CopperIngot", "ingot/copper_ingot");
+        UtilRegistry.registerNormalItem(copperIngot, "copper_ingot", "ingot/copper_ingot");
 
         silverIngot = new ItemIngot().setUnlocalizedName("ss.silver_ingot");
-        UtilRegistry.registerNormalItem(silverIngot, "SilverIngot", "ingot/silver_ingot");
+        UtilRegistry.registerNormalItem(silverIngot, "silver_ingot", "ingot/silver_ingot");
 
         orichalcumGem = new ItemIngot().setUnlocalizedName("ss.orichalcum_gem");
         UtilRegistry.registerNormalItem(orichalcumGem, "OrichalcumGem", "gem/orichalcum_gem");
