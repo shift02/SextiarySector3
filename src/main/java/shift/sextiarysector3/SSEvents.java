@@ -9,19 +9,18 @@ import shift.sextiarysector3.module.ModuleWarp;
 
 public class SSEvents {
 
-	public static void initEvent(FMLPreInitializationEvent event) {
+    public static void initEvent(FMLPreInitializationEvent event) {
 
-		MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
+        MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
 
-		MinecraftForge.EVENT_BUS.register(new WorldEventHandler());
+        MinecraftForge.EVENT_BUS.register(new WorldEventHandler());
 
-		//MinecraftForge.EVENT_BUS.register(ModuleTrain.getInstance());
-		MinecraftForge.EVENT_BUS.register(ModuleWarp.getInstance());
+        //MinecraftForge.EVENT_BUS.register(ModuleTrain.getInstance());
+        MinecraftForge.EVENT_BUS.register(ModuleWarp.getInstance());
 
-		if (event.getSide().isClient()) {
-			MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
-		}
-
-	}
+        if (event.getSide().isClient()) {
+            MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+        }
+    }
 
 }
