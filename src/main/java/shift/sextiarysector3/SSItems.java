@@ -96,13 +96,13 @@ public class SSItems {
     public static void initItem() {
 
         bluestone = new ItemSSBase().setUnlocalizedName("ss.bluestone");
-        UtilRegistry.registerNormalItem(bluestone, "Bluestone", "dust/bluestone");
+        UtilRegistry.registerNormalItem(bluestone, "bluestone", "dust/bluestone");
 
         plasticShield = new ItemSSShield().setUnlocalizedName("ss.plastic_shield");
-        UtilRegistry.registerCustomItem(plasticShield, "PlasticShield", "plastic_shield", TileEntityShield.class, new RendererShield());
+        UtilRegistry.registerCustomItem(plasticShield, "plastic_shield", "plastic_shield", TileEntityShield.class, new RendererShield());
 
         enderCard = new ItemEnderCard().setUnlocalizedName("ss.ender_card");
-        UtilRegistry.registerNormalItem(enderCard, "EnderCard", "ender_card");
+        UtilRegistry.registerNormalItem(enderCard, "ender_card", "ender_card");
 
         depthMeter = new ItemDepthMeter().setUnlocalizedName("ss.depth_meter");
         UtilRegistry.registerAnimationItem(depthMeter, "depth_meter", "depth_meter/depth_meter", 8);
