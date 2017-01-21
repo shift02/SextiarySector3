@@ -109,19 +109,19 @@ public class SSItems {
 
         //銅
         copperShovel = new ItemSSSpade(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_shovel");
-        UtilRegistry.registerToolItem(copperShovel, "CopperShovel", "tool/copper_shovel");
+        UtilRegistry.registerToolItem(copperShovel, "copper_shovel", "tool/copper_shovel");
 
         copperPickaxe = new ItemSSPickaxe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_pickaxe");
-        UtilRegistry.registerToolItem(copperPickaxe, "CopperPickaxe", "tool/copper_pickaxe");
+        UtilRegistry.registerToolItem(copperPickaxe, "copper_pickaxe", "tool/copper_pickaxe");
 
         copperAxe = new ItemSSAxe(ModuleToolMaterial.copperTool, 8.0F, -3.2F).setUnlocalizedName("ss.copper_axe");
-        UtilRegistry.registerToolItem(copperAxe, "CopperAxe", "tool/copper_axe");
+        UtilRegistry.registerToolItem(copperAxe, "copper_axe", "tool/copper_axe");
 
         copperSword = new ItemSSSword(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_sword");
-        UtilRegistry.registerToolItem(copperSword, "CopperSword", "tool/copper_sword");
+        UtilRegistry.registerToolItem(copperSword, "copper_sword", "tool/copper_sword");
 
         copperHoe = new ItemSSHoe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_hoe");
-        UtilRegistry.registerToolItem(copperHoe, "CopperHoe", "tool/copper_hoe");
+        UtilRegistry.registerToolItem(copperHoe, "copper_hoe", "tool/copper_hoe");
 
         //銀
         silverShovel = new ItemSSSpade(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_shovel");
