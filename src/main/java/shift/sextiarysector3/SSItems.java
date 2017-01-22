@@ -125,19 +125,19 @@ public class SSItems {
 
         //銀
         silverShovel = new ItemSSSpade(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_shovel");
-        UtilRegistry.registerToolItem(silverShovel, "SilverShovel", "tool/silver_shovel");
+        UtilRegistry.registerToolItem(silverShovel, "silver_shovel", "tool/silver_shovel");
 
         silverPickaxe = new ItemSSPickaxe(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_pickaxe");
-        UtilRegistry.registerToolItem(silverPickaxe, "SilverPickaxe", "tool/silver_pickaxe");
+        UtilRegistry.registerToolItem(silverPickaxe, "silver_pickaxe", "tool/silver_pickaxe");
 
         silverAxe = new ItemSSAxe(ModuleToolMaterial.silverTool, 8.0F, -3.2F).setUnlocalizedName("ss.silver_axe");
-        UtilRegistry.registerToolItem(silverAxe, "SilverAxe", "tool/silver_axe");
+        UtilRegistry.registerToolItem(silverAxe, "silver_axe", "tool/silver_axe");
 
         silverSword = new ItemSSSword(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_sword");
-        UtilRegistry.registerToolItem(silverSword, "SilverSword", "tool/silver_sword");
+        UtilRegistry.registerToolItem(silverSword, "silver_sword", "tool/silver_sword");
 
         silverHoe = new ItemSSHoe(ModuleToolMaterial.silverTool).setUnlocalizedName("ss.silver_hoe");
-        UtilRegistry.registerToolItem(silverHoe, "SilverHoe", "tool/silver_hoe");
+        UtilRegistry.registerToolItem(silverHoe, "silver_hoe", "tool/silver_hoe");
 
         //オリハルコン
         orichalcumShovel = new ItemSSSpade(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_shovel");
