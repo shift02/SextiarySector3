@@ -197,10 +197,10 @@ public class SSItems {
 
         //林業
         sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");
-        UtilRegistry.registerNormalItem(sapBottle, "SapBottle", "fluid/sap_bottle");
+        UtilRegistry.registerNormalItem(sapBottle, "sap_bottle", "fluid/sap_bottle");
 
         rubberBottle = new ItemSapBottle().setUnlocalizedName("ss.rubber_bottle");
-        UtilRegistry.registerNormalItem(rubberBottle, "RubberBottle", "fluid/rubber_bottle");
+        UtilRegistry.registerNormalItem(rubberBottle, "rubber_bottle", "fluid/rubber_bottle");
 
         //鉱業
         copperIngot = new ItemIngot().setUnlocalizedName("ss.copper_ingot");
