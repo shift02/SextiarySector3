@@ -210,7 +210,7 @@ public class SSItems {
         UtilRegistry.registerNormalItem(silverIngot, "silver_ingot", "ingot/silver_ingot");
 
         orichalcumGem = new ItemIngot().setUnlocalizedName("ss.orichalcum_gem");
-        UtilRegistry.registerNormalItem(orichalcumGem, "OrichalcumGem", "gem/orichalcum_gem");
+        UtilRegistry.registerNormalItem(orichalcumGem, "orichalcum_gem", "gem/orichalcum_gem");
 
         //工業
         coalDust = new ItemDust().setUnlocalizedName("ss.coal_dust");
