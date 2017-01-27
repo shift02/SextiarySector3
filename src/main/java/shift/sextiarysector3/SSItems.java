@@ -93,6 +93,8 @@ public class SSItems {
 
     public static Item rubberGloves;
 
+    public static Item ductTape;
+
     public static void initItem() {
 
         bluestone = new ItemSSBase().setUnlocalizedName("ss.bluestone");
@@ -236,6 +238,9 @@ public class SSItems {
 
         rubberGloves = new ItemRubberGroves().setUnlocalizedName("ss.rubber_gloves").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerToolItem(rubberGloves, "rubber_gloves", "tool/rubber_gloves");
+
+        ductTape = new ItemSSBase().setUnlocalizedName("ss.duct_tape").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        UtilRegistry.registerNormalItem(ductTape, "duct_tape", "duct_tape");
 
     }
 }
