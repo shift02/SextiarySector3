@@ -143,19 +143,19 @@ public class SSItems {
 
         //オリハルコン
         orichalcumShovel = new ItemSSSpade(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_shovel");
-        UtilRegistry.registerToolItem(orichalcumShovel, "OrichalcumShovel", "tool/orichalcum_shovel");
+        UtilRegistry.registerToolItem(orichalcumShovel, "orichalcum_shovel", "tool/orichalcum_shovel");
 
         orichalcumPickaxe = new ItemSSPickaxe(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_pickaxe");
-        UtilRegistry.registerToolItem(orichalcumPickaxe, "OrichalcumPickaxe", "tool/orichalcum_pickaxe");
+        UtilRegistry.registerToolItem(orichalcumPickaxe, "orichalcum_pickaxe", "tool/orichalcum_pickaxe");
 
         orichalcumAxe = new ItemSSAxe(ModuleToolMaterial.orichalcumTool, 8.0F, -3.2F).setUnlocalizedName("ss.orichalcum_axe");
-        UtilRegistry.registerToolItem(orichalcumAxe, "OrichalcumAxe", "tool/orichalcum_axe");
+        UtilRegistry.registerToolItem(orichalcumAxe, "orichalcum_axe", "tool/orichalcum_axe");
 
         orichalcumSword = new ItemSSSword(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_sword");
-        UtilRegistry.registerToolItem(orichalcumSword, "OrichalcumSword", "tool/orichalcum_sword");
+        UtilRegistry.registerToolItem(orichalcumSword, "orichalcum_sword", "tool/orichalcum_sword");
 
         orichalcumHoe = new ItemSSHoe(ModuleToolMaterial.orichalcumTool).setUnlocalizedName("ss.orichalcum_hoe");
-        UtilRegistry.registerToolItem(orichalcumHoe, "OrichalcumHoe", "tool/orichalcum_hoe");
+        UtilRegistry.registerToolItem(orichalcumHoe, "orichalcum_hoe", "tool/orichalcum_hoe");
 
         //防具
         //  銅
