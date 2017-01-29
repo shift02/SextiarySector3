@@ -13,7 +13,10 @@ public class SSEvents {
 
         MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
 
-        MinecraftForge.EVENT_BUS.register(new WorldEventHandler());
+        WorldEventHandler worldEventHandler = new WorldEventHandler();
+
+        MinecraftForge.EVENT_BUS.register(worldEventHandler);
+        MinecraftForge.ORE_GEN_BUS.register(worldEventHandler);
 
         //MinecraftForge.EVENT_BUS.register(ModuleTrain.getInstance());
         MinecraftForge.EVENT_BUS.register(ModuleWarp.getInstance());
