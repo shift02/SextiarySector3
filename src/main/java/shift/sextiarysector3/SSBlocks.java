@@ -158,10 +158,10 @@ public class SSBlocks {
 
         //工業
         plasticBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.plastic_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-        UtilRegistry.registerNormalBlock(plasticBlock, "PlasticBlock", "plastic_block");
+        UtilRegistry.registerNormalBlock(plasticBlock, "plastic_block", "plastic_block");
 
         rubberBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.rubber_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-        UtilRegistry.registerNormalBlock(rubberBlock, "RubberBlock", "rubber_block");
+        UtilRegistry.registerNormalBlock(rubberBlock, "rubber_block", "rubber_block");
 
     }
 
