@@ -42,6 +42,8 @@ public class SSBlocks {
     public static Block rubberLog;
     public static Block rubberLeaves;
 
+    public static Block mapleLeaves;
+
     public static Block spile;
 
     //樹液
@@ -104,6 +106,9 @@ public class SSBlocks {
 
         rubberLeaves = new BlockSSLeaves(rubberSapling).setUnlocalizedName("ss.rubber_leaves");
         UtilRegistry.registerNormalBlock(rubberLeaves, new ItemSSLeaves((BlockLeaves) rubberLeaves), "RubberLeaves", "forestry/rubber_leaves");
+
+        mapleLeaves = new BlockSSLeaves(rubberSapling).setUnlocalizedName("ss.maple_leaves");
+        UtilRegistry.registerNormalBlock(mapleLeaves, new ItemSSLeaves((BlockLeaves) mapleLeaves), "maple_leaves", "forestry/maple_leaves");
 
         spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");
         UtilRegistry.registerNormalBlock(spile, "Spile", "spile");
