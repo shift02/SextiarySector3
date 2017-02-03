@@ -62,7 +62,7 @@ public class BlockSSSapling extends BlockSSBush implements IGrowable {
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
 
-        WorldGenerator worldgenerator = new WorldGenRubberTree(true, false);
+        WorldGenerator worldgenerator = this.getTreeGen();
         int i = 0;
         int j = 0;
         boolean flag = false;
@@ -88,6 +88,10 @@ public class BlockSSSapling extends BlockSSBush implements IGrowable {
                 worldIn.setBlockState(pos, state, 4);
             }
         }
+    }
+
+    public WorldGenerator getTreeGen() {
+        return new WorldGenRubberTree(true, false);
     }
 
     /**

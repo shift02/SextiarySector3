@@ -10,20 +10,20 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import shift.sextiarysector3.SSBlocks;
 import shift.sextiarysector3.block.BlockSSLeaves;
 
-public class WorldGenRubberTree extends WorldGenAbstractTree {
+public class WorldGenMapleTree extends WorldGenAbstractTree {
 
-    private static final IBlockState LOG = SSBlocks.rubberLog.getDefaultState();
-    private static final IBlockState LEAF = SSBlocks.rubberLeaves.getDefaultState().withProperty(BlockSSLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState LOG = SSBlocks.mapleLog.getDefaultState();
+    private static final IBlockState LEAF = SSBlocks.mapleLeaves.getDefaultState().withProperty(BlockSSLeaves.CHECK_DECAY, Boolean.valueOf(false));
     private final boolean useExtraRandomHeight;
 
-    public WorldGenRubberTree(boolean notify, boolean useExtraRandomHeightIn) {
+    public WorldGenMapleTree(boolean notify, boolean useExtraRandomHeightIn) {
         super(notify);
         this.useExtraRandomHeight = useExtraRandomHeightIn;
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position) {
 
-        int i = rand.nextInt(3) + 8;
+        int i = rand.nextInt(3) + 7;
 
         if (this.useExtraRandomHeight) {
             i += rand.nextInt(7);
@@ -70,7 +70,7 @@ public class WorldGenRubberTree extends WorldGenAbstractTree {
                 if (isSoil && position.getY() < worldIn.getHeight() - i - 1) {
                     state.getBlock().onPlantGrow(state, worldIn, down, position);
 
-                    for (int i2 = position.getY() - 3 + i; i2 <= position.getY() + i; ++i2) {
+                    for (int i2 = position.getY() - 5 + i; i2 <= position.getY() + i; ++i2) {
                         int k2 = i2 - (position.getY() + i);
                         int l2 = 1 - k2 / 2;
 

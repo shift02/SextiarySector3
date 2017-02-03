@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockLargeOre;
+import shift.sextiarysector3.block.BlockMapleSapling;
 import shift.sextiarysector3.block.BlockSSBase;
 import shift.sextiarysector3.block.BlockSSLeaves;
 import shift.sextiarysector3.block.BlockSSLog;
@@ -42,6 +43,8 @@ public class SSBlocks {
     public static Block rubberLog;
     public static Block rubberLeaves;
 
+    public static Block mapleSapling;
+    public static Block mapleLog;
     public static Block mapleLeaves;
 
     public static Block spile;
@@ -107,7 +110,13 @@ public class SSBlocks {
         rubberLeaves = new BlockSSLeaves(rubberSapling).setUnlocalizedName("ss.rubber_leaves");
         UtilRegistry.registerNormalBlock(rubberLeaves, new ItemSSLeaves((BlockLeaves) rubberLeaves), "RubberLeaves", "forestry/rubber_leaves");
 
-        mapleLeaves = new BlockSSLeaves(rubberSapling).setUnlocalizedName("ss.maple_leaves");
+        mapleSapling = new BlockMapleSapling().setUnlocalizedName("ss.maple_sapling");
+        UtilRegistry.registerNormalBlock(mapleSapling, "maple_sapling", "forestry/maple_sapling");
+
+        mapleLog = new BlockSSLog().setUnlocalizedName("ss.maple_log");
+        UtilRegistry.registerNormalBlock(mapleLog, "maple_log", "forestry/maple_log");
+
+        mapleLeaves = new BlockSSLeaves(mapleSapling).setUnlocalizedName("ss.maple_leaves");
         UtilRegistry.registerNormalBlock(mapleLeaves, new ItemSSLeaves((BlockLeaves) mapleLeaves), "maple_leaves", "forestry/maple_leaves");
 
         spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");
