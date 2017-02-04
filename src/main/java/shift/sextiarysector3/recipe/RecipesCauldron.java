@@ -20,6 +20,8 @@ public class RecipesCauldron {
 
         list.add(new RecipeCauldron(new ItemStack(Items.GLASS_BOTTLE), new FluidStack(SSFluids.sap, 300), new ItemStack(SSItems.sapBottle)));
 
+        list.add(new RecipeCauldron(new ItemStack(Items.GLASS_BOTTLE), new FluidStack(SSFluids.maple, 300), new ItemStack(SSItems.mapleBottle)));
+
     }
 
 }

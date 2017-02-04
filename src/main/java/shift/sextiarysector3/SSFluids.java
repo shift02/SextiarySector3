@@ -8,6 +8,7 @@ public class SSFluids {
 
     public static Fluid sap;
     public static Fluid rubber;
+    public static Fluid maple;
 
     public static void initFluid() {
 
@@ -16,6 +17,9 @@ public class SSFluids {
 
         rubber = new FluidSSBase("rubber", "rubber", "rubber");
         FluidRegistry.registerFluid(rubber);
+
+        maple = new FluidSSBase("maple", "maple", "maple");
+        FluidRegistry.registerFluid(maple);
 
     }
 

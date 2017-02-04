@@ -42,6 +42,7 @@ public class ModuleSap implements IModule {
         saps.add(new SapEntry(Blocks.LOG2, SSBlocks.sapCauldron, new FluidStack(SSFluids.sap, 300)));
 
         saps.add(new SapEntry(SSBlocks.rubberLog, SSBlocks.rubberCauldron, new FluidStack(SSFluids.rubber, 300)));
+        saps.add(new SapEntry(SSBlocks.mapleLog, SSBlocks.mapleCauldron, new FluidStack(SSFluids.maple, 300)));
 
     }
 

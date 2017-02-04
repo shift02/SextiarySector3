@@ -74,6 +74,7 @@ public class SSItems {
     //林業
     public static Item sapBottle;
     public static Item rubberBottle;
+    public static Item mapleBottle;
 
     //鉱業
     public static Item copperIngot;
@@ -203,6 +204,9 @@ public class SSItems {
 
         rubberBottle = new ItemSapBottle().setUnlocalizedName("ss.rubber_bottle");
         UtilRegistry.registerNormalItem(rubberBottle, "rubber_bottle", "fluid/rubber_bottle");
+
+        mapleBottle = new ItemSapBottle().setUnlocalizedName("ss.maple_bottle");
+        UtilRegistry.registerNormalItem(mapleBottle, "maple_bottle", "fluid/maple_bottle");
 
         //鉱業
         copperIngot = new ItemIngot().setUnlocalizedName("ss.copper_ingot");

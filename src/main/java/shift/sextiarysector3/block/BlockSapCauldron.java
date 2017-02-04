@@ -148,6 +148,10 @@ public class BlockSapCauldron extends BlockSSBase {
                             itemstack1 = new ItemStack(SSItems.rubberBottle);
                             playerIn.addStat(SSAchievements.rubberBottle, 1);
                             break;
+                        case MAPLE:
+                            itemstack1 = new ItemStack(SSItems.mapleBottle);
+                            playerIn.addStat(SSAchievements.rubberBottle, 1);
+                            break;
                         default:
                             break;
                         }
@@ -288,6 +292,6 @@ public class BlockSapCauldron extends BlockSSBase {
     }
 
     public static enum Sap {
-        SAP, RUBBER;
+        SAP, RUBBER, MAPLE;
     }
 }

@@ -52,6 +52,7 @@ public class SSBlocks {
     //樹液
     public static Block sapCauldron;
     public static Block rubberCauldron;
+    public static Block mapleCauldron;
 
     //鉱石
     public static Block copperOre;
@@ -127,6 +128,9 @@ public class SSBlocks {
 
         rubberCauldron = new BlockSapCauldron(Sap.RUBBER).setUnlocalizedName("ss.rubber_cauldron");
         UtilRegistry.registerNormalBlock(rubberCauldron, "RubberCauldron", "cauldron/rubber_cauldron");
+
+        mapleCauldron = new BlockSapCauldron(Sap.MAPLE).setUnlocalizedName("ss.maple_cauldron");
+        UtilRegistry.registerNormalBlock(mapleCauldron, "maple_cauldron", "cauldron/maple_cauldron");
 
         //鉱業
         //鉱石
