@@ -25,6 +25,18 @@ public class SSOreDictionary {
         OreDictionary.registerOre("blockSilver", SSBlocks.silverBlock);
         OreDictionary.registerOre("blockOrichalcum", SSBlocks.orichalcumBlock);
 
+        //Log
+        OreDictionary.registerOre("logWood", SSBlocks.rubberLog);
+        OreDictionary.registerOre("logWood", SSBlocks.mapleLog);
+
+        //treeSapling
+        OreDictionary.registerOre("treeSapling", SSBlocks.rubberSapling);
+        OreDictionary.registerOre("treeSapling", SSBlocks.mapleSapling);
+
+        //treeLeaves
+        OreDictionary.registerOre("treeLeaves", SSBlocks.rubberLeaves);
+        OreDictionary.registerOre("treeLeaves", SSBlocks.mapleLeaves);
+
         OreDictionary.registerOre("plastic", SSItems.plastic);
         OreDictionary.registerOre("rubber", SSItems.rubber);
 
