@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import shift.sextiarysector3.SSBlocks;
 import shift.sextiarysector3.SSConfig;
 import shift.sextiarysector3.world.WorldGenEnderStone;
+import shift.sextiarysector3.world.WorldGenMapleTree;
 import shift.sextiarysector3.world.WorldGenRubberTree;
 
 public class WorldEventHandler {
@@ -95,6 +96,8 @@ public class WorldEventHandler {
 
         this.onDecorateBiomeEventForTree(event);
 
+        this.onDecorateBiomeEventForMapleTree(event);
+
         this.onDecorateBiomeEventForEnderStone(event);
 
     }
@@ -124,6 +127,41 @@ public class WorldEventHandler {
             WorldGenAbstractTree worldgenabstracttree = new WorldGenRubberTree(false, false);
             worldgenabstracttree.setDecorationDefaults();
             BlockPos blockpos = worldIn.getHeight(chunkPos.add(k6, 0, l));
+
+            if (worldgenabstracttree.generate(worldIn, randomGenerato, blockpos)) {
+                worldgenabstracttree.generateSaplings(worldIn, randomGenerato, blockpos);
+            }
+        }
+
+    }
+
+    public void onDecorateBiomeEventForMapleTree(DecorateBiomeEvent.Pre event) {
+
+        this.randomGenerato = event.getRand();
+        World worldIn = event.getWorld();
+        BlockPos chunkPos = event.getPos();
+        Biome biome = worldIn.getBiomeGenForCoords(chunkPos);
+
+        float tem = biome.getFloatTemperature(chunkPos);
+        float rain = biome.getRainfall();
+
+        if (tem > 0.6) return;
+
+        int k1 = biome.theBiomeDecorator.treesPerChunk;//;this.treesPerChunk;
+
+        if (randomGenerato.nextFloat() < biome.theBiomeDecorator.field_189870_A)//this.field_189870_A)
+        {
+            ++k1;
+        }
+
+        for (int j2 = 0; j2 < k1; ++j2) {
+            int k6 = randomGenerato.nextInt(16) + 8;
+            int l = randomGenerato.nextInt(16) + 8;
+            WorldGenAbstractTree worldgenabstracttree = new WorldGenMapleTree(false, false);
+            worldgenabstracttree.setDecorationDefaults();
+            BlockPos blockpos = worldIn.getHeight(chunkPos.add(k6, 0, l));
+
+            if (blockpos.getY() < 75) continue;
 
             if (worldgenabstracttree.generate(worldIn, randomGenerato, blockpos)) {
                 worldgenabstracttree.generateSaplings(worldIn, randomGenerato, blockpos);
