@@ -9,6 +9,7 @@ import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockMapleSapling;
 import shift.sextiarysector3.block.BlockSSBase;
+import shift.sextiarysector3.block.BlockSSCake;
 import shift.sextiarysector3.block.BlockSSLeaves;
 import shift.sextiarysector3.block.BlockSSLog;
 import shift.sextiarysector3.block.BlockSSOre;
@@ -75,6 +76,9 @@ public class SSBlocks {
     //工業
     public static Block plasticBlock;
     public static Block rubberBlock;
+
+    //料理
+    public static Block mapleCake;
 
     public static void initBlock() {
 
@@ -180,6 +184,9 @@ public class SSBlocks {
 
         rubberBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.rubber_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalBlock(rubberBlock, "rubber_block", "rubber_block");
+
+        mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCore);
+        UtilRegistry.registerNormalBlock(mapleCake, "maple_cake", "cake/maple_cake");
 
     }
 
