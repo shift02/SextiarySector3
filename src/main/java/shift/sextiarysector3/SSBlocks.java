@@ -139,44 +139,44 @@ public class SSBlocks {
         //鉱業
         //鉱石
         copperOre = new BlockSSOre(1).setUnlocalizedName("ss.copper_ore");
-        UtilRegistry.registerNormalBlock(copperOre, "CopperOre", "ore/copper_ore");
+        UtilRegistry.registerNormalBlock(copperOre, "copper_ore", "ore/copper_ore");
 
         silverOre = new BlockSSOre(2).setUnlocalizedName("ss.silver_ore");
-        UtilRegistry.registerNormalBlock(silverOre, "SilverOre", "ore/silver_ore");
+        UtilRegistry.registerNormalBlock(silverOre, "silver_ore", "ore/silver_ore");
 
         orichalcumOre = new BlockSSOre(3).setUnlocalizedName("ss.orichalcum_ore");
-        UtilRegistry.registerNormalBlock(orichalcumOre, "Orichalcum", "ore/orichalcum_ore");
+        UtilRegistry.registerNormalBlock(orichalcumOre, "orichalcum_ore", "ore/orichalcum_ore");
 
         //Large鉱石
         coalLargeOre = new BlockLargeOre(SSItems.coalDust, Blocks.COAL_ORE, 1).setUnlocalizedName("ss.coal_large_ore");
-        UtilRegistry.registerNormalBlock(coalLargeOre, "CoalLargeOre", "ore/coal_largeore");
+        UtilRegistry.registerNormalBlock(coalLargeOre, "coal_largeore_ore", "ore/coal_largeore");
 
         ironLargeOre = new BlockLargeOre(SSItems.ironDust, Blocks.IRON_ORE, 2).setUnlocalizedName("ss.iron_large_ore");
-        UtilRegistry.registerNormalBlock(ironLargeOre, "IronLargeOre", "ore/iron_large_ore");
+        UtilRegistry.registerNormalBlock(ironLargeOre, "iron_large_ore", "ore/iron_large_ore");
 
         goldLargeOre = new BlockLargeOre(SSItems.goldDust, Blocks.GOLD_ORE, 3).setUnlocalizedName("ss.gold_large_ore");
-        UtilRegistry.registerNormalBlock(goldLargeOre, "GoldLargeOre", "ore/gold_large_ore");
+        UtilRegistry.registerNormalBlock(goldLargeOre, "gold_large_ore", "ore/gold_large_ore");
 
         ///diamondLargeOre = new BlockLargeOre(Items.COAL, Blocks.DIAMOND_ORE, 1).setUnlocalizedName("ss.diamond_large_ore");
         //UtilRegistry.registerNormalBlock(diamondLargeOre, "DiamondLargeOre", "ore/diamond_large_ore");
 
         copperLargeOre = new BlockLargeOre(SSItems.coalDust, SSBlocks.copperOre, 2).setUnlocalizedName("ss.copper_large_ore");
-        UtilRegistry.registerNormalBlock(copperLargeOre, "CopperLargeOre", "ore/copper_large_ore");
+        UtilRegistry.registerNormalBlock(copperLargeOre, "copper_large_ore", "ore/copper_large_ore");
 
         silverLargeOre = new BlockLargeOre(SSItems.silverDust, SSBlocks.silverOre, 3).setUnlocalizedName("ss.silver_large_ore");
-        UtilRegistry.registerNormalBlock(silverLargeOre, "SilverLargeOre", "ore/silver_large_ore");
+        UtilRegistry.registerNormalBlock(silverLargeOre, "silver_large_ore", "ore/silver_large_ore");
 
         //orichalcumLargeOre = new BlockLargeOre(SSItems.orichalcumGem, SSBlocks.orichalcumOre, 1).setUnlocalizedName("ss.orichalcum_large_ore");
         //UtilRegistry.registerNormalBlock(orichalcumLargeOre, "orichalcum_large_ore", "ore/orichalcum_large_ore");
 
         copperBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.copper_block").setHardness(4.0F).setResistance(10.0F);
-        UtilRegistry.registerNormalBlock(copperBlock, "CopperBlock", "ore/copper_block");
+        UtilRegistry.registerNormalBlock(copperBlock, "copper_block", "ore/copper_block");
 
         silverBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.silver_block").setHardness(3.0F).setResistance(10.0F);
-        UtilRegistry.registerNormalBlock(silverBlock, "SilverBlock", "ore/silver_block");
+        UtilRegistry.registerNormalBlock(silverBlock, "silver_block", "ore/silver_block");
 
         orichalcumBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.orichalcum_block").setHardness(8.0F).setResistance(20.0F);
-        UtilRegistry.registerNormalBlock(orichalcumBlock, "OrichalcumBlock", "ore/orichalcum_block");
+        UtilRegistry.registerNormalBlock(orichalcumBlock, "orichalcum_block", "ore/orichalcum_block");
 
         //工業
         plasticBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.plastic_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
