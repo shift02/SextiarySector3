@@ -107,13 +107,13 @@ public class SSBlocks {
 
         //林業
         rubberSapling = new BlockSSSapling().setUnlocalizedName("ss.rubber_sapling");
-        UtilRegistry.registerNormalBlock(rubberSapling, "RubberSapling", "forestry/rubber_sapling");
+        UtilRegistry.registerNormalBlock(rubberSapling, "rubber_sapling", "forestry/rubber_sapling");
 
         rubberLog = new BlockSSLog().setUnlocalizedName("ss.rubber_log");
-        UtilRegistry.registerNormalBlock(rubberLog, "RubberLog", "forestry/rubber_log");
+        UtilRegistry.registerNormalBlock(rubberLog, "rubber_log", "forestry/rubber_log");
 
         rubberLeaves = new BlockSSLeaves(rubberSapling).setUnlocalizedName("ss.rubber_leaves");
-        UtilRegistry.registerNormalBlock(rubberLeaves, new ItemSSLeaves((BlockLeaves) rubberLeaves), "RubberLeaves", "forestry/rubber_leaves");
+        UtilRegistry.registerNormalBlock(rubberLeaves, new ItemSSLeaves((BlockLeaves) rubberLeaves), "rubber_leaves", "forestry/rubber_leaves");
 
         mapleSapling = new BlockMapleSapling().setUnlocalizedName("ss.maple_sapling");
         UtilRegistry.registerNormalBlock(mapleSapling, "maple_sapling", "forestry/maple_sapling");
@@ -125,13 +125,13 @@ public class SSBlocks {
         UtilRegistry.registerNormalBlock(mapleLeaves, new ItemSSLeaves((BlockLeaves) mapleLeaves), "maple_leaves", "forestry/maple_leaves");
 
         spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");
-        UtilRegistry.registerNormalBlock(spile, "Spile", "spile");
+        UtilRegistry.registerNormalBlock(spile, "spile", "spile");
 
         sapCauldron = new BlockSapCauldron(Sap.SAP).setUnlocalizedName("ss.sap_cauldron");
-        UtilRegistry.registerNormalBlock(sapCauldron, "SapCauldron", "cauldron/sap_cauldron");
+        UtilRegistry.registerNormalBlock(sapCauldron, "sap_cauldron", "cauldron/sap_cauldron");
 
         rubberCauldron = new BlockSapCauldron(Sap.RUBBER).setUnlocalizedName("ss.rubber_cauldron");
-        UtilRegistry.registerNormalBlock(rubberCauldron, "RubberCauldron", "cauldron/rubber_cauldron");
+        UtilRegistry.registerNormalBlock(rubberCauldron, "rubber_cauldron", "cauldron/rubber_cauldron");
 
         mapleCauldron = new BlockSapCauldron(Sap.MAPLE).setUnlocalizedName("ss.maple_cauldron");
         UtilRegistry.registerNormalBlock(mapleCauldron, "maple_cauldron", "cauldron/maple_cauldron");
