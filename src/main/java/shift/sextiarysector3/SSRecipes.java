@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.item.crafting.CraftingManager;
 import shift.sextiarysector3.recipe.RecipesArmor;
 import shift.sextiarysector3.recipe.RecipesCauldron;
+import shift.sextiarysector3.recipe.RecipesCooking;
 import shift.sextiarysector3.recipe.RecipesCore;
 import shift.sextiarysector3.recipe.RecipesForestry;
 import shift.sextiarysector3.recipe.RecipesFurnace;
@@ -30,6 +31,7 @@ public class SSRecipes {
         RecipesForestry.addRecipes(m);
         RecipesMining.addRecipes(m);
         RecipesIndustry.addRecipes(m);
+        RecipesCooking.addRecipes(m);
 
         RecipesTool.addRecipes(m);
 
