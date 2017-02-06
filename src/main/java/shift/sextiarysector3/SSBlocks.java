@@ -84,16 +84,16 @@ public class SSBlocks {
 
         //Core
         lapisPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.XPORB).setUnlocalizedName("ss.lapis_pressure_plate");
-        UtilRegistry.registerNormalBlock(lapisPressurePlate, "LapisPressurePlate", "lapis_pressure_plate");
+        UtilRegistry.registerNormalBlock(lapisPressurePlate, "lapis_pressure_plate", "lapis_pressure_plate");
 
         copperPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.AGEABLE).setUnlocalizedName("ss.copper_pressure_plate");
-        UtilRegistry.registerNormalBlock(copperPressurePlate, "CopperPressurePlate", "copper_pressure_plate");
+        UtilRegistry.registerNormalBlock(copperPressurePlate, "copper_pressure_plate", "copper_pressure_plate");
 
         silverPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.ENEMY).setUnlocalizedName("ss.silver_pressure_plate");
-        UtilRegistry.registerNormalBlock(silverPressurePlate, "SilverPressurePlate", "silver_pressure_plate");
+        UtilRegistry.registerNormalBlock(silverPressurePlate, "silver_pressure_plate", "silver_pressure_plate");
 
         orichalcumPressurePlate = new BlockSSPressurePlate(Material.IRON, Sensitivity.PLAYER).setUnlocalizedName("ss.orichalcum_pressure_plate");
-        UtilRegistry.registerNormalBlock(orichalcumPressurePlate, "OrichalcumPressurePlate", "orichalcum_pressure_plate");
+        UtilRegistry.registerNormalBlock(orichalcumPressurePlate, "orichalcum_pressure_plate", "orichalcum_pressure_plate");
 
         sanctuary = new BlockSanctuary().setUnlocalizedName("ss.sanctuary");
         UtilRegistry.registerNormalBlock(sanctuary, "Sanctuary", "sanctuary");
