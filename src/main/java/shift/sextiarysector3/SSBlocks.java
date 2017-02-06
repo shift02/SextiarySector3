@@ -96,14 +96,14 @@ public class SSBlocks {
         UtilRegistry.registerNormalBlock(orichalcumPressurePlate, "orichalcum_pressure_plate", "orichalcum_pressure_plate");
 
         sanctuary = new BlockSanctuary().setUnlocalizedName("ss.sanctuary");
-        UtilRegistry.registerNormalBlock(sanctuary, "Sanctuary", "sanctuary");
+        UtilRegistry.registerNormalBlock(sanctuary, "sanctuary", "sanctuary");
 
         enderStone = new BlockEnderStoneMonument().setUnlocalizedName("ss.ender_stone");
-        UtilRegistry.registerNormalBlock(enderStone, "EnderStone", "ender_stone");
+        UtilRegistry.registerNormalBlock(enderStone, "ender_stone", "ender_stone");
 
         enderStoneFoundation = new BlockSSBase(Material.ROCK).setDropSize(0).setUnlocalizedName("ss.ender_stone_foundation")
                 .setHardness(100f).setResistance(100.0F);
-        UtilRegistry.registerNormalBlock(enderStoneFoundation, "EnderStoneFoundation", "ender_stone_foundation");
+        UtilRegistry.registerNormalBlock(enderStoneFoundation, "ender_stone_foundation", "ender_stone_foundation");
 
         //林業
         rubberSapling = new BlockSSSapling().setUnlocalizedName("ss.rubber_sapling");
