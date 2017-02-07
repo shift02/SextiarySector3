@@ -30,6 +30,7 @@ public class SSAchievements {
     public static Achievement spile;
     public static Achievement sapBottle;
     public static Achievement rubberBottle;
+    public static Achievement mapleBottle;
 
     //鉱業
     public static Achievement newOre;
@@ -48,6 +49,7 @@ public class SSAchievements {
         spile = new AchievementCraft("spile", 0, 0, new ItemStack(SSBlocks.spile), (Achievement) null, forestry).initIndependentStat().registerStat();
         sapBottle = new AchievementBase("sap_bottle", 2, 1, new ItemStack(SSItems.sapBottle), (Achievement) spile, forestry).registerStat();
         rubberBottle = new AchievementBase("rubber_bottle", 2, -1, new ItemStack(SSItems.rubberBottle), (Achievement) spile, forestry).registerStat();
+        mapleBottle = new AchievementBase("maple_bottle", -2, 1, new ItemStack(SSItems.mapleBottle), (Achievement) spile, forestry).registerStat();
 
         //鉱業
         newOre = new AchievementSSOre("new_ore", 0, 0, new ItemStack(SSItems.orichalcumGem), (Achievement) null, mining).initIndependentStat().registerStat();

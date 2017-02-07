@@ -150,7 +150,7 @@ public class BlockSapCauldron extends BlockSSBase {
                             break;
                         case MAPLE:
                             itemstack1 = new ItemStack(SSItems.mapleBottle);
-                            playerIn.addStat(SSAchievements.rubberBottle, 1);
+                            playerIn.addStat(SSAchievements.mapleBottle, 1);
                             break;
                         default:
                             break;
