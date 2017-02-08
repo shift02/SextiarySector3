@@ -9,89 +9,109 @@ import shift.sextiarysector3.api.SextiarySectorAPI;
 
 public class SSCreativeTabs {
 
-	public static void initCreativeTabs() {
+    public static void initCreativeTabs() {
 
-		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
-		SextiarySectorAPI.TabSSForestry = new CreativeTabSSForestry();
-		SextiarySectorAPI.TabSSMining = new CreativeTabSSMining();
-		SextiarySectorAPI.TabSSIndustry = new CreativeTabSSIndustry();
+        SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
+        SextiarySectorAPI.TabSSForestry = new CreativeTabSSForestry();
+        SextiarySectorAPI.TabSSMining = new CreativeTabSSMining();
+        SextiarySectorAPI.TabSSIndustry = new CreativeTabSSIndustry();
+        SextiarySectorAPI.TabSSCooking = new CreativeTabSSCooking();
 
-	}
+    }
 
-	private static class CreativeTabSSCore extends CreativeTabs {
+    private static class CreativeTabSSCore extends CreativeTabs {
 
-		public CreativeTabSSCore() {
-			super("ss.core");
-		}
+        public CreativeTabSSCore() {
+            super("ss.core");
+        }
 
-		@Override
-		public Item getTabIconItem() {
-			return null;// SSBlocks.LargeFurnace.g;
-		}
+        @Override
+        public Item getTabIconItem() {
+            return null;// SSBlocks.LargeFurnace.g;
+        }
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public ItemStack getIconItemStack() {
-			return new ItemStack(SSItems.orichalcumGem, 1);
-		}
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack getIconItemStack() {
+            return new ItemStack(SSItems.orichalcumGem, 1);
+        }
 
-	}
+    }
 
-	private static class CreativeTabSSForestry extends CreativeTabs {
+    private static class CreativeTabSSForestry extends CreativeTabs {
 
-		public CreativeTabSSForestry() {
-			super("ss.forestry");
-		}
+        public CreativeTabSSForestry() {
+            super("ss.forestry");
+        }
 
-		@Override
-		public Item getTabIconItem() {
-			return null;// SSBlocks.LargeFurnace.g;
-		}
+        @Override
+        public Item getTabIconItem() {
+            return null;// SSBlocks.LargeFurnace.g;
+        }
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public ItemStack getIconItemStack() {
-			return new ItemStack(SSBlocks.rubberLog, 1);
-		}
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack getIconItemStack() {
+            return new ItemStack(SSBlocks.rubberLog, 1);
+        }
 
-	}
+    }
 
-	private static class CreativeTabSSMining extends CreativeTabs {
+    private static class CreativeTabSSMining extends CreativeTabs {
 
-		public CreativeTabSSMining() {
-			super("ss.mining");
-		}
+        public CreativeTabSSMining() {
+            super("ss.mining");
+        }
 
-		@Override
-		public Item getTabIconItem() {
-			return null;//SSBlocks.LargeFurnace.g;
-		}
+        @Override
+        public Item getTabIconItem() {
+            return null;//SSBlocks.LargeFurnace.g;
+        }
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public ItemStack getIconItemStack() {
-			return new ItemStack(SSBlocks.orichalcumOre, 1);
-		}
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack getIconItemStack() {
+            return new ItemStack(SSBlocks.orichalcumOre, 1);
+        }
 
-	}
+    }
 
-	private static class CreativeTabSSIndustry extends CreativeTabs {
+    private static class CreativeTabSSIndustry extends CreativeTabs {
 
-		public CreativeTabSSIndustry() {
-			super("ss.industry");
-		}
+        public CreativeTabSSIndustry() {
+            super("ss.industry");
+        }
 
-		@Override
-		public Item getTabIconItem() {
-			return null;//SSBlocks.LargeFurnace.g;
-		}
+        @Override
+        public Item getTabIconItem() {
+            return null;//SSBlocks.LargeFurnace.g;
+        }
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public ItemStack getIconItemStack() {
-			return new ItemStack(SSItems.plastic, 1);
-		}
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack getIconItemStack() {
+            return new ItemStack(SSItems.plastic, 1);
+        }
 
-	}
+    }
+
+    private static class CreativeTabSSCooking extends CreativeTabs {
+
+        public CreativeTabSSCooking() {
+            super("ss.cooking");
+        }
+
+        @Override
+        public Item getTabIconItem() {
+            return null;//SSBlocks.LargeFurnace.g;
+        }
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack getIconItemStack() {
+            return new ItemStack(SSBlocks.mapleCake, 1);
+        }
+
+    }
 
 }
