@@ -16,6 +16,8 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.SSBlocks;
 
 public class ModuleColor implements IModule {
@@ -38,7 +40,20 @@ public class ModuleColor implements IModule {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public void preInitClient(FMLPreInitializationEvent event) {
+
+    }
+
+    @Override
     public void load(FMLInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void loadClient(FMLInitializationEvent event) {
 
         final BlockColors block = FMLClientHandler.instance().getClient().getBlockColors();
 
@@ -87,4 +102,5 @@ public class ModuleColor implements IModule {
         // TODO 自動生成されたメソッド・スタブ
 
     }
+
 }

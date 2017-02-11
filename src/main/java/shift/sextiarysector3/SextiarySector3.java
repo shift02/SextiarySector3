@@ -65,6 +65,8 @@ public class SextiarySector3 {
             m.preInit(event);
         }
 
+        proxy.preInitModuleClient(event);
+
         SSItems.initItem();
         SSBlocks.initBlock();
         SSFluids.initFluid();
@@ -77,6 +79,8 @@ public class SextiarySector3 {
 
         SSAchievements.initAchievements();
 
+        proxy.initTileEntitySpecialRenderer();
+
     }
 
     @EventHandler
@@ -85,6 +89,7 @@ public class SextiarySector3 {
         for (IModule m : modules) {
             m.load(event);
         }
+        proxy.loadModuleClient(event);
 
         SSWorlds.initVillages();
 

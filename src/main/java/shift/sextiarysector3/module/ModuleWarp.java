@@ -13,6 +13,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.SSBlocks;
 import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
@@ -129,6 +131,18 @@ public class ModuleWarp implements IModule {
         if (event.getEntity().getEntityData().getInteger("stop") % 2 == 1) {
             event.setCanUpdate(false);
         }
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preInitClient(FMLPreInitializationEvent event) {
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void loadClient(FMLInitializationEvent event) {
 
     }
 }

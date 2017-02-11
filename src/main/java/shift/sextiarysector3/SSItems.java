@@ -18,7 +18,6 @@ import shift.sextiarysector3.item.ItemSSSpade;
 import shift.sextiarysector3.item.ItemSSSword;
 import shift.sextiarysector3.item.ItemSapBottle;
 import shift.sextiarysector3.module.ModuleToolMaterial;
-import shift.sextiarysector3.renderer.RendererShield;
 import shift.sextiarysector3.tileentity.TileEntityShield;
 import shift.sextiarysector3.util.UtilRegistry;
 
@@ -102,7 +101,7 @@ public class SSItems {
         UtilRegistry.registerNormalItem(bluestone, "bluestone", "dust/bluestone");
 
         plasticShield = new ItemSSShield().setUnlocalizedName("ss.plastic_shield");
-        UtilRegistry.registerCustomItem(plasticShield, "plastic_shield", "plastic_shield", TileEntityShield.class, new RendererShield());
+        UtilRegistry.registerCustomItem(plasticShield, "plastic_shield", "plastic_shield", TileEntityShield.class);
 
         enderCard = new ItemEnderCard().setUnlocalizedName("ss.ender_card");
         UtilRegistry.registerNormalItem(enderCard, "ender_card", "ender_card");

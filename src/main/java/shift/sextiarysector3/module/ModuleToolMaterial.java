@@ -7,6 +7,8 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.SextiarySector3;
 
 public class ModuleToolMaterial implements IModule {
@@ -67,6 +69,18 @@ public class ModuleToolMaterial implements IModule {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         // TODO 自動生成されたメソッド・スタブ
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preInitClient(FMLPreInitializationEvent event) {
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void loadClient(FMLInitializationEvent event) {
 
     }
 

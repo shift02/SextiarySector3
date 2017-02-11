@@ -10,6 +10,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.SSBlocks;
 import shift.sextiarysector3.SSFluids;
 import shift.sextiarysector3.block.BlockSapCauldron;
@@ -32,6 +34,18 @@ public class ModuleSap implements IModule {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preInitClient(FMLPreInitializationEvent event) {
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void loadClient(FMLInitializationEvent event) {
 
     }
 
