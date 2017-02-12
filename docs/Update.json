@@ -1,6 +1,7 @@
 {
   "homepage": "https://shift02.github.io/",
   "1.10.2": {
+    "1.2.2": "Fix : MultiPlay",
     "1.2.1": "Add : Maple",
     "1.2.0": "Add : Rubber Item",
     "1.1.0": "Add : Recipe function of JEI",
@@ -8,7 +9,7 @@
     "1.0.0": "Test"
   },
   "promos": {
-    "1.10.2-latest": "1.2.1",
-    "1.10.2-recommended": "1.2.1"
+    "1.10.2-latest": "1.2.2",
+    "1.10.2-recommended": "1.2.2"
   }
 }
