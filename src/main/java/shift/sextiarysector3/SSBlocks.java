@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockLargeOre;
@@ -19,8 +20,10 @@ import shift.sextiarysector3.block.BlockSSSapling;
 import shift.sextiarysector3.block.BlockSanctuary;
 import shift.sextiarysector3.block.BlockSapCauldron;
 import shift.sextiarysector3.block.BlockSapCauldron.Sap;
+import shift.sextiarysector3.block.BlockShaft;
 import shift.sextiarysector3.block.BlockSpile;
 import shift.sextiarysector3.item.ItemSSLeaves;
+import shift.sextiarysector3.tileentity.TileEntityShaft;
 import shift.sextiarysector3.util.UtilRegistry;
 
 public class SSBlocks {
@@ -76,6 +79,8 @@ public class SSBlocks {
     //工業
     public static Block plasticBlock;
     public static Block rubberBlock;
+
+    public static Block woodShaft;
 
     //料理
     public static Block mapleCake;
@@ -185,6 +190,11 @@ public class SSBlocks {
         rubberBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.rubber_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalBlock(rubberBlock, "rubber_block", "rubber_block");
 
+        woodShaft = new BlockShaft(Material.WOOD).setUnlocalizedName("ss.wood_shaft").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerTileEntity(TileEntityShaft.class, SextiarySector3.MODID + ":" + "shaft");
+        UtilRegistry.registerTESRBlock(woodShaft, TileEntityShaft.class, "wood_shaft", "wood_shaft");
+
+        //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
         UtilRegistry.registerNormalBlock(mapleCake, "maple_cake", "cake/maple_cake");
 

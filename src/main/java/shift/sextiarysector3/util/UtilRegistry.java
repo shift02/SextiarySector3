@@ -117,6 +117,16 @@ public class UtilRegistry {
     }
 
     public static <T extends TileEntity> void registerTESRBlock(
+            Block block,
+            Class<T> tileEntityClass,
+            String registryName, String resource) {
+
+        ItemBlock itemBlock = new ItemBlock(block);
+        registerTESRBlock(block, itemBlock, tileEntityClass, registryName, resource);
+
+    }
+
+    public static <T extends TileEntity> void registerTESRBlock(
             Block block, Item itemBlock,
             Class<T> tileEntityClass,
             String registryName, String resource) {
@@ -125,7 +135,10 @@ public class UtilRegistry {
         registerBlock(block, itemBlock, registryName);
 
         //描画の登録
-        SextiarySector3.proxy.setCustomTileEntitySpecialRenderer(itemBlock, tileEntityClass);
+        if (getSide().isClient()) {
+            SextiarySector3.proxy.setCustomTileEntitySpecialRenderer(itemBlock, tileEntityClass);
+            SextiarySector3.proxy.setCustomModelResourceLocation(itemBlock, 0, resource);
+        }
 
     }
 

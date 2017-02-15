@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import shift.sextiarysector3.SextiarySector3;
 import shift.sextiarysector3.module.IModule;
 import shift.sextiarysector3.renderer.RendererShield;
+import shift.sextiarysector3.renderer.block.RendererShaft;
+import shift.sextiarysector3.tileentity.TileEntityShaft;
 import shift.sextiarysector3.tileentity.TileEntityShield;
 import shift.sextiarysector3.util.DefaultStateMapper;
 
@@ -56,6 +58,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShield.class, new RendererShield());
 
         //Block
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShaft.class, new RendererShaft());
 
     }
 
