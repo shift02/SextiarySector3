@@ -5,4 +5,9 @@ import shift.sextiarysector3.api.energy.IShaft;
 
 public class TileEntityShaft extends TileEntity implements IShaft {
 
+    @Override
+    public boolean canRenderBreaking() {
+        return true;
+    }
+
 }

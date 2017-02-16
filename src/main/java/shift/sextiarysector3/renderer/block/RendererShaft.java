@@ -3,6 +3,7 @@ package shift.sextiarysector3.renderer.block;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -118,7 +119,18 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
         float scale = 0.0625f;
         GL11.glScalef(scale, scale, scale);
 
-        this.bindTexture(woodShaftTextures);
+        if (destroyStage >= 0) {
+            this.bindTexture(DESTROY_STAGES[destroyStage]);
+            GlStateManager.matrixMode(5890);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale(4.0F, 2.0F, 1.0F);
+            GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
+            GlStateManager.matrixMode(5888);
+            System.out.println(destroyStage);
+        } else {
+            this.bindTexture(woodShaftTextures);
+        }
+
         /*
         switch (tile.getStorage().getMaxPower()) {
         case 1:
@@ -169,12 +181,23 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
         }
 
         //傾きのスピード
+        //float rotate = lerp(tile.getRotateOldStep(),tile.getRotateStep(),partialTicks);
         //GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
 
         modelShaft.render(null, 0, 0, 0, 0, 0, 1.0f);
 
         GL11.glPopMatrix();
 
+        if (destroyStage >= 0) {
+            GlStateManager.matrixMode(5890);
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode(5888);
+        }
+
+    }
+
+    public float lerp(float prev, float now, float progress) {
+        return prev + (now - prev) * progress;
     }
 
     /*
