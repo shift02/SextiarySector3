@@ -10,4 +10,16 @@ public class TileEntityShaft extends TileEntity implements IShaft {
         return true;
     }
 
+    @Override
+    public int getRotateOldStep() {
+        // TODO 自動生成されたメソッド・スタブ
+        return 0;
+    }
+
+    @Override
+    public int getRotateNowStep() {
+        // TODO 自動生成されたメソッド・スタブ
+        return 0;
+    }
+
 }
