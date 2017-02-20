@@ -2,8 +2,8 @@ package shift.sextiarysector3.api.energy;
 
 public interface IShaft {
 
-    public int getRotateOldStep();
+    public float getRotateOldStep();
 
-    public int getRotateNowStep();
+    public float getRotateNowStep();
 
 }

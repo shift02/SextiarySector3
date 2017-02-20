@@ -181,8 +181,8 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
         }
 
         //傾きのスピード
-        //float rotate = lerp(tile.getRotateOldStep(),tile.getRotateStep(),partialTicks);
-        //GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
+        float rotate = lerp(tile.getRotateOldStep(), tile.getRotateNowStep(), partialTicks);
+        GL11.glRotatef(rotate, 0, 0, 1);
 
         modelShaft.render(null, 0, 0, 0, 0, 0, 1.0f);
 
