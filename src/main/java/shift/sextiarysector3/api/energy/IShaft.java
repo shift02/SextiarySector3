@@ -6,4 +6,8 @@ public interface IShaft {
 
     public float getRotateNowStep();
 
+    public void setRotateOldStep(float step);
+
+    public void setRotateNowStep(float step);
+
 }
