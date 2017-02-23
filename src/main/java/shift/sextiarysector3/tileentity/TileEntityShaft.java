@@ -7,7 +7,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.capabilities.Capability;
+import shift.sextiarysector3.api.energy.CapabilityShaftHandler;
 import shift.sextiarysector3.api.energy.IShaft;
 
 public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
@@ -15,8 +18,10 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
     public int speed;
     public int lastSpeed;
 
-    public float rotateStep = 360;
-    public float lastRotateStep = 360;
+    //public float rotateStep = 360;
+    //public float lastRotateStep = 360;
+
+    public IShaft rotateStep = CapabilityShaftHandler.SHAFT_CAPABILITY.getDefaultInstance();
 
     @Override
     public boolean canRenderBreaking() {
@@ -25,12 +30,12 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
     @Override
     public float getRotateOldStep() {
-        return lastRotateStep;
+        return rotateStep.getRotateOldStep();
     }
 
     @Override
     public float getRotateNowStep() {
-        return rotateStep;
+        return rotateStep.getRotateNowStep();
     }
 
     @Override
@@ -44,8 +49,8 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
     public void updateClient() {
 
-        lastRotateStep = rotateStep;
-        rotateStep += speed;
+        rotateStep.setRotateOldStep(this.getRotateNowStep());
+        rotateStep.setRotateNowStep(getRotateNowStep() + speed);
 
     }
 
@@ -87,6 +92,36 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
         //this.worldObj.markBlockForUpdate(this.pos);
         IBlockState state = this.worldObj.getBlockState(getPos());
         this.worldObj.notifyBlockUpdate(pos, state, state, 3);
+    }
+
+    @Override
+    public void setRotateOldStep(float step) {
+
+        this.rotateStep.setRotateOldStep(step);
+
+    }
+
+    @Override
+    public void setRotateNowStep(float step) {
+
+        this.rotateStep.setRotateNowStep(step);
+
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        if (capability == CapabilityShaftHandler.SHAFT_CAPABILITY) {
+            return true;
+        }
+        return super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityShaftHandler.SHAFT_CAPABILITY) {
+            return (T) rotateStep;
+        }
+        return super.getCapability(capability, facing);
     }
 
 }

@@ -10,7 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import shift.sextiarysector3.SextiarySector3;
-import shift.sextiarysector3.api.energy.IShaft;
+import shift.sextiarysector3.api.energy.CapabilityShaftHandler;
 import shift.sextiarysector3.block.BlockShaft;
 import shift.sextiarysector3.renderer.model.ModelShaft;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
@@ -112,7 +112,11 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
 
         TileEntityShaft tile = (TileEntityShaft) tileentity;
 
-        //System.out.println("renderTileEntityAt");
+        //System.out.println("renderTileEntityAt");]
+
+        GlStateManager.enableDepth();
+        GlStateManager.depthFunc(515);
+        GlStateManager.depthMask(true);
 
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
@@ -150,6 +154,8 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             break;
         }*/
 
+        GlStateManager.enableRescaleNormal();
+
         IBlockState state = tileentity.getWorld().getBlockState(tileentity.getPos());
 
         switch (state.getValue(BlockShaft.FACING)) {
@@ -185,6 +191,8 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
         GL11.glRotatef(rotate, 0, 0, 1);
 
         modelShaft.render(null, 0, 0, 0, 0, 0, 1.0f);
+
+        GlStateManager.disableRescaleNormal();
 
         GL11.glPopMatrix();
 
@@ -282,8 +290,12 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
 
         TileEntity tile2 = tileentity.getWorld().getTileEntity(pos);
         IBlockState state2 = tileentity.getWorld().getBlockState(pos);
+        boolean hasShaft = false;
+        if (tile2 != null) {
+            hasShaft = tile2.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null);
+        }
 
-        if (tile2 instanceof IShaft && state2.getValue(BlockShaft.FACING) == state.getValue(BlockShaft.FACING)) {
+        if (hasShaft && state2.getValue(BlockShaft.FACING) == state.getValue(BlockShaft.FACING)) {
             return true;
         } else {
             return false;
@@ -300,8 +312,12 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
 
         TileEntity tile2 = tileentity.getWorld().getTileEntity(pos);
         IBlockState state2 = tileentity.getWorld().getBlockState(pos);
+        boolean hasShaft = false;
+        if (tile2 != null) {
+            hasShaft = tile2.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null);
+        }
 
-        if (tile2 instanceof IShaft && state2.getValue(BlockShaft.FACING) == state.getValue(BlockShaft.FACING)) {
+        if (hasShaft && state2.getValue(BlockShaft.FACING) == state.getValue(BlockShaft.FACING)) {
             return true;
         } else {
             return false;
