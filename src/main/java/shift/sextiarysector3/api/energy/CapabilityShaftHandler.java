@@ -42,6 +42,7 @@ public class CapabilityShaftHandler {
 
                     float old = 0;
                     float now = 0;
+                    EnumFacing f = EnumFacing.WEST;
 
                     @Override
                     public float getRotateOldStep() {
@@ -63,6 +64,11 @@ public class CapabilityShaftHandler {
                     public void setRotateNowStep(float step) {
                         now = step;
 
+                    }
+
+                    @Override
+                    public EnumFacing getFacing() {
+                        return f;
                     }
                 };
             }

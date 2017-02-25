@@ -12,6 +12,8 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import shift.sextiarysector3.api.energy.CapabilityShaftHandler;
 import shift.sextiarysector3.api.energy.IShaft;
+import shift.sextiarysector3.api.energy.Shaft;
+import shift.sextiarysector3.block.BlockShaft;
 
 public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
@@ -21,7 +23,14 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
     //public float rotateStep = 360;
     //public float lastRotateStep = 360;
 
-    public IShaft rotateStep = CapabilityShaftHandler.SHAFT_CAPABILITY.getDefaultInstance();
+    public Shaft rotateStep;
+
+    public TileEntityShaft() {
+        super();
+
+        rotateStep = new Shaft();
+
+    }
 
     @Override
     public boolean canRenderBreaking() {
@@ -39,6 +48,13 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
     }
 
     @Override
+    public EnumFacing getFacing() {
+        IBlockState state = this.worldObj.getBlockState(getPos());
+        EnumFacing f = state.getValue(BlockShaft.FACING);
+        return f;
+    }
+
+    @Override
     public void update() {
         if (worldObj.isRemote) {
             this.updateClient();
@@ -49,8 +65,12 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
     public void updateClient() {
 
+        if (!isCore()) return;
+
         rotateStep.setRotateOldStep(this.getRotateNowStep());
         rotateStep.setRotateNowStep(getRotateNowStep() + speed);
+
+        this.setAllRotate(getRotateOldStep(), getRotateNowStep());
 
     }
 
@@ -62,6 +82,61 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
             lastSpeed = speed;
         }
 
+    }
+
+    private boolean isCore() {
+
+        EnumFacing f = this.getFacing();
+        if (f.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f = f.getOpposite();
+        TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f));
+
+        if (tile == null) return true;
+        if (!tile.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f)) return true;
+
+        EnumFacing f2 = tile.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f).getFacing();
+        if (f2.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f2 = f2.getOpposite();
+        if (f2 == f) return true;
+
+        return false;
+
+    }
+
+    private void setAllRotate(float old, float now) {
+
+        for (int i = 1; isShaft(i); i++) {
+
+            IShaft s = getShaft(i);
+            s.setRotateOldStep(old);
+            s.setRotateNowStep(now);
+
+        }
+
+    }
+
+    private boolean isShaft(int ofset) {
+
+        EnumFacing f = this.getFacing();
+        if (f.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f = f.getOpposite();
+        TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f, ofset));
+
+        if (tile == null) return false;
+        if (!tile.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f)) return false;
+
+        EnumFacing f2 = tile.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f).getFacing();
+        if (f2.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f2 = f2.getOpposite();
+        if (f2 != f) return false;
+
+        return true;
+
+    }
+
+    private IShaft getShaft(int ofset) {
+
+        EnumFacing f = this.getFacing();
+        if (f.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f = f.getOpposite();
+        TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f, ofset));
+
+        return tile.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f);
     }
 
     // NBT関係
@@ -119,6 +194,7 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityShaftHandler.SHAFT_CAPABILITY) {
+            rotateStep.setFacing(getFacing());
             return (T) rotateStep;
         }
         return super.getCapability(capability, facing);
