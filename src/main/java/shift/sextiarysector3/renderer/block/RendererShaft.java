@@ -93,7 +93,8 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
         this.bindTexture(MC_BLOCK_SHEET);
     }
 
-    private static final ResourceLocation woodShaftTextures = new ResourceLocation(SextiarySector3.MODID, "textures/models/wood_shaft.png");
+    private static final ResourceLocation woodShaftTextures = new ResourceLocation(SextiarySector3.MODID, "textures/models/shaft/wood_shaft_off.png");
+    private static final ResourceLocation woodShaftOnTextures = new ResourceLocation(SextiarySector3.MODID, "textures/models/shaft/wood_shaft_on.png");
     private static final ResourceLocation stoneShaftTextures = new ResourceLocation("sextiarysector:textures/models/stone_shaft.png");
     private static final ResourceLocation steelShaftTextures = new ResourceLocation("sextiarysector:textures/models/steel_shaft.png");
     private static final ResourceLocation ninjaShaftTextures = new ResourceLocation("sextiarysector:textures/models/ninja_shaft.png");
@@ -132,7 +133,11 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             GlStateManager.matrixMode(5888);
             System.out.println(destroyStage);
         } else {
-            this.bindTexture(woodShaftTextures);
+            if (tileentity.getRotateNowStep() == tileentity.getRotateOldStep()) {
+                this.bindTexture(woodShaftTextures);
+            } else {
+                this.bindTexture(woodShaftOnTextures);
+            }
         }
 
         /*
@@ -158,7 +163,11 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
 
         IBlockState state = tileentity.getWorld().getBlockState(tileentity.getPos());
 
-        switch (state.getValue(BlockShaft.FACING)) {
+        EnumFacing f = state.getValue(BlockShaft.FACING);
+
+        GL11.glPushMatrix();
+
+        switch (f) {
         case UP:
             GL11.glRotatef(90, 1, 0, 0);
             break;
@@ -184,6 +193,30 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
 
         if (!this.isOut(tileentity, state.getValue(BlockShaft.FACING))) {
             modelShaft.renderOut(null, 0, 0, 0, 0, 0, 1.0f);
+        }
+
+        GL11.glPopMatrix();
+
+        if (f.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f = f.getOpposite();
+
+        switch (f) {
+        case UP:
+            GL11.glRotatef(90, 1, 0, 0);
+            break;
+        case DOWN:
+            GL11.glRotatef(90, -1, 0, 0);
+            break;
+        case WEST:
+            GL11.glRotatef(90, 0, 1, 0);
+            break;
+        case EAST:
+            GL11.glRotatef(90, 0, -1, 0);
+            break;
+        case SOUTH:
+            GL11.glRotatef(180, 0, 1, 0);
+            break;
+        default:
+            break;
         }
 
         //傾きのスピード
@@ -295,7 +328,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             hasShaft = tile2.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null);
         }
 
-        if (hasShaft && state2.getValue(BlockShaft.FACING) == state.getValue(BlockShaft.FACING)) {
+        if (hasShaft && state2.getValue(BlockShaft.FACING).getAxis() == state.getValue(BlockShaft.FACING).getAxis()) {
             return true;
         } else {
             return false;
@@ -317,7 +350,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             hasShaft = tile2.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null);
         }
 
-        if (hasShaft && state2.getValue(BlockShaft.FACING) == state.getValue(BlockShaft.FACING)) {
+        if (hasShaft && state2.getValue(BlockShaft.FACING).getAxis() == state.getValue(BlockShaft.FACING).getAxis()) {
             return true;
         } else {
             return false;
