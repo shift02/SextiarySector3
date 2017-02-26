@@ -33,10 +33,12 @@ public class CapabilityGearForceHandler {
             @Override
             public IGearForceHandler call() throws Exception {
                 return new IGearForceHandler() {
+
                     @Override
                     public int getPower() {
-                        return 0;
+                        return 1;
                     }
+
                 };
             }
         });

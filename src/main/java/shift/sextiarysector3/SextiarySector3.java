@@ -14,12 +14,14 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
 import shift.sextiarysector3.api.energy.CapabilityShaftHandler;
 import shift.sextiarysector3.module.IModule;
 import shift.sextiarysector3.module.ModuleColor;
 import shift.sextiarysector3.module.ModuleSap;
 import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.proxy.CommonProxy;
+import shift.sextiarysector3.tileentity.CapabilityGFShaftHandler;
 import shift.sextiarysector3.util.UtilRegistry;
 
 @Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION, updateJSON = SextiarySector3.UPDATE_JSON, guiFactory = SextiarySector3.GUI_FACTORY)
@@ -83,6 +85,8 @@ public class SextiarySector3 {
         proxy.initTileEntitySpecialRenderer();
 
         CapabilityShaftHandler.register();
+        CapabilityGFShaftHandler.register();
+        CapabilityGearForceHandler.register();
 
     }
 
