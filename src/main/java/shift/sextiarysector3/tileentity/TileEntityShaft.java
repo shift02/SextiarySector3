@@ -29,6 +29,8 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
     public GFTank tank;
     public IGFShaft gfShaft;
 
+    public EnumFacing.AxisDirection powerDirection;
+
     public TileEntityShaft() {
         super();
 
@@ -95,44 +97,57 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
         int power = 0;
         //power = speed;
 
+        //TODO
+
         //ポジティブ側を取得
-        EnumFacing f = this.getFacing();
-        if (f.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f = f.getOpposite();
-        TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f));
+        if (powerDirection != EnumFacing.AxisDirection.NEGATIVE) {
 
-        IGearForceHandler gfH = getGF(tile, f.getOpposite());
-        if (gfH != null) {
+            EnumFacing f = this.getFacing();
+            if (f.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f = f.getOpposite();
+            TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f));
 
-            if (gfH.getPower() > 0) {
-                power = gfH.getPower();
-                addP = true;
+            IGearForceHandler gfH = getGF(tile, f.getOpposite());
+            if (gfH != null) {
+
+                if (gfH.getPower() > 0) {
+                    power = gfH.getPower();
+                    addP = true;
+                    powerDirection = EnumFacing.AxisDirection.POSITIVE;
+                }
+
             }
-
         }
 
         //ネガティブ側
-        if (!addP) {
 
-            f = this.getFacing();
+        if (!addP && powerDirection != EnumFacing.AxisDirection.POSITIVE) {
+
+            EnumFacing f = this.getFacing();
             if (f.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f = f.getOpposite();
-            TileEntity tile2 = this.worldObj.getTileEntity(getPos().offset(f));
+            TileEntity tile2 = this.worldObj.getTileEntity(getPos().offset(f, getNotShatf()));
 
             IGearForceHandler gfH2 = getGF(tile2, f.getOpposite());
             if (gfH2 != null) {
 
                 if (gfH2.getPower() > 0) {
                     power = gfH2.getPower();
+                    powerDirection = EnumFacing.AxisDirection.NEGATIVE;
                 }
 
             }
 
         }
 
+        speed = power * 5;
+
         this.tank.setPower(power);
         this.setAllPower(power);
 
+        if (power == 0) powerDirection = null;
+
     }
 
+    /** ポジティブ側がコア */
     private boolean isCore() {
 
         EnumFacing f = this.getFacing();
@@ -171,6 +186,17 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
         }
 
+    }
+
+    private int getNotShatf() {
+
+        int i = 1;
+
+        for (; isShaft(i); i++) {
+
+        }
+
+        return i;
     }
 
     /** ネガティブの方のシャフトを調べる -1 */
