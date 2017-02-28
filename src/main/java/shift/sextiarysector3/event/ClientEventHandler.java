@@ -29,6 +29,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.SextiarySector3;
+import shift.sextiarysector3.item.ItemRubberGroves;
 import shift.sextiarysector3.util.UtilCompat;
 
 public class ClientEventHandler {
@@ -106,7 +107,10 @@ public class ClientEventHandler {
         float partialTicks = event.getPartialTicks();
         EnumFacing facing = movingObjectPositionIn.sideHit;
 
+        movingObjectPositionIn = ((ItemRubberGroves) SSItems.rubberGloves).rayTrace(player.worldObj, player, false);
+
         if (execute != 0) return;
+        if (movingObjectPositionIn == null) return;
         if (movingObjectPositionIn.typeOfHit != RayTraceResult.Type.BLOCK) return;
         if (UtilCompat.isNullFromItemStack(player.getHeldItem(EnumHand.MAIN_HAND)) && UtilCompat.isNullFromItemStack(player.getHeldItem(EnumHand.OFF_HAND))) return;
 
@@ -116,6 +120,9 @@ public class ClientEventHandler {
         if (!isRubber) isRubber = ((!UtilCompat.isNullFromItemStack(player.getHeldItem(EnumHand.OFF_HAND))) && player.getHeldItem(EnumHand.OFF_HAND).getItem() == SSItems.rubberGloves);
 
         if (!isRubber) return;
+
+        //向きの上書き
+        facing = movingObjectPositionIn.sideHit;
 
         BlockPos blockpos = movingObjectPositionIn.getBlockPos();
 
@@ -147,7 +154,7 @@ public class ClientEventHandler {
             double d0 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) partialTicks;
             double d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) partialTicks;
             double d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) partialTicks;
-            func_189697_a(FULL_BLOCK_AABB.expandXyz(0.0020000000949949026D).offset(-d0, -d1, -d2), 0.0F, 0.0F, 0.0F, 0.4F, facing);
+            func_189697_a(FULL_BLOCK_AABB.expandXyz(0.0020000000949949026D).offset(-d0, -d1, -d2), 0.9F, 0.9F, 0.9F, 0.8F, facing);
         }
 
         GlStateManager.depthMask(true);

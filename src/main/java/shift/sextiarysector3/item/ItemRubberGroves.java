@@ -30,9 +30,37 @@ public class ItemRubberGroves extends ItemSSBase {
 
     }
 
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    /*public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+        RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, false);
+    
+        if (raytraceresult == null) {
+            return new ActionResult(EnumActionResult.PASS, itemStackIn);
+        } else if (raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK) {
+            return new ActionResult(EnumActionResult.PASS, itemStackIn);
+        } else {
+    
+            return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+        }
+    
+    }*/
+
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos_o, EnumHand hand, EnumFacing facing_o, float hitX_o, float hitY_o, float hitZ_o) {
 
         //System.out.println(hitX + " : " + hitY + " : " + hitZ);
+        BlockPos pos = pos_o;
+        EnumFacing facing = facing_o;
+        float hitX = hitX_o;
+        float hitY = hitY_o;
+        float hitZ = hitZ_o;
+
+        RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, false);
+        if (raytraceresult != null) {
+            pos = raytraceresult.getBlockPos();
+            facing = raytraceresult.sideHit;
+            hitX = (float) (raytraceresult.hitVec.xCoord - (double) pos.getX());
+            hitY = (float) (raytraceresult.hitVec.yCoord - (double) pos.getY());
+            hitZ = (float) (raytraceresult.hitVec.zCoord - (double) pos.getZ());
+        }
 
         EnumFacing nextFacing = EnumFacing.NORTH;
 
@@ -117,8 +145,7 @@ public class ItemRubberGroves extends ItemSSBase {
 
     }
 
-    /*
-    protected RayTraceResult rayTrace(World worldIn, EntityPlayer playerIn, boolean useLiquids) {
+    public RayTraceResult rayTrace(World worldIn, EntityPlayer playerIn, boolean useLiquids) {
         float f = playerIn.rotationPitch;
         float f1 = playerIn.rotationYaw;
         double d0 = playerIn.posX;
@@ -136,8 +163,10 @@ public class ItemRubberGroves extends ItemSSBase {
             d3 = ((net.minecraft.entity.player.EntityPlayerMP) playerIn).interactionManager.getBlockReachDistance();
         }
         Vec3d vec3d1 = vec3d.addVector((double) f6 * d3, (double) f5 * d3, (double) f7 * d3);
-        return this.rayTraceBlocks(worldIn, vec3d, vec3d1, useLiquids, !useLiquids, false);
-    }*/
+        RayTraceResult rtr = this.rayTraceBlocks(worldIn, vec3d, vec3d1, useLiquids, !useLiquids, false);
+        //if (rtr == null) rtr = super.rayTrace(worldIn, playerIn, useLiquids);
+        return rtr;
+    }
 
     //ワールドから 946
     @Nullable
@@ -286,7 +315,7 @@ public class ItemRubberGroves extends ItemSSBase {
     @Nullable
     public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end) {
 
-        AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+        AxisAlignedBB FULL_BLOCK_AABB = Block.FULL_BLOCK_AABB;
 
         return this.rayTrace(pos, start, end, FULL_BLOCK_AABB);
     }
@@ -296,6 +325,7 @@ public class ItemRubberGroves extends ItemSSBase {
         Vec3d vec3d = start.subtract((double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
         Vec3d vec3d1 = end.subtract((double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
         RayTraceResult raytraceresult = boundingBox.calculateIntercept(vec3d, vec3d1);
+        //return raytraceresult;
         return raytraceresult == null ? null : new RayTraceResult(raytraceresult.hitVec.addVector((double) pos.getX(), (double) pos.getY(), (double) pos.getZ()), raytraceresult.sideHit, pos);
     }
 
