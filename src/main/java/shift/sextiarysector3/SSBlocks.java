@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.block.BlockCreativeGF;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockMapleSapling;
@@ -23,6 +24,7 @@ import shift.sextiarysector3.block.BlockSapCauldron.Sap;
 import shift.sextiarysector3.block.BlockShaft;
 import shift.sextiarysector3.block.BlockSpile;
 import shift.sextiarysector3.item.ItemSSLeaves;
+import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
 import shift.sextiarysector3.util.UtilRegistry;
 
@@ -79,6 +81,8 @@ public class SSBlocks {
     //工業
     public static Block plasticBlock;
     public static Block rubberBlock;
+
+    public static Block creativeGF;
 
     public static Block woodShaft;
 
@@ -189,6 +193,11 @@ public class SSBlocks {
 
         rubberBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.rubber_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalBlock(rubberBlock, "rubber_block", "rubber_block");
+
+        //GF
+        creativeGF = new BlockCreativeGF().setUnlocalizedName("ss.creative_gf_tank").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerTileEntity(TileEntityCreativeGFTank.class, SextiarySector3.MODID + ":" + "creative_gf_tank");
+        UtilRegistry.registerNormalBlock(creativeGF, "creative_gf_tank", "creative_gf_tank");
 
         woodShaft = new BlockShaft(Material.WOOD).setUnlocalizedName("ss.wood_shaft").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntityShaft.class, SextiarySector3.MODID + ":" + "shaft");
