@@ -29,6 +29,14 @@ public class RecipesIndustry {
                         'x', "rubber"
                 }));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.woodShaft, 4),
+                new Object[] {
+                        "xzx", "xyx", "xzx",
+                        'x', "plankWood",
+                        'y', "dustBluestone",
+                        'z', SSItems.blueGel
+                }));
+
     }
 
 }
