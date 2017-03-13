@@ -23,6 +23,14 @@
       "west":{"y": 90},
       "south":{},
       "north":{"y": 180}
+    },
+    "left":{
+      "true":{"submodel": "sextiarysector3:conveyor_side_left_connect"},
+      "false":{"submodel": "sextiarysector3:conveyor_side_left"}
+    },
+    "right":{
+      "true":{},
+      "false":{}
     }
   }
 }
