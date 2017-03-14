@@ -1,0 +1,25 @@
+{
+  "textures": {
+    "base": "sextiarysector3:blocks/industry/conveyor",
+    "base_side": "sextiarysector3:blocks/industry/conveyor_side_on",
+    "rubber": "sextiarysector3:blocks/industry/conveyor_rubber",
+    "rubber_down": "sextiarysector3:blocks/industry/conveyor_rubber_down",
+    "rubber_up": "sextiarysector3:blocks/industry/conveyor_rubber_up"
+  },
+  "elements":
+    [
+     {
+       "name": "Base_Side2",
+       "from": [ 14.0, 0.0, 0.0 ],
+       "to": [ 16.0, 4.0, 16.0 ],
+       "faces": {
+         "down":  { "texture": "#base" },
+         "up":    { "texture": "#base" },
+         "north": { "texture": "#base" },
+         "south": { "texture": "#base" },
+         "west":  { "texture": "#base" },
+         "east":  { "texture": "#base_side" }
+       }
+     }
+    ]
+}

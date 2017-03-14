@@ -80,7 +80,7 @@ public class SSItems {
     public static Item silverIngot;
     public static Item orichalcumGem;
 
-    //鉱業
+    //工業
     public static Item coalDust;
     public static Item ironDust;
     public static Item goldDust;
@@ -90,6 +90,8 @@ public class SSItems {
 
     public static Item plastic;
     public static Item rubber;
+
+    public static Item blueGel;
 
     public static Item rubberGloves;
 
@@ -238,6 +240,9 @@ public class SSItems {
 
         rubber = new ItemSSBase().setUnlocalizedName("ss.rubber").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalItem(rubber, "rubber", "rubber");
+
+        blueGel = new ItemSSBase().setUnlocalizedName("ss.blue_gel").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        UtilRegistry.registerNormalItem(blueGel, "blue_gel", "gel/blue_gel");
 
         rubberGloves = new ItemRubberGroves().setUnlocalizedName("ss.rubber_gloves").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerToolItem(rubberGloves, "rubber_gloves", "tool/rubber_gloves");

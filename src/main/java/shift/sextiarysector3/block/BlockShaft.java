@@ -1,27 +1,23 @@
 package shift.sextiarysector3.block;
 
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
+import shift.sextiarysector3.util.UtilFacing;
 
-public class BlockShaft extends BlockSSBase implements ITileEntityProvider {
+public class BlockShaft extends BlockSSDirectional implements ITileEntityProvider {
 
-    public static final PropertyDirection FACING = BlockDirectional.FACING;
+    protected static final AxisAlignedBB SHAFT_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1D, 0.75D);
+    protected static final AxisAlignedBB SHAFT_AABB1 = new AxisAlignedBB(0.25D, 0.25D, 0.0D, 0.75D, 0.75D, 1D);
+    protected static final AxisAlignedBB SHAFT_AABB2 = new AxisAlignedBB(0.0D, 0.25D, 0.25D, 1D, 0.75D, 0.75D);
 
     public BlockShaft(Material materialIn) {
         super(materialIn);
@@ -36,78 +32,41 @@ public class BlockShaft extends BlockSSBase implements ITileEntityProvider {
         return false;
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        super.onBlockAdded(worldIn, pos, state);
-        this.setDefaultDirection(worldIn, pos, state);
-    }
-
-    private void setDefaultDirection(World worldIn, BlockPos pos, IBlockState state) {
-
-        if (!worldIn.isRemote) {
-            EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
-            boolean flag = worldIn.getBlockState(pos.north()).isFullBlock();
-            boolean flag1 = worldIn.getBlockState(pos.south()).isFullBlock();
-
-            if (enumfacing == EnumFacing.NORTH && flag && !flag1) {
-                enumfacing = EnumFacing.SOUTH;
-            } else if (enumfacing == EnumFacing.SOUTH && flag1 && !flag) {
-                enumfacing = EnumFacing.NORTH;
-            } else {
-                boolean flag2 = worldIn.getBlockState(pos.west()).isFullBlock();
-                boolean flag3 = worldIn.getBlockState(pos.east()).isFullBlock();
-
-                if (enumfacing == EnumFacing.WEST && flag2 && !flag3) {
-                    enumfacing = EnumFacing.EAST;
-                } else if (enumfacing == EnumFacing.EAST && flag3 && !flag2) {
-                    enumfacing = EnumFacing.WEST;
-                }
-            }
-            worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
-        }
-
-    }
-
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(FACING, BlockPistonBase.getFacingFromEntity(pos, placer));
-    }
-
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        worldIn.setBlockState(pos, state.withProperty(FACING, BlockPistonBase.getFacingFromEntity(pos, placer)), 2);
-
-    }
-
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityShaft();
     }
 
-    public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));
+    //当たり判定。サボテンやソウルサンドを参考にすると良い。ココの設定をすると、onEntityCollidedWithBlockが呼ばれるようになる
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+
+        return this.getBoxFromPool(blockState, worldIn, pos);
+
     }
 
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+    //ブロックに視点を合わせた時に出てくる黒い線のアレ
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
+
+        return this.getBoxFromPool(state, worldIn, pos).offset(pos);
     }
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
-    public int getMetaFromState(IBlockState state) {
-        int i = 0;
-        i = i | ((EnumFacing) state.getValue(FACING)).getIndex();
+    public AxisAlignedBB getBoxFromPool(IBlockState state, World par1World, BlockPos pos) {
 
-        return i;
-    }
+        EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+        switch (enumfacing) {
+        case UP:
+        case DOWN:
+            return SHAFT_AABB;
+        case WEST:
+        case EAST:
+            return UtilFacing.rotationAxisAlignedBB(SHAFT_AABB, EnumFacing.Axis.X);
+        case SOUTH:
+        default:
+            return UtilFacing.rotationAxisAlignedBB(SHAFT_AABB, EnumFacing.Axis.Z);
+        }
 
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
-    }
-
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
-    }
-
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] { FACING });
     }
 
 }
