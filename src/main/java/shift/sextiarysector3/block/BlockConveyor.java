@@ -33,7 +33,7 @@ public class BlockConveyor extends BlockSSHorizontal {
 
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 
-        return state.withProperty(LEFT, isLeftConnect(state, worldIn, pos));
+        return state.withProperty(LEFT, isLeftConnect(state, worldIn, pos)).withProperty(RIGHT, isRightConnect(state, worldIn, pos));
 
     }
 
@@ -42,6 +42,19 @@ public class BlockConveyor extends BlockSSHorizontal {
         EnumFacing f = state.getValue(super.FACING);
 
         f = f.rotateY();
+        IBlockState bs = worldIn.getBlockState(pos.offset(f));
+        if (!(bs.getBlock() instanceof BlockConveyor)) return false;
+        if (bs.getValue(super.FACING) != f.getOpposite()) return false;
+
+        return true;
+
+    }
+
+    public boolean isRightConnect(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+
+        EnumFacing f = state.getValue(super.FACING);
+
+        f = f.rotateY().getOpposite();
         IBlockState bs = worldIn.getBlockState(pos.offset(f));
         if (!(bs.getBlock() instanceof BlockConveyor)) return false;
         if (bs.getValue(super.FACING) != f.getOpposite()) return false;

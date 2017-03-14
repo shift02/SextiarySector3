@@ -29,8 +29,8 @@
       "false":{"submodel": "sextiarysector3:conveyor_side_left"}
     },
     "right":{
-      "true":{},
-      "false":{}
+      "true":{"submodel": "sextiarysector3:conveyor_side_right_connect"},
+      "false":{"submodel": "sextiarysector3:conveyor_side_right"}
     }
   }
 }
