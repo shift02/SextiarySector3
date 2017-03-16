@@ -25,6 +25,7 @@ import shift.sextiarysector3.block.BlockSapCauldron.Sap;
 import shift.sextiarysector3.block.BlockShaft;
 import shift.sextiarysector3.block.BlockSpile;
 import shift.sextiarysector3.item.ItemSSLeaves;
+import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
 import shift.sextiarysector3.util.UtilRegistry;
@@ -207,6 +208,7 @@ public class SSBlocks {
         UtilRegistry.registerTESRBlock(woodShaft, TileEntityShaft.class, "wood_shaft", "wood_shaft");
 
         conveyor = new BlockConveyor(Material.IRON).setUnlocalizedName("ss.conveyor").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerTileEntity(TileEntityConveyor.class, SextiarySector3.MODID + ":" + "conveyor");
         UtilRegistry.registerNormalBlock(conveyor, "conveyor", "industry/conveyor");
 
         //料理

@@ -31,6 +31,16 @@
     "right":{
       "true":{"submodel": "sextiarysector3:conveyor_side_right_connect"},
       "false":{"submodel": "sextiarysector3:conveyor_side_right"}
+    },
+    "power":{
+      "true":{
+        "textures": {
+          "base_side": "sextiarysector3:blocks/industry/conveyor_side_on"
+        }},
+      "false":{
+        "textures": {
+          "base_side": "sextiarysector3:blocks/industry/conveyor_side"
+        }}
     }
   }
 }
