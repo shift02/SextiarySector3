@@ -13,7 +13,8 @@ import shift.sextiarysector3.block.BlockConveyor;
 
 public class TileEntityConveyor extends TileEntity implements ITickable {
 
-    protected static final AxisAlignedBB CONVEYOR_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
+    protected static final AxisAlignedBB CONVEYOR_AABB0 = new AxisAlignedBB(0.0D, 0.0D, 0.1875D, 1.0D, 0.25D, 0.8125D);
+    protected static final AxisAlignedBB CONVEYOR_AABB1 = new AxisAlignedBB(0.1875D, 0.0D, 0.0D, 0.8125D, 0.25D, 1.0D);
 
     public long actionTime = 0;
 
@@ -46,11 +47,11 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     public void moveEntity() {
 
-        AxisAlignedBB axisalignedbb = CONVEYOR_AABB.offset(getPos());
+        EnumFacing f = worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
+        AxisAlignedBB axisalignedbb = getAABBFromEnumFacing(f).offset(getPos());
 
         List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity((Entity) null, axisalignedbb);
-
-        EnumFacing f = worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
 
         float ani = (1 / 16.0f) / 2.0f;
 
@@ -62,6 +63,8 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
             //e.motionY += (f.getFrontOffsetY() / 46.0f);
             //e.motionZ += (f.getFrontOffsetZ() / 46.0f);
             e.setPosition(e.posX + f.getFrontOffsetX() * ani, e.posY + f.getFrontOffsetY() * ani, e.posZ + f.getFrontOffsetZ() * ani);
+
+            moveCenter(f, e);
 
             e.getEntityData().setLong(MOVE_NOW, actionTime);
 
@@ -77,6 +80,49 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
         if (nbt.getLong(MOVE_NOW) != this.actionTime) return false;
 
         return true;
+
+    }
+
+    public AxisAlignedBB getAABBFromEnumFacing(EnumFacing f) {
+
+        if (f == EnumFacing.EAST || f == EnumFacing.WEST) {
+            return CONVEYOR_AABB0;
+        } else {
+            return CONVEYOR_AABB1;
+        }
+
+    }
+
+    public void moveCenter(EnumFacing f, Entity e) {
+
+        //Xの場合
+        if (f == EnumFacing.EAST || f == EnumFacing.WEST) {
+
+            double pos = e.posZ % 1.0d;
+            if (pos < 0) pos += 1.0d;
+
+            if (pos < 0.4) {
+                e.setPosition(e.posX, e.posY, e.posZ + 0.05);
+            } else if (0.6 < pos) {
+                e.setPosition(e.posX, e.posY, e.posZ - 0.05);
+            }
+
+        } else {
+
+            double pos = e.posX % 1.0d;
+            if (pos < 0) pos += 1.0d;
+
+            if (pos < 0.4) {
+
+                e.setPosition(e.posX + 0.05, e.posY, e.posZ);
+
+            } else if (0.6 < pos) {
+
+                e.setPosition(e.posX - 0.05, e.posY, e.posZ);
+
+            }
+
+        }
 
     }
 
