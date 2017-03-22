@@ -98,6 +98,10 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
         //addCollisionBoxToList(pos, entityBox, collidingBoxes, CONVEYOR_EDGE_AABB3);
     }
 
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return CONVEYOR_SELECTED_AABB;
+    }
+
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
 
