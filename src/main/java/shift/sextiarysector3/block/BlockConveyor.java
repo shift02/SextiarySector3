@@ -42,18 +42,22 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
         this.setDefaultState(this.getDefaultState().withProperty(LEFT, Boolean.valueOf(false)).withProperty(RIGHT, Boolean.valueOf(false)).withProperty(POWER, Boolean.valueOf(false)));
     }
 
+    @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
+    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
 
+    @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] { super.FACING, LEFT, RIGHT, POWER });
     }
 
+    @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 
         TileEntityConveyor te = (TileEntityConveyor) worldIn.getTileEntity(pos);
@@ -88,6 +92,7 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
 
     }
 
+    @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
         super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
         state = state.getActualState(worldIn, pos);
@@ -98,6 +103,7 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
         //addCollisionBoxToList(pos, entityBox, collidingBoxes, CONVEYOR_EDGE_AABB3);
     }
 
+    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return CONVEYOR_SELECTED_AABB;
     }
