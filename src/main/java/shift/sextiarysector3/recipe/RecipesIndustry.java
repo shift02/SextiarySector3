@@ -44,6 +44,14 @@ public class RecipesIndustry {
                         'z', SSItems.blueGel
                 }));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.conveyor, 2),
+                new Object[] {
+                        "xxx", "yzy",
+                        'x', "rubber",
+                        'y', "ingotIron",
+                        'z', "dustBluestone"
+                }));
+
     }
 
 }
