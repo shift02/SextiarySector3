@@ -59,9 +59,6 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
             if (e instanceof EntityPlayer) continue;
 
             if (this.isMoveNow(e)) continue;
-            //e.motionX += (f.getFrontOffsetX() / 46.0f);
-            //e.motionY += (f.getFrontOffsetY() / 46.0f);
-            //e.motionZ += (f.getFrontOffsetZ() / 46.0f);
             e.setPosition(e.posX + f.getFrontOffsetX() * ani, e.posY + f.getFrontOffsetY() * ani, e.posZ + f.getFrontOffsetZ() * ani);
 
             moveCenter(f, e);
