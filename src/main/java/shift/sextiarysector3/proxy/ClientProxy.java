@@ -2,9 +2,12 @@ package shift.sextiarysector3.proxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.StatisticsManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -27,6 +30,7 @@ public class ClientProxy extends CommonProxy {
         return Minecraft.getMinecraft().thePlayer;
     }
 
+    @Override
     public void setCustomModelResourceLocation(Item item, int metadata, String resource) {
 
         ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
@@ -35,6 +39,7 @@ public class ClientProxy extends CommonProxy {
 
     }
 
+    @Override
     public void setCustomStateMapper(Block block, String resource) {
 
         ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
@@ -44,6 +49,7 @@ public class ClientProxy extends CommonProxy {
 
     }
 
+    @Override
     public <T extends TileEntity> void setCustomTileEntitySpecialRenderer(Item itemBlock,
             Class<T> tileEntityClass) {
 
@@ -51,6 +57,7 @@ public class ClientProxy extends CommonProxy {
 
     }
 
+    @Override
     public void initTileEntitySpecialRenderer() {
 
         //メンドイけど手動で設定
@@ -62,16 +69,29 @@ public class ClientProxy extends CommonProxy {
 
     }
 
+    @Override
     public void preInitModuleClient(FMLPreInitializationEvent event) {
         for (IModule m : SextiarySector3.modules) {
             m.preInitClient(event);
         }
     }
 
+    @Override
     public void loadModuleClient(FMLInitializationEvent event) {
         for (IModule m : SextiarySector3.modules) {
             m.loadClient(event);
         }
+    }
+
+    @Override
+    public boolean hasAchievementUnlocked(EntityPlayer player, Achievement achievement) {
+
+        EntityPlayerSP playerSP = (EntityPlayerSP) player;
+
+        StatisticsManager state = playerSP.getStatFileWriter();
+
+        return state.hasAchievementUnlocked(achievement);
+
     }
 
 }
