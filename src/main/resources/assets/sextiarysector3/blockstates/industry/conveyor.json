@@ -15,7 +15,7 @@
     "inventory":[{
       "model": "sextiarysector3:item",
       "textures": {
-        "item": "sextiarysector3:items/spile"
+        "item": "sextiarysector3:items/conveyor"
       }
     }],
     "facing":{
