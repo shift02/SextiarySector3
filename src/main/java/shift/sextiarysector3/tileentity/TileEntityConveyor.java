@@ -2,13 +2,20 @@ package shift.sextiarysector3.tileentity;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import shift.sextiarysector3.block.BlockConveyor;
 
 public class TileEntityConveyor extends TileEntity implements ITickable {
@@ -19,6 +26,9 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     public long actionTime = 0;
 
     public final String MOVE_NOW = "move_now";
+
+    //インベントリ
+    protected ItemStackHandler topItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
 
     @Override
     public void update() {
@@ -129,6 +139,39 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     public long getActionTime() {
         return this.actionTime;
+    }
+
+    // NBT関係
+    @Override
+    public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
+        super.readFromNBT(par1nbtTagCompound);
+        this.topItem.deserializeNBT(par1nbtTagCompound.getCompoundTag("top_item"));
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
+        NBTTagCompound nbt = super.writeToNBT(par1nbtTagCompound);
+        nbt.setTag("top_item", this.topItem.serializeNBT());
+        return nbt;
+    }
+
+    @Override
+    @Nullable
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.pos, 8, this.getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        this.readFromNBT(pkt.getNbtCompound());
+        //this.worldObj.markBlockForUpdate(this.pos);
+        IBlockState state = this.worldObj.getBlockState(getPos());
+        this.worldObj.notifyBlockUpdate(pos, state, state, 3);
     }
 
 }
