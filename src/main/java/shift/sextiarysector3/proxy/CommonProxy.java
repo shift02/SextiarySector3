@@ -2,7 +2,10 @@ package shift.sextiarysector3.proxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.StatisticsManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -35,6 +38,16 @@ public class CommonProxy {
     }
 
     public void loadModuleClient(FMLInitializationEvent event) {
+
+    }
+
+    public boolean hasAchievementUnlocked(EntityPlayer player, Achievement achievement) {
+
+        EntityPlayerMP playerMP = (EntityPlayerMP) player;
+
+        StatisticsManager state = playerMP.getStatFile();
+
+        return state.hasAchievementUnlocked(achievement);
 
     }
 
