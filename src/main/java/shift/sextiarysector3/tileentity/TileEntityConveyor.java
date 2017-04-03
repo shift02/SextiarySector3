@@ -31,6 +31,13 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     //インベントリ
     protected ItemStackHandler topItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
 
+    //6
+    protected ItemStackHandler inItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+    protected ItemStackHandler outItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+
+    //5
+    protected ItemStackHandler centerItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+
     @Override
     public void update() {
 
@@ -53,6 +60,8 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     public void updateServer() {
 
         actionTime = worldObj.getWorldInfo().getWorldTime();
+
+        moveItemStack();
 
     }
 
@@ -134,6 +143,16 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     }
 
+    //ItemStackの移動処理
+    public void moveItemStack() {
+
+    }
+
+    public boolean isItemUpdate() {
+
+        return true;
+    }
+
     public boolean hasPower() {
         return true;
     }
@@ -144,7 +163,18 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+
+        EnumFacing f = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == EnumFacing.UP) {
+            return true;
+        }
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f.getOpposite()) {
+            return true;
+        }
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f) {
             return true;
         }
         return super.hasCapability(capability, facing);
@@ -152,9 +182,21 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+
+        EnumFacing f = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == EnumFacing.UP) {
             return (T) this.topItem;
         }
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f.getOpposite()) {
+            return (T) this.inItem;
+        }
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f) {
+            return (T) this.inItem;
+        }
+
         return super.getCapability(capability, facing);
     }
 
