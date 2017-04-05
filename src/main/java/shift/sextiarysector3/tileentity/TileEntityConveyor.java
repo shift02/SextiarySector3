@@ -38,6 +38,10 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     //5
     protected ItemStackHandler centerItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
 
+    //6
+    protected ItemStackHandler leftItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+    protected ItemStackHandler rightItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+
     @Override
     public void update() {
 
