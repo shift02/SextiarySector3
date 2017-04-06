@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -18,6 +19,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import shift.sextiarysector3.block.BlockConveyor;
+import shift.sextiarysector3.entity.EntityConveyorItem;
+import shift.sextiarysector3.util.UtilCompat;
 
 public class TileEntityConveyor extends TileEntity implements ITickable {
 
@@ -47,13 +50,15 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
         actionTime = worldObj.getWorldInfo().getWorldTime();
 
+        List<Entity> list = this.getOnEntity();
+
         if (worldObj.isRemote) {
             this.updateClient();
         } else {
-            this.updateServer();
+            this.updateServer(list);
         }
 
-        if (this.hasPower()) moveEntity();
+        if (this.hasPower()) moveEntity(list);
 
     }
 
@@ -61,21 +66,31 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     }
 
-    public void updateServer() {
+    public void updateServer(List<Entity> list) {
 
         actionTime = worldObj.getWorldInfo().getWorldTime();
 
         moveItemStack();
 
+        changeEntityItem(list);
+
+        spawnItem();
+
     }
 
-    public void moveEntity() {
-
+    public List<Entity> getOnEntity() {
         EnumFacing f = worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
 
         AxisAlignedBB axisalignedbb = getAABBFromEnumFacing(f).offset(getPos());
 
         List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity((Entity) null, axisalignedbb);
+
+        return list;
+    }
+
+    public void moveEntity(List<Entity> list) {
+
+        EnumFacing f = worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
 
         float ani = (1 / 16.0f) / 2.0f;
 
@@ -142,6 +157,46 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
                 e.setPosition(e.posX - 0.05, e.posY, e.posZ);
 
             }
+
+        }
+
+    }
+
+    public void changeEntityItem(List<Entity> list) {
+
+        EnumFacing f = worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
+        for (Entity e : list) {
+            if (e instanceof EntityConveyorItem) continue;
+            if (!(e instanceof EntityItem)) continue;
+            if (e.isDead) continue;
+
+            EntityConveyorItem ec = new EntityConveyorItem(worldObj, e.posX, e.posY + 0.3, e.posZ, ((EntityItem) e).getEntityItem());
+            ec.delayBeforeCanPickup = ((EntityItem) e).delayBeforeCanPickup;
+            ec.motionX = 0;
+            ec.motionY = 0;
+            ec.motionZ = 0;
+
+            worldObj.spawnEntityInWorld(ec);
+            e.setDead();
+
+        }
+
+    }
+
+    public void spawnItem() {
+
+        if (!UtilCompat.isNullFromItemStack(topItem.getStackInSlot(0))) {
+
+            EntityConveyorItem ec = new EntityConveyorItem(worldObj, this.pos.getX() + 0.5, this.pos.getY() + 0.6, this.pos.getZ() + 0.5, topItem.extractItem(0, 64, false));
+            ec.delayBeforeCanPickup = 80;
+            ec.motionX = 0;
+            ec.motionY = 0;
+            ec.motionZ = 0;
+
+            worldObj.spawnEntityInWorld(ec);
+
+            //topItem.setStackInSlot(0, UtilCompat.getNullItemStack());
 
         }
 
