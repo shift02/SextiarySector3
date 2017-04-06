@@ -125,6 +125,10 @@ jar {
   //exclude('shift/additionalstatus/**')
   //exclude('assets/additionalstatus/**')
 
+  manifest {
+    attributes 'FMLAT': 'sextiarysector3_at.cfg'
+  }
+
 
 }
 

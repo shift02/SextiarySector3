@@ -1,2 +1,2 @@
-call gradlew.bat setupDevWorkspace setupDecompWorkspace eclipse
+call gradlew.bat setupDecompWorkspace setupDevWorkspace eclipse
 pause
