@@ -186,9 +186,31 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     public void spawnItem() {
 
+        //上
         if (!UtilCompat.isNullFromItemStack(topItem.getStackInSlot(0))) {
 
             EntityConveyorItem ec = new EntityConveyorItem(worldObj, this.pos.getX() + 0.5, this.pos.getY() + 0.6, this.pos.getZ() + 0.5, topItem.extractItem(0, 64, false));
+            ec.delayBeforeCanPickup = 80;
+            ec.motionX = 0;
+            ec.motionY = 0;
+            ec.motionZ = 0;
+
+            worldObj.spawnEntityInWorld(ec);
+
+            //topItem.setStackInSlot(0, UtilCompat.getNullItemStack());
+
+        }
+
+        if (!UtilCompat.isNullFromItemStack(inItem.getStackInSlot(0))) {
+
+            EnumFacing f = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING).getOpposite();
+
+            EntityConveyorItem ec = new EntityConveyorItem(worldObj,
+                    this.pos.getX() + 0.5 + f.getFrontOffsetX() * 0.3,
+                    this.pos.getY() + 0.4,
+                    this.pos.getZ() + 0.5 + f.getFrontOffsetZ() * 0.3,
+                    inItem.extractItem(0, 64, false));
+
             ec.delayBeforeCanPickup = 80;
             ec.motionX = 0;
             ec.motionY = 0;
