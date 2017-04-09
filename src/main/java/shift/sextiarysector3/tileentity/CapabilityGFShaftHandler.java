@@ -12,7 +12,7 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 public class CapabilityGFShaftHandler {
 
     @CapabilityInject(IGFShaft.class)
-    public static Capability<IGFShaft> GEAR_FORCE_CAPABILITY = null;
+    public static Capability<IGFShaft> GEAR_FORCE_SHAFT_CAPABILITY = null;
 
     public static void register() {
 
