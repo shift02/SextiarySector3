@@ -18,6 +18,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
 import shift.sextiarysector3.block.BlockConveyor;
 import shift.sextiarysector3.entity.EntityConveyorItem;
 import shift.sextiarysector3.util.UtilCompat;
@@ -30,6 +31,8 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     public long actionTime = 0;
 
     public final String MOVE_NOW = "move_now";
+
+    public final String POWER = "power";
 
     //インベントリ
     protected ItemStackHandler topItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
@@ -44,6 +47,10 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     //6
     protected ItemStackHandler leftItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
     protected ItemStackHandler rightItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+
+    //パワー
+    protected int power = 0;
+    protected int oldPower = 0;
 
     @Override
     public void update() {
@@ -75,6 +82,10 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
         changeEntityItem(list);
 
         spawnItem();
+
+        getOtherPower();
+
+        doRenderUpdate();
 
     }
 
@@ -234,8 +245,80 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
         return true;
     }
 
+    public void getOtherPower() {
+
+        power = 0;
+
+        EnumFacing mF = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
+        //周りからGFを探す
+        for (EnumFacing f : EnumFacing.VALUES) {
+
+            if (f == EnumFacing.UP) continue;
+            if (f == mF) continue;
+            if (f == mF.getOpposite()) continue;
+
+            //IBlockState state = this.worldObj.getBlockState(getPos().offset(f));
+            TileEntity tE = this.worldObj.getTileEntity(getPos().offset(f));
+
+            if (tE == null) continue;
+
+            if (tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite())) {
+
+                int p = tE.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite()).getPower();
+
+                if (p > 0) {
+                    power = 100;
+                }
+            }
+
+        }
+
+        //周りのコンベアから取得
+        if (power == 0) {
+            for (EnumFacing f : EnumFacing.VALUES) {
+
+                if (f == EnumFacing.UP) continue;
+
+                //IBlockState state = this.worldObj.getBlockState(getPos().offset(f));
+                TileEntity tE = this.worldObj.getTileEntity(getPos().offset(f));
+
+                if (!(tE instanceof TileEntityConveyor)) continue;
+
+                TileEntityConveyor tC = (TileEntityConveyor) tE;
+
+                if (tC.getConveyorPower() > 1 && tC.getConveyorPower() > power) {
+                    power = tC.getConveyorPower() - 1;
+                }
+
+            }
+        }
+
+    }
+
+    public void doRenderUpdate() {
+
+        if (this.canRenderUpdate()) {
+
+            IBlockState state = this.worldObj.getBlockState(getPos());
+            this.worldObj.notifyBlockUpdate(pos, state, state, 3);
+
+        }
+
+        this.oldPower = this.power;
+
+    }
+
+    protected boolean canRenderUpdate() {
+        return (this.oldPower == 0 && this.power > 0) || (this.oldPower > 0 && this.power == 0);
+    }
+
+    public int getConveyorPower() {
+        return this.power;
+    }
+
     public boolean hasPower() {
-        return true;
+        return this.power > 0;
     }
 
     public long getActionTime() {
@@ -286,12 +369,15 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
         super.readFromNBT(par1nbtTagCompound);
         this.topItem.deserializeNBT(par1nbtTagCompound.getCompoundTag("top_item"));
+
+        this.power = par1nbtTagCompound.getInteger(POWER);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
         NBTTagCompound nbt = super.writeToNBT(par1nbtTagCompound);
         nbt.setTag("top_item", this.topItem.serializeNBT());
+        nbt.setInteger(POWER, power);
         return nbt;
     }
 
@@ -309,7 +395,6 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.getNbtCompound());
-        //this.worldObj.markBlockForUpdate(this.pos);
         IBlockState state = this.worldObj.getBlockState(getPos());
         this.worldObj.notifyBlockUpdate(pos, state, state, 3);
     }
