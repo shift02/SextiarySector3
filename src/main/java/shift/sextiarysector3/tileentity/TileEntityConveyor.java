@@ -52,6 +52,9 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     protected int power = 0;
     protected int oldPower = 0;
 
+    //in
+    protected EnumFacing oldF = null;
+
     @Override
     public void update() {
 
@@ -269,13 +272,21 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
                 if (p > 0) {
                     power = 100;
+                    oldF = f;
                 }
             }
 
         }
 
+        //１個前のTickを元に取得
+        if (power == 0 && oldF != null) {
+
+            power = getOldFPower();
+
+        }
+
         //周りのコンベアから取得
-        if (power == 0) {
+        if (power == 0 && oldF == null) {
             for (EnumFacing f : EnumFacing.VALUES) {
 
                 if (f == EnumFacing.UP) continue;
@@ -289,11 +300,46 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
                 if (tC.getConveyorPower() > 1 && tC.getConveyorPower() > power) {
                     power = tC.getConveyorPower() - 1;
+                    this.oldF = f;
                 }
 
             }
         }
 
+        if (power == 0) oldF = null;
+
+    }
+
+    public int getOldFPower() {
+
+        int power = 0;
+
+        //GF
+        TileEntity tE = this.worldObj.getTileEntity(getPos().offset(oldF));
+
+        if (tE == null) return 0;
+
+        if (tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, oldF.getOpposite())) {
+
+            int p = tE.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, oldF.getOpposite()).getPower();
+
+            if (p > 0) {
+                power = 100;
+            }
+        }
+
+        if (power == 0) {
+            //コンベア
+            if (!(tE instanceof TileEntityConveyor)) return 0;
+
+            TileEntityConveyor tC = (TileEntityConveyor) tE;
+
+            if (tC.getConveyorPower() > 1 && tC.getConveyorPower() > power) {
+                power = tC.getConveyorPower() - 1;
+            }
+        }
+
+        return power;
     }
 
     public void doRenderUpdate() {
