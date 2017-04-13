@@ -36,7 +36,7 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
         rotateStep = new Shaft();
         tank = new GFTank();
-        gfShaft = CapabilityGFShaftHandler.GEAR_FORCE_CAPABILITY.getDefaultInstance();
+        gfShaft = CapabilityGFShaftHandler.GEAR_FORCE_SHAFT_CAPABILITY.getDefaultInstance();
 
     }
 
@@ -141,6 +141,7 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
         speed = power * 5;
 
         this.tank.setPower(power);
+        this.gfShaft.setPower(power);
         this.setAllPower(power);
 
         if (power == 0) powerDirection = null;
@@ -232,7 +233,7 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
         if (f.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f = f.getOpposite();
         TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f, ofset));
 
-        return tile.getCapability(CapabilityGFShaftHandler.GEAR_FORCE_CAPABILITY, f);
+        return tile.getCapability(CapabilityGFShaftHandler.GEAR_FORCE_SHAFT_CAPABILITY, f);
     }
 
     private IGearForceHandler getGF(TileEntity tile, EnumFacing f) {
@@ -261,15 +262,18 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
         return nbt;
     }
 
+    @Override
     @Nullable
     public SPacketUpdateTileEntity getUpdatePacket() {
         return new SPacketUpdateTileEntity(this.pos, 8, this.getUpdateTag());
     }
 
+    @Override
     public NBTTagCompound getUpdateTag() {
         return this.writeToNBT(new NBTTagCompound());
     }
 
+    @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.getNbtCompound());
         //this.worldObj.markBlockForUpdate(this.pos);
@@ -296,10 +300,10 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
         if (capability == CapabilityShaftHandler.SHAFT_CAPABILITY) {
             return true;
         }
-        if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY) {
+        if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY && this.hasGFFacing(facing)) {
             return true;
         }
-        if (capability == CapabilityGFShaftHandler.GEAR_FORCE_CAPABILITY) {
+        if (capability == CapabilityGFShaftHandler.GEAR_FORCE_SHAFT_CAPABILITY) {
             return true;
         }
         return super.hasCapability(capability, facing);
@@ -311,14 +315,20 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
             rotateStep.setFacing(getFacing());
             return (T) rotateStep;
         }
-        if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY) {
+        if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY && this.hasGFFacing(facing)) {
             tank.setPower(this.gfShaft.getPower());
             return (T) tank;
         }
-        if (capability == CapabilityGFShaftHandler.GEAR_FORCE_CAPABILITY) {
+        if (capability == CapabilityGFShaftHandler.GEAR_FORCE_SHAFT_CAPABILITY) {
             return (T) gfShaft;
         }
         return super.getCapability(capability, facing);
+    }
+
+    public boolean hasGFFacing(EnumFacing facing) {
+        EnumFacing f = this.getFacing();
+        return f == facing || f == facing.getOpposite() || facing == null;
+
     }
 
     public class GFTank implements IGearForceHandler {

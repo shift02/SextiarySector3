@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.stats.Achievement;
@@ -13,10 +15,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import shift.sextiarysector3.SextiarySector3;
+import shift.sextiarysector3.entity.EntityConveyorItem;
 import shift.sextiarysector3.module.IModule;
+import shift.sextiarysector3.renderer.RenderEntityConveyorItem;
 import shift.sextiarysector3.renderer.RendererShield;
 import shift.sextiarysector3.renderer.block.RendererConveyor;
 import shift.sextiarysector3.renderer.block.RendererShaft;
@@ -70,6 +76,15 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShaft.class, new RendererShaft());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConveyor.class, new RendererConveyor());
+
+        //En
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityConveyorItem.class, new IRenderFactory<EntityConveyorItem>() {
+            @Override
+            public Render<? super EntityConveyorItem> createRenderFor(RenderManager manager) {
+                return new RenderEntityConveyorItem(manager, Minecraft.getMinecraft().getRenderItem());
+            }
+        });
 
     }
 

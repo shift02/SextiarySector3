@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 
 public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvider {
@@ -27,6 +28,9 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
     public static final PropertyBool RIGHT = PropertyBool.create("right");
 
     public static final PropertyBool POWER = PropertyBool.create("power");
+
+    public static final PropertyBool GF_LEFT = PropertyBool.create("gf_left");
+    public static final PropertyBool GF_RIGHT = PropertyBool.create("gf_right");
 
     protected static final AxisAlignedBB CONVEYOR_SELECTED_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25, 1.0D);
     protected static final AxisAlignedBB CONVEYOR_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D);
@@ -39,7 +43,13 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
 
     public BlockConveyor(Material materialIn) {
         super(materialIn);
-        this.setDefaultState(this.getDefaultState().withProperty(LEFT, Boolean.valueOf(false)).withProperty(RIGHT, Boolean.valueOf(false)).withProperty(POWER, Boolean.valueOf(false)));
+        this.setDefaultState(
+                this.getDefaultState()
+                        .withProperty(LEFT, Boolean.valueOf(false))
+                        .withProperty(RIGHT, Boolean.valueOf(false))
+                        .withProperty(POWER, Boolean.valueOf(false))
+                        .withProperty(GF_LEFT, Boolean.valueOf(false))
+                        .withProperty(GF_RIGHT, Boolean.valueOf(false)));
     }
 
     @Override
@@ -54,7 +64,7 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] { super.FACING, LEFT, RIGHT, POWER });
+        return new BlockStateContainer(this, new IProperty[] { super.FACING, LEFT, RIGHT, POWER, GF_LEFT, GF_RIGHT });
     }
 
     @Override
@@ -62,7 +72,12 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
 
         TileEntityConveyor te = (TileEntityConveyor) worldIn.getTileEntity(pos);
 
-        return state.withProperty(LEFT, isLeftConnect(state, worldIn, pos)).withProperty(RIGHT, isRightConnect(state, worldIn, pos)).withProperty(POWER, te.hasPower());
+        return state
+                .withProperty(LEFT, isLeftConnect(state, worldIn, pos))
+                .withProperty(RIGHT, isRightConnect(state, worldIn, pos))
+                .withProperty(POWER, te.hasPower())
+                .withProperty(GF_LEFT, isLeftGFConnect(state, worldIn, pos))
+                .withProperty(GF_RIGHT, isRightGFConnect(state, worldIn, pos));
 
     }
 
@@ -87,6 +102,32 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
         IBlockState bs = worldIn.getBlockState(pos.offset(f));
         if (!(bs.getBlock() instanceof BlockConveyor)) return false;
         if (bs.getValue(super.FACING) != f.getOpposite()) return false;
+
+        return true;
+
+    }
+
+    public boolean isLeftGFConnect(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+
+        EnumFacing f = state.getValue(super.FACING);
+
+        f = f.rotateY();
+        TileEntity tE = worldIn.getTileEntity(pos.offset(f));
+        if (tE == null) return false;
+        if (!tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite())) return false;
+
+        return true;
+
+    }
+
+    public boolean isRightGFConnect(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+
+        EnumFacing f = state.getValue(super.FACING);
+
+        f = f.rotateY().getOpposite();
+        TileEntity tE = worldIn.getTileEntity(pos.offset(f));
+        if (tE == null) return false;
+        if (!tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite())) return false;
 
         return true;
 

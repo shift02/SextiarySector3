@@ -39,8 +39,19 @@
         }},
       "false":{
         "textures": {
-          "base_side": "sextiarysector3:blocks/industry/conveyor_side"
+          "base_side": "sextiarysector3:blocks/industry/conveyor_side",
+          "rubber": "sextiarysector3:blocks/industry/conveyor_rubber_off",
+          "rubber_up": "sextiarysector3:blocks/industry/conveyor_rubber_off",
+          "rubber_down": "sextiarysector3:blocks/industry/conveyor_rubber_off"
         }}
+    },
+    "gf_left":{
+      "true":{"submodel": "sextiarysector3:conveyor_side_gf_left"},
+      "false":{}
+    },
+    "gf_right":{
+      "true":{"submodel": "sextiarysector3:conveyor_side_gf_right"},
+      "false":{}
     }
   }
 }

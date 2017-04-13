@@ -73,6 +73,7 @@ public class SextiarySector3 {
         SSItems.initItem();
         SSBlocks.initBlock();
         SSFluids.initFluid();
+        SSEntitys.initEntity();
 
         SSEvents.initEvent(event);
 

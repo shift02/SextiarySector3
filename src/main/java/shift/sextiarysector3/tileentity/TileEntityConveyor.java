@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -17,7 +18,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
 import shift.sextiarysector3.block.BlockConveyor;
+import shift.sextiarysector3.entity.EntityConveyorItem;
+import shift.sextiarysector3.util.UtilCompat;
 
 public class TileEntityConveyor extends TileEntity implements ITickable {
 
@@ -28,21 +32,43 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     public final String MOVE_NOW = "move_now";
 
+    public final String POWER = "power";
+
     //インベントリ
     protected ItemStackHandler topItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+
+    //6
+    protected ItemStackHandler inItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+    protected ItemStackHandler outItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+
+    //5
+    protected ItemStackHandler centerItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+
+    //6
+    protected ItemStackHandler leftItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+    protected ItemStackHandler rightItem = (ItemStackHandler) CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.getDefaultInstance();
+
+    //パワー
+    protected int power = 0;
+    protected int oldPower = 0;
+
+    //in
+    protected EnumFacing oldF = null;
 
     @Override
     public void update() {
 
         actionTime = worldObj.getWorldInfo().getWorldTime();
 
+        List<Entity> list = this.getOnEntity();
+
         if (worldObj.isRemote) {
             this.updateClient();
         } else {
-            this.updateServer();
+            this.updateServer(list);
         }
 
-        if (this.hasPower()) moveEntity();
+        if (this.hasPower()) moveEntity(list);
 
     }
 
@@ -50,19 +76,35 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     }
 
-    public void updateServer() {
+    public void updateServer(List<Entity> list) {
 
         actionTime = worldObj.getWorldInfo().getWorldTime();
 
+        moveItemStack();
+
+        changeEntityItem(list);
+
+        spawnItem();
+
+        getOtherPower();
+
+        doRenderUpdate();
+
     }
 
-    public void moveEntity() {
-
+    public List<Entity> getOnEntity() {
         EnumFacing f = worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
 
         AxisAlignedBB axisalignedbb = getAABBFromEnumFacing(f).offset(getPos());
 
         List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity((Entity) null, axisalignedbb);
+
+        return list;
+    }
+
+    public void moveEntity(List<Entity> list) {
+
+        EnumFacing f = worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
 
         float ani = (1 / 16.0f) / 2.0f;
 
@@ -134,8 +176,195 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     }
 
-    public boolean hasPower() {
+    public void changeEntityItem(List<Entity> list) {
+
+        EnumFacing f = worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
+        for (Entity e : list) {
+            if (e instanceof EntityConveyorItem) continue;
+            if (!(e instanceof EntityItem)) continue;
+            if (e.isDead) continue;
+
+            EntityConveyorItem ec = new EntityConveyorItem(worldObj, e.posX, e.posY + 0.3, e.posZ, ((EntityItem) e).getEntityItem());
+            ec.delayBeforeCanPickup = ((EntityItem) e).delayBeforeCanPickup;
+            ec.motionX = 0;
+            ec.motionY = 0;
+            ec.motionZ = 0;
+
+            worldObj.spawnEntityInWorld(ec);
+            e.setDead();
+
+        }
+
+    }
+
+    public void spawnItem() {
+
+        //上
+        if (!UtilCompat.isNullFromItemStack(topItem.getStackInSlot(0))) {
+
+            EntityConveyorItem ec = new EntityConveyorItem(worldObj, this.pos.getX() + 0.5, this.pos.getY() + 0.6, this.pos.getZ() + 0.5, topItem.extractItem(0, 64, false));
+            ec.delayBeforeCanPickup = 80;
+            ec.motionX = 0;
+            ec.motionY = 0;
+            ec.motionZ = 0;
+
+            worldObj.spawnEntityInWorld(ec);
+
+            //topItem.setStackInSlot(0, UtilCompat.getNullItemStack());
+
+        }
+
+        if (!UtilCompat.isNullFromItemStack(inItem.getStackInSlot(0))) {
+
+            EnumFacing f = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING).getOpposite();
+
+            EntityConveyorItem ec = new EntityConveyorItem(worldObj,
+                    this.pos.getX() + 0.5 + f.getFrontOffsetX() * 0.3,
+                    this.pos.getY() + 0.4,
+                    this.pos.getZ() + 0.5 + f.getFrontOffsetZ() * 0.3,
+                    inItem.extractItem(0, 64, false));
+
+            ec.delayBeforeCanPickup = 80;
+            ec.motionX = 0;
+            ec.motionY = 0;
+            ec.motionZ = 0;
+
+            worldObj.spawnEntityInWorld(ec);
+
+            //topItem.setStackInSlot(0, UtilCompat.getNullItemStack());
+
+        }
+
+    }
+
+    //ItemStackの移動処理
+    public void moveItemStack() {
+
+    }
+
+    public boolean isItemUpdate() {
+
         return true;
+    }
+
+    public void getOtherPower() {
+
+        power = 0;
+
+        EnumFacing mF = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
+        //周りからGFを探す
+        for (EnumFacing f : EnumFacing.VALUES) {
+
+            if (f == EnumFacing.UP) continue;
+            if (f == mF) continue;
+            if (f == mF.getOpposite()) continue;
+
+            //IBlockState state = this.worldObj.getBlockState(getPos().offset(f));
+            TileEntity tE = this.worldObj.getTileEntity(getPos().offset(f));
+
+            if (tE == null) continue;
+
+            if (tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite())) {
+
+                int p = tE.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite()).getPower();
+
+                if (p > 0) {
+                    power = 100;
+                    oldF = f;
+                }
+            }
+
+        }
+
+        //１個前のTickを元に取得
+        if (power == 0 && oldF != null) {
+
+            power = getOldFPower();
+
+        }
+
+        //周りのコンベアから取得
+        if (power == 0 && oldF == null) {
+            for (EnumFacing f : EnumFacing.VALUES) {
+
+                if (f == EnumFacing.UP) continue;
+
+                //IBlockState state = this.worldObj.getBlockState(getPos().offset(f));
+                TileEntity tE = this.worldObj.getTileEntity(getPos().offset(f));
+
+                if (!(tE instanceof TileEntityConveyor)) continue;
+
+                TileEntityConveyor tC = (TileEntityConveyor) tE;
+
+                if (tC.getConveyorPower() > 1 && tC.getConveyorPower() > power) {
+                    power = tC.getConveyorPower() - 1;
+                    this.oldF = f;
+                }
+
+            }
+        }
+
+        if (power == 0) oldF = null;
+
+    }
+
+    public int getOldFPower() {
+
+        int power = 0;
+
+        //GF
+        TileEntity tE = this.worldObj.getTileEntity(getPos().offset(oldF));
+
+        if (tE == null) return 0;
+
+        if (tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, oldF.getOpposite())) {
+
+            int p = tE.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, oldF.getOpposite()).getPower();
+
+            if (p > 0) {
+                power = 100;
+            }
+        }
+
+        if (power == 0) {
+            //コンベア
+            if (!(tE instanceof TileEntityConveyor)) return 0;
+
+            TileEntityConveyor tC = (TileEntityConveyor) tE;
+
+            if (tC.getConveyorPower() > 1 && tC.getConveyorPower() > power) {
+                power = tC.getConveyorPower() - 1;
+            }
+        }
+
+        return power;
+    }
+
+    public void doRenderUpdate() {
+
+        if (this.canRenderUpdate()) {
+
+            IBlockState state = this.worldObj.getBlockState(getPos());
+            this.worldObj.notifyBlockUpdate(pos, state, state, 3);
+
+        }
+
+        this.oldPower = this.power;
+
+    }
+
+    protected boolean canRenderUpdate() {
+        return (this.oldPower == 0 && this.power > 0) || (this.oldPower > 0 && this.power == 0);
+    }
+
+    public int getConveyorPower() {
+        return this.power;
+    }
+
+    public boolean hasPower() {
+        return this.power > 0;
     }
 
     public long getActionTime() {
@@ -144,7 +373,18 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+
+        EnumFacing f = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == EnumFacing.UP) {
+            return true;
+        }
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f.getOpposite()) {
+            return true;
+        }
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f) {
             return true;
         }
         return super.hasCapability(capability, facing);
@@ -152,9 +392,21 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+
+        EnumFacing f = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
+
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == EnumFacing.UP) {
             return (T) this.topItem;
         }
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f.getOpposite()) {
+            return (T) this.inItem;
+        }
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f) {
+            return (T) this.inItem;
+        }
+
         return super.getCapability(capability, facing);
     }
 
@@ -163,12 +415,15 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
         super.readFromNBT(par1nbtTagCompound);
         this.topItem.deserializeNBT(par1nbtTagCompound.getCompoundTag("top_item"));
+
+        this.power = par1nbtTagCompound.getInteger(POWER);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
         NBTTagCompound nbt = super.writeToNBT(par1nbtTagCompound);
         nbt.setTag("top_item", this.topItem.serializeNBT());
+        nbt.setInteger(POWER, power);
         return nbt;
     }
 
@@ -186,7 +441,6 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.getNbtCompound());
-        //this.worldObj.markBlockForUpdate(this.pos);
         IBlockState state = this.worldObj.getBlockState(getPos());
         this.worldObj.notifyBlockUpdate(pos, state, state, 3);
     }
