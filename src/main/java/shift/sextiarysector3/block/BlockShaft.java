@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,16 +25,24 @@ public class BlockShaft extends BlockSSDirectional implements ITileEntityProvide
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
+    @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
+    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
 
+    @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityShaft();
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return this.getBoxFromPool(state, source, pos);
     }
 
     //当たり判定。サボテンやソウルサンドを参考にすると良い。ココの設定をすると、onEntityCollidedWithBlockが呼ばれるようになる
@@ -52,9 +61,9 @@ public class BlockShaft extends BlockSSDirectional implements ITileEntityProvide
         return this.getBoxFromPool(state, worldIn, pos).offset(pos);
     }
 
-    public AxisAlignedBB getBoxFromPool(IBlockState state, World par1World, BlockPos pos) {
+    public AxisAlignedBB getBoxFromPool(IBlockState state, IBlockAccess source, BlockPos pos) {
 
-        EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+        EnumFacing enumfacing = state.getValue(FACING);
         switch (enumfacing) {
         case UP:
         case DOWN:
