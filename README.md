@@ -5,6 +5,6 @@
 
 Minecraftに第六次産業の概念を追加するMOD 
 
-##Localization
+## Localization
 
 https://github.com/shift02/SextiarySector3-Localization
