@@ -90,6 +90,8 @@ public class SSBlocks {
 
     public static Block conveyor;
 
+    public static Block smallWindmill;
+
     //料理
     public static Block mapleCake;
 
