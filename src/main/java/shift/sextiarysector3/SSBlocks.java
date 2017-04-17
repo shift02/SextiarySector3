@@ -23,11 +23,13 @@ import shift.sextiarysector3.block.BlockSanctuary;
 import shift.sextiarysector3.block.BlockSapCauldron;
 import shift.sextiarysector3.block.BlockSapCauldron.Sap;
 import shift.sextiarysector3.block.BlockShaft;
+import shift.sextiarysector3.block.BlockSmallWindmill;
 import shift.sextiarysector3.block.BlockSpile;
 import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
+import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector3.util.UtilRegistry;
 
 public class SSBlocks {
@@ -212,6 +214,10 @@ public class SSBlocks {
         conveyor = new BlockConveyor(Material.IRON).setUnlocalizedName("ss.conveyor").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntityConveyor.class, SextiarySector3.MODID + ":" + "conveyor");
         UtilRegistry.registerNormalBlock(conveyor, "conveyor", "industry/conveyor");
+
+        smallWindmill = new BlockSmallWindmill().setUnlocalizedName("ss.wood_shaft").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, SextiarySector3.MODID + ":" + "small_windmill");
+        UtilRegistry.registerTESRBlock(smallWindmill, TileEntitySmallWindmill.class, "small_windmill", "small_windmill");
 
         //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
