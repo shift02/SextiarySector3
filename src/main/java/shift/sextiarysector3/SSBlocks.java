@@ -217,7 +217,7 @@ public class SSBlocks {
 
         smallWindmill = new BlockSmallWindmill().setUnlocalizedName("ss.wood_shaft").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, SextiarySector3.MODID + ":" + "small_windmill");
-        UtilRegistry.registerTESRBlock(smallWindmill, TileEntitySmallWindmill.class, "small_windmill", "small_windmill");
+        UtilRegistry.registerTESRBlock(smallWindmill, TileEntitySmallWindmill.class, "small_windmill", "industry/small_windmill");
 
         //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
