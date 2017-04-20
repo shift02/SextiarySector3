@@ -136,6 +136,10 @@ public class UtilRegistry {
 
         //描画の登録
         if (getSide().isClient()) {
+
+            // ブロック状態の登録
+            SextiarySector3.proxy.setCustomStateMapper(block, resource);
+
             SextiarySector3.proxy.setCustomTileEntitySpecialRenderer(itemBlock, tileEntityClass);
             SextiarySector3.proxy.setCustomModelResourceLocation(itemBlock, 0, resource);
         }

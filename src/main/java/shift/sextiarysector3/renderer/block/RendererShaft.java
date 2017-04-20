@@ -111,10 +111,11 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             return;
         }
 
-        TileEntityShaft tile = (TileEntityShaft) tileentity;
+        TileEntityShaft tile = tileentity;
 
         //System.out.println("renderTileEntityAt");]
 
+        //破壊処理
         GlStateManager.enableDepth();
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
@@ -131,7 +132,6 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             GlStateManager.scale(4.0F, 2.0F, 1.0F);
             GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
             GlStateManager.matrixMode(5888);
-            System.out.println(destroyStage);
         } else {
             if (tileentity.getRotateNowStep() == tileentity.getRotateOldStep()) {
                 this.bindTexture(woodShaftTextures);

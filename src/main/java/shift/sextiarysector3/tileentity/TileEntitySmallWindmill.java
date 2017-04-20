@@ -32,4 +32,10 @@ public class TileEntitySmallWindmill extends TileEntity {
         }
         return super.getCapability(capability, facing);
     }
+
+    @Override
+    public boolean canRenderBreaking() {
+        return true;
+    }
+
 }
