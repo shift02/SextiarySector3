@@ -331,19 +331,4 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
     }
 
-    public class GFTank implements IGearForceHandler {
-
-        int i = 0;
-
-        @Override
-        public int getPower() {
-            return i;
-        }
-
-        public void setPower(int i) {
-            this.i = i;
-        }
-
-    }
-
 }
