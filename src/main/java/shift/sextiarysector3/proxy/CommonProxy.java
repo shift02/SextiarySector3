@@ -1,6 +1,7 @@
 package shift.sextiarysector3.proxy;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -21,6 +22,10 @@ public class CommonProxy {
     }
 
     public void setCustomStateMapper(Block block, String resource) {
+
+    }
+
+    public void setCustomModelResourceLocation(Item item, int metadata, String resource, IBlockState state) {
 
     }
 

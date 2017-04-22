@@ -1,9 +1,11 @@
 package shift.sextiarysector3.proxy;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -50,6 +52,19 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
+    public void setCustomModelResourceLocation(Item item, int metadata, String resource, IBlockState state) {
+
+        ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
+
+        //バリアントを足す
+        String variant = propertyStringMapper.getPropertyString(state.getProperties());
+
+        // アイテム状態の登録
+        ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(l, variant));
+
+    }
+
+    @Override
     public void setCustomStateMapper(Block block, String resource) {
 
         ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
@@ -58,6 +73,13 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomStateMapper(block, new DefaultStateMapper(l));
 
     }
+
+    private final StateMapperBase propertyStringMapper = new StateMapperBase() {
+        @Override
+        protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+            return new ModelResourceLocation("minecraft:stone");
+        }
+    };
 
     @Override
     public <T extends TileEntity> void setCustomTileEntitySpecialRenderer(Item itemBlock,

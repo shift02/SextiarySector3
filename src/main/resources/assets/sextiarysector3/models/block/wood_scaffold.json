@@ -1,0 +1,103 @@
+{
+  "textures": {
+    "base_top": "sextiarysector3:blocks/industry/scaffold_top",
+    "base_side": "sextiarysector3:blocks/industry/scaffold_side",
+    "base_wood": "minecraft:blocks/planks_oak",
+    "particle": "#base_wood"
+  },
+  "elements":
+    [
+
+     {
+       "name": "base_top",
+       "from": [ 0.0, 14.0, 0.0 ],
+       "to": [ 16.0, 16.0, 16.0 ],
+       "faces": {
+         "down":  { "texture": "#base_wood" },
+         "up":    { "texture": "#base_wood" },
+         "north": { "texture": "#base_wood" },
+         "south": { "texture": "#base_wood" },
+         "west":  { "texture": "#base_wood" },
+         "east":  { "texture": "#base_wood" }
+       }
+     },
+     {
+       "name": "base_un",
+       "from": [ 0.0, 0.0, 0.0 ],
+       "to": [ 16.0, 2.0, 16.0 ],
+       "faces": {
+         "down":  { "texture": "#base_wood" },
+         "up":    { "texture": "#base_wood" },
+         "north": { "texture": "#base_wood" },
+         "south": { "texture": "#base_wood" },
+         "west":  { "texture": "#base_wood" },
+         "east":  { "texture": "#base_wood" }
+       }
+     },
+     {
+       "name": "base_side1",
+       "from": [ 0.0, 2.0, 0.0 ],
+       "to": [ 2.0, 14.0, 2.0 ],
+       "faces": {
+         "down":  { "texture": "#base_wood" },
+         "up":    { "texture": "#base_wood" },
+         "north": { "texture": "#base_wood" },
+         "south": { "texture": "#base_wood" },
+         "west":  { "texture": "#base_wood" },
+         "east":  { "texture": "#base_wood" }
+       }
+     },
+     {
+       "name": "base_side2",
+       "from": [ 0.0, 2.0, 14.0 ],
+       "to": [ 2.0, 14.0, 16.0 ],
+       "faces": {
+         "down":  { "texture": "#base_wood" },
+         "up":    { "texture": "#base_wood" },
+         "north": { "texture": "#base_wood" },
+         "south": { "texture": "#base_wood" },
+         "west":  { "texture": "#base_wood" },
+         "east":  { "texture": "#base_wood" }
+       }
+     },
+     {
+       "name": "base_side3",
+       "from": [ 14.0, 2.0, 0.0 ],
+       "to": [ 16.0, 14.0, 2.0 ],
+       "faces": {
+         "down":  { "texture": "#base_wood" },
+         "up":    { "texture": "#base_wood" },
+         "north": { "texture": "#base_wood" },
+         "south": { "texture": "#base_wood" },
+         "west":  { "texture": "#base_wood" },
+         "east":  { "texture": "#base_wood" }
+       }
+     },
+     {
+       "name": "base_side4",
+       "from": [ 14.0, 2.0, 14.0 ],
+       "to": [ 16.0, 14.0, 16.0 ],
+       "faces": {
+         "down":  { "texture": "#base_wood" },
+         "up":    { "texture": "#base_wood" },
+         "north": { "texture": "#base_wood" },
+         "south": { "texture": "#base_wood" },
+         "west":  { "texture": "#base_wood" },
+         "east":  { "texture": "#base_wood" }
+       }
+     },
+     {
+       "name": "base",
+       "from": [ -0.1, -0.1, -0.1 ],
+       "to": [ 16.1, 16.1, 16.1 ],
+       "faces": {
+         "down":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 0,"texture": "#base_top" },
+         "up":    { "uv": [ 0, 0, 16, 16 ],"tintindex": 0,"texture": "#base_top" },
+         "north": { "uv": [ 0, 0, 16, 16 ],"tintindex": 0,"texture": "#base_side" },
+         "south": { "uv": [ 0, 0, 16, 16 ],"tintindex": 0,"texture": "#base_side" },
+         "west":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 0,"texture": "#base_side" },
+         "east":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 0,"texture": "#base_side" }
+       }
+     }
+    ]
+}

@@ -110,8 +110,22 @@ public class UtilRegistry {
 
             // ブロック状態の登録
             SextiarySector3.proxy.setCustomStateMapper(block, resource);
-            // アイテム状態の登録
-            SextiarySector3.proxy.setCustomModelResourceLocation(itemBlock, 0, resource);
+
+            if (block instanceof IMetaItem) {
+
+                //Meta
+                for (int i = 0; i < ((IMetaItem) block).getMetaSize(); i++) {
+
+                    SextiarySector3.proxy.setCustomModelResourceLocation(itemBlock, i, resource, block.getStateFromMeta(i));
+
+                }
+            } else {
+
+                //普通
+                // アイテム状態の登録
+                SextiarySector3.proxy.setCustomModelResourceLocation(itemBlock, 0, resource);
+            }
+
         }
 
     }

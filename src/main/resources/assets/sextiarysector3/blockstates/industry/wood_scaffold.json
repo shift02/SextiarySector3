@@ -1,0 +1,47 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "sextiarysector3:wood_scaffold",
+    "textures": {
+      "all": "sextiarysector3:blocks/industry/iron_scaffold"
+    },
+    "transform": "forge:default-block",
+    "uvlock": false
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+  "wood":{
+    "oak":{
+      "textures": {
+        "base_wood": "minecraft:blocks/planks_oak"
+      }},
+    "birch":{
+      "textures": {
+        "base_wood": "minecraft:blocks/planks_birch"
+      }},
+      "spruce":{
+        "textures": {
+          "base_wood": "minecraft:blocks/planks_spruce"
+        }}
+      ,
+      "jungle":{
+        "textures": {
+          "base_wood": "minecraft:blocks/planks_jungle"
+      }},
+      "big_oak":{
+        "textures": {
+          "base_wood": "minecraft:blocks/planks_big_oak"
+        }},
+      "acacia":{
+        "textures": {
+          "base_wood": "minecraft:blocks/planks_acacia"
+        }}
+  }
+
+  }
+}
