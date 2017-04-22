@@ -16,7 +16,8 @@ import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 
 public class RendererSmallWindmill extends TileEntitySpecialRenderer<TileEntitySmallWindmill> {
 
-    private static final ResourceLocation windmillTextures = new ResourceLocation(SextiarySector3.MODID, "textures/models/small_windmill.png");
+    private static final ResourceLocation windmillTexturesOn = new ResourceLocation(SextiarySector3.MODID, "textures/models/small_windmill_on.png");
+    private static final ResourceLocation windmillTexturesOff = new ResourceLocation(SextiarySector3.MODID, "textures/models/small_windmill_off.png");
     static public ModelBase modelWindmill = new ModelSmallWindMill();
     public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
 
@@ -30,7 +31,8 @@ public class RendererSmallWindmill extends TileEntitySpecialRenderer<TileEntityS
         //GL11.glRotatef(90, 1, 0, 0);
 
         GL11.glRotatef(90, 0, -1, 0);
-        this.bindTexture(windmillTextures);
+        modelWindmill.textureHeight = 64;
+        this.bindTexture(windmillTexturesOn);
 
         ((ModelSmallWindMill) modelWindmill).renderinOut(null, 0, 0, 0, 0, 0, 1.0f);
 
@@ -72,8 +74,14 @@ public class RendererSmallWindmill extends TileEntitySpecialRenderer<TileEntityS
             GlStateManager.scale(4.0F, 2.0F, 1.0F);
             GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
             GlStateManager.matrixMode(5888);
+            modelWindmill.textureHeight = 32;
         } else {
-            this.bindTexture(windmillTextures);
+            if (tileentity.isWorkR()) {
+                this.bindTexture(windmillTexturesOn);
+            } else {
+                this.bindTexture(windmillTexturesOff);
+            }
+            modelWindmill.textureHeight = 64;
         }
 
         GlStateManager.enableRescaleNormal();
@@ -103,7 +111,7 @@ public class RendererSmallWindmill extends TileEntitySpecialRenderer<TileEntityS
 
         ((ModelSmallWindMill) modelWindmill).renderinOut(null, 0, 0, 0, 0, 0, 1.0f);
         //傾きのスピード
-        //GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
+        GL11.glRotatef(tileentity.getRotateStep(), 0, 0, 1);
 
         modelWindmill.render(null, 0, 0, 0, 0, 0, 1.0f);
 
