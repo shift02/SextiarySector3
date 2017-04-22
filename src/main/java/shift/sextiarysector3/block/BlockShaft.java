@@ -3,7 +3,9 @@ package shift.sextiarysector3.block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -11,6 +13,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
 import shift.sextiarysector3.util.UtilFacing;
 
@@ -74,6 +77,17 @@ public class BlockShaft extends BlockSSDirectional implements ITileEntityProvide
         case SOUTH:
         default:
             return UtilFacing.rotationAxisAlignedBB(SHAFT_AABB, EnumFacing.Axis.Z);
+        }
+
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+
+        TileEntity te = worldIn.getTileEntity(pos);
+
+        if (te.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, null).getPower() > 0) {
+            entityIn.attackEntityFrom(DamageSource.cactus, 1.0F);
         }
 
     }
