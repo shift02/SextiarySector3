@@ -327,7 +327,7 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
     public boolean hasGFFacing(EnumFacing facing) {
         EnumFacing f = this.getFacing();
-        return f == facing || f == facing.getOpposite() || facing == null;
+        return facing == null || f == facing || f == facing.getOpposite();
 
     }
 
