@@ -1,5 +1,7 @@
 package shift.sextiarysector3;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class SSOreDictionary {
@@ -41,6 +43,8 @@ public class SSOreDictionary {
         OreDictionary.registerOre("rubber", SSItems.rubber);
 
         OreDictionary.registerOre("itemDepthMeter", SSItems.depthMeter);
+
+        OreDictionary.registerOre("blockWool", new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE));
 
     }
 
