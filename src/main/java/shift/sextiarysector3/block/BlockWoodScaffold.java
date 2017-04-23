@@ -64,6 +64,11 @@ public class BlockWoodScaffold extends BlockScaffold implements IMetaItem {
     }
 
     @Override
+    public int damageDropped(IBlockState state) {
+        return this.getMetaFromState(state);
+    }
+
+    @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] { WOOD });
     }
