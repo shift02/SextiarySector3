@@ -1,0 +1,48 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "sextiarysector3:blocks/industry/wood_gearbox",
+      "connect":"sextiarysector3:blocks/industry/wood_gearbox_off"
+    },
+    "transform": "forge:default-block",
+    "uvlock": false
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "power":{
+      "true":{"textures": {"connect": "sextiarysector3:blocks/industry/wood_gearbox_on"}},
+      "false":{}
+    },
+    "down":{
+      "true":{"textures": {"down": "#connect"}},
+      "false":{}
+    },
+    "up":{
+      "true":{"textures": {"up": "#connect"}},
+      "false":{}
+    },
+    "north":{
+      "true":{"textures": {"north": "#connect"}},
+      "false":{}
+    },
+    "south":{
+      "true":{"textures": {"south": "#connect"}},
+      "false":{}
+    },
+    "west":{
+      "true":{"textures": {"west": "#connect"}},
+      "false":{}
+    },
+    "east":{
+      "true":{"textures": {"east": "#connect"}},
+      "false":{}
+    }
+  }
+}

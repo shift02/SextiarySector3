@@ -9,6 +9,7 @@ import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.block.BlockConveyor;
 import shift.sextiarysector3.block.BlockCreativeGF;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
+import shift.sextiarysector3.block.BlockGearBox;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockMapleSapling;
 import shift.sextiarysector3.block.BlockSSBase;
@@ -93,6 +94,8 @@ public class SSBlocks {
     public static Block creativeGF;
 
     public static Block woodShaft;
+
+    public static Block woodGearBox;
 
     public static Block conveyor;
 
@@ -218,6 +221,9 @@ public class SSBlocks {
         woodShaft = new BlockShaft(Material.WOOD).setUnlocalizedName("ss.wood_shaft").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntityShaft.class, SextiarySector3.MODID + ":" + "shaft");
         UtilRegistry.registerTESRBlock(woodShaft, TileEntityShaft.class, "wood_shaft", "wood_shaft");
+
+        woodGearBox = new BlockGearBox(Material.IRON).setUnlocalizedName("ss.wood_gearbox").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        UtilRegistry.registerNormalBlock(woodGearBox, "wood_gearbox", "industry/wood_gearbox");
 
         conveyor = new BlockConveyor(Material.IRON).setUnlocalizedName("ss.conveyor").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntityConveyor.class, SextiarySector3.MODID + ":" + "conveyor");
