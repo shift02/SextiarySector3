@@ -13,9 +13,9 @@ import shift.sextiarysector3.SextiarySector3;
 import shift.sextiarysector3.api.energy.CapabilityShaftHandler;
 import shift.sextiarysector3.block.BlockShaft;
 import shift.sextiarysector3.renderer.model.ModelShaft;
-import shift.sextiarysector3.tileentity.TileEntityShaft;
+import shift.sextiarysector3.tileentity.TileEntityShaftOld;
 
-public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
+public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld> {
 
     public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
 
@@ -93,7 +93,8 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
         this.bindTexture(MC_BLOCK_SHEET);
     }
 
-    private static final ResourceLocation woodShaftTextures = new ResourceLocation(SextiarySector3.MODID, "textures/models/shaft/wood_shaft_off.png");
+    private static final ResourceLocation woodShaftTextures = new ResourceLocation(SextiarySector3.MODID, "textures/models/shaft/wood_shaft.png");
+    //private static final ResourceLocation woodShaftTextures = new ResourceLocation(SextiarySector3.MODID, "textures/models/shaft/wood_shaft_off.png");
     private static final ResourceLocation woodShaftOnTextures = new ResourceLocation(SextiarySector3.MODID, "textures/models/shaft/wood_shaft_on.png");
     private static final ResourceLocation stoneShaftTextures = new ResourceLocation("sextiarysector:textures/models/stone_shaft.png");
     private static final ResourceLocation steelShaftTextures = new ResourceLocation("sextiarysector:textures/models/steel_shaft.png");
@@ -103,7 +104,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
     static public ModelShaft modelShaft = new ModelShaft();
 
     @Override
-    public void renderTileEntityAt(TileEntityShaft tileentity, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void renderTileEntityAt(TileEntityShaftOld tileentity, double x, double y, double z, float partialTicks, int destroyStage) {
 
         if (tileentity == null) {
 
@@ -111,7 +112,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             return;
         }
 
-        TileEntityShaft tile = tileentity;
+        TileEntityShaftOld tile = tileentity;
 
         //System.out.println("renderTileEntityAt");]
 
@@ -133,11 +134,11 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
             GlStateManager.matrixMode(5888);
         } else {
-            if (tileentity.getRotateNowStep() == tileentity.getRotateOldStep()) {
-                this.bindTexture(woodShaftTextures);
-            } else {
-                this.bindTexture(woodShaftOnTextures);
-            }
+            //if (tileentity.getRotateNowStep() == tileentity.getRotateOldStep()) {
+            this.bindTexture(woodShaftTextures);
+            ///} else {
+            //    this.bindTexture(woodShaftOnTextures);
+            //}
         }
 
         /*
@@ -187,17 +188,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
             break;
         }
 
-        if (!this.isIn(tileentity, state.getValue(BlockShaft.FACING))) {
-            modelShaft.renderIn(null, 0, 0, 0, 0, 0, 1.0f);
-        }
-
-        if (!this.isOut(tileentity, state.getValue(BlockShaft.FACING))) {
-            modelShaft.renderOut(null, 0, 0, 0, 0, 0, 1.0f);
-        }
-
         GL11.glPopMatrix();
-
-        if (f.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f = f.getOpposite();
 
         switch (f) {
         case UP:
@@ -218,6 +209,14 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
         default:
             break;
         }
+
+        //if (!this.isIn(tileentity, state.getValue(BlockShaft.FACING))) {
+        modelShaft.renderIn(null, 0, 0, 0, 0, 0, 1.0f);
+        //}
+
+        //if (!this.isOut(tileentity, state.getValue(BlockShaft.FACING))) {
+        modelShaft.renderOut(null, 0, 0, 0, 0, 0, 1.0f);
+        //}
 
         //傾きのスピード
         float rotate = lerp(tile.getRotateOldStep(), tile.getRotateNowStep(), partialTicks);
