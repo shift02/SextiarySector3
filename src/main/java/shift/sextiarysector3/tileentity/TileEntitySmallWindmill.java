@@ -12,10 +12,14 @@ import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
+import shift.sextiarysector3.api.energy.CapabilityGearForce;
 import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
+import shift.sextiarysector3.api.energy.IGearForceStorage;
 import shift.sextiarysector3.block.BlockSmallWindmill;
 
 public class TileEntitySmallWindmill extends TileEntity implements ITickable {
+
+    public GFPowerSource gf;
 
     public GFTank tank;
 
@@ -28,6 +32,8 @@ public class TileEntitySmallWindmill extends TileEntity implements ITickable {
         super();
 
         tank = new GFTank();
+
+        this.gf = new GFPowerSource(1, 8);
 
     }
 
@@ -65,6 +71,10 @@ public class TileEntitySmallWindmill extends TileEntity implements ITickable {
         if (work != oldWork) {
             IBlockState state = this.worldObj.getBlockState(getPos());
             this.worldObj.notifyBlockUpdate(pos, state, state, 3);
+        }
+
+        if (work) {
+            this.addEnergy();
         }
 
         oldWork = work;
@@ -106,6 +116,21 @@ public class TileEntitySmallWindmill extends TileEntity implements ITickable {
         }
 
         return true;
+    }
+
+    public void addEnergy() {
+
+        EnumFacing f = this.getFacing();
+
+        TileEntity te = this.worldObj.getTileEntity(getPos().offset(f));
+        if (te == null) return;
+        if (!te.hasCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite())) return;
+
+        IGearForceStorage gfs = te.getCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite());
+        if (!gfs.canReceive()) return;
+
+        gfs.receiveSpeed(gf.getPowerStored(), gf.getSpeedStored(), false);
+
     }
 
     public boolean isWorkR() {
