@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
-import shift.sextiarysector3.api.energy.CapabilityShaftHandler;
+import shift.sextiarysector3.api.industry.CapabilityShaftHandler;
 import shift.sextiarysector3.module.IModule;
 import shift.sextiarysector3.module.ModuleColor;
 import shift.sextiarysector3.module.ModuleSap;
