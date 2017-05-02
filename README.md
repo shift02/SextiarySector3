@@ -8,3 +8,7 @@ Minecraftに第六次産業の概念を追加するMOD
 ## Localization
 
 https://github.com/shift02/SextiarySector3-Localization
+
+## Link
+
+http://forum.minecraftuser.jp/viewtopic.php?f=13&t=32954
