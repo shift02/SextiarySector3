@@ -10,8 +10,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import shift.sextiarysector3.SextiarySector3;
-import shift.sextiarysector3.api.energy.CapabilityShaftHandler;
-import shift.sextiarysector3.block.BlockShaft;
+import shift.sextiarysector3.api.industry.CapabilityShaftHandler;
+import shift.sextiarysector3.api.industry.IShaft;
 import shift.sextiarysector3.renderer.model.ModelShaft;
 import shift.sextiarysector3.tileentity.TileEntityShaftOld;
 
@@ -162,9 +162,11 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
 
         GlStateManager.enableRescaleNormal();
 
-        IBlockState state = tileentity.getWorld().getBlockState(tileentity.getPos());
+        IShaft is = tileentity.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null);
 
-        EnumFacing f = state.getValue(BlockShaft.FACING);
+        //IBlockState state = tileentity.getWorld().getBlockState(tileentity.getPos());
+
+        EnumFacing f = is.getFacing();//state.getValue(BlockShaft.FACING);
 
         GL11.glPushMatrix();
 
@@ -210,13 +212,13 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
             break;
         }
 
-        //if (!this.isIn(tileentity, state.getValue(BlockShaft.FACING))) {
-        modelShaft.renderIn(null, 0, 0, 0, 0, 0, 1.0f);
-        //}
+        if (!this.isIn(tileentity, f)) {
+            modelShaft.renderIn(null, 0, 0, 0, 0, 0, 1.0f);
+        }
 
-        //if (!this.isOut(tileentity, state.getValue(BlockShaft.FACING))) {
-        modelShaft.renderOut(null, 0, 0, 0, 0, 0, 1.0f);
-        //}
+        if (!this.isOut(tileentity, f)) {
+            modelShaft.renderOut(null, 0, 0, 0, 0, 0, 1.0f);
+        }
 
         //傾きのスピード
         float rotate = lerp(tile.getRotateOldStep(), tile.getRotateNowStep(), partialTicks);
@@ -321,13 +323,13 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
         pos = pos.offset(facing);
 
         TileEntity tile2 = tileentity.getWorld().getTileEntity(pos);
-        IBlockState state2 = tileentity.getWorld().getBlockState(pos);
+        //IBlockState state2 = tileentity.getWorld().getBlockState(pos);
         boolean hasShaft = false;
         if (tile2 != null) {
             hasShaft = tile2.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null);
         }
 
-        if (hasShaft && state2.getValue(BlockShaft.FACING).getAxis() == state.getValue(BlockShaft.FACING).getAxis()) {
+        if (hasShaft && tile2.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null).getFacing() == facing) {
             return true;
         } else {
             return false;
@@ -349,7 +351,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
             hasShaft = tile2.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null);
         }
 
-        if (hasShaft && state2.getValue(BlockShaft.FACING).getAxis() == state.getValue(BlockShaft.FACING).getAxis()) {
+        if (hasShaft && tile2.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, null).getFacing() == facing) {
             return true;
         } else {
             return false;
