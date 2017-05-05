@@ -82,7 +82,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
         GL11.glRotatef(90, 1, 0, 0);
         //GlStateManager.translate(0.5F, 2.5F, 0.5F);
 
-        this.bindTexture(woodShaftTextures);
+        this.bindTexture(this.getTexture());
 
         modelShaft.render(null, 0, 0, 0, 0, 0, 1.0f);
         modelShaft.renderIn(null, 0, 0, 0, 0, 0, 1.0f);
@@ -135,7 +135,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
             GlStateManager.matrixMode(5888);
         } else {
             //if (tileentity.getRotateNowStep() == tileentity.getRotateOldStep()) {
-            this.bindTexture(woodShaftTextures);
+            this.bindTexture(this.getTexture());
             ///} else {
             //    this.bindTexture(woodShaftOnTextures);
             //}
@@ -283,6 +283,11 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
         } else {
             return false;
         }
+
+    }
+
+    public ResourceLocation getTexture() {
+        return woodShaftTextures;
 
     }
 
