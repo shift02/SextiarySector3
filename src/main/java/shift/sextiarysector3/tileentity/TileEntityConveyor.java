@@ -18,7 +18,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
+import shift.sextiarysector3.api.energy.CapabilityGearForce;
+import shift.sextiarysector3.api.energy.GearForceStorage;
 import shift.sextiarysector3.block.BlockConveyor;
 import shift.sextiarysector3.entity.EntityConveyorItem;
 import shift.sextiarysector3.util.UtilCompat;
@@ -54,6 +55,10 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
 
     //in
     protected EnumFacing oldF = null;
+    //GFで動作しているか
+    protected boolean oldGFCore = false;
+
+    public GearForceConveyorStorage storageIn = new GearForceConveyorStorage(1, 32, true, false);
 
     @Override
     public void update() {
@@ -255,28 +260,35 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
         EnumFacing mF = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING);
 
         //周りからGFを探す
-        for (EnumFacing f : EnumFacing.VALUES) {
 
+        if (this.storageIn.getSpeedStored() > 0) {
+            power = 100;
+            this.storageIn.clearSpeed();
+            oldGFCore = true;
+        }
+        /*
+        for (EnumFacing f : EnumFacing.VALUES) {
+        
             if (f == EnumFacing.UP) continue;
             if (f == mF) continue;
             if (f == mF.getOpposite()) continue;
-
+        
             //IBlockState state = this.worldObj.getBlockState(getPos().offset(f));
             TileEntity tE = this.worldObj.getTileEntity(getPos().offset(f));
-
+        
             if (tE == null) continue;
-
+        
             if (tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite())) {
-
+        
                 int p = tE.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite()).getPower();
-
+        
                 if (p > 0) {
                     power = 100;
                     oldF = f;
                 }
             }
-
-        }
+        
+        }*/
 
         //１個前のTickを元に取得
         if (power == 0 && oldF != null) {
@@ -286,7 +298,7 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
         }
 
         //周りのコンベアから取得
-        if (power == 0 && oldF == null) {
+        if (power == 0 && oldF == null && !this.oldGFCore) {
             for (EnumFacing f : EnumFacing.VALUES) {
 
                 if (f == EnumFacing.UP) continue;
@@ -306,7 +318,10 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
             }
         }
 
-        if (power == 0) oldF = null;
+        if (power == 0) {
+            oldF = null;
+            oldGFCore = false;
+        }
 
     }
 
@@ -315,18 +330,21 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
         int power = 0;
 
         //GF
+        /*
         TileEntity tE = this.worldObj.getTileEntity(getPos().offset(oldF));
-
+        
         if (tE == null) return 0;
-
+        
         if (tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, oldF.getOpposite())) {
-
+        
             int p = tE.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, oldF.getOpposite()).getPower();
-
+        
             if (p > 0) {
                 power = 100;
             }
-        }
+        }*/
+
+        TileEntity tE = this.worldObj.getTileEntity(getPos().offset(oldF));
 
         if (power == 0) {
             //コンベア
@@ -387,6 +405,10 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing == f) {
             return true;
         }
+
+        if (capability == CapabilityGearForce.GEAR_FORCE && isConnectGF(facing)) {
+            return true;
+        }
         return super.hasCapability(capability, facing);
     }
 
@@ -407,7 +429,23 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
             return (T) this.inItem;
         }
 
+        if (capability == CapabilityGearForce.GEAR_FORCE && isConnectGF(facing)) {
+            return (T) this.storageIn;
+        }
+
         return super.getCapability(capability, facing);
+    }
+
+    private boolean isConnectGF(EnumFacing facing) {
+
+        EnumFacing f = this.worldObj.getBlockState(getPos()).getValue(BlockConveyor.FACING).rotateY();
+
+        if (facing == null) return true;
+        if (facing == f) return true;
+        if (facing == f.getOpposite()) return true;
+
+        return false;
+
     }
 
     // NBT関係
@@ -443,6 +481,24 @@ public class TileEntityConveyor extends TileEntity implements ITickable {
         this.readFromNBT(pkt.getNbtCompound());
         IBlockState state = this.worldObj.getBlockState(getPos());
         this.worldObj.notifyBlockUpdate(pos, state, state, 3);
+    }
+
+    public class GearForceConveyorStorage extends GearForceStorage {
+
+        public GearForceConveyorStorage(int power, int capacity, boolean isReceive, boolean isExtract) {
+            super(power, capacity, isReceive, isExtract);
+        }
+
+        protected void clearSpeed() {
+            this.power = 0;
+            this.speed = 0;
+        }
+
+        protected void setPowerSpeed(int pw, int sp) {
+            this.power = pw;
+            this.speed = sp;
+        }
+
     }
 
 }
