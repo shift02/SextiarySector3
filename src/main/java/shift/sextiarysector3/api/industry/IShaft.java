@@ -4,6 +4,8 @@ import net.minecraft.util.EnumFacing;
 
 public interface IShaft {
 
+    public String getType();
+
     public float getRotateOldStep();
 
     public float getRotateNowStep();

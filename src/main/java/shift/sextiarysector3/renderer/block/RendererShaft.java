@@ -13,9 +13,9 @@ import shift.sextiarysector3.SextiarySector3;
 import shift.sextiarysector3.api.industry.CapabilityShaftHandler;
 import shift.sextiarysector3.api.industry.IShaft;
 import shift.sextiarysector3.renderer.model.ModelShaft;
-import shift.sextiarysector3.tileentity.TileEntityShaftOld;
+import shift.sextiarysector3.tileentity.TileEntityShaft;
 
-public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld> {
+public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaft> {
 
     public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
 
@@ -104,15 +104,13 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
     static public ModelShaft modelShaft = new ModelShaft();
 
     @Override
-    public void renderTileEntityAt(TileEntityShaftOld tileentity, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void renderTileEntityAt(TileEntityShaft tileentity, double x, double y, double z, float partialTicks, int destroyStage) {
 
         if (tileentity == null) {
 
             renderInventoryBlock();
             return;
         }
-
-        TileEntityShaftOld tile = tileentity;
 
         //System.out.println("renderTileEntityAt");]
 
@@ -221,7 +219,7 @@ public class RendererShaft extends TileEntitySpecialRenderer<TileEntityShaftOld>
         }
 
         //傾きのスピード
-        float rotate = lerp(tile.getRotateOldStep(), tile.getRotateNowStep(), partialTicks);
+        float rotate = lerp(is.getRotateOldStep(), is.getRotateNowStep(), partialTicks);
         GL11.glRotatef(rotate, 0, 0, 1);
 
         modelShaft.render(null, 0, 0, 0, 0, 0, 1.0f);

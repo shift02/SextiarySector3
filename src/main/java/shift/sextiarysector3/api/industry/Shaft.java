@@ -4,9 +4,20 @@ import net.minecraft.util.EnumFacing;
 
 public class Shaft implements IShaft {
 
+    protected String name;
+
     float old = 0;
     float now = 0;
     EnumFacing f = EnumFacing.WEST;
+
+    public Shaft(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getType() {
+        return name;
+    }
 
     @Override
     public float getRotateOldStep() {
