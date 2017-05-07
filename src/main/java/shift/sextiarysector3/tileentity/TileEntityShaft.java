@@ -8,159 +8,98 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
-import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
-import shift.sextiarysector3.api.energy.CapabilityShaftHandler;
-import shift.sextiarysector3.api.energy.IGearForceHandler;
-import shift.sextiarysector3.api.energy.IShaft;
-import shift.sextiarysector3.api.energy.Shaft;
+import shift.sextiarysector3.api.energy.CapabilityGearForce;
+import shift.sextiarysector3.api.energy.GearForceStorage;
+import shift.sextiarysector3.api.energy.IGearForceStorage;
+import shift.sextiarysector3.api.industry.CapabilityShaftHandler;
+import shift.sextiarysector3.api.industry.IShaft;
+import shift.sextiarysector3.api.industry.Shaft;
 import shift.sextiarysector3.block.BlockShaft;
 
-public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
+public class TileEntityShaft extends TileEntityTickable {
 
     public int speed;
     public int lastSpeed;
 
-    //public float rotateStep = 360;
-    //public float lastRotateStep = 360;
-
     public Shaft rotateStep;
-    public GFTank tank;
-    public IGFShaft gfShaft;
-
-    public EnumFacing.AxisDirection powerDirection;
+    public GearForceShaftStorage storageIn;
+    public GearForceShaftStorage storageOut;
 
     public TileEntityShaft() {
         super();
 
-        rotateStep = new Shaft();
-        tank = new GFTank();
-        gfShaft = CapabilityGFShaftHandler.GEAR_FORCE_SHAFT_CAPABILITY.getDefaultInstance();
+        rotateStep = new Shaft("wood");
+        storageIn = new GearForceShaftStorage(1, 16, true, false);
+        storageOut = new GearForceShaftStorage(1, 16, false, true);
 
     }
 
     @Override
-    public boolean canRenderBreaking() {
-        return true;
+    public void updateClient() {
+
+        if (!isCore()) return;
+
+        rotateStep.setRotateOldStep(rotateStep.getRotateNowStep());
+        rotateStep.setRotateNowStep(rotateStep.getRotateNowStep() + speed);
+
+        this.setAllRotate(rotateStep.getRotateOldStep(), rotateStep.getRotateNowStep());
+
     }
 
     @Override
-    public float getRotateOldStep() {
-        return rotateStep.getRotateOldStep();
+    public void updateServer() {
+
+        //Clientと同期
+        if (speed != lastSpeed) {
+            IBlockState state = this.worldObj.getBlockState(getPos());
+            this.worldObj.notifyBlockUpdate(pos, state, state, 3);
+        }
+        lastSpeed = speed;
+
+        addEnergy();
+
+        speed = storageIn.getSpeedStored();
+
+        storageOut.setPowerSpeed(storageIn.getPowerStored(), speed);
+
+        storageIn.clearSpeed();
+
     }
 
-    @Override
-    public float getRotateNowStep() {
-        return rotateStep.getRotateNowStep();
+    public void addEnergy() {
+
+        if (storageOut.getSpeedStored() == 0) return;
+
+        EnumFacing f = this.getFacing();
+
+        TileEntity te = this.worldObj.getTileEntity(getPos().offset(f));
+        if (te == null) return;
+        if (!te.hasCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite())) return;
+
+        IGearForceStorage gfs = te.getCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite());
+        if (!gfs.canReceive()) return;
+
+        gfs.receiveSpeed(storageOut.getPowerStored(), storageOut.getSpeedStored(), false);
+
     }
 
-    @Override
     public EnumFacing getFacing() {
         IBlockState state = this.worldObj.getBlockState(getPos());
         EnumFacing f = state.getValue(BlockShaft.FACING);
         return f;
     }
 
-    @Override
-    public void update() {
-        if (worldObj.isRemote) {
-            this.updateClient();
-        } else {
-            this.updateServer();
-        }
-    }
-
-    public void updateClient() {
-
-        if (!isCore()) return;
-        //System.out.println("AA" + getPos());
-
-        rotateStep.setRotateOldStep(this.getRotateNowStep());
-        rotateStep.setRotateNowStep(getRotateNowStep() + speed);
-
-        this.setAllRotate(getRotateOldStep(), getRotateNowStep());
-
-    }
-
-    public void updateServer() {
-
-        if (speed != lastSpeed) {
-            IBlockState state = this.worldObj.getBlockState(getPos());
-            this.worldObj.notifyBlockUpdate(pos, state, state, 3);
-            lastSpeed = speed;
-        }
-
-        if (!isCore()) return;
-
-        boolean addP = false;
-        int power = 0;
-        //power = speed;
-
-        //TODO
-
-        //ポジティブ側を取得
-        if (powerDirection != EnumFacing.AxisDirection.NEGATIVE) {
-
-            EnumFacing f = this.getFacing();
-            if (f.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f = f.getOpposite();
-            TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f));
-
-            IGearForceHandler gfH = getGF(tile, f.getOpposite());
-            if (gfH != null) {
-
-                if (gfH.getPower() > 0) {
-                    power = gfH.getPower();
-                    addP = true;
-                    powerDirection = EnumFacing.AxisDirection.POSITIVE;
-                }
-
-            }
-        }
-
-        //ネガティブ側
-
-        if (!addP && powerDirection != EnumFacing.AxisDirection.POSITIVE) {
-
-            EnumFacing f = this.getFacing();
-            if (f.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f = f.getOpposite();
-            TileEntity tile2 = this.worldObj.getTileEntity(getPos().offset(f, getNotShatf()));
-
-            IGearForceHandler gfH2 = getGF(tile2, f.getOpposite());
-            if (gfH2 != null) {
-
-                if (gfH2.getPower() > 0) {
-                    power = gfH2.getPower();
-                    powerDirection = EnumFacing.AxisDirection.NEGATIVE;
-                }
-
-            }
-
-        }
-
-        speed = power * 5;
-
-        this.tank.setPower(power);
-        this.gfShaft.setPower(power);
-        this.setAllPower(power);
-
-        if (power == 0) powerDirection = null;
-
-    }
-
-    /** ポジティブ側がコア */
     private boolean isCore() {
 
-        EnumFacing f = this.getFacing();
-        if (f.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f = f.getOpposite();
-        TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f));
+        EnumFacing f = this.getFacing().getOpposite();
 
-        if (tile == null) return true;
-        if (!tile.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f)) return true;
-
-        EnumFacing f2 = tile.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f).getFacing();
-        if (f2.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE) f2 = f2.getOpposite();
-        if (f2 != f) return true;
+        TileEntity te = this.worldObj.getTileEntity(getPos().offset(f));
+        if (te == null) return true;
+        if (!te.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f.getOpposite())) return true;
+        IShaft is = te.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f.getOpposite());
+        if (is.getType() != this.rotateStep.getType()) return true;
+        if (is.getFacing() != this.getFacing()) return true;
 
         return false;
 
@@ -178,41 +117,17 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
 
     }
 
-    private void setAllPower(int power) {
-
-        for (int i = 1; isShaft(i); i++) {
-
-            IGFShaft s = getGFShaft(i);
-            s.setPower(power);
-
-        }
-
-    }
-
-    private int getNotShatf() {
-
-        int i = 1;
-
-        for (; isShaft(i); i++) {
-
-        }
-
-        return i;
-    }
-
-    /** ネガティブの方のシャフトを調べる -1 */
     private boolean isShaft(int ofset) {
 
         EnumFacing f = this.getFacing();
-        if (f.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f = f.getOpposite();
-        TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f, ofset));
 
-        if (tile == null) return false;
-        if (!tile.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f)) return false;
+        TileEntity te = this.worldObj.getTileEntity(getPos().offset(f, ofset));
 
-        EnumFacing f2 = tile.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f).getFacing();
-        if (f2.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f2 = f2.getOpposite();
-        if (f2 != f) return false;
+        if (te == null) return false;
+        if (!te.hasCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f.getOpposite())) return false;
+        IShaft is = te.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f.getOpposite());
+        if (is.getType() != this.rotateStep.getType()) return false;
+        if (is.getFacing() != this.getFacing()) return false;
 
         return true;
 
@@ -221,28 +136,10 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
     private IShaft getShaft(int ofset) {
 
         EnumFacing f = this.getFacing();
-        if (f.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f = f.getOpposite();
-        TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f, ofset));
 
-        return tile.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f);
-    }
+        TileEntity te = this.worldObj.getTileEntity(getPos().offset(f, ofset));
 
-    private IGFShaft getGFShaft(int ofset) {
-
-        EnumFacing f = this.getFacing();
-        if (f.getAxisDirection() == EnumFacing.AxisDirection.POSITIVE) f = f.getOpposite();
-        TileEntity tile = this.worldObj.getTileEntity(getPos().offset(f, ofset));
-
-        return tile.getCapability(CapabilityGFShaftHandler.GEAR_FORCE_SHAFT_CAPABILITY, f);
-    }
-
-    private IGearForceHandler getGF(TileEntity tile, EnumFacing f) {
-
-        if (tile == null) return null;
-
-        if (!tile.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f)) return null;
-
-        return tile.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f);
+        return te.getCapability(CapabilityShaftHandler.SHAFT_CAPABILITY, f.getOpposite());
 
     }
 
@@ -251,14 +148,12 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
         super.readFromNBT(par1nbtTagCompound);
         this.speed = par1nbtTagCompound.getInteger("speed");
-        this.gfShaft.setPower(par1nbtTagCompound.getInteger("gfshaft"));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
         NBTTagCompound nbt = super.writeToNBT(par1nbtTagCompound);
         nbt.setInteger("speed", speed);
-        nbt.setInteger("gfshaft", this.gfShaft.getPower());
         return nbt;
     }
 
@@ -276,34 +171,18 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.getNbtCompound());
-        //this.worldObj.markBlockForUpdate(this.pos);
         IBlockState state = this.worldObj.getBlockState(getPos());
         this.worldObj.notifyBlockUpdate(pos, state, state, 3);
     }
 
-    @Override
-    public void setRotateOldStep(float step) {
-
-        this.rotateStep.setRotateOldStep(step);
-
-    }
-
-    @Override
-    public void setRotateNowStep(float step) {
-
-        this.rotateStep.setRotateNowStep(step);
-
-    }
-
+    //Cap
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+
         if (capability == CapabilityShaftHandler.SHAFT_CAPABILITY) {
             return true;
         }
-        if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY && this.hasGFFacing(facing)) {
-            return true;
-        }
-        if (capability == CapabilityGFShaftHandler.GEAR_FORCE_SHAFT_CAPABILITY) {
+        if (capability == CapabilityGearForce.GEAR_FORCE && this.hasGearForce(facing)) {
             return true;
         }
         return super.hasCapability(capability, facing);
@@ -315,19 +194,44 @@ public class TileEntityShaft extends TileEntity implements IShaft, ITickable {
             rotateStep.setFacing(getFacing());
             return (T) rotateStep;
         }
-        if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY && this.hasGFFacing(facing)) {
-            tank.setPower(this.gfShaft.getPower());
-            return (T) tank;
+        if (capability == CapabilityGearForce.GEAR_FORCE && this.getFacing().getOpposite() == facing) {
+            return (T) storageIn;
         }
-        if (capability == CapabilityGFShaftHandler.GEAR_FORCE_SHAFT_CAPABILITY) {
-            return (T) gfShaft;
+        if (capability == CapabilityGearForce.GEAR_FORCE && this.getFacing() == facing) {
+            return (T) storageOut;
         }
+        if (capability == CapabilityGearForce.GEAR_FORCE && null == facing) {
+            return (T) storageOut;
+        }
+
         return super.getCapability(capability, facing);
     }
 
-    public boolean hasGFFacing(EnumFacing facing) {
-        EnumFacing f = this.getFacing();
-        return facing == null || f == facing || f == facing.getOpposite();
+    public boolean hasGearForce(EnumFacing facing) {
+
+        if (facing == null) return true;
+        if (this.getFacing() == facing) return true;
+        if (this.getFacing().getOpposite() == facing) return true;
+
+        return false;
+
+    }
+
+    public class GearForceShaftStorage extends GearForceStorage {
+
+        public GearForceShaftStorage(int power, int capacity, boolean isReceive, boolean isExtract) {
+            super(power, capacity, isReceive, isExtract);
+        }
+
+        protected void clearSpeed() {
+            this.power = 0;
+            this.speed = 0;
+        }
+
+        protected void setPowerSpeed(int pw, int sp) {
+            this.power = pw;
+            this.speed = sp;
+        }
 
     }
 
