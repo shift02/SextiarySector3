@@ -120,7 +120,7 @@ public class TileEntitySmallWindmill extends TileEntity implements ITickable {
 
     public void addEnergy() {
 
-        EnumFacing f = this.getFacing();
+        EnumFacing f = this.getFacing().getOpposite();
 
         TileEntity te = this.worldObj.getTileEntity(getPos().offset(f));
         if (te == null) return;
