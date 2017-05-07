@@ -31,6 +31,7 @@ import shift.sextiarysector3.item.ItemBlockMeta;
 import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
+import shift.sextiarysector3.tileentity.TileEntityGearBox;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
 import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector3.util.UtilRegistry;
@@ -223,6 +224,7 @@ public class SSBlocks {
         UtilRegistry.registerTESRBlock(woodShaft, TileEntityShaft.class, "wood_shaft", "wood_shaft");
 
         woodGearBox = new BlockGearBox(Material.IRON).setUnlocalizedName("ss.wood_gearbox").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerTileEntity(TileEntityGearBox.class, SextiarySector3.MODID + ":" + "gearbox");
         UtilRegistry.registerNormalBlock(woodGearBox, "wood_gearbox", "industry/wood_gearbox");
 
         conveyor = new BlockConveyor(Material.IRON).setUnlocalizedName("ss.conveyor").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
