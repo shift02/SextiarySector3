@@ -30,7 +30,10 @@ public class GearForceStorage implements IGearForceStorage {
         if (power != powerCapacity) return 0;
 
         int energyReceived = Math.min(maxReceive, speedCapacity);
-        if (!simulate) speed = energyReceived;
+        if (!simulate) {
+            this.power = power;
+            speed = energyReceived;
+        }
         return energyReceived;
 
     }
