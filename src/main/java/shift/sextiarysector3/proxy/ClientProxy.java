@@ -1,9 +1,11 @@
 package shift.sextiarysector3.proxy;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,9 +28,11 @@ import shift.sextiarysector3.renderer.RenderEntityConveyorItem;
 import shift.sextiarysector3.renderer.RendererShield;
 import shift.sextiarysector3.renderer.block.RendererConveyor;
 import shift.sextiarysector3.renderer.block.RendererShaft;
+import shift.sextiarysector3.renderer.block.RendererSmallWindmill;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
 import shift.sextiarysector3.tileentity.TileEntityShield;
+import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector3.util.DefaultStateMapper;
 
 public class ClientProxy extends CommonProxy {
@@ -48,6 +52,19 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
+    public void setCustomModelResourceLocation(Item item, int metadata, String resource, IBlockState state) {
+
+        ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
+
+        //バリアントを足す
+        String variant = propertyStringMapper.getPropertyString(state.getProperties());
+
+        // アイテム状態の登録
+        ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(l, variant));
+
+    }
+
+    @Override
     public void setCustomStateMapper(Block block, String resource) {
 
         ResourceLocation l = new ResourceLocation(SextiarySector3.MODID, resource);
@@ -56,6 +73,13 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomStateMapper(block, new DefaultStateMapper(l));
 
     }
+
+    private final StateMapperBase propertyStringMapper = new StateMapperBase() {
+        @Override
+        protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+            return new ModelResourceLocation("minecraft:stone");
+        }
+    };
 
     @Override
     public <T extends TileEntity> void setCustomTileEntitySpecialRenderer(Item itemBlock,
@@ -76,6 +100,8 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShaft.class, new RendererShaft());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConveyor.class, new RendererConveyor());
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWindmill.class, new RendererSmallWindmill());
 
         //En
 

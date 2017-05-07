@@ -21,6 +21,7 @@ public class BlockSSBase extends Block {
         this.setCreativeTab(SextiarySectorAPI.TabSSCore);
     }
 
+    @Override
     public int quantityDropped(Random random) {
         return this.getDropSize();
     }

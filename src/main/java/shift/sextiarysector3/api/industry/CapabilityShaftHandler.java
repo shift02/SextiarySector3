@@ -1,4 +1,4 @@
-package shift.sextiarysector3.api.energy;
+package shift.sextiarysector3.api.industry;
 
 import java.util.concurrent.Callable;
 

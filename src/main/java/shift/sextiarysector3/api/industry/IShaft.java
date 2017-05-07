@@ -1,8 +1,10 @@
-package shift.sextiarysector3.api.energy;
+package shift.sextiarysector3.api.industry;
 
 import net.minecraft.util.EnumFacing;
 
 public interface IShaft {
+
+    public String getType();
 
     public float getRotateOldStep();
 

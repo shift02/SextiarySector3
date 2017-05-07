@@ -19,7 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
+import shift.sextiarysector3.api.energy.CapabilityGearForce;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 
 public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvider {
@@ -114,7 +114,7 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
         f = f.rotateY();
         TileEntity tE = worldIn.getTileEntity(pos.offset(f));
         if (tE == null) return false;
-        if (!tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite())) return false;
+        if (!tE.hasCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite())) return false;
 
         return true;
 
@@ -127,7 +127,7 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
         f = f.rotateY().getOpposite();
         TileEntity tE = worldIn.getTileEntity(pos.offset(f));
         if (tE == null) return false;
-        if (!tE.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite())) return false;
+        if (!tE.hasCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite())) return false;
 
         return true;
 

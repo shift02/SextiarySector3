@@ -9,6 +9,7 @@ import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.block.BlockConveyor;
 import shift.sextiarysector3.block.BlockCreativeGF;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
+import shift.sextiarysector3.block.BlockGearBox;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockMapleSapling;
 import shift.sextiarysector3.block.BlockSSBase;
@@ -25,9 +26,12 @@ import shift.sextiarysector3.block.BlockSapCauldron.Sap;
 import shift.sextiarysector3.block.BlockShaft;
 import shift.sextiarysector3.block.BlockSmallWindmill;
 import shift.sextiarysector3.block.BlockSpile;
+import shift.sextiarysector3.block.BlockWoodScaffold;
+import shift.sextiarysector3.item.ItemBlockMeta;
 import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
+import shift.sextiarysector3.tileentity.TileEntityGearBox;
 import shift.sextiarysector3.tileentity.TileEntityShaft;
 import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector3.util.UtilRegistry;
@@ -86,9 +90,13 @@ public class SSBlocks {
     public static Block plasticBlock;
     public static Block rubberBlock;
 
+    public static Block woodScaffold;
+
     public static Block creativeGF;
 
     public static Block woodShaft;
+
+    public static Block woodGearBox;
 
     public static Block conveyor;
 
@@ -202,6 +210,10 @@ public class SSBlocks {
         rubberBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.rubber_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalBlock(rubberBlock, "rubber_block", "rubber_block");
 
+        //足場
+        woodScaffold = new BlockWoodScaffold().setUnlocalizedName("ss.wood_scaffold").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        UtilRegistry.registerNormalBlock(woodScaffold, new ItemBlockMeta(woodScaffold), "wood_scaffold", "industry/wood_scaffold");
+
         //GF
         creativeGF = new BlockCreativeGF().setUnlocalizedName("ss.creative_gf_tank").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntityCreativeGFTank.class, SextiarySector3.MODID + ":" + "creative_gf_tank");
@@ -211,13 +223,17 @@ public class SSBlocks {
         GameRegistry.registerTileEntity(TileEntityShaft.class, SextiarySector3.MODID + ":" + "shaft");
         UtilRegistry.registerTESRBlock(woodShaft, TileEntityShaft.class, "wood_shaft", "wood_shaft");
 
+        woodGearBox = new BlockGearBox(Material.IRON).setUnlocalizedName("ss.wood_gearbox").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerTileEntity(TileEntityGearBox.class, SextiarySector3.MODID + ":" + "gearbox");
+        UtilRegistry.registerNormalBlock(woodGearBox, "wood_gearbox", "industry/wood_gearbox");
+
         conveyor = new BlockConveyor(Material.IRON).setUnlocalizedName("ss.conveyor").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntityConveyor.class, SextiarySector3.MODID + ":" + "conveyor");
         UtilRegistry.registerNormalBlock(conveyor, "conveyor", "industry/conveyor");
 
-        smallWindmill = new BlockSmallWindmill().setUnlocalizedName("ss.wood_shaft").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        smallWindmill = new BlockSmallWindmill().setUnlocalizedName("ss.wood_shaft").setHardness(4.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, SextiarySector3.MODID + ":" + "small_windmill");
-        UtilRegistry.registerTESRBlock(smallWindmill, TileEntitySmallWindmill.class, "small_windmill", "small_windmill");
+        UtilRegistry.registerTESRBlock(smallWindmill, TileEntitySmallWindmill.class, "small_windmill", "industry/small_windmill");
 
         //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);

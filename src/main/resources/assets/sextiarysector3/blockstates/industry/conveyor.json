@@ -35,11 +35,13 @@
     "power":{
       "true":{
         "textures": {
-          "base_side": "sextiarysector3:blocks/industry/conveyor_side_on"
+          "base_side": "sextiarysector3:blocks/industry/conveyor_side_on",
+          "base_gf_side": "sextiarysector3:blocks/industry/conveyor_side_gf_on"
         }},
       "false":{
         "textures": {
           "base_side": "sextiarysector3:blocks/industry/conveyor_side",
+          "base_gf_side": "sextiarysector3:blocks/industry/conveyor_side_gf",
           "rubber": "sextiarysector3:blocks/industry/conveyor_rubber_off",
           "rubber_up": "sextiarysector3:blocks/industry/conveyor_rubber_off",
           "rubber_down": "sextiarysector3:blocks/industry/conveyor_rubber_off"
