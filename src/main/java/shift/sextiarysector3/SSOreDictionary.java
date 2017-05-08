@@ -47,6 +47,9 @@ public class SSOreDictionary {
         OreDictionary.registerOre("plastic", SSItems.plastic);
         OreDictionary.registerOre("rubber", SSItems.rubber);
 
+        //Gear
+        OreDictionary.registerOre("gearWood", SSItems.woodGear);
+
         OreDictionary.registerOre("itemDepthMeter", SSItems.depthMeter);
 
         OreDictionary.registerOre("blockWool", new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE));

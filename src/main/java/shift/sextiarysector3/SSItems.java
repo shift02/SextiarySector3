@@ -93,6 +93,8 @@ public class SSItems {
 
     public static Item blueGel;
 
+    public static Item woodGear;
+
     public static Item rubberGloves;
 
     public static Item ductTape;
@@ -243,6 +245,9 @@ public class SSItems {
 
         blueGel = new ItemSSBase().setUnlocalizedName("ss.blue_gel").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalItem(blueGel, "blue_gel", "gel/blue_gel");
+
+        woodGear = new ItemSSBase().setUnlocalizedName("ss.wood_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        UtilRegistry.registerNormalItem(woodGear, "wood_gear", "gear/wood_gear");
 
         rubberGloves = new ItemRubberGroves().setUnlocalizedName("ss.rubber_gloves").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerToolItem(rubberGloves, "rubber_gloves", "tool/rubber_gloves");

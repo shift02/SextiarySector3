@@ -37,6 +37,24 @@ public class RecipesIndustry {
                         "slimeball"
                 }));
 
+        //歯車
+        String[] MATERIAL = new String[] {
+                "plankWood"
+        };
+        ItemStack[] GEAR = new ItemStack[] {
+                new ItemStack(SSItems.woodGear, 2)
+        };
+        for (int i = 0; i < MATERIAL.length; i++) {
+
+            p_77608_1_.getRecipeList().add(new ShapedOreRecipe(GEAR[i],
+                    new Object[] {
+                            " x ", "xyx", " x ",
+                            'x', MATERIAL[i],
+                            'y', "dustBluestone"
+                    }));
+
+        }
+
         //足場ブロック
         ItemStack[] PLANKS = new ItemStack[] {
                 new ItemStack(Blocks.PLANKS, 1, 0),
@@ -72,6 +90,14 @@ public class RecipesIndustry {
                         'x', "plankWood",
                         'y', "dustBluestone",
                         'z', SSItems.blueGel
+                }));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.woodGearBox),
+                new Object[] {
+                        "xzx", "zyz", "xzx",
+                        'x', "plankWood",
+                        'y', "dustBluestone",
+                        'z', "gearWood"
                 }));
 
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.conveyor, 2),
