@@ -185,7 +185,7 @@ public class SSBlocks {
         ///diamondLargeOre = new BlockLargeOre(Items.COAL, Blocks.DIAMOND_ORE, 1).setUnlocalizedName("ss.diamond_large_ore");
         //UtilRegistry.registerNormalBlock(diamondLargeOre, "DiamondLargeOre", "ore/diamond_large_ore");
 
-        copperLargeOre = new BlockLargeOre(SSItems.coalDust, SSBlocks.copperOre, 2).setUnlocalizedName("ss.copper_large_ore");
+        copperLargeOre = new BlockLargeOre(SSItems.copperDust, SSBlocks.copperOre, 2).setUnlocalizedName("ss.copper_large_ore");
         UtilRegistry.registerNormalBlock(copperLargeOre, "copper_large_ore", "ore/copper_large_ore");
 
         silverLargeOre = new BlockLargeOre(SSItems.silverDust, SSBlocks.silverOre, 3).setUnlocalizedName("ss.silver_large_ore");
