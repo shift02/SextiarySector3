@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.api.energy.CapabilityGearForce;
-import shift.sextiarysector3.tileentity.TileEntityShaft;
+import shift.sextiarysector3.tileentity.shaft.TileEntityWoodShaft;
 import shift.sextiarysector3.util.UtilFacing;
 
 public class BlockShaft extends BlockSSDirectional implements ITileEntityProvider {
@@ -40,7 +40,7 @@ public class BlockShaft extends BlockSSDirectional implements ITileEntityProvide
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityShaft();
+        return new TileEntityWoodShaft();
     }
 
     @Override

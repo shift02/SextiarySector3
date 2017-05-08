@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.tileentity.TileEntityGearBox;
+import shift.sextiarysector3.tileentity.gearbox.TileEntityWoodGearBox;
 
 public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
 
@@ -106,7 +107,7 @@ public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityGearBox();
+        return new TileEntityWoodGearBox();
     }
 
     @Override

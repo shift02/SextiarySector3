@@ -143,6 +143,10 @@ public class TileEntityShaft extends TileEntityTickable {
 
     }
 
+    protected int getGFPower() {
+        return 1;
+    }
+
     // NBT関係
     @Override
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {

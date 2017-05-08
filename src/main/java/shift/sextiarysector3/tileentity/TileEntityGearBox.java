@@ -34,12 +34,12 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
 
         this.storagesIn = new GearForceGearBoxStorage[6];
         for (int i = 0; i < this.storagesIn.length; i++) {
-            this.storagesIn[i] = new GearForceGearBoxStorage(getGearBoxPower(), 32, true, false);
+            this.storagesIn[i] = new GearForceGearBoxStorage(getGFPower(), 32, true, false);
         }
 
         this.storagesOut = new GearForceGearBoxStorage[6];
         for (int i = 0; i < this.storagesIn.length; i++) {
-            this.storagesOut[i] = new GearForceGearBoxStorage(getGearBoxPower(), 32, false, true);
+            this.storagesOut[i] = new GearForceGearBoxStorage(getGFPower(), 32, false, true);
         }
 
     }
@@ -126,7 +126,7 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
                 IGearForceStorage gfs = te.getCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite());
                 if (!gfs.canReceive()) continue;
 
-                gfs.receiveSpeed(this.getGearBoxPower(), speed, false);
+                gfs.receiveSpeed(this.getGFPower(), speed, false);
 
             }
         }
@@ -151,7 +151,7 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
         return this.connects[side.getIndex()];
     }
 
-    protected int getGearBoxPower() {
+    protected int getGFPower() {
         return 1;
     }
 
