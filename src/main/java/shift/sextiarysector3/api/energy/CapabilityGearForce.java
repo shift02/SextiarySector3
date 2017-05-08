@@ -34,7 +34,7 @@ public class CapabilityGearForce {
                 new Callable<IGearForceStorage>() {
                     @Override
                     public IGearForceStorage call() throws Exception {
-                        return new GearForceStorage();
+                        return new GearForceStorage(1, 32);
                     }
                 });
 

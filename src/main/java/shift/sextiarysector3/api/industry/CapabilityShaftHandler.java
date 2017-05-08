@@ -70,6 +70,11 @@ public class CapabilityShaftHandler {
                     public EnumFacing getFacing() {
                         return f;
                     }
+
+                    @Override
+                    public String getType() {
+                        return "wood";
+                    }
                 };
             }
         });
