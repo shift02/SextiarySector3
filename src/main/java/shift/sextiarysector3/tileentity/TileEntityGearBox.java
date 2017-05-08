@@ -10,8 +10,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
+import shift.sextiarysector3.api.energy.CapabilityGearForce;
 import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
-import shift.sextiarysector3.api.energy.IGearForceHandler;
+import shift.sextiarysector3.api.energy.GearForceStorage;
+import shift.sextiarysector3.api.energy.IGearForceStorage;
+import shift.sextiarysector3.block.ConnectionType;
 
 public class TileEntityGearBox extends TileEntity implements ITickable {
 
@@ -19,9 +22,26 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
 
     public boolean[] oldOutPowers;
 
+    public ConnectionType[] connects;
+
+    public GearForceGearBoxStorage[] storagesIn;
+    public GearForceGearBoxStorage[] storagesOut;
+
     public TileEntityGearBox() {
         tank = new GFTank();
         this.oldOutPowers = new boolean[6];
+        this.connects = ConnectionType.newList();
+
+        this.storagesIn = new GearForceGearBoxStorage[6];
+        for (int i = 0; i < this.storagesIn.length; i++) {
+            this.storagesIn[i] = new GearForceGearBoxStorage(getGearBoxPower(), 32, true, false);
+        }
+
+        this.storagesOut = new GearForceGearBoxStorage[6];
+        for (int i = 0; i < this.storagesIn.length; i++) {
+            this.storagesOut[i] = new GearForceGearBoxStorage(getGearBoxPower(), 32, false, true);
+        }
+
     }
 
     @Override
@@ -39,65 +59,100 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
 
     private void updateServer() {
 
-        this.tank.setPower(0);
+        for (GearForceGearBoxStorage st : storagesOut) {
+            st.clearSpeed();
+        }
 
-        int power = this.getSidePower();
+        int speed = this.getSideSpeed();
 
         int size = 0;
-        for (int i = 0; i < this.oldOutPowers.length; i++) {
-            if (this.oldOutPowers[i]) size++;
+        for (ConnectionType con : connects) {
+            if (con == ConnectionType.OUT) size++;
         }
 
-        if (size == 0) {
-            this.tank.setPower(power);
-        } else {
-            this.tank.setPower(power / size);
+        if (size > 1) {
+            speed = speed / size;
         }
 
-        for (int i = 0; i < this.oldOutPowers.length; i++) {
-            this.oldOutPowers[i] = false;
-        }
+        if (speed != 0) addEnergy(speed);
 
     }
 
-    private int getSidePower() {
+    private int getSideSpeed() {
 
         int i = 0;
-        int power = 0;
+        int speed = 0;
 
-        for (EnumFacing f : EnumFacing.VALUES) {
+        for (GearForceGearBoxStorage gfh : storagesIn) {
 
-            TileEntity te = this.worldObj.getTileEntity(getPos().offset(f));
-
-            if (te == null) continue;
-            if (!te.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite())) continue;
-
-            IGearForceHandler gfh = te.getCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite());
-
-            if (gfh.getPower() == 0) continue;
+            if (gfh.getPowerStored() == 0) continue;
 
             if (i == 0) {
 
-                i = gfh.getPower();
-                power = i;
+                i = gfh.getSpeedStored();
+                speed = i;
 
             } else {
 
-                if (i != gfh.getPower()) {
+                if (i != gfh.getSpeedStored()) {
                     //TODO 壊れる
                     i = 0;
-                    power = 0;
+                    speed = 0;
                     break;
+
                 } else {
-                    power += gfh.getPower();
+                    speed += gfh.getSpeedStored();
                 }
 
             }
 
+            gfh.clearSpeed();
+
         }
 
-        return power;
+        return speed;
 
+    }
+
+    public void addEnergy(int speed) {
+
+        for (EnumFacing f : EnumFacing.VALUES) {
+            if (connects[f.getIndex()] == ConnectionType.OUT) {
+
+                TileEntity te = this.worldObj.getTileEntity(getPos().offset(f));
+                if (te == null) continue;
+                if (!te.hasCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite())) continue;
+
+                IGearForceStorage gfs = te.getCapability(CapabilityGearForce.GEAR_FORCE, f.getOpposite());
+                if (!gfs.canReceive()) continue;
+
+                gfs.receiveSpeed(this.getGearBoxPower(), speed, false);
+
+            }
+        }
+
+    }
+
+    public void changeConnect(EnumFacing side) {
+
+        ConnectionType ct = connects[side.getIndex()];
+        if (ct.ordinal() > 2) {
+            connects[side.getIndex()] = ConnectionType.values()[0];
+        } else {
+            connects[side.getIndex()] = ConnectionType.values()[ct.ordinal() + 1];
+        }
+
+        IBlockState state = this.worldObj.getBlockState(getPos());
+        this.worldObj.notifyBlockUpdate(pos, state, state, 3);
+
+    }
+
+    public ConnectionType getConnectionType(EnumFacing side) {
+        return this.connects[side.getIndex()];
+    }
+
+    protected int getGearBoxPower() {
+        return 1;
     }
 
     // NBT関係
@@ -105,12 +160,14 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
         super.readFromNBT(par1nbtTagCompound);
         tank.setPower(par1nbtTagCompound.getInteger("power"));
+        this.connects = ConnectionType.readFromNBT(par1nbtTagCompound);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
         NBTTagCompound nbt = super.writeToNBT(par1nbtTagCompound);
         nbt.setInteger("power", tank.getPower());
+        nbt = ConnectionType.writeToNBT(nbt, connects);
         return nbt;
     }
 
@@ -133,13 +190,18 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
         this.worldObj.notifyBlockUpdate(pos, state, state, 3);
     }
 
-    //C
+    //Cap
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 
         if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY) {
             return true;
         }
+
+        if (capability == CapabilityGearForce.GEAR_FORCE && this.hasConnect(facing)) {
+            return true;
+        }
+
         return super.hasCapability(capability, facing);
     }
 
@@ -153,7 +215,42 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
 
         }
 
+        if (capability == CapabilityGearForce.GEAR_FORCE && this.connects[facing.getIndex()] == ConnectionType.IN) {
+            return (T) this.storagesIn[facing.getIndex()];
+        }
+
+        if (capability == CapabilityGearForce.GEAR_FORCE && this.connects[facing.getIndex()] == ConnectionType.OUT) {
+            return (T) this.storagesOut[facing.getIndex()];
+        }
+
         return super.getCapability(capability, facing);
+    }
+
+    public boolean hasConnect(EnumFacing facing) {
+
+        if (this.connects[facing.getIndex()] == ConnectionType.IN) return true;
+        if (this.connects[facing.getIndex()] == ConnectionType.OUT) return true;
+
+        return false;
+
+    }
+
+    public class GearForceGearBoxStorage extends GearForceStorage {
+
+        public GearForceGearBoxStorage(int power, int capacity, boolean isReceive, boolean isExtract) {
+            super(power, capacity, isReceive, isExtract);
+        }
+
+        protected void clearSpeed() {
+            this.power = 0;
+            this.speed = 0;
+        }
+
+        protected void setPowerSpeed(int pw, int sp) {
+            this.power = pw;
+            this.speed = sp;
+        }
+
     }
 
 }

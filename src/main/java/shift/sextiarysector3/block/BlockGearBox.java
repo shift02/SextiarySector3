@@ -1,40 +1,60 @@
 package shift.sextiarysector3.block;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.tileentity.TileEntityGearBox;
 
 public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
 
     public static final PropertyBool POWER = PropertyBool.create("power");
 
-    public static final PropertyBool DOWN = PropertyBool.create("down");
-    public static final PropertyBool UP = PropertyBool.create("up");
-    public static final PropertyBool NORTH = PropertyBool.create("north");
-    public static final PropertyBool SOUTH = PropertyBool.create("south");
-    public static final PropertyBool WEST = PropertyBool.create("west");
-    public static final PropertyBool EAST = PropertyBool.create("east");
+    public static final PropertyEnum<ConnectionType> DOWN = PropertyEnum.create("down", ConnectionType.class);
+    public static final PropertyEnum<ConnectionType> UP = PropertyEnum.create("up", ConnectionType.class);
+    public static final PropertyEnum<ConnectionType> NORTH = PropertyEnum.create("north", ConnectionType.class);
+    public static final PropertyEnum<ConnectionType> SOUTH = PropertyEnum.create("south", ConnectionType.class);
+    public static final PropertyEnum<ConnectionType> WEST = PropertyEnum.create("west", ConnectionType.class);
+    public static final PropertyEnum<ConnectionType> EAST = PropertyEnum.create("east", ConnectionType.class);
 
     public BlockGearBox(Material materialIn) {
         super(materialIn);
         this.blockState.getBaseState()
                 .withProperty(POWER, Boolean.valueOf(false))
-                .withProperty(DOWN, Boolean.valueOf(false))
-                .withProperty(UP, Boolean.valueOf(false))
-                .withProperty(NORTH, Boolean.valueOf(false))
-                .withProperty(SOUTH, Boolean.valueOf(false))
-                .withProperty(WEST, Boolean.valueOf(false))
-                .withProperty(EAST, Boolean.valueOf(false));
+                .withProperty(DOWN, ConnectionType.NORMAL)
+                .withProperty(UP, ConnectionType.NORMAL)
+                .withProperty(NORTH, ConnectionType.NORMAL)
+                .withProperty(SOUTH, ConnectionType.NORMAL)
+                .withProperty(WEST, ConnectionType.NORMAL)
+                .withProperty(EAST, ConnectionType.NORMAL);
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY,
+            float hitZ) {
+
+        //if (worldIn.isRemote) return true;
+
+        TileEntityGearBox te = (TileEntityGearBox) worldIn.getTileEntity(pos);
+        te.changeConnect(side);
+
+        return true;
     }
 
     @Override
@@ -42,12 +62,12 @@ public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
 
         return state
                 .withProperty(POWER, this.hsaPower(state, worldIn, pos))
-                .withProperty(DOWN, this.isConnect(state, worldIn, pos, EnumFacing.DOWN))
-                .withProperty(UP, this.isConnect(state, worldIn, pos, EnumFacing.UP))
-                .withProperty(NORTH, this.isConnect(state, worldIn, pos, EnumFacing.NORTH))
-                .withProperty(SOUTH, this.isConnect(state, worldIn, pos, EnumFacing.SOUTH))
-                .withProperty(WEST, this.isConnect(state, worldIn, pos, EnumFacing.WEST))
-                .withProperty(EAST, this.isConnect(state, worldIn, pos, EnumFacing.EAST));
+                .withProperty(DOWN, this.getConnectType(state, worldIn, pos, EnumFacing.DOWN))
+                .withProperty(UP, this.getConnectType(state, worldIn, pos, EnumFacing.UP))
+                .withProperty(NORTH, this.getConnectType(state, worldIn, pos, EnumFacing.NORTH))
+                .withProperty(SOUTH, this.getConnectType(state, worldIn, pos, EnumFacing.SOUTH))
+                .withProperty(WEST, this.getConnectType(state, worldIn, pos, EnumFacing.WEST))
+                .withProperty(EAST, this.getConnectType(state, worldIn, pos, EnumFacing.EAST));
 
     }
 
@@ -55,13 +75,22 @@ public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
         return true;
     }
 
-    public boolean isConnect(IBlockState state, IBlockAccess worldIn, BlockPos pos, EnumFacing f) {
+    public ConnectionType getConnectType(IBlockState state, IBlockAccess worldIn, BlockPos pos, EnumFacing f) {
 
-        TileEntity te = worldIn.getTileEntity(pos.offset(f));
+        //return ConnectionType.NORMAL;
 
+        TileEntityGearBox te = (TileEntityGearBox) worldIn.getTileEntity(pos);
+
+        if (te == null) return ConnectionType.NORMAL;
+
+        System.out.println("AA");
+
+        return te.getConnectionType(f);
+
+        /*
         if (te == null) return false;
-
-        return te.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite());
+        
+        return te.hasCapability(CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY, f.getOpposite());*/
 
     }
 
@@ -78,6 +107,12 @@ public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityGearBox();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
     }
 
 }

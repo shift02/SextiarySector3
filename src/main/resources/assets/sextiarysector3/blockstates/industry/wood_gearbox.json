@@ -1,10 +1,20 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "cube_all",
+    "model": "sextiarysector3:gf_connection_all",
     "textures": {
       "all": "sextiarysector3:blocks/industry/wood_gearbox",
-      "connect":"sextiarysector3:blocks/industry/wood_gearbox_off"
+      "connect":"sextiarysector3:blocks/industry/wood_gearbox_off",
+      "connect_normal": "sextiarysector3:blocks/invisible",
+      "connect_in": "sextiarysector3:blocks/industry/connect_in",
+      "connect_out": "sextiarysector3:blocks/industry/connect_out",
+      "connect_block": "sextiarysector3:blocks/industry/connect_block",
+      "c_down": "#connect_normal",
+      "c_up": "#connect_normal",
+      "c_north": "#connect_normal",
+      "c_south": "#connect_normal",
+      "c_west": "#connect_normal",
+      "c_east": "#connect_normal"
     },
     "transform": "forge:default-block",
     "uvlock": false
@@ -21,28 +31,40 @@
       "false":{}
     },
     "down":{
-      "true":{"textures": {"down": "#connect"}},
-      "false":{}
+      "normal":{"textures": {"c_down": "#connect_normal"}},
+      "in":{"textures": {"c_down": "#connect_in"}},
+      "out":{"textures": {"c_down": "#connect_out"}},
+      "block":{"textures": {"c_down": "#connect_block"}}
     },
     "up":{
-      "true":{"textures": {"up": "#connect"}},
-      "false":{}
+      "normal":{"textures": {"c_up": "#connect_normal"}},
+      "in":{"textures": {"c_up": "#connect_in"}},
+      "out":{"textures": {"c_up": "#connect_out"}},
+      "block":{"textures": {"c_up": "#connect_block"}}
     },
     "north":{
-      "true":{"textures": {"north": "#connect"}},
-      "false":{}
+      "normal":{"textures": {"c_north": "#connect_normal"}},
+      "in":{"textures": {"c_north": "#connect_in"}},
+      "out":{"textures": {"c_north": "#connect_out"}},
+      "block":{"textures": {"c_north": "#connect_block"}}
     },
     "south":{
-      "true":{"textures": {"south": "#connect"}},
-      "false":{}
+      "normal":{"textures": {"c_south": "#connect_normal"}},
+      "in":{"textures": {"c_south": "#connect_in"}},
+      "out":{"textures": {"c_south": "#connect_out"}},
+      "block":{"textures": {"c_south": "#connect_block"}}
     },
     "west":{
-      "true":{"textures": {"west": "#connect"}},
-      "false":{}
+      "normal":{"textures": {"c_west": "#connect_normal"}},
+      "in":{"textures": {"c_west": "#connect_in"}},
+      "out":{"textures": {"c_west": "#connect_out"}},
+      "block":{"textures": {"c_west": "#connect_block"}}
     },
     "east":{
-      "true":{"textures": {"east": "#connect"}},
-      "false":{}
+      "normal":{"textures": {"c_east": "#connect_normal"}},
+      "in":{"textures": {"c_east": "#connect_in"}},
+      "out":{"textures": {"c_east": "#connect_out"}},
+      "block":{"textures": {"c_east": "#connect_block"}}
     }
   }
 }
