@@ -40,15 +40,18 @@ public class BlockSSCake extends BlockSSBase {
         this.setTickRandomly(true);
     }
 
+    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return CAKE_AABB[((Integer) state.getValue(BITES)).intValue()];
+        return CAKE_AABB[state.getValue(BITES).intValue()];
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
         return state.getCollisionBoundingBox(worldIn, pos);
     }
 
+    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
@@ -56,10 +59,12 @@ public class BlockSSCake extends BlockSSBase {
     /**
      * Used to determine ambient occlusion and culling when rebuilding chunks for render
      */
+    @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
+    @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY,
             float hitZ) {
         this.eatCake(worldIn, pos, state, playerIn);
@@ -70,7 +75,10 @@ public class BlockSSCake extends BlockSSBase {
         if (player.canEat(false)) {
             player.addStat(StatList.CAKE_SLICES_EATEN);
             player.getFoodStats().addStats(2, 0.8F);
-            int i = ((Integer) state.getValue(BITES)).intValue();
+
+            this.eatedCake(worldIn, pos, state, player);
+
+            int i = state.getValue(BITES).intValue();
 
             if (i < 6) {
                 worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);
@@ -80,6 +88,11 @@ public class BlockSSCake extends BlockSSBase {
         }
     }
 
+    protected void eatedCake(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+
+    }
+
+    @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
         return super.canPlaceBlockAt(worldIn, pos) ? this.canBlockStay(worldIn, pos) : false;
     }
@@ -89,6 +102,7 @@ public class BlockSSCake extends BlockSSBase {
      * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
      * block, etc.
      */
+    @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
         if (!this.canBlockStay(worldIn, pos)) {
             worldIn.setBlockToAir(pos);
@@ -102,6 +116,7 @@ public class BlockSSCake extends BlockSSBase {
     /**
      * Returns the quantity of items to drop on block destruction.
      */
+    @Override
     public int quantityDropped(Random random) {
         return 0;
     }
@@ -109,6 +124,7 @@ public class BlockSSCake extends BlockSSBase {
     /**
      * Get the Item that this Block should drop when harvested.
      */
+    @Override
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return null;
@@ -123,10 +139,12 @@ public class BlockSSCake extends BlockSSBase {
     /**
      * Convert the given metadata into a BlockState for this Block
      */
+    @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(BITES, Integer.valueOf(meta));
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
@@ -135,18 +153,22 @@ public class BlockSSCake extends BlockSSBase {
     /**
      * Convert the BlockState into the correct metadata value
      */
+    @Override
     public int getMetaFromState(IBlockState state) {
-        return ((Integer) state.getValue(BITES)).intValue();
+        return state.getValue(BITES).intValue();
     }
 
+    @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] { BITES });
     }
 
+    @Override
     public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
-        return (7 - ((Integer) blockState.getValue(BITES)).intValue()) * 2;
+        return (7 - blockState.getValue(BITES).intValue()) * 2;
     }
 
+    @Override
     public boolean hasComparatorInputOverride(IBlockState state) {
         return true;
     }
