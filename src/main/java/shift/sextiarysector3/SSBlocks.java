@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.block.BlockConveyor;
@@ -12,6 +13,7 @@ import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockGearBox;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockMapleSapling;
+import shift.sextiarysector3.block.BlockPotionCake;
 import shift.sextiarysector3.block.BlockSSBase;
 import shift.sextiarysector3.block.BlockSSCake;
 import shift.sextiarysector3.block.BlockSSLeaves;
@@ -101,6 +103,9 @@ public class SSBlocks {
     public static Block conveyor;
 
     public static Block smallWindmill;
+
+    //マジック
+    public static Block strengthCake;
 
     //料理
     public static Block mapleCake;
@@ -234,6 +239,10 @@ public class SSBlocks {
         smallWindmill = new BlockSmallWindmill().setUnlocalizedName("ss.wood_shaft").setHardness(4.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, SextiarySector3.MODID + ":" + "small_windmill");
         UtilRegistry.registerTESRBlock(smallWindmill, TileEntitySmallWindmill.class, "small_windmill", "industry/small_windmill");
+
+        //魔法
+        strengthCake = new BlockPotionCake(MobEffects.STRENGTH).setUnlocalizedName("ss.strength_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        UtilRegistry.registerNormalBlock(strengthCake, "strength_cake", "cake/strength_cake");
 
         //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
