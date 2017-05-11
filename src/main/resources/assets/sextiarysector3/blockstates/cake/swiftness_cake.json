@@ -1,0 +1,45 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cauldron_empty",
+    "textures": {
+      "particle": "sextiarysector3:blocks/cake/swiftness_cake_side",
+      "bottom": "sextiarysector3:blocks/cake/potion_cake_bottom",
+      "top": "sextiarysector3:blocks/cake/swiftness_cake_top",
+      "side": "sextiarysector3:blocks/cake/swiftness_cake_side"
+    },
+    "uvlock": true
+  },
+  "variants": {
+    "normal":[{}],
+    "inventory":[{
+      "model": "sextiarysector3:item",
+      "textures": {
+        "item": "sextiarysector3:items/cake/swiftness_cake"
+      }
+    }],
+    "bites": {
+      0: {
+          "model": "cake_uneaten"
+      },
+      1: {
+        "model": "cake_slice1"
+      },
+      2: {
+        "model": "cake_slice2"
+      },
+      3: {
+          "model": "cake_slice3"
+      },
+      4: {
+        "model": "cake_slice4"
+      },
+      5: {
+        "model": "cake_slice5"
+      },
+      6: {
+        "model": "cake_slice6"
+      }
+    }
+  }
+}

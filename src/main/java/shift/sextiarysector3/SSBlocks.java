@@ -106,6 +106,7 @@ public class SSBlocks {
 
     //マジック
     public static Block strengthCake;
+    public static Block swiftnessCake;
 
     //料理
     public static Block mapleCake;
@@ -243,6 +244,9 @@ public class SSBlocks {
         //魔法
         strengthCake = new BlockPotionCake(MobEffects.STRENGTH).setUnlocalizedName("ss.strength_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
         UtilRegistry.registerNormalBlock(strengthCake, "strength_cake", "cake/strength_cake");
+
+        swiftnessCake = new BlockPotionCake(MobEffects.SPEED).setUnlocalizedName("ss.swiftness_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        UtilRegistry.registerNormalBlock(swiftnessCake, "swiftness_cake", "cake/swiftness_cake");
 
         //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
