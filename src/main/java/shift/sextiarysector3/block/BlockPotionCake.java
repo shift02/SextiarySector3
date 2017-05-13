@@ -15,10 +15,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockPotionCake extends BlockSSCake {
 
     private Potion potion;
+    private int color;
 
-    public BlockPotionCake(Potion potion) {
+    public BlockPotionCake(Potion potion, int color) {
         super();
         this.potion = potion;
+        this.color = color;
 
     }
 
@@ -33,7 +35,7 @@ public class BlockPotionCake extends BlockSSCake {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 
-        int i = 0xFFFFFF;
+        int i = this.color;
 
         double d0 = (i >> 16 & 255) / 255.0D;
         double d1 = (i >> 8 & 255) / 255.0D;
