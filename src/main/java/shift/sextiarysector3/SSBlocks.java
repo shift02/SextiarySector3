@@ -30,6 +30,7 @@ import shift.sextiarysector3.block.BlockSmallWindmill;
 import shift.sextiarysector3.block.BlockSpile;
 import shift.sextiarysector3.block.BlockWoodScaffold;
 import shift.sextiarysector3.item.ItemBlockMeta;
+import shift.sextiarysector3.item.ItemSSCake;
 import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
@@ -245,20 +246,20 @@ public class SSBlocks {
 
         //魔法
         strengthCake = new BlockPotionCake(MobEffects.STRENGTH, 0xff0000).setUnlocalizedName("ss.strength_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
-        UtilRegistry.registerNormalBlock(strengthCake, "strength_cake", "cake/strength_cake");
+        UtilRegistry.registerNormalBlock(strengthCake, new ItemSSCake(strengthCake), "strength_cake", "cake/strength_cake");
 
         swiftnessCake = new BlockPotionCake(MobEffects.SPEED, 0x0000FF).setUnlocalizedName("ss.swiftness_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
-        UtilRegistry.registerNormalBlock(swiftnessCake, "swiftness_cake", "cake/swiftness_cake");
+        UtilRegistry.registerNormalBlock(swiftnessCake, new ItemSSCake(swiftnessCake), "swiftness_cake", "cake/swiftness_cake");
 
         fireresistanceCake = new BlockPotionCake(MobEffects.FIRE_RESISTANCE, 0xff4500).setUnlocalizedName("ss.fireresistance_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
-        UtilRegistry.registerNormalBlock(fireresistanceCake, "fireresistance_cake", "cake/fireresistance_cake");
+        UtilRegistry.registerNormalBlock(fireresistanceCake, new ItemSSCake(fireresistanceCake), "fireresistance_cake", "cake/fireresistance_cake");
 
         leapingCake = new BlockPotionCake(MobEffects.JUMP_BOOST, 0x00FFFF).setUnlocalizedName("ss.leaping_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
-        UtilRegistry.registerNormalBlock(leapingCake, "leaping_cake", "cake/leaping_cake");
+        UtilRegistry.registerNormalBlock(leapingCake, new ItemSSCake(leapingCake), "leaping_cake", "cake/leaping_cake");
 
         //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
-        UtilRegistry.registerNormalBlock(mapleCake, "maple_cake", "cake/maple_cake");
+        UtilRegistry.registerNormalBlock(mapleCake, new ItemSSCake(mapleCake), "maple_cake", "cake/maple_cake");
 
     }
 
