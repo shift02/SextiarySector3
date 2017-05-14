@@ -1,11 +1,13 @@
 package shift.sextiarysector3.recipe;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import shift.sextiarysector3.SSBlocks;
+import shift.sextiarysector3.SSItems;
 
 public class RecipesForestry {
 
@@ -16,6 +18,12 @@ public class RecipesForestry {
                 new Object[] {
                         "xxx",
                         'x', "ingotIron"
+                }));
+
+        //木の枝
+        p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(Items.STICK, 4),
+                new Object[] {
+                        SSItems.treeBranch
                 }));
 
         //木材

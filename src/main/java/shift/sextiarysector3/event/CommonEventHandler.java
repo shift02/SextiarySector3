@@ -3,13 +3,13 @@ package shift.sextiarysector3.event;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import shift.sextiarysector3.SSConfig;
+import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.util.UtilCompat;
 
 public class CommonEventHandler {
@@ -26,7 +26,7 @@ public class CommonEventHandler {
                 && event.getHarvester().getActiveItemStack().getItem() instanceof ItemShears)
             return;
 
-        if (event.getWorld().rand.nextBoolean()) event.getDrops().add(new ItemStack(Items.STICK, event.getWorld().rand.nextInt(1) + 1));
+        if (event.getWorld().rand.nextInt(4) == 0) event.getDrops().add(new ItemStack(SSItems.treeBranch, event.getWorld().rand.nextInt(1) + 1));
         //if (event.getWorld().rand.nextInt(3) == 0) event.getDrops().add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
 
         if (!SSConfig.fastDecayLeaves) return;
