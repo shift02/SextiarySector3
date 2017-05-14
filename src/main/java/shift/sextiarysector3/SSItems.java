@@ -71,6 +71,8 @@ public class SSItems {
     public static Item orichalcumBoots;
 
     //林業
+    public static Item treeBranch;
+
     public static Item sapBottle;
     public static Item rubberBottle;
     public static Item mapleBottle;
@@ -202,6 +204,9 @@ public class SSItems {
         UtilRegistry.registerNormalItem(orichalcumBoots, "orichalcum_boots", "armor/orichalcum_boots");
 
         //林業
+        treeBranch = new ItemSSBase().setUnlocalizedName("ss.tree_branch").setCreativeTab(SextiarySectorAPI.TabSSForestry);
+        UtilRegistry.registerNormalItem(treeBranch, "tree_branch", "tree_branch");
+
         sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");
         UtilRegistry.registerNormalItem(sapBottle, "sap_bottle", "fluid/sap_bottle");
 
