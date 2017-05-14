@@ -107,7 +107,8 @@ public class SSBlocks {
     //マジック
     public static Block strengthCake;
     public static Block swiftnessCake;
-    //public static Block swiftnessCake;
+    public static Block fireresistanceCake;
+    public static Block leapingCake;
 
     //料理
     public static Block mapleCake;
@@ -246,8 +247,14 @@ public class SSBlocks {
         strengthCake = new BlockPotionCake(MobEffects.STRENGTH, 0xff0000).setUnlocalizedName("ss.strength_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
         UtilRegistry.registerNormalBlock(strengthCake, "strength_cake", "cake/strength_cake");
 
-        swiftnessCake = new BlockPotionCake(MobEffects.SPEED, 0x00FFFF).setUnlocalizedName("ss.swiftness_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        swiftnessCake = new BlockPotionCake(MobEffects.SPEED, 0x0000FF).setUnlocalizedName("ss.swiftness_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
         UtilRegistry.registerNormalBlock(swiftnessCake, "swiftness_cake", "cake/swiftness_cake");
+
+        fireresistanceCake = new BlockPotionCake(MobEffects.FIRE_RESISTANCE, 0xff4500).setUnlocalizedName("ss.fireresistance_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        UtilRegistry.registerNormalBlock(fireresistanceCake, "fireresistance_cake", "cake/fireresistance_cake");
+
+        leapingCake = new BlockPotionCake(MobEffects.JUMP_BOOST, 0x00FFFF).setUnlocalizedName("ss.leaping_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        UtilRegistry.registerNormalBlock(leapingCake, "leaping_cake", "cake/leaping_cake");
 
         //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
