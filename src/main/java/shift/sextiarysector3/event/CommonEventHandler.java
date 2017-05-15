@@ -26,7 +26,7 @@ public class CommonEventHandler {
                 && event.getHarvester().getActiveItemStack().getItem() instanceof ItemShears)
             return;
 
-        if (event.getWorld().rand.nextInt(4) == 0) event.getDrops().add(new ItemStack(SSItems.treeBranch, event.getWorld().rand.nextInt(1) + 1));
+        if (event.getWorld().rand.nextInt(6) == 0) event.getDrops().add(new ItemStack(SSItems.treeBranch, event.getWorld().rand.nextInt(1) + 1));
         //if (event.getWorld().rand.nextInt(3) == 0) event.getDrops().add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
 
         if (!SSConfig.fastDecayLeaves) return;
