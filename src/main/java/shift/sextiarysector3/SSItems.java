@@ -2,12 +2,14 @@ package shift.sextiarysector3;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionHelper;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.item.ItemCapsule;
 import shift.sextiarysector3.item.ItemDepthMeter;
 import shift.sextiarysector3.item.ItemDust;
 import shift.sextiarysector3.item.ItemEnderCard;
 import shift.sextiarysector3.item.ItemIngot;
+import shift.sextiarysector3.item.ItemPotionCapsule;
 import shift.sextiarysector3.item.ItemRubberGroves;
 import shift.sextiarysector3.item.ItemSSArmor;
 import shift.sextiarysector3.item.ItemSSAxe;
@@ -103,6 +105,9 @@ public class SSItems {
     public static Item rubberGloves;
 
     public static Item ductTape;
+
+    //魔術
+    public static Item potionCapsule;
 
     public static void initItem() {
 
@@ -265,6 +270,11 @@ public class SSItems {
 
         ductTape = new ItemSSBase().setUnlocalizedName("ss.duct_tape").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalItem(ductTape, "duct_tape", "duct_tape");
+
+        //薬学
+        potionCapsule = new ItemPotionCapsule().setUnlocalizedName("ss.potion_capsule");
+        UtilRegistry.registerNormalItem(potionCapsule, "potion_capsule", "capsule/potion_capsule");
+        PotionHelper.registerPotionItem(new PotionHelper.ItemPredicateInstance(potionCapsule));
 
     }
 }

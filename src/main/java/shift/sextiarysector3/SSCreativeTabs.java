@@ -15,6 +15,7 @@ public class SSCreativeTabs {
         SextiarySectorAPI.TabSSForestry = new CreativeTabSSForestry();
         SextiarySectorAPI.TabSSMining = new CreativeTabSSMining();
         SextiarySectorAPI.TabSSIndustry = new CreativeTabSSIndustry();
+        SextiarySectorAPI.TabSSPharmacy = new CreativeTabSSPharmacy();
         SextiarySectorAPI.TabSSCooking = new CreativeTabSSCooking();
 
     }
@@ -91,6 +92,25 @@ public class SSCreativeTabs {
         @SideOnly(Side.CLIENT)
         public ItemStack getIconItemStack() {
             return new ItemStack(SSItems.plastic, 1);
+        }
+
+    }
+
+    private static class CreativeTabSSPharmacy extends CreativeTabs {
+
+        public CreativeTabSSPharmacy() {
+            super("ss.pharmacy");
+        }
+
+        @Override
+        public Item getTabIconItem() {
+            return null;//SSBlocks.LargeFurnace.g;
+        }
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack getIconItemStack() {
+            return new ItemStack(SSItems.potionCapsule, 1);
         }
 
     }
