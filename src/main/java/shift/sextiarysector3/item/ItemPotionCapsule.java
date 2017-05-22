@@ -23,23 +23,31 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.util.ISubItem;
 
-public class ItemPotionCapsule extends ItemSSBase {
+public class ItemPotionCapsule extends ItemSSBase implements ISubItem {
 
     public ItemPotionCapsule() {
         this.setMaxStackSize(4);
-
         this.setCreativeTab(SextiarySectorAPI.TabSSPharmacy);
+    }
+
+    @Override
+    public int getSubSize() {
+        return 2;
+    }
+
+    @Override
+    public String getResourcesLocation(int meta) {
+        return "capsule/potion_capsule_open";
     }
 
     @Override
     public int getItemStackLimit(ItemStack stack) {
 
-        StackTraceElement[] es = Thread.currentThread().getStackTrace();
-        if (es.length > 3 && "net.minecraftforge.common.brewing.BrewingRecipeRegistry".equals(es[3].getClassName())) {
+        if (stack.getMetadata() == 1) {
             return 1;
         }
-        System.out.println(es[3].getClassName());
 
         return super.getItemStackLimit(stack);
     }
@@ -97,6 +105,17 @@ public class ItemPotionCapsule extends ItemSSBase {
      */
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+
+        if (playerIn.isSneaking()) {
+            if (itemStackIn.getMetadata() == 0) {
+                itemStackIn.setItemDamage(1);
+            } else {
+                itemStackIn.setItemDamage(0);
+            }
+
+            return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+        }
+
         playerIn.setActiveHand(hand);
         return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
     }
@@ -131,4 +150,5 @@ public class ItemPotionCapsule extends ItemSSBase {
             subItems.add(PotionUtils.addPotionToItemStack(new ItemStack(itemIn), potiontype));
         }
     }
+
 }

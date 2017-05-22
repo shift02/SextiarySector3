@@ -13,6 +13,7 @@ import shift.sextiarysector3.recipe.RecipesForestry;
 import shift.sextiarysector3.recipe.RecipesFurnace;
 import shift.sextiarysector3.recipe.RecipesIndustry;
 import shift.sextiarysector3.recipe.RecipesMining;
+import shift.sextiarysector3.recipe.RecipesPharmacy;
 import shift.sextiarysector3.recipe.RecipesTool;
 import shift.sextiarysector3.recipe.template.RecipeCauldron;
 
@@ -31,6 +32,7 @@ public class SSRecipes {
         RecipesForestry.addRecipes(m);
         RecipesMining.addRecipes(m);
         RecipesIndustry.addRecipes(m);
+        RecipesPharmacy.addRecipes(m);
         RecipesCooking.addRecipes(m);
 
         RecipesTool.addRecipes(m);

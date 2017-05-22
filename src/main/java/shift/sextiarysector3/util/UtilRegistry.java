@@ -34,6 +34,14 @@ public class UtilRegistry {
 
             SextiarySector3.proxy.setCustomModelResourceLocation(item, 0, resource);
 
+            if (item instanceof ISubItem) {
+
+                for (int i = 1; i < ((ISubItem) item).getSubSize(); i++) {
+                    SextiarySector3.proxy.setCustomModelResourceLocation(item, i, ((ISubItem) item).getResourcesLocation(i));
+                }
+
+            }
+
         }
 
         File f = new File(itemModel, resource + ".json");
