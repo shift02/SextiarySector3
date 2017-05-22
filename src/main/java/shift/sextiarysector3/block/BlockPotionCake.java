@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import shift.sextiarysector3.api.SextiarySectorAPI;
 
 public class BlockPotionCake extends BlockSSCake {
 
@@ -21,6 +22,8 @@ public class BlockPotionCake extends BlockSSCake {
         super();
         this.potion = potion;
         this.color = color;
+
+        this.setCreativeTab(SextiarySectorAPI.TabSSPharmacy);
 
     }
 
