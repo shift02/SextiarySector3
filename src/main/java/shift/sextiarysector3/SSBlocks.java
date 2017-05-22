@@ -245,16 +245,16 @@ public class SSBlocks {
         UtilRegistry.registerTESRBlock(smallWindmill, TileEntitySmallWindmill.class, "small_windmill", "industry/small_windmill");
 
         //魔法
-        strengthCake = new BlockPotionCake(MobEffects.STRENGTH, 0xff0000).setUnlocalizedName("ss.strength_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        strengthCake = new BlockPotionCake(MobEffects.STRENGTH, 0xff0000).setUnlocalizedName("ss.strength_cake").setHardness(0.5F);
         UtilRegistry.registerNormalBlock(strengthCake, new ItemSSCake(strengthCake), "strength_cake", "cake/strength_cake");
 
-        swiftnessCake = new BlockPotionCake(MobEffects.SPEED, 0x0000FF).setUnlocalizedName("ss.swiftness_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        swiftnessCake = new BlockPotionCake(MobEffects.SPEED, 0x0000FF).setUnlocalizedName("ss.swiftness_cake").setHardness(0.5F);
         UtilRegistry.registerNormalBlock(swiftnessCake, new ItemSSCake(swiftnessCake), "swiftness_cake", "cake/swiftness_cake");
 
-        fireresistanceCake = new BlockPotionCake(MobEffects.FIRE_RESISTANCE, 0xff4500).setUnlocalizedName("ss.fireresistance_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        fireresistanceCake = new BlockPotionCake(MobEffects.FIRE_RESISTANCE, 0xff4500).setUnlocalizedName("ss.fireresistance_cake").setHardness(0.5F);
         UtilRegistry.registerNormalBlock(fireresistanceCake, new ItemSSCake(fireresistanceCake), "fireresistance_cake", "cake/fireresistance_cake");
 
-        leapingCake = new BlockPotionCake(MobEffects.JUMP_BOOST, 0x00FFFF).setUnlocalizedName("ss.leaping_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        leapingCake = new BlockPotionCake(MobEffects.JUMP_BOOST, 0x00FFFF).setUnlocalizedName("ss.leaping_cake").setHardness(0.5F);
         UtilRegistry.registerNormalBlock(leapingCake, new ItemSSCake(leapingCake), "leaping_cake", "cake/leaping_cake");
 
         //料理
