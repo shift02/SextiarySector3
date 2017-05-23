@@ -84,8 +84,6 @@ public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
 
         if (te == null) return ConnectionType.NORMAL;
 
-        System.out.println("AA");
-
         return te.getConnectionType(f);
 
         /*
