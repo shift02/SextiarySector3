@@ -7,6 +7,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeModContainer;
 
 public class BlockScaffold extends BlockSSBase {
 
@@ -19,12 +20,14 @@ public class BlockScaffold extends BlockSSBase {
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
 
+        ForgeModContainer.fullBoundingBoxLadders = true;
         return SCAFFOLD_AABB;
 
     }
 
     @Override
     public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
+
         return true;
     }
 
