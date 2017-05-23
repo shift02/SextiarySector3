@@ -122,7 +122,7 @@ public class ItemPotionCapsule extends ItemSSBase implements ISubItem {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return I18n.translateToLocal(PotionUtils.getPotionFromItem(stack).getNamePrefixed("potion.effect."));
+        return I18n.translateToLocal(PotionUtils.getPotionFromItem(stack).getNamePrefixed("capsule_potion.effect."));
     }
 
     /**
