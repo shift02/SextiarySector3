@@ -46,6 +46,12 @@ public class RecipesCore {
                         'y', "dustRedstone"
                 }));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.emptyCapsule, 3),
+                new Object[] {
+                        "x x", " x ",
+                        'x', "plastic"
+                }));
+
     }
 
 }
