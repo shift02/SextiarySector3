@@ -4,6 +4,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionHelper;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.item.ItemCalendar;
 import shift.sextiarysector3.item.ItemCapsule;
 import shift.sextiarysector3.item.ItemDepthMeter;
 import shift.sextiarysector3.item.ItemDust;
@@ -34,6 +35,8 @@ public class SSItems {
     public static Item enderCard;
 
     public static Item depthMeter;
+
+    public static Item calendar;
 
     public static Item emptyCapsule;
 
@@ -122,6 +125,9 @@ public class SSItems {
 
         depthMeter = new ItemDepthMeter().setUnlocalizedName("ss.depth_meter");
         UtilRegistry.registerAnimationItem(depthMeter, "depth_meter", "depth_meter/depth_meter", 8);
+
+        calendar = new ItemCalendar().setUnlocalizedName("ss.calendar");
+        UtilRegistry.registerAnimationItem(calendar, "calendar", "calendar/calendar", 30);
 
         emptyCapsule = new ItemCapsule().setUnlocalizedName("ss.empty_capsule");
         UtilRegistry.registerNormalItem(emptyCapsule, "empty_capsule", "capsule/empty_capsule");

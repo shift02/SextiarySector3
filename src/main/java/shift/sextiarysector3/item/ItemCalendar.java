@@ -1,9 +1,12 @@
 package shift.sextiarysector3.item;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -11,6 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import shift.sextiarysector3.util.SeasonManager;
 
 public class ItemCalendar extends ItemSSBase {
 
@@ -45,17 +49,13 @@ public class ItemCalendar extends ItemSSBase {
                     if (worldIn.provider.isSurfaceWorld()) {
 
                         //TODO 日付処理
-                        d0 = entity.posY;
-                        if (d0 < 0) d0 = 0;
-                        if (d0 >= 255) d0 = 255;
-                        d0 /= 255;
-                        d0 = 1.0 - d0;
+                        d0 = SeasonManager.getInstance().getDay(worldIn) / 30.0f - 0.001;
 
                     } else {
                         d0 = Math.random();
                     }
 
-                    d0 = this.wobble(worldIn, d0);
+                    //d0 = this.wobble(worldIn, d0);
                     return MathHelper.positiveModulo((float) d0, 1.0F);
 
                 }
@@ -88,5 +88,13 @@ public class ItemCalendar extends ItemSSBase {
 
             }
         });
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+
+        tooltip.add(SeasonManager.getInstance().getDay(playerIn.worldObj) + " Day");
+
     }
 }
