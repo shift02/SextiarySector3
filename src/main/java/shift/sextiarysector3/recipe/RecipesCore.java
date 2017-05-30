@@ -51,7 +51,7 @@ public class RecipesCore {
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.calendar, 1),
                 new Object[] {
                         " x ", "xyx", " x ",
-                        'x', "dustRedstone",
+                        'y', "dustRedstone",
                         'x', new ItemStack(Items.PAPER)
                 }));
 
