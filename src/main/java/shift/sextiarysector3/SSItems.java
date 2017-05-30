@@ -21,6 +21,7 @@ import shift.sextiarysector3.item.ItemSSShield;
 import shift.sextiarysector3.item.ItemSSSpade;
 import shift.sextiarysector3.item.ItemSSSword;
 import shift.sextiarysector3.item.ItemSapBottle;
+import shift.sextiarysector3.item.ItemSeasonStone;
 import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.tileentity.TileEntityShield;
 import shift.sextiarysector3.util.UtilRegistry;
@@ -37,6 +38,7 @@ public class SSItems {
     public static Item depthMeter;
 
     public static Item calendar;
+    public static Item seasonstone;
 
     public static Item emptyCapsule;
 
@@ -128,6 +130,9 @@ public class SSItems {
 
         calendar = new ItemCalendar().setUnlocalizedName("ss.calendar");
         UtilRegistry.registerAnimationItem(calendar, "calendar", "calendar/calendar", 30);
+
+        seasonstone = new ItemSeasonStone().setUnlocalizedName("ss.season_stone");
+        UtilRegistry.registerAnimationItem(seasonstone, "season_stone", "season_stone/season_stone", 4);
 
         emptyCapsule = new ItemCapsule().setUnlocalizedName("ss.empty_capsule");
         UtilRegistry.registerNormalItem(emptyCapsule, "empty_capsule", "capsule/empty_capsule");

@@ -1,0 +1,32 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "sextiarysector3:items/season_stone/season_stone"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "data": 0.0
+            },
+            "model": "sextiarysector3:item/season_stone/season_stone_00"
+        },
+        {
+            "predicate": {
+                "data": 0.25
+            },
+            "model": "sextiarysector3:item/season_stone/season_stone_01"
+        },
+        {
+            "predicate": {
+                "data": 0.5
+            },
+            "model": "sextiarysector3:item/season_stone/season_stone_02"
+        },
+        {
+            "predicate": {
+                "data": 0.75
+            },
+            "model": "sextiarysector3:item/season_stone/season_stone_03"
+        }
+    ]
+}
