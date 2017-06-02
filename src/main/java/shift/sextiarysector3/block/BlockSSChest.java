@@ -3,7 +3,6 @@ package shift.sextiarysector3.block;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -33,6 +32,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
+import shift.sextiarysector3.tileentity.TileEntitySSChest;
 
 public class BlockSSChest extends BlockSSBase implements ITileEntityProvider {
 
@@ -43,9 +43,9 @@ public class BlockSSChest extends BlockSSBase implements ITileEntityProvider {
     protected static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1.0D, 0.875D, 0.9375D);
     protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
-    public final BlockChest.Type chestType;
+    public final BlockSSChest.Type chestType;
 
-    protected BlockSSChest(BlockChest.Type chestTypeIn) {
+    protected BlockSSChest(BlockSSChest.Type chestTypeIn) {
         super(Material.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.chestType = chestTypeIn;
@@ -417,7 +417,7 @@ public class BlockSSChest extends BlockSSBase implements ITileEntityProvider {
      */
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityChest();
+        return new TileEntitySSChest();
     }
 
     /**
@@ -425,7 +425,7 @@ public class BlockSSChest extends BlockSSBase implements ITileEntityProvider {
      */
     @Override
     public boolean canProvidePower(IBlockState state) {
-        return this.chestType == BlockChest.Type.TRAP;
+        return this.chestType == BlockSSChest.Type.TRAP;
     }
 
     @Override
