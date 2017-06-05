@@ -11,4 +11,4 @@ https://github.com/shift02/SextiarySector3-Localization
 
 ## Link
 
-http://forum.minecraftuser.jp/viewtopic.php?f=13&t=32954
+- Forum http://forum.minecraftuser.jp/viewtopic.php?f=13&t=32954
