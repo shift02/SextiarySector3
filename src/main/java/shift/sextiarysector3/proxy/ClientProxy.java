@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.StatisticsManager;
@@ -134,6 +135,14 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public boolean hasAchievementUnlocked(EntityPlayer player, Achievement achievement) {
+
+        if (player instanceof EntityPlayerMP) {
+            EntityPlayerMP playerMP = (EntityPlayerMP) player;
+
+            StatisticsManager state = playerMP.getStatFile();
+
+            return state.hasAchievementUnlocked(achievement);
+        }
 
         EntityPlayerSP playerSP = (EntityPlayerSP) player;
 
