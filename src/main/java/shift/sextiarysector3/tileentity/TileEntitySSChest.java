@@ -3,11 +3,13 @@ package shift.sextiarysector3.tileentity;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import shift.sextiarysector3.block.BlockSSChest;
 
 public class TileEntitySSChest extends TileEntityChest {
@@ -146,5 +148,10 @@ public class TileEntitySSChest extends TileEntityChest {
     @Override
     public boolean canRenderBreaking() {
         return true;
+    }
+
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
+        return oldState.getBlock() != newSate.getBlock();
     }
 }
