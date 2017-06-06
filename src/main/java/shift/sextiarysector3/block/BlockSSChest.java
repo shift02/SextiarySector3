@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -34,7 +33,7 @@ import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import shift.sextiarysector3.tileentity.TileEntitySSChest;
 
-public class BlockSSChest extends BlockSSBase implements ITileEntityProvider {
+public class BlockSSChest extends BlockSSContainer {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     protected static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
@@ -354,16 +353,16 @@ public class BlockSSChest extends BlockSSBase implements ITileEntityProvider {
             ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
 
             //TODO
-            /*
+
             if (ilockablecontainer != null) {
                 playerIn.displayGUIChest(ilockablecontainer);
-            
-                if (this.chestType == BlockChest.Type.BASIC) {
-                    playerIn.addStat(StatList.CHEST_OPENED);
-                } else if (this.chestType == BlockChest.Type.TRAP) {
-                    playerIn.addStat(StatList.TRAPPED_CHEST_TRIGGERED);
+
+                if (this.chestType == BlockSSChest.Type.BASIC) {
+                    //playerIn.addStat(StatList.CHEST_OPENED);
+                } else if (this.chestType == BlockSSChest.Type.TRAP) {
+                    //playerIn.addStat(StatList.TRAPPED_CHEST_TRIGGERED);
                 }
-            }*/
+            }
 
             return true;
         }

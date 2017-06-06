@@ -27,9 +27,11 @@ import shift.sextiarysector3.module.IModule;
 import shift.sextiarysector3.renderer.RenderEntityConveyorItem;
 import shift.sextiarysector3.renderer.RendererShield;
 import shift.sextiarysector3.renderer.block.RendererConveyor;
+import shift.sextiarysector3.renderer.block.RendererCreeperChest;
 import shift.sextiarysector3.renderer.block.RendererShaft;
 import shift.sextiarysector3.renderer.block.RendererSmallWindmill;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
+import shift.sextiarysector3.tileentity.TileEntityCreeperChest;
 import shift.sextiarysector3.tileentity.TileEntityShield;
 import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector3.tileentity.shaft.TileEntityWoodShaft;
@@ -102,6 +104,8 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConveyor.class, new RendererConveyor());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWindmill.class, new RendererSmallWindmill());
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCreeperChest.class, new RendererCreeperChest());
 
         //En
 

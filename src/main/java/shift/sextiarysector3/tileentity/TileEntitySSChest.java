@@ -3,6 +3,7 @@ package shift.sextiarysector3.tileentity;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
@@ -19,6 +20,15 @@ public class TileEntitySSChest extends TileEntityChest {
 
     public TileEntitySSChest() {
 
+    }
+
+    @Override
+    public String getName() {
+        return this.hasCustomName() ? super.getName() : getChestName();
+    }
+
+    protected String getChestName() {
+        return "container.ss.chest";
     }
 
     @SuppressWarnings("incomplete-switch")
@@ -95,5 +105,46 @@ public class TileEntitySSChest extends TileEntityChest {
         }
 
         return this.cachedChestType;
+    }
+
+    @Override
+    public boolean receiveClientEvent(int id, int type) {
+        if (id == 1) {
+            this.numPlayersUsing = type;
+            return true;
+        } else {
+            return super.receiveClientEvent(id, type);
+        }
+    }
+
+    @Override
+    public void openInventory(EntityPlayer player) {
+
+        if (!player.isSpectator()) {
+            if (this.numPlayersUsing < 0) {
+                this.numPlayersUsing = 0;
+            }
+
+            ++this.numPlayersUsing;
+            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
+            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+        }
+    }
+
+    @Override
+    public void closeInventory(EntityPlayer player) {
+
+        if (!player.isSpectator() && this.getBlockType() instanceof BlockSSChest) {
+            --this.numPlayersUsing;
+            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
+            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+        }
+    }
+
+    @Override
+    public boolean canRenderBreaking() {
+        return true;
     }
 }

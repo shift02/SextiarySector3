@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.block.BlockConveyor;
 import shift.sextiarysector3.block.BlockCreativeGF;
+import shift.sextiarysector3.block.BlockCreeperChest;
 import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockGearBox;
 import shift.sextiarysector3.block.BlockLargeOre;
@@ -34,6 +35,7 @@ import shift.sextiarysector3.item.ItemSSCake;
 import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
+import shift.sextiarysector3.tileentity.TileEntityCreeperChest;
 import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector3.tileentity.gearbox.TileEntityWoodGearBox;
 import shift.sextiarysector3.tileentity.shaft.TileEntityWoodShaft;
@@ -113,6 +115,9 @@ public class SSBlocks {
 
     //料理
     public static Block mapleCake;
+
+    //経済
+    public static Block creeperChest;
 
     public static void initBlock() {
 
@@ -260,6 +265,11 @@ public class SSBlocks {
         //料理
         mapleCake = new BlockSSCake().setUnlocalizedName("ss.maple_cake").setHardness(0.5F).setCreativeTab(SextiarySectorAPI.TabSSCooking);
         UtilRegistry.registerNormalBlock(mapleCake, new ItemSSCake(mapleCake), "maple_cake", "cake/maple_cake");
+
+        //経済
+        creeperChest = new BlockCreeperChest().setUnlocalizedName("ss.creeper_chest").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerTileEntity(TileEntityCreeperChest.class, SextiarySector3.MODID + ":" + "creeper_chest");
+        UtilRegistry.registerTESRBlock(creeperChest, TileEntityCreeperChest.class, "creeper_chest", "creeper_chest");
 
     }
 
