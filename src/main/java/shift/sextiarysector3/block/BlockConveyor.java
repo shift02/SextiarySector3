@@ -168,4 +168,10 @@ public class BlockConveyor extends BlockSSHorizontal implements ITileEntityProvi
         return new TileEntityConveyor();
     }
 
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        super.breakBlock(worldIn, pos, state);
+        worldIn.removeTileEntity(pos);
+    }
+
 }

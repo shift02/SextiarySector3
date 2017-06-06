@@ -92,4 +92,10 @@ public class BlockShaft extends BlockSSDirectional implements ITileEntityProvide
 
     }
 
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        super.breakBlock(worldIn, pos, state);
+        worldIn.removeTileEntity(pos);
+    }
+
 }

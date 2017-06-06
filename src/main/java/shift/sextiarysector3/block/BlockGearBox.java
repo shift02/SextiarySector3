@@ -114,4 +114,10 @@ public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
         return BlockRenderLayer.CUTOUT;
     }
 
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        super.breakBlock(worldIn, pos, state);
+        worldIn.removeTileEntity(pos);
+    }
+
 }
