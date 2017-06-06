@@ -1,6 +1,7 @@
 package shift.sextiarysector3.recipe;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -44,6 +45,14 @@ public class RecipesCore {
                         " x ", "xyx", " x ",
                         'x', "ingotSilver",
                         'y', "dustRedstone"
+                }));
+
+        //カレンダー
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.calendar, 1),
+                new Object[] {
+                        " x ", "xyx", " x ",
+                        'y', "dustRedstone",
+                        'x', new ItemStack(Items.PAPER)
                 }));
 
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.emptyCapsule, 3),

@@ -21,6 +21,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import shift.sextiarysector3.SSItems;
 
 public class ItemCapsule extends ItemSSBase {
 
@@ -55,7 +56,7 @@ public class ItemCapsule extends ItemSSBase {
 
                     if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER) {
                         worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                        return new ActionResult(EnumActionResult.SUCCESS, this.turnBottleIntoItem(itemStackIn, playerIn, new ItemStack(Items.POTIONITEM)));
+                        return new ActionResult(EnumActionResult.SUCCESS, this.turnBottleIntoItem(itemStackIn, playerIn, new ItemStack(SSItems.potionCapsule)));
                     }
                 }
 

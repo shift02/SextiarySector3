@@ -1,0 +1,188 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "sextiarysector3:items/calendar/calendar"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "data": 0.0
+            },
+            "model": "sextiarysector3:item/calendar/calendar_00"
+        },
+        {
+            "predicate": {
+                "data": 0.033333335
+            },
+            "model": "sextiarysector3:item/calendar/calendar_01"
+        },
+        {
+            "predicate": {
+                "data": 0.06666667
+            },
+            "model": "sextiarysector3:item/calendar/calendar_02"
+        },
+        {
+            "predicate": {
+                "data": 0.10000001
+            },
+            "model": "sextiarysector3:item/calendar/calendar_03"
+        },
+        {
+            "predicate": {
+                "data": 0.13333334
+            },
+            "model": "sextiarysector3:item/calendar/calendar_04"
+        },
+        {
+            "predicate": {
+                "data": 0.16666667
+            },
+            "model": "sextiarysector3:item/calendar/calendar_05"
+        },
+        {
+            "predicate": {
+                "data": 0.2
+            },
+            "model": "sextiarysector3:item/calendar/calendar_06"
+        },
+        {
+            "predicate": {
+                "data": 0.23333333
+            },
+            "model": "sextiarysector3:item/calendar/calendar_07"
+        },
+        {
+            "predicate": {
+                "data": 0.26666668
+            },
+            "model": "sextiarysector3:item/calendar/calendar_08"
+        },
+        {
+            "predicate": {
+                "data": 0.3
+            },
+            "model": "sextiarysector3:item/calendar/calendar_09"
+        },
+        {
+            "predicate": {
+                "data": 0.33333334
+            },
+            "model": "sextiarysector3:item/calendar/calendar_10"
+        },
+        {
+            "predicate": {
+                "data": 0.36666667
+            },
+            "model": "sextiarysector3:item/calendar/calendar_11"
+        },
+        {
+            "predicate": {
+                "data": 0.4
+            },
+            "model": "sextiarysector3:item/calendar/calendar_12"
+        },
+        {
+            "predicate": {
+                "data": 0.43333334
+            },
+            "model": "sextiarysector3:item/calendar/calendar_13"
+        },
+        {
+            "predicate": {
+                "data": 0.46666667
+            },
+            "model": "sextiarysector3:item/calendar/calendar_14"
+        },
+        {
+            "predicate": {
+                "data": 0.5
+            },
+            "model": "sextiarysector3:item/calendar/calendar_15"
+        },
+        {
+            "predicate": {
+                "data": 0.53333336
+            },
+            "model": "sextiarysector3:item/calendar/calendar_16"
+        },
+        {
+            "predicate": {
+                "data": 0.5666667
+            },
+            "model": "sextiarysector3:item/calendar/calendar_17"
+        },
+        {
+            "predicate": {
+                "data": 0.6000001
+            },
+            "model": "sextiarysector3:item/calendar/calendar_18"
+        },
+        {
+            "predicate": {
+                "data": 0.63333344
+            },
+            "model": "sextiarysector3:item/calendar/calendar_19"
+        },
+        {
+            "predicate": {
+                "data": 0.6666668
+            },
+            "model": "sextiarysector3:item/calendar/calendar_20"
+        },
+        {
+            "predicate": {
+                "data": 0.70000017
+            },
+            "model": "sextiarysector3:item/calendar/calendar_21"
+        },
+        {
+            "predicate": {
+                "data": 0.7333335
+            },
+            "model": "sextiarysector3:item/calendar/calendar_22"
+        },
+        {
+            "predicate": {
+                "data": 0.7666669
+            },
+            "model": "sextiarysector3:item/calendar/calendar_23"
+        },
+        {
+            "predicate": {
+                "data": 0.80000025
+            },
+            "model": "sextiarysector3:item/calendar/calendar_24"
+        },
+        {
+            "predicate": {
+                "data": 0.8333336
+            },
+            "model": "sextiarysector3:item/calendar/calendar_25"
+        },
+        {
+            "predicate": {
+                "data": 0.866667
+            },
+            "model": "sextiarysector3:item/calendar/calendar_26"
+        },
+        {
+            "predicate": {
+                "data": 0.90000033
+            },
+            "model": "sextiarysector3:item/calendar/calendar_27"
+        },
+        {
+            "predicate": {
+                "data": 0.9333337
+            },
+            "model": "sextiarysector3:item/calendar/calendar_28"
+        },
+        {
+            "predicate": {
+                "data": 0.96666706
+            },
+            "model": "sextiarysector3:item/calendar/calendar_29"
+        }
+    ]
+}
