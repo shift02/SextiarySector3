@@ -22,6 +22,7 @@ import shift.sextiarysector3.item.ItemSSSpade;
 import shift.sextiarysector3.item.ItemSSSword;
 import shift.sextiarysector3.item.ItemSapBottle;
 import shift.sextiarysector3.item.ItemSeasonStone;
+import shift.sextiarysector3.item.ItemShopMemory;
 import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.tileentity.TileEntityShield;
 import shift.sextiarysector3.util.UtilRegistry;
@@ -113,6 +114,9 @@ public class SSItems {
 
     //魔術
     public static Item potionCapsule;
+
+    //経済
+    public static ItemShopMemory creeperMemory;
 
     public static void initItem() {
 
@@ -286,6 +290,9 @@ public class SSItems {
         potionCapsule = new ItemPotionCapsule().setUnlocalizedName("ss.potion_capsule");
         UtilRegistry.registerNormalItem(potionCapsule, "potion_capsule", "capsule/potion_capsule");
         PotionHelper.registerPotionItem(new PotionHelper.ItemPredicateInstance(potionCapsule));
+
+        creeperMemory = (ItemShopMemory) new ItemShopMemory("creeper").setUnlocalizedName("ss.creeper_memory");
+        UtilRegistry.registerNormalItem(creeperMemory, "creeper_memory", "memory/creeper_memory");
 
     }
 }
