@@ -239,4 +239,9 @@ public class TileEntityShaft extends TileEntityTickable {
 
     }
 
+    @Override
+    public boolean canRenderBreaking() {
+        return true;
+    }
+
 }
