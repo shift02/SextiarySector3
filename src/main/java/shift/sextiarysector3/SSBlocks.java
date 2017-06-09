@@ -267,7 +267,7 @@ public class SSBlocks {
         UtilRegistry.registerNormalBlock(mapleCake, new ItemSSCake(mapleCake), "maple_cake", "cake/maple_cake");
 
         //経済
-        creeperChest = new BlockCreeperChest().setUnlocalizedName("ss.creeper_chest").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        creeperChest = new BlockCreeperChest().setUnlocalizedName("ss.creeper_chest").setHardness(3.0F).setResistance(20.0F);
         GameRegistry.registerTileEntity(TileEntityCreeperChest.class, SextiarySector3.MODID + ":" + "creeper_chest");
         UtilRegistry.registerTESRBlock(creeperChest, TileEntityCreeperChest.class, "creeper_chest", "creeper_chest");
 
