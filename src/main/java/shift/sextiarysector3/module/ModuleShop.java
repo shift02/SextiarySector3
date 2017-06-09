@@ -14,6 +14,7 @@ import shift.mceconomy3.api.MCEconomyAPI;
 import shift.mceconomy3.api.shop.IProduct;
 import shift.mceconomy3.api.shop.IShop;
 import shift.mceconomy3.api.shop.ProductBase;
+import shift.sextiarysector3.SSBlocks;
 import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.api.season.Season;
 import shift.sextiarysector3.util.SeasonManager;
@@ -60,6 +61,8 @@ public class ModuleShop implements IModule {
         creeper.addProduct(new ProductBase(new ItemStack(SSItems.bluestone, 2), 320));
 
         creeper.addProduct(new ProductBase(new ItemStack(SSItems.seasonstone, 1), 3000));
+
+        creeper.addProduct(new ProductBase(new ItemStack(SSBlocks.shopMonitor, 1), 14000));
 
         SSItems.creeperMemory.setShopData(creeper);
 
