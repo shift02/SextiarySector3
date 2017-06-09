@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -29,7 +30,10 @@ public class RendererShopMonitor extends TileEntitySpecialRenderer<TileEntitySho
         GL11.glScalef(scale, scale, scale);
 
         GL11.glTranslatef(8.0f, 8.0f, 8.0f);
-        GL11.glRotatef(90, 1, 0, 0);
+        GL11.glRotatef(180, 1, 0, 0);
+
+        //GlStateManager.scale(1.0F, -1.0F, -1.0F);
+        //GlStateManager.translate(-0.5F, -0.5F, -0.5F);
 
         /*
         GL11.glRotatef(180, 1, 0, 0);
@@ -57,6 +61,11 @@ public class RendererShopMonitor extends TileEntitySpecialRenderer<TileEntitySho
         EnumFacing f = state.getValue(BlockSSHorizontal.FACING);
         boolean on = state.getValue(BlockShopMonitor.SWITCH);
 
+        //破壊処理
+        GlStateManager.enableDepth();
+        GlStateManager.depthFunc(515);
+        GlStateManager.depthMask(true);
+
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
         float scale = 0.0625f;
@@ -83,29 +92,50 @@ public class RendererShopMonitor extends TileEntitySpecialRenderer<TileEntitySho
             break;
         }
 
-        if (!on) {
-
-            this.bindTexture(monitorTextures);
-
+        if (destroyStage >= 0) {
+            this.bindTexture(DESTROY_STAGES[destroyStage]);
+            GlStateManager.matrixMode(5890);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale(4.0F, 2.0F, 1.0F);
+            GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
+            GlStateManager.matrixMode(5888);
         } else {
 
-            if (tileentity.getMemory() != null) {
+            if (!on) {
 
-                if (tileentity.getMemory().getItem() instanceof IShopMemory) {
-                    IShopMemory memory = (IShopMemory) tileentity.getMemory().getItem();
+                this.bindTexture(monitorTextures);
 
-                    this.bindTexture(memory.getMonitorResource());
+            } else {
+
+                if (tileentity.getMemory() != null) {
+
+                    if (tileentity.getMemory().getItem() instanceof IShopMemory) {
+                        IShopMemory memory = (IShopMemory) tileentity.getMemory().getItem();
+
+                        this.bindTexture(memory.getMonitorResource());
+                    } else {
+                        this.bindTexture(monitorTextures);
+                    }
+
                 } else {
                     this.bindTexture(monitorTextures);
                 }
 
-            } else {
-                this.bindTexture(monitorTextures);
             }
 
         }
 
+        GlStateManager.enableRescaleNormal();
+
         modelMonitor.render(null, 0, 0, 0, 0, 0, 1.0f);
+
+        GlStateManager.disableRescaleNormal();
+
+        if (destroyStage >= 0) {
+            GlStateManager.matrixMode(5890);
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode(5888);
+        }
 
         GL11.glPopMatrix();
 
