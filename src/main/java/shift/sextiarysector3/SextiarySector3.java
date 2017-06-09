@@ -26,7 +26,7 @@ import shift.sextiarysector3.proxy.CommonProxy;
 import shift.sextiarysector3.tileentity.CapabilityGFShaftHandler;
 import shift.sextiarysector3.util.UtilRegistry;
 
-@Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION, updateJSON = SextiarySector3.UPDATE_JSON, guiFactory = SextiarySector3.GUI_FACTORY)
+@Mod(modid = SextiarySector3.MODID, version = SextiarySector3.VERSION, updateJSON = SextiarySector3.UPDATE_JSON, guiFactory = SextiarySector3.GUI_FACTORY, dependencies = SextiarySector3.DEPENDENCIES)
 public class SextiarySector3 {
 
     public static final String MODID = "sextiarysector3";
@@ -35,6 +35,8 @@ public class SextiarySector3 {
     public static final String UPDATE_JSON = "https://shift02.github.io/SextiarySector3/Update.json";
 
     public static final String GUI_FACTORY = "shift.sextiarysector3.config.SSConfigGuiFactory";
+
+    public static final String DEPENDENCIES = "required-after:mceconomy3@[1.0.3,)";
 
     @Mod.Instance(MODID)
     public static SextiarySector3 instance;
