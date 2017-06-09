@@ -17,9 +17,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import shift.mceconomy3.api.MCEconomyAPI;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.api.shop.IShopMemory;
@@ -30,6 +33,8 @@ import shift.sextiarysector3.util.UtilCompat;
 public class BlockShopMonitor extends BlockSSHorizontal implements ITileEntityProvider {
 
     public static final PropertyBool SWITCH = PropertyBool.create("switch");
+
+    protected static final AxisAlignedBB SHOP_AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 0.875D, 0.875D);
 
     public BlockShopMonitor() {
         super(Material.IRON);
@@ -226,7 +231,6 @@ public class BlockShopMonitor extends BlockSSHorizontal implements ITileEntityPr
 
         int on = meta & 0b1000;
         boolean sw = on == 0b1000;
-        System.out.println("getS" + sw);
 
         return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(SWITCH, Boolean.valueOf(sw));
     }
@@ -242,6 +246,27 @@ public class BlockShopMonitor extends BlockSSHorizontal implements ITileEntityPr
 
         return meta;
 
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return SHOP_AABB;
+    }
+
+    //当たり判定。サボテンやソウルサンドを参考にすると良い。ココの設定をすると、onEntityCollidedWithBlockが呼ばれるようになる
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+
+        return SHOP_AABB;
+
+    }
+
+    //ブロックに視点を合わせた時に出てくる黒い線のアレ
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
+
+        return SHOP_AABB.offset(pos);
     }
 
     @Override
