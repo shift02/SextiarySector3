@@ -92,7 +92,7 @@ public class SSCreativeTabs {
         @Override
         @SideOnly(Side.CLIENT)
         public ItemStack getIconItemStack() {
-            return new ItemStack(SSItems.plastic, 1);
+            return new ItemStack(SSItems.woodGear, 1);
         }
 
     }
