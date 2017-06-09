@@ -23,6 +23,7 @@ import shift.sextiarysector3.item.ItemSSSword;
 import shift.sextiarysector3.item.ItemSapBottle;
 import shift.sextiarysector3.item.ItemSeasonStone;
 import shift.sextiarysector3.item.ItemShopMemory;
+import shift.sextiarysector3.item.ItemSpanner;
 import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.tileentity.TileEntityShield;
 import shift.sextiarysector3.util.UtilRegistry;
@@ -80,6 +81,9 @@ public class SSItems {
     public static Item orichalcumChestplate;
     public static Item orichalcumLeggings;
     public static Item orichalcumBoots;
+
+    //スパナ
+    public static Item ironSpanner;
 
     //林業
     public static Item treeBranch;
@@ -228,6 +232,9 @@ public class SSItems {
 
         orichalcumBoots = new ItemSSArmor(ModuleToolMaterial.orichalcumArmor, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("ss.orichalcum_boots");
         UtilRegistry.registerNormalItem(orichalcumBoots, "orichalcum_boots", "armor/orichalcum_boots");
+
+        ironSpanner = new ItemSpanner().setUnlocalizedName("ss.iron_spanner");
+        UtilRegistry.registerToolItem(ironSpanner, "iron_spanner", "spanner/iron_spanner");
 
         //林業
         treeBranch = new ItemSSBase().setUnlocalizedName("ss.tree_branch").setCreativeTab(SextiarySectorAPI.TabSSForestry);
