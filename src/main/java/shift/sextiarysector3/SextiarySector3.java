@@ -20,6 +20,7 @@ import shift.sextiarysector3.api.industry.CapabilityShaftHandler;
 import shift.sextiarysector3.module.IModule;
 import shift.sextiarysector3.module.ModuleColor;
 import shift.sextiarysector3.module.ModuleSap;
+import shift.sextiarysector3.module.ModuleShop;
 import shift.sextiarysector3.module.ModuleToolMaterial;
 import shift.sextiarysector3.proxy.CommonProxy;
 import shift.sextiarysector3.tileentity.CapabilityGFShaftHandler;
@@ -63,6 +64,7 @@ public class SextiarySector3 {
         modules.add(ModuleSap.getInstance());
         modules.add(ModuleColor.getInstance());
         modules.add(ModuleToolMaterial.getInstance());
+        modules.add(ModuleShop.getInstance());
         //modules.add(ModuleTrain.getInstance());
 
         for (IModule m : modules) {

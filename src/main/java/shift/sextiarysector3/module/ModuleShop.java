@@ -61,6 +61,8 @@ public class ModuleShop implements IModule {
 
         creeper.addProduct(new ProductBase(new ItemStack(SSItems.seasonstone, 1), 3000));
 
+        SSItems.creeperMemory.setShopData(creeper);
+
     }
 
     @Override

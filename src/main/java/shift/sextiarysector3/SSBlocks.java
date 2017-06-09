@@ -27,6 +27,7 @@ import shift.sextiarysector3.block.BlockSanctuary;
 import shift.sextiarysector3.block.BlockSapCauldron;
 import shift.sextiarysector3.block.BlockSapCauldron.Sap;
 import shift.sextiarysector3.block.BlockShaft;
+import shift.sextiarysector3.block.BlockShopMonitor;
 import shift.sextiarysector3.block.BlockSmallWindmill;
 import shift.sextiarysector3.block.BlockSpile;
 import shift.sextiarysector3.block.BlockWoodScaffold;
@@ -36,6 +37,7 @@ import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
 import shift.sextiarysector3.tileentity.TileEntityCreeperChest;
+import shift.sextiarysector3.tileentity.TileEntityShopMonitor;
 import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector3.tileentity.gearbox.TileEntityWoodGearBox;
 import shift.sextiarysector3.tileentity.shaft.TileEntityWoodShaft;
@@ -118,6 +120,8 @@ public class SSBlocks {
 
     //経済
     public static Block creeperChest;
+
+    public static Block shopMonitor;
 
     public static void initBlock() {
 
@@ -270,6 +274,10 @@ public class SSBlocks {
         creeperChest = new BlockCreeperChest().setUnlocalizedName("ss.creeper_chest").setHardness(3.0F).setResistance(20.0F);
         GameRegistry.registerTileEntity(TileEntityCreeperChest.class, SextiarySector3.MODID + ":" + "creeper_chest");
         UtilRegistry.registerTESRBlock(creeperChest, TileEntityCreeperChest.class, "creeper_chest", "creeper_chest");
+
+        shopMonitor = new BlockShopMonitor().setUnlocalizedName("ss.shop_monitor").setHardness(3.0F).setResistance(20.0F);
+        GameRegistry.registerTileEntity(TileEntityShopMonitor.class, SextiarySector3.MODID + ":" + "shop_monitor");
+        UtilRegistry.registerTESRBlock(shopMonitor, TileEntityShopMonitor.class, "shop_monitor", "shop_monitor");
 
     }
 
