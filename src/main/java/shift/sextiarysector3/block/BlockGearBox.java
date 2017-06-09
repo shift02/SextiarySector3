@@ -20,6 +20,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import shift.sextiarysector3.api.ISpanner;
 import shift.sextiarysector3.tileentity.TileEntityGearBox;
 import shift.sextiarysector3.tileentity.gearbox.TileEntityWoodGearBox;
 
@@ -51,6 +52,15 @@ public class BlockGearBox extends BlockSSBase implements ITileEntityProvider {
             float hitZ) {
 
         //if (worldIn.isRemote) return true;
+
+        if (heldItem == null) return false;
+        if (!(heldItem.getItem() instanceof ISpanner)) return false;
+
+        ISpanner is = (ISpanner) heldItem.getItem();
+
+        if (!is.canUse(heldItem, playerIn, 2)) return false;
+
+        is.use(heldItem, playerIn, 2);
 
         TileEntityGearBox te = (TileEntityGearBox) worldIn.getTileEntity(pos);
         te.changeConnect(side);
