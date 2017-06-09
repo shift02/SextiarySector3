@@ -82,9 +82,6 @@ public class SSItems {
     public static Item orichalcumLeggings;
     public static Item orichalcumBoots;
 
-    //スパナ
-    public static Item ironSpanner;
-
     //林業
     public static Item treeBranch;
 
@@ -115,6 +112,9 @@ public class SSItems {
     public static Item rubberGloves;
 
     public static Item ductTape;
+
+    //スパナ
+    public static Item ironSpanner;
 
     //魔術
     public static Item potionCapsule;
@@ -233,9 +233,6 @@ public class SSItems {
         orichalcumBoots = new ItemSSArmor(ModuleToolMaterial.orichalcumArmor, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("ss.orichalcum_boots");
         UtilRegistry.registerNormalItem(orichalcumBoots, "orichalcum_boots", "armor/orichalcum_boots");
 
-        ironSpanner = new ItemSpanner().setUnlocalizedName("ss.iron_spanner");
-        UtilRegistry.registerToolItem(ironSpanner, "iron_spanner", "spanner/iron_spanner");
-
         //林業
         treeBranch = new ItemSSBase().setUnlocalizedName("ss.tree_branch").setCreativeTab(SextiarySectorAPI.TabSSForestry);
         UtilRegistry.registerNormalItem(treeBranch, "tree_branch", "tree_branch");
@@ -292,6 +289,9 @@ public class SSItems {
 
         ductTape = new ItemSSBase().setUnlocalizedName("ss.duct_tape").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalItem(ductTape, "duct_tape", "duct_tape");
+
+        ironSpanner = new ItemSpanner().setUnlocalizedName("ss.iron_spanner");
+        UtilRegistry.registerToolItem(ironSpanner, "iron_spanner", "spanner/iron_spanner");
 
         //薬学
         potionCapsule = new ItemPotionCapsule().setUnlocalizedName("ss.potion_capsule");

@@ -3,6 +3,7 @@ package shift.sextiarysector3.item;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector3.api.ISpanner;
+import shift.sextiarysector3.api.SextiarySectorAPI;
 
 public class ItemSpanner extends ItemSSBase implements ISpanner {
 
@@ -12,6 +13,8 @@ public class ItemSpanner extends ItemSSBase implements ISpanner {
         this.setHarvestLevel("spanner", 1);
         this.setMaxStackSize(1);
         this.setMaxDamage(140);
+
+        this.setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 
     }
 
