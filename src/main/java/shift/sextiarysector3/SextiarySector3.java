@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.api.energy.CapabilityGearForce;
 import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
 import shift.sextiarysector3.api.industry.CapabilityShaftHandler;
 import shift.sextiarysector3.module.IModule;
@@ -88,6 +89,7 @@ public class SextiarySector3 {
         CapabilityShaftHandler.register();
         CapabilityGFShaftHandler.register();
         CapabilityGearForceHandler.register();
+        CapabilityGearForce.register();
 
     }
 
