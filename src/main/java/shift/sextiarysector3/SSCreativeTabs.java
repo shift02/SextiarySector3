@@ -17,6 +17,7 @@ public class SSCreativeTabs {
         SextiarySectorAPI.TabSSIndustry = new CreativeTabSSIndustry();
         SextiarySectorAPI.TabSSPharmacy = new CreativeTabSSPharmacy();
         SextiarySectorAPI.TabSSCooking = new CreativeTabSSCooking();
+        SextiarySectorAPI.TabSSEconomy = new CreativeTabSSEconomy();
 
     }
 
@@ -130,6 +131,25 @@ public class SSCreativeTabs {
         @SideOnly(Side.CLIENT)
         public ItemStack getIconItemStack() {
             return new ItemStack(SSBlocks.mapleCake, 1);
+        }
+
+    }
+
+    private static class CreativeTabSSEconomy extends CreativeTabs {
+
+        public CreativeTabSSEconomy() {
+            super("ss.economy");
+        }
+
+        @Override
+        public Item getTabIconItem() {
+            return null;//SSBlocks.LargeFurnace.g;
+        }
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack getIconItemStack() {
+            return new ItemStack(SSBlocks.creeperChest, 1);
         }
 
     }

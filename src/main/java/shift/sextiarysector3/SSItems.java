@@ -298,6 +298,7 @@ public class SSItems {
         UtilRegistry.registerNormalItem(potionCapsule, "potion_capsule", "capsule/potion_capsule");
         PotionHelper.registerPotionItem(new PotionHelper.ItemPredicateInstance(potionCapsule));
 
+        //経済
         creeperMemory = (ItemShopMemory) new ItemShopMemory("creeper").setUnlocalizedName("ss.creeper_memory");
         UtilRegistry.registerNormalItem(creeperMemory, "creeper_memory", "memory/creeper_memory");
 

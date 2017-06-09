@@ -3,6 +3,7 @@ package shift.sextiarysector3.item;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.api.shop.IShopMemory;
 import shift.sextiarysector3.module.ModuleShop.ShopSeasonBase;
 
@@ -14,7 +15,7 @@ public class ItemShopMemory extends ItemSSBase implements IShopMemory {
     public ItemShopMemory(String resource) {
         this.monitor = new ResourceLocation("sextiarysector:textures/models/monitor/monitor_" + resource + ".png");
         this.setMaxStackSize(1);
-        //this.setCreativeTab(SextiarySectorAPI.TabSSEconomy);
+        this.setCreativeTab(SextiarySectorAPI.TabSSEconomy);
     }
 
     @Override

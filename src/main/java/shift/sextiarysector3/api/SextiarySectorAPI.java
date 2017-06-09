@@ -25,5 +25,6 @@ public class SextiarySectorAPI {
     public static CreativeTabs TabSSIndustry;
     public static CreativeTabs TabSSPharmacy;
     public static CreativeTabs TabSSCooking;
+    public static CreativeTabs TabSSEconomy;
 
 }
