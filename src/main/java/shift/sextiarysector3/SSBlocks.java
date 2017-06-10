@@ -14,6 +14,7 @@ import shift.sextiarysector3.block.BlockEnderStoneMonument;
 import shift.sextiarysector3.block.BlockGearBox;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockMapleSapling;
+import shift.sextiarysector3.block.BlockPlasticChest;
 import shift.sextiarysector3.block.BlockPotionCake;
 import shift.sextiarysector3.block.BlockSSBase;
 import shift.sextiarysector3.block.BlockSSCake;
@@ -37,6 +38,7 @@ import shift.sextiarysector3.item.ItemSSLeaves;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
 import shift.sextiarysector3.tileentity.TileEntityCreeperChest;
+import shift.sextiarysector3.tileentity.TileEntityPlasticChest;
 import shift.sextiarysector3.tileentity.TileEntityShopMonitor;
 import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector3.tileentity.gearbox.TileEntityWoodGearBox;
@@ -96,6 +98,8 @@ public class SSBlocks {
     //工業
     public static Block plasticBlock;
     public static Block rubberBlock;
+
+    public static Block plasticChest;
 
     public static Block woodScaffold;
 
@@ -227,6 +231,10 @@ public class SSBlocks {
 
         rubberBlock = new BlockSSBase(Material.IRON).setUnlocalizedName("ss.rubber_block").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
         UtilRegistry.registerNormalBlock(rubberBlock, "rubber_block", "rubber_block");
+
+        plasticChest = new BlockPlasticChest().setUnlocalizedName("ss.plastic_chest").setHardness(3.0F).setResistance(20.0F);
+        GameRegistry.registerTileEntity(TileEntityPlasticChest.class, SextiarySector3.MODID + ":" + "plastic_chest");
+        UtilRegistry.registerTESRBlock(plasticChest, TileEntityPlasticChest.class, "plastic_chest", "chest/plastic_chest");
 
         //足場
         woodScaffold = new BlockWoodScaffold().setUnlocalizedName("ss.wood_scaffold").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);
