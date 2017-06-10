@@ -525,7 +525,8 @@ public class BlockSSChest extends BlockSSContainer {
 
     public static enum Type {
         BASIC,
-        TRAP;
+        TRAP,
+        PLASTIC;
     }
 
 }
