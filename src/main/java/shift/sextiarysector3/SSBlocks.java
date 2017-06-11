@@ -5,6 +5,7 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.block.BlockConveyor;
@@ -15,6 +16,7 @@ import shift.sextiarysector3.block.BlockGearBox;
 import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockMapleSapling;
 import shift.sextiarysector3.block.BlockPlasticChest;
+import shift.sextiarysector3.block.BlockPlasticColorChest;
 import shift.sextiarysector3.block.BlockPotionCake;
 import shift.sextiarysector3.block.BlockSSBase;
 import shift.sextiarysector3.block.BlockSSCake;
@@ -35,6 +37,7 @@ import shift.sextiarysector3.block.BlockWoodScaffold;
 import shift.sextiarysector3.item.ItemBlockMeta;
 import shift.sextiarysector3.item.ItemSSCake;
 import shift.sextiarysector3.item.ItemSSLeaves;
+import shift.sextiarysector3.module.ModuleColorChest;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreativeGFTank;
 import shift.sextiarysector3.tileentity.TileEntityCreeperChest;
@@ -100,6 +103,8 @@ public class SSBlocks {
     public static Block rubberBlock;
 
     public static Block plasticChest;
+
+    public static Block[] plasticColorChest = new Block[16];
 
     public static Block woodScaffold;
 
@@ -235,6 +240,16 @@ public class SSBlocks {
         plasticChest = new BlockPlasticChest().setUnlocalizedName("ss.plastic_chest").setHardness(3.0F).setResistance(20.0F);
         GameRegistry.registerTileEntity(TileEntityPlasticChest.class, SextiarySector3.MODID + ":" + "plastic_chest");
         UtilRegistry.registerTESRBlock(plasticChest, TileEntityPlasticChest.class, "plastic_chest", "chest/plastic_chest");
+
+        for (int i = 0; i < EnumDyeColor.values().length; i++) {
+
+            String colorChestName = "plastic_" + EnumDyeColor.values()[i].getName() + "_chest";
+
+            plasticColorChest[i] = new BlockPlasticColorChest(ModuleColorChest.plasticColorChestTile[i]).setUnlocalizedName("ss." + colorChestName).setHardness(3.0F).setResistance(20.0F);
+            GameRegistry.registerTileEntity(ModuleColorChest.plasticColorChestTile[i], SextiarySector3.MODID + ":" + colorChestName);
+            UtilRegistry.registerTESRBlock(plasticColorChest[i], ModuleColorChest.plasticColorChestTile[i], colorChestName, "chest/" + colorChestName);
+
+        }
 
         //足場
         woodScaffold = new BlockWoodScaffold().setUnlocalizedName("ss.wood_scaffold").setHardness(3.0F).setResistance(20.0F).setCreativeTab(SextiarySectorAPI.TabSSIndustry);

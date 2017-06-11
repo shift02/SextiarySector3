@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.StatisticsManager;
@@ -25,15 +26,19 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import shift.sextiarysector3.SextiarySector3;
 import shift.sextiarysector3.entity.EntityConveyorItem;
 import shift.sextiarysector3.module.IModule;
+import shift.sextiarysector3.module.ModuleColorChest;
 import shift.sextiarysector3.renderer.RenderEntityConveyorItem;
 import shift.sextiarysector3.renderer.RendererShield;
 import shift.sextiarysector3.renderer.block.RendererConveyor;
 import shift.sextiarysector3.renderer.block.RendererCreeperChest;
+import shift.sextiarysector3.renderer.block.RendererPlasticChest;
+import shift.sextiarysector3.renderer.block.RendererPlasticColorChest;
 import shift.sextiarysector3.renderer.block.RendererShaft;
 import shift.sextiarysector3.renderer.block.RendererShopMonitor;
 import shift.sextiarysector3.renderer.block.RendererSmallWindmill;
 import shift.sextiarysector3.tileentity.TileEntityConveyor;
 import shift.sextiarysector3.tileentity.TileEntityCreeperChest;
+import shift.sextiarysector3.tileentity.TileEntityPlasticChest;
 import shift.sextiarysector3.tileentity.TileEntityShield;
 import shift.sextiarysector3.tileentity.TileEntityShopMonitor;
 import shift.sextiarysector3.tileentity.TileEntitySmallWindmill;
@@ -102,6 +107,30 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShield.class, new RendererShield());
 
         //Block
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticChest.class, new RendererPlasticChest());
+
+        //B ColorChest
+        for (int i = 0; i < EnumDyeColor.values().length; i++) {
+            ClientRegistry.bindTileEntitySpecialRenderer(ModuleColorChest.plasticColorChestTile[i], new RendererPlasticColorChest(EnumDyeColor.values()[i]));
+        }
+        /*
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticWhiteChest.class, new RendererPlasticColorChest(EnumDyeColor.WHITE));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticOrangeChest.class, new RendererPlasticColorChest(EnumDyeColor.ORANGE));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticMagentaChest.class, new RendererPlasticColorChest(EnumDyeColor.MAGENTA));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticLightBlueChest.class, new RendererPlasticColorChest(EnumDyeColor.LIGHT_BLUE));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticYellowChest.class, new RendererPlasticColorChest(EnumDyeColor.YELLOW));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticLimeChest.class, new RendererPlasticColorChest(EnumDyeColor.LIME));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticPinkChest.class, new RendererPlasticColorChest(EnumDyeColor.PINK));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticGrayChest.class, new RendererPlasticColorChest(EnumDyeColor.GRAY));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticSilverChest.class, new RendererPlasticColorChest(EnumDyeColor.SILVER));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticCyanChest.class, new RendererPlasticColorChest(EnumDyeColor.CYAN));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticPurpleChest.class, new RendererPlasticColorChest(EnumDyeColor.PURPLE));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticBlueChest.class, new RendererPlasticColorChest(EnumDyeColor.BLUE));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticBrownChest.class, new RendererPlasticColorChest(EnumDyeColor.BROWN));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticGreenChest.class, new RendererPlasticColorChest(EnumDyeColor.GREEN));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticRedChest.class, new RendererPlasticColorChest(EnumDyeColor.RED));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlasticBlackChest.class, new RendererPlasticColorChest(EnumDyeColor.BLACK));*/
+
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWoodShaft.class, new RendererShaft());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConveyor.class, new RendererConveyor());
