@@ -105,8 +105,8 @@ public class AchievementEventHandler {
             if (tileEntityChest != null) {
 
                 //tileEntityChest.setInventorySlotContents(0, new ItemStack(SSBlocks.shippingBox));
-                //tileEntityChest.setInventorySlotContents(1, new ItemStack(SSBlocks.shopMonitor, 2));
-                //tileEntityChest.setInventorySlotContents(2, new ItemStack(SSItems.creeperMemory));
+                tileEntityChest.setInventorySlotContents(1, new ItemStack(SSBlocks.shopMonitor, 2));
+                tileEntityChest.setInventorySlotContents(2, new ItemStack(SSItems.creeperMemory));
                 tileEntityChest.setInventorySlotContents(3, new ItemStack(SSItems.bluestone, 32));
                 tileEntityChest.setInventorySlotContents(4, new ItemStack(Items.GUNPOWDER, 16));
                 tileEntityChest.setInventorySlotContents(5, new ItemStack(Items.DIAMOND, 4));
