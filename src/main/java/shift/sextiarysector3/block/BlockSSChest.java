@@ -526,7 +526,23 @@ public class BlockSSChest extends BlockSSContainer {
     public static enum Type {
         BASIC,
         TRAP,
-        PLASTIC;
+        PLASTIC,
+        PLASTIC_WHITE,
+        PLASTIC_ORANGE,
+        PLASTIC_MAGENTA,
+        PLASTIC_LIGHT_BLUE,
+        PLASTIC_YELLOW,
+        PLASTIC_LIME,
+        PLASTIC_PINK,
+        PLASTIC_GRAY,
+        PLASTIC_SILVER,
+        PLASTIC_CYAN,
+        PLASTIC_PURPLE,
+        PLASTIC_BLUE,
+        PLASTIC_BROWN,
+        PLASTIC_GREEN,
+        PLASTIC_RED,
+        PLASTIC_BLACK;
     }
 
 }

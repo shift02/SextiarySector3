@@ -9,8 +9,8 @@ public class BlockPlasticColorChest extends BlockSSChest {
 
     Class<? extends TileEntitySSChest> tile;
 
-    public BlockPlasticColorChest(Class<? extends TileEntitySSChest> tile) {
-        super(Type.PLASTIC);
+    public BlockPlasticColorChest(Class<? extends TileEntitySSChest> tile, BlockSSChest.Type type) {
+        super(type);
 
         this.tile = tile;
 

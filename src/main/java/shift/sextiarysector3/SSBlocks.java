@@ -245,7 +245,8 @@ public class SSBlocks {
 
             String colorChestName = "plastic_" + EnumDyeColor.values()[i].getName() + "_chest";
 
-            plasticColorChest[i] = new BlockPlasticColorChest(ModuleColorChest.plasticColorChestTile[i]).setUnlocalizedName("ss." + colorChestName).setHardness(3.0F).setResistance(20.0F);
+            plasticColorChest[i] = new BlockPlasticColorChest(ModuleColorChest.plasticColorChestTile[i], ModuleColorChest.plasticColorChestType[i])
+                    .setUnlocalizedName("ss." + colorChestName).setHardness(3.0F).setResistance(20.0F);
             GameRegistry.registerTileEntity(ModuleColorChest.plasticColorChestTile[i], SextiarySector3.MODID + ":" + colorChestName);
             UtilRegistry.registerTESRBlock(plasticColorChest[i], ModuleColorChest.plasticColorChestTile[i], colorChestName, "chest/" + colorChestName);
 

@@ -1,5 +1,6 @@
 package shift.sextiarysector3.module;
 
+import shift.sextiarysector3.block.BlockSSChest;
 import shift.sextiarysector3.tileentity.TileEntitySSChest;
 import shift.sextiarysector3.tileentity.color.TileEntityPlasticBlackChest;
 import shift.sextiarysector3.tileentity.color.TileEntityPlasticBlueChest;
@@ -37,6 +38,25 @@ public class ModuleColorChest {
             TileEntityPlasticGreenChest.class,
             TileEntityPlasticRedChest.class,
             TileEntityPlasticBlackChest.class
+    };
+
+    public static BlockSSChest.Type[] plasticColorChestType = new BlockSSChest.Type[] {
+            BlockSSChest.Type.PLASTIC_WHITE,
+            BlockSSChest.Type.PLASTIC_ORANGE,
+            BlockSSChest.Type.PLASTIC_MAGENTA,
+            BlockSSChest.Type.PLASTIC_LIGHT_BLUE,
+            BlockSSChest.Type.PLASTIC_YELLOW,
+            BlockSSChest.Type.PLASTIC_LIME,
+            BlockSSChest.Type.PLASTIC_PINK,
+            BlockSSChest.Type.PLASTIC_GRAY,
+            BlockSSChest.Type.PLASTIC_SILVER,
+            BlockSSChest.Type.PLASTIC_CYAN,
+            BlockSSChest.Type.PLASTIC_PURPLE,
+            BlockSSChest.Type.PLASTIC_BLUE,
+            BlockSSChest.Type.PLASTIC_BROWN,
+            BlockSSChest.Type.PLASTIC_GREEN,
+            BlockSSChest.Type.PLASTIC_RED,
+            BlockSSChest.Type.PLASTIC_BLACK
     };
 
 }

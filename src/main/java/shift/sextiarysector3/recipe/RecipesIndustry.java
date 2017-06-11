@@ -37,6 +37,49 @@ public class RecipesIndustry {
                         "slimeball"
                 }));
 
+        //プラスチックチェスト
+        String[] dyes = {
+                "Black",
+                "Red",
+                "Green",
+                "Brown",
+                "Blue",
+                "Purple",
+                "Cyan",
+                "LightGray",
+                "Gray",
+                "Pink",
+                "Lime",
+                "Yellow",
+                "LightBlue",
+                "Magenta",
+                "Orange",
+                "White"
+        };
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.plasticChest, 1),
+                new Object[] {
+                        "xxx", "x x", "xxx",
+                        'x', "plastic"
+                }));
+
+        for (int i = 0; i < dyes.length; i++) {
+
+            int meta = 15 - i;
+            p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.plasticColorChest[i], 1),
+                    new Object[] {
+                            "xxx", "xyx", "xxx",
+                            'x', "plastic",
+                            'y', "dye" + dyes[meta]
+                    }));
+
+            p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSBlocks.plasticColorChest[i], 1),
+                    new Object[] {
+                            "dye" + dyes[meta],
+                            "chestPlastic"
+                    }));
+
+        }
+
         //歯車
         String[] MATERIAL = new String[] {
                 "plankWood"

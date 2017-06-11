@@ -54,6 +54,14 @@ public class SSOreDictionary {
 
         OreDictionary.registerOre("blockWool", new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE));
 
+        OreDictionary.registerOre("chestWood", SSBlocks.creeperChest);
+
+        //PlasticChest
+        OreDictionary.registerOre("chestPlastic", SSBlocks.plasticChest);
+        for (int i = 0; i < SSBlocks.plasticColorChest.length; i++) {
+            OreDictionary.registerOre("chestPlastic", SSBlocks.plasticColorChest[i]);
+        }
+
     }
 
 }
