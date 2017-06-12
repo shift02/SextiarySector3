@@ -85,7 +85,8 @@ repositories {
 
 dependencies {
 
-    compile 'shift.mceconomy3:mceconomy3:1.0.3:dev'
+    compile 'shift.mceconomy3:mceconomy3:1.0.4:dev'
+    compile 'shift.mceconomy3compat:mceconomy3compat:1.0.1:dev'
     compile 'shift.additionalstatus:additionalstatus:1.2.0:dev'
 
     // you may put jars on which you depend on in ./libs
