@@ -36,7 +36,7 @@ public class SextiarySector3 {
 
     public static final String GUI_FACTORY = "shift.sextiarysector3.config.SSConfigGuiFactory";
 
-    public static final String DEPENDENCIES = "required-after:mceconomy3@[1.0.3,)";
+    public static final String DEPENDENCIES = "required-after:mceconomy3@[1.0.3,);required-after:mceconomy3compat@[1.0.1,)";
 
     @Mod.Instance(MODID)
     public static SextiarySector3 instance;
