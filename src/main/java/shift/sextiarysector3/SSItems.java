@@ -94,6 +94,10 @@ public class SSItems {
     public static Item silverIngot;
     public static Item orichalcumGem;
 
+    public static Item ironNugget;
+    public static Item copperNugget;
+    public static Item silverNugget;
+
     //工業
     public static Item coalDust;
     public static Item ironDust;
@@ -255,6 +259,15 @@ public class SSItems {
 
         orichalcumGem = new ItemIngot().setUnlocalizedName("ss.orichalcum_gem");
         UtilRegistry.registerNormalItem(orichalcumGem, "orichalcum_gem", "gem/orichalcum_gem");
+
+        ironNugget = new ItemIngot().setUnlocalizedName("ss.iron_nugget");
+        UtilRegistry.registerNormalItem(ironNugget, "iron_nugget", "nugget/iron_nugget");
+
+        copperNugget = new ItemIngot().setUnlocalizedName("ss.copper_nugget");
+        UtilRegistry.registerNormalItem(copperNugget, "copper_nugget", "nugget/copper_nugget");
+
+        silverNugget = new ItemIngot().setUnlocalizedName("ss.silver_nugget");
+        UtilRegistry.registerNormalItem(silverNugget, "silver_nugget", "nugget/silver_nugget");
 
         //工業
         coalDust = new ItemDust().setUnlocalizedName("ss.coal_dust");

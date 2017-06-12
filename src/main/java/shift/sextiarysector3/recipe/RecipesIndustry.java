@@ -162,7 +162,7 @@ public class RecipesIndustry {
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.ironSpanner, 1),
                 new Object[] {
                         " x ", " xx", "x  ",
-                        'x', "ingotIron"
+                        'x', "nuggetIron"
                 }));
 
     }
