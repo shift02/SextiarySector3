@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import shift.mceconomy3compat.MCEconomy3Compat;
 import shift.sextiarysector3.SSAchievements;
 import shift.sextiarysector3.SSBlocks;
 import shift.sextiarysector3.SSItems;
@@ -104,7 +105,7 @@ public class AchievementEventHandler {
             TileEntitySSChest tileEntityChest = (TileEntitySSChest) world.getTileEntity(pos);
             if (tileEntityChest != null) {
 
-                //tileEntityChest.setInventorySlotContents(0, new ItemStack(SSBlocks.shippingBox));
+                tileEntityChest.setInventorySlotContents(0, new ItemStack(MCEconomy3Compat.shippingBox));
                 tileEntityChest.setInventorySlotContents(1, new ItemStack(SSBlocks.shopMonitor, 2));
                 tileEntityChest.setInventorySlotContents(2, new ItemStack(SSItems.creeperMemory));
                 tileEntityChest.setInventorySlotContents(3, new ItemStack(SSItems.bluestone, 32));
