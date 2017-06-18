@@ -80,6 +80,8 @@ public class SextiarySector3 {
         SSFluids.initFluid();
         SSEntitys.initEntity();
 
+        SSPotions.initPotion();
+
         SSEvents.initEvent(event);
 
         SSRecipes.initRecipes();
