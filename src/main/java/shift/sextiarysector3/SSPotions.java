@@ -18,6 +18,10 @@ public class SSPotions {
     public static PotionType longHaste;
     public static PotionType strongHaste;
 
+    public static PotionType glowing;
+    public static PotionType longGlowing;
+    public static PotionType strongGlowing;
+
     public static Predicate<ItemStack> predicateOrichalcum = new PotionHelper.ItemPredicateInstance(SSItems.orichalcumGem);
 
     public static Predicate<ItemStack> predicate = new PotionHelper.ItemPredicateInstance(SSItems.silverNugget);
@@ -31,6 +35,14 @@ public class SSPotions {
         GameRegistry.register(haste, new ResourceLocation("haste"));
         GameRegistry.register(longHaste, new ResourceLocation("long_haste"));
         GameRegistry.register(strongHaste, new ResourceLocation("strong_haste"));
+
+        glowing = new PotionType(new PotionEffect[] { new PotionEffect(MobEffects.GLOWING, 3600) });
+        longGlowing = new PotionType("glowing", new PotionEffect[] { new PotionEffect(MobEffects.GLOWING, 9600) });
+        strongGlowing = new PotionType("glowing", new PotionEffect[] { new PotionEffect(MobEffects.GLOWING, 1800, 1) });
+
+        GameRegistry.register(glowing, new ResourceLocation("glowing"));
+        GameRegistry.register(longGlowing, new ResourceLocation("long_glowing"));
+        GameRegistry.register(strongGlowing, new ResourceLocation("strong_glowing"));
 
         PotionHelper.registerPotionTypeConversion(PotionTypes.AWKWARD, predicateOrichalcum, haste);
 
