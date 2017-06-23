@@ -47,7 +47,7 @@ public class WorldEventHandler {
         this.chunk_X = event.getPos().getX();
         this.chunk_Z = event.getPos().getZ();
         this.currentWorld = event.getWorld();
-        this.biome = event.getWorld().getBiomeGenForCoords(event.getPos());
+        this.biome = event.getWorld().getBiomeForCoordsBody(event.getPos());
 
         copperOreGen = new WorldGenMinable(SSBlocks.copperOre.getDefaultState(), 10);
         silverOreGen = new WorldGenMinable(SSBlocks.silverOre.getDefaultState(), 8);
@@ -107,7 +107,7 @@ public class WorldEventHandler {
         this.randomGenerato = event.getRand();
         World worldIn = event.getWorld();
         BlockPos chunkPos = event.getPos();
-        Biome biome = worldIn.getBiomeGenForCoords(chunkPos);
+        Biome biome = worldIn.getBiomeForCoordsBody(chunkPos);
 
         float tem = biome.getFloatTemperature(chunkPos);
         float rain = biome.getRainfall();
@@ -140,7 +140,7 @@ public class WorldEventHandler {
         this.randomGenerato = event.getRand();
         World worldIn = event.getWorld();
         BlockPos chunkPos = event.getPos();
-        Biome biome = worldIn.getBiomeGenForCoords(chunkPos);
+        Biome biome = worldIn.getBiomeForCoordsBody(chunkPos);
 
         float tem = biome.getFloatTemperature(chunkPos);
         float rain = biome.getRainfall();
@@ -175,7 +175,7 @@ public class WorldEventHandler {
         this.randomGenerato = event.getRand();
         World worldIn = event.getWorld();
         BlockPos chunkPos = event.getPos();
-        Biome biome = worldIn.getBiomeGenForCoords(chunkPos);
+        Biome biome = worldIn.getBiomeForCoordsBody(chunkPos);
 
         int i = randomGenerato.nextInt(16) + 8;
         int j = randomGenerato.nextInt(16) + 8;
