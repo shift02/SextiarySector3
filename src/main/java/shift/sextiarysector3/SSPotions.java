@@ -2,6 +2,7 @@ package shift.sextiarysector3;
 
 import com.google.common.base.Predicate;
 
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
@@ -22,7 +23,12 @@ public class SSPotions {
     public static PotionType longGlowing;
     public static PotionType strongGlowing;
 
+    public static Predicate<ItemStack> predicate2 = new PotionHelper.ItemPredicateInstance(Items.REDSTONE);
+    public static Predicate<ItemStack> predicate5 = new PotionHelper.ItemPredicateInstance(Items.GLOWSTONE_DUST);
+
     public static Predicate<ItemStack> predicateOrichalcum = new PotionHelper.ItemPredicateInstance(SSItems.orichalcumGem);
+
+    public static Predicate<ItemStack> predicateShiningFlower = new PotionHelper.ItemPredicateInstance(SSItems.shiningFlower);
 
     public static Predicate<ItemStack> predicate = new PotionHelper.ItemPredicateInstance(SSItems.silverNugget);
 
@@ -38,13 +44,18 @@ public class SSPotions {
 
         glowing = new PotionType(new PotionEffect[] { new PotionEffect(MobEffects.GLOWING, 3600) });
         longGlowing = new PotionType("glowing", new PotionEffect[] { new PotionEffect(MobEffects.GLOWING, 9600) });
-        strongGlowing = new PotionType("glowing", new PotionEffect[] { new PotionEffect(MobEffects.GLOWING, 1800, 1) });
+        //strongGlowing = new PotionType("glowing", new PotionEffect[] { new PotionEffect(MobEffects.GLOWING, 1800, 1) });
 
         GameRegistry.register(glowing, new ResourceLocation("glowing"));
         GameRegistry.register(longGlowing, new ResourceLocation("long_glowing"));
-        GameRegistry.register(strongGlowing, new ResourceLocation("strong_glowing"));
+        //GameRegistry.register(strongGlowing, new ResourceLocation("strong_glowing"));
 
         PotionHelper.registerPotionTypeConversion(PotionTypes.AWKWARD, predicateOrichalcum, haste);
+        PotionHelper.registerPotionTypeConversion(haste, predicate2, longHaste);
+        PotionHelper.registerPotionTypeConversion(haste, predicate5, strongHaste);
+
+        PotionHelper.registerPotionTypeConversion(PotionTypes.AWKWARD, predicateShiningFlower, glowing);
+        PotionHelper.registerPotionTypeConversion(glowing, predicate2, longGlowing);
 
     }
 }
