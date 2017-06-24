@@ -121,6 +121,8 @@ public class SSItems {
     public static Item ironSpanner;
 
     //魔術
+    public static Item shiningFlower;
+
     public static Item potionCapsule;
 
     //経済
@@ -307,6 +309,9 @@ public class SSItems {
         UtilRegistry.registerToolItem(ironSpanner, "iron_spanner", "spanner/iron_spanner");
 
         //薬学
+        shiningFlower = new ItemSSBase().setUnlocalizedName("ss.shining_flower").setCreativeTab(SextiarySectorAPI.TabSSPharmacy);
+        UtilRegistry.registerNormalItem(shiningFlower, "shining_flower", "potion/shining_flower");
+
         potionCapsule = new ItemPotionCapsule().setUnlocalizedName("ss.potion_capsule");
         UtilRegistry.registerNormalItem(potionCapsule, "potion_capsule", "capsule/potion_capsule");
         PotionHelper.registerPotionItem(new PotionHelper.ItemPredicateInstance(potionCapsule));
