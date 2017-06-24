@@ -67,6 +67,9 @@ public class SSOreDictionary {
             OreDictionary.registerOre("chestPlastic", SSBlocks.plasticColorChest[i]);
         }
 
+        //Other
+        OreDictionary.registerOre("syrupMaple", SSItems.mapleBottle);
+
     }
 
 }
