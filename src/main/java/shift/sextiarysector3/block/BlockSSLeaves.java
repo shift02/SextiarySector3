@@ -43,75 +43,91 @@ public class BlockSSLeaves extends BlockLeaves {
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)).withProperty(CHECK_DECAY, Boolean.valueOf(true))
                 .withProperty(DECAYABLE, Boolean.valueOf(true)));
+
+        this.setTickRandomly(true);
+
     }
 
+    @Override
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return Item.getItemFromBlock(sapling);
     }
 
+    @Override
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
 
     }
 
+    @Override
     protected int getSaplingDropChance(IBlockState state) {
         return super.getSaplingDropChance(state);
     }
 
+    @Override
     protected ItemStack createStackedBlock(IBlockState state) {
         return new ItemStack(Item.getItemFromBlock(this), 1, 0);
     }
 
+    @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(AGE, this.getAge(meta)).withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0))
+
+        return this.getDefaultState().withProperty(AGE, this.getAge(meta)).withProperty(DECAYABLE, Boolean.valueOf((meta & 0b0100) == 0))
                 .withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
+
     }
 
     /**
      * Convert the BlockState into the correct metadata value
      */
+    @Override
     public int getMetaFromState(IBlockState state) {
         int i = 0;
         i = i | this.getAge(state);
 
-        if (!((Boolean) state.getValue(DECAYABLE)).booleanValue()) {
-            i |= 4;
+        if (!state.getValue(DECAYABLE).booleanValue()) {
+            i |= 0b0100;
         }
 
-        if (((Boolean) state.getValue(CHECK_DECAY)).booleanValue()) {
-            i |= 8;
+        if (state.getValue(CHECK_DECAY).booleanValue()) {
+            i |= 0b1000;
         }
 
         return i;
     }
 
     public int getAge(int meta) {
-        return (meta & 3) % 4;
+        return (meta & 0b0011) % 4;
     }
 
     protected int getAge(IBlockState state) {
-        return ((Integer) state.getValue(this.AGE)).intValue();
+        return state.getValue(this.AGE).intValue();
     }
 
+    @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] { AGE, CHECK_DECAY, DECAYABLE });
     }
 
+    @Override
     public BlockPlanks.EnumType getWoodType(int meta) {
         return BlockPlanks.EnumType.byMetadata((meta & 3) + 4);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean isOpaqueCube(IBlockState state) {
         return !Minecraft.getMinecraft().gameSettings.fancyGraphics;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
 
         return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 
@@ -119,10 +135,12 @@ public class BlockSSLeaves extends BlockLeaves {
                 : Blocks.STONE.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 
+    @Override
     public int damageDropped(IBlockState state) {
         return 0;
     }
 
+    @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack) {
         if (!worldIn.isRemote && !UtilCompat.isNullFromItemStack(stack) && stack.getItem() == Items.SHEARS) {
             player.addStat(StatList.getBlockStats(this));
