@@ -13,7 +13,6 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import shift.sextiarysector3.api.energy.CapabilityGearForce;
-import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
 import shift.sextiarysector3.api.energy.IGearForceStorage;
 import shift.sextiarysector3.block.BlockSmallWindmill;
 
@@ -21,7 +20,7 @@ public class TileEntitySmallWindmill extends TileEntity implements ITickable {
 
     public GFPowerSource gf;
 
-    public GFTank tank;
+    //public GFTank tank;
 
     public float rotateStep = 0;
 
@@ -31,7 +30,7 @@ public class TileEntitySmallWindmill extends TileEntity implements ITickable {
     public TileEntitySmallWindmill() {
         super();
 
-        tank = new GFTank();
+        //tank = new GFTank();
 
         this.gf = new GFPowerSource(1, 8);
 
@@ -151,9 +150,10 @@ public class TileEntitySmallWindmill extends TileEntity implements ITickable {
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         EnumFacing f = this.getFacing().getOpposite();
 
+        /*
         if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY && f == facing) {
             return true;
-        }
+        }*/
         return super.hasCapability(capability, facing);
     }
 
@@ -162,10 +162,11 @@ public class TileEntitySmallWindmill extends TileEntity implements ITickable {
 
         EnumFacing f = this.getFacing().getOpposite();
 
+        /*
         if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY && f == facing) {
             tank.setPower(work ? 4 : 0);
             return (T) tank;
-        }
+        }*/
         return super.getCapability(capability, facing);
     }
 

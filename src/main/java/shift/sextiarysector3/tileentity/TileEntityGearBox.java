@@ -11,14 +11,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import shift.sextiarysector3.api.energy.CapabilityGearForce;
-import shift.sextiarysector3.api.energy.CapabilityGearForceHandler;
 import shift.sextiarysector3.api.energy.GearForceStorage;
 import shift.sextiarysector3.api.energy.IGearForceStorage;
 import shift.sextiarysector3.block.ConnectionType;
 
 public class TileEntityGearBox extends TileEntity implements ITickable {
 
-    public GFTank tank;
+    ///public GFTank tank;
 
     public boolean[] oldOutPowers;
 
@@ -28,7 +27,7 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
     public GearForceGearBoxStorage[] storagesOut;
 
     public TileEntityGearBox() {
-        tank = new GFTank();
+        //tank = new GFTank();
         this.oldOutPowers = new boolean[6];
         this.connects = ConnectionType.newList();
 
@@ -159,14 +158,14 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
     @Override
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
         super.readFromNBT(par1nbtTagCompound);
-        tank.setPower(par1nbtTagCompound.getInteger("power"));
+        //tank.setPower(par1nbtTagCompound.getInteger("power"));
         this.connects = ConnectionType.readFromNBT(par1nbtTagCompound);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
         NBTTagCompound nbt = super.writeToNBT(par1nbtTagCompound);
-        nbt.setInteger("power", tank.getPower());
+        //nbt.setInteger("power", tank.getPower());
         nbt = ConnectionType.writeToNBT(nbt, connects);
         return nbt;
     }
@@ -194,10 +193,6 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 
-        if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY) {
-            return true;
-        }
-
         if (capability == CapabilityGearForce.GEAR_FORCE && this.hasConnect(facing)) {
             return true;
         }
@@ -208,13 +203,6 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 
-        if (capability == CapabilityGearForceHandler.GEAR_FORCE_CAPABILITY) {
-
-            if (facing != null) this.oldOutPowers[facing.getIndex()] = true;
-            return (T) tank;
-
-        }
-
         if (capability == CapabilityGearForce.GEAR_FORCE && this.connects[facing.getIndex()] == ConnectionType.IN) {
             return (T) this.storagesIn[facing.getIndex()];
         }
@@ -224,6 +212,7 @@ public class TileEntityGearBox extends TileEntity implements ITickable {
         }
 
         return super.getCapability(capability, facing);
+
     }
 
     public boolean hasConnect(EnumFacing facing) {
