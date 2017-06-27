@@ -27,7 +27,7 @@ public class CapabilityGearForce {
                     @Override
                     public void readNBT(Capability<IGearForceStorage> capability, IGearForceStorage instance, EnumFacing side, NBTBase nbt) {
 
-                        //((EnergyStorage) instance).energy = ((NBTTagInt) nbt).getInt();
+                        ((GearForceStorage) instance).speed = ((NBTTagInt) nbt).getInt();
 
                     }
                 },
