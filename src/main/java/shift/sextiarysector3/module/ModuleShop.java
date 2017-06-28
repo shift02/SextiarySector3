@@ -3,6 +3,7 @@ package shift.sextiarysector3.module;
 import java.util.ArrayList;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -57,6 +58,8 @@ public class ModuleShop implements IModule {
 
         //クリーパー
         creeper = new ShopSeasonBase("shop.ss.creeper");
+
+        creeper.addProduct(new ProductBase(new ItemStack(Items.BREAD, 1), 120));
 
         creeper.addProduct(new ProductBase(new ItemStack(SSItems.bluestone, 2), 320));
 
