@@ -24,7 +24,7 @@ public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
 
             int i = this.getAge(state);
 
-            if (i < this.getMaxAge()) {
+            if (i < this.getMaxAge() && this.canGrow(worldIn, pos, state, worldIn.isRemote)) {
                 float f = 25.0f;//getGrowthChance(this, worldIn, pos);
 
                 if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0)) {
@@ -55,11 +55,21 @@ public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
 
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+
+        if (state.getValue(DECAYABLE)) {
+            return false;
+        }
+
         return true;
     }
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+
+        if (state.getValue(DECAYABLE)) {
+            return false;
+        }
+
         return true;
     }
 
