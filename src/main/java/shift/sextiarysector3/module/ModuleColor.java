@@ -93,6 +93,19 @@ public class ModuleColor implements IModule {
             }
         }, SSBlocks.mapleLeaves);
 
+        //梅
+        block.registerBlockColorHandler(new IBlockColor() {
+
+            @Override
+            public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+
+                if (SeasonManager.getInstance().getSeason(mc.theWorld) == Season.SPRING) return 0xFFFFFF;
+
+                return (worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic());
+
+            }
+        }, SSBlocks.plumLeaves);
+
         //バニラ
         block.registerBlockColorHandler(new IBlockColor() {
             @Override

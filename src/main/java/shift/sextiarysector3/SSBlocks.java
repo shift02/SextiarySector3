@@ -17,9 +17,11 @@ import shift.sextiarysector3.block.BlockLargeOre;
 import shift.sextiarysector3.block.BlockMapleSapling;
 import shift.sextiarysector3.block.BlockPlasticChest;
 import shift.sextiarysector3.block.BlockPlasticColorChest;
+import shift.sextiarysector3.block.BlockPlumSapling;
 import shift.sextiarysector3.block.BlockPotionCake;
 import shift.sextiarysector3.block.BlockSSBase;
 import shift.sextiarysector3.block.BlockSSCake;
+import shift.sextiarysector3.block.BlockSSFruitLeaves;
 import shift.sextiarysector3.block.BlockSSLeaves;
 import shift.sextiarysector3.block.BlockSSLog;
 import shift.sextiarysector3.block.BlockSSOre;
@@ -65,6 +67,7 @@ public class SSBlocks {
     public static Block enderStone;
     public static Block enderStoneFoundation;
 
+    //林業
     public static Block rubberSapling;
     public static Block rubberLog;
     public static Block rubberLeaves;
@@ -72,6 +75,10 @@ public class SSBlocks {
     public static Block mapleSapling;
     public static Block mapleLog;
     public static Block mapleLeaves;
+
+    public static Block plumSapling;
+    public static Block plumLog;
+    public static Block plumLeaves;
 
     public static Block spile;
 
@@ -175,6 +182,15 @@ public class SSBlocks {
 
         mapleLeaves = new BlockSSLeaves(mapleSapling).setUnlocalizedName("ss.maple_leaves");
         UtilRegistry.registerNormalBlock(mapleLeaves, new ItemSSLeaves((BlockLeaves) mapleLeaves), "maple_leaves", "forestry/maple_leaves");
+
+        plumSapling = new BlockPlumSapling().setUnlocalizedName("ss.plum_sapling");
+        UtilRegistry.registerNormalBlock(plumSapling, "plum_sapling", "forestry/plum_sapling");
+
+        plumLog = new BlockSSLog().setUnlocalizedName("ss.plum_log");
+        UtilRegistry.registerNormalBlock(plumLog, "plum_log", "forestry/plum_log");
+
+        plumLeaves = new BlockSSFruitLeaves(plumSapling).setUnlocalizedName("ss.plum_leaves");
+        UtilRegistry.registerNormalBlock(plumLeaves, new ItemSSLeaves((BlockLeaves) plumLeaves), "plum_leaves", "forestry/plum_leaves");
 
         spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");
         UtilRegistry.registerNormalBlock(spile, "spile", "spile");
