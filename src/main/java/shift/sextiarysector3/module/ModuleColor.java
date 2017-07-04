@@ -145,6 +145,14 @@ public class ModuleColor implements IModule {
             }
         }, new Block[] { SSBlocks.mapleLeaves });
 
+        itemcolors.registerItemColorHandler(new IItemColor() {
+            @Override
+            public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+                IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+                return block.colorMultiplier(iblockstate, (IBlockAccess) null, (BlockPos) null, tintIndex);
+            }
+        }, new Block[] { SSBlocks.plumLeaves });
+
         //ポーション
         itemcolors.registerItemColorHandler(new IItemColor() {
             @Override
