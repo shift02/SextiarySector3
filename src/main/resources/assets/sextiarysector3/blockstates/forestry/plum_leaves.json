@@ -3,7 +3,8 @@
   "defaults": {
     "model": "leaves",
     "textures": {
-      "all": "sextiarysector3:blocks/forestry/leaves_plum"
+      "all": "sextiarysector3:blocks/forestry/leaves_plum",
+      "leaves": "sextiarysector3:blocks/forestry/leaves_plum"
     },
     "transform": "forge:default-block"
   },
@@ -12,9 +13,24 @@
     "inventory":[{}],
     "age": {
       0: {},
-      1: {},
-      2: {},
-      3: {}
+      1: {
+        "model": "sextiarysector3:fruit_leaves",
+        "textures": {
+          "fruit": "sextiarysector3:blocks/forestry/leaves_plum_01"
+        }
+      },
+      2: {
+        "model": "sextiarysector3:fruit_leaves",
+        "textures": {
+          "fruit": "sextiarysector3:blocks/forestry/leaves_plum_01"
+        }
+      },
+      3: {
+        "model": "sextiarysector3:fruit_leaves",
+        "textures": {
+          "fruit": "sextiarysector3:blocks/forestry/leaves_plum_01"
+        }
+      }
     },
     "decayable": {
       "true": {},

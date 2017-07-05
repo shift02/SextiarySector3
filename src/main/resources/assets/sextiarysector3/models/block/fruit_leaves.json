@@ -1,0 +1,38 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "#leaves",
+    "leaves": "blocks/leaves_oak"
+  },
+  "elements": [
+
+{
+  "__comment": "Leaves Base",
+  "from": [ 0, 0, 0 ],
+  "to": [ 16, 16, 16 ],
+  "faces": {
+    "down":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 0, "texture": "#leaves" },
+    "up":    { "uv": [ 0, 0, 16, 16 ],"tintindex": 0, "texture": "#leaves" },
+    "north": { "uv": [ 0, 0, 16, 16 ],"tintindex": 0, "texture": "#leaves" },
+    "south": { "uv": [ 0, 0, 16, 16 ],"tintindex": 0, "texture": "#leaves" },
+    "west":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 0, "texture": "#leaves" },
+    "east":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 0, "texture": "#leaves" }
+  }
+},
+{
+  "__comment": "Fruit Base",
+  "from": [ 0, 0, 0 ],
+  "to": [ 16, 16, 16 ],
+  "faces": {
+    "down":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 1, "texture": "#fruit" },
+    "up":    { "uv": [ 0, 0, 16, 16 ],"tintindex": 1, "texture": "#fruit" },
+    "north": { "uv": [ 0, 0, 16, 16 ],"tintindex": 1, "texture": "#fruit" },
+    "south": { "uv": [ 0, 0, 16, 16 ],"tintindex": 1, "texture": "#fruit" },
+    "west":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 1, "texture": "#fruit" },
+    "east":  { "uv": [ 0, 0, 16, 16 ],"tintindex": 1, "texture": "#fruit" }
+  }
+}
+
+]
+
+}
