@@ -8,6 +8,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import shift.sextiarysector3.api.SextiarySectorAPI;
+import shift.sextiarysector3.api.season.Season;
 import shift.sextiarysector3.block.BlockConveyor;
 import shift.sextiarysector3.block.BlockCreativeGF;
 import shift.sextiarysector3.block.BlockCreeperChest;
@@ -189,7 +190,7 @@ public class SSBlocks {
         plumLog = new BlockSSLog().setUnlocalizedName("ss.plum_log");
         UtilRegistry.registerNormalBlock(plumLog, "plum_log", "forestry/plum_log");
 
-        plumLeaves = new BlockSSFruitLeaves(plumSapling).setUnlocalizedName("ss.plum_leaves");
+        plumLeaves = new BlockSSFruitLeaves(plumSapling, Season.SUMMER).setUnlocalizedName("ss.plum_leaves");
         UtilRegistry.registerNormalBlock(plumLeaves, new ItemSSLeaves((BlockLeaves) plumLeaves), "plum_leaves", "forestry/plum_leaves");
 
         spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");

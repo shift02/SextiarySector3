@@ -8,17 +8,33 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import shift.sextiarysector3.api.season.Season;
+import shift.sextiarysector3.util.SeasonManager;
 
 public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
 
-    public BlockSSFruitLeaves(Block sapling) {
+    public Season season;
+
+    public BlockSSFruitLeaves(Block sapling, Season season) {
         super(sapling);
+        this.season = season;
 
     }
 
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         super.updateTick(worldIn, pos, state, rand);
+
+        if (SeasonManager.getInstance().getSeason(worldIn) != this.season) {
+
+            if (this.getAge(state) > 0) {
+                worldIn.setBlockState(pos, state.withProperty(AGE, 0), 2);
+
+            }
+
+            return;
+
+        }
 
         if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
 
@@ -56,7 +72,7 @@ public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
 
-        if (state.getValue(DECAYABLE)) {
+        if (!state.getValue(DECAYABLE)) {
             return false;
         }
 
@@ -66,7 +82,7 @@ public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
 
-        if (state.getValue(DECAYABLE)) {
+        if (!state.getValue(DECAYABLE)) {
             return false;
         }
 
