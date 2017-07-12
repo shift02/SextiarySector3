@@ -22,13 +22,13 @@
       2: {
         "model": "sextiarysector3:fruit_leaves",
         "textures": {
-          "fruit": "sextiarysector3:blocks/forestry/leaves_plum_01"
+          "fruit": "sextiarysector3:blocks/forestry/leaves_plum_02"
         }
       },
       3: {
         "model": "sextiarysector3:fruit_leaves",
         "textures": {
-          "fruit": "sextiarysector3:blocks/forestry/leaves_plum_01"
+          "fruit": "sextiarysector3:blocks/forestry/leaves_plum_03"
         }
       }
     },
