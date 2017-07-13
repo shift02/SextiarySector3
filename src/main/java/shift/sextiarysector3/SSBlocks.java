@@ -190,7 +190,7 @@ public class SSBlocks {
         plumLog = new BlockSSLog().setUnlocalizedName("ss.plum_log");
         UtilRegistry.registerNormalBlock(plumLog, "plum_log", "forestry/plum_log");
 
-        plumLeaves = new BlockSSFruitLeaves(plumSapling, Season.SUMMER).setUnlocalizedName("ss.plum_leaves");
+        plumLeaves = new BlockSSFruitLeaves(plumSapling, null, Season.SUMMER).setUnlocalizedName("ss.plum_leaves");
         UtilRegistry.registerNormalBlock(plumLeaves, new ItemSSLeaves((BlockLeaves) plumLeaves), "plum_leaves", "forestry/plum_leaves");
 
         spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");

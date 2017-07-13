@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -15,8 +16,11 @@ public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
 
     public Season season;
 
-    public BlockSSFruitLeaves(Block sapling, Season season) {
+    public ItemStack fruit;
+
+    public BlockSSFruitLeaves(Block sapling, ItemStack fruit, Season season) {
         super(sapling);
+        this.fruit = fruit;
         this.season = season;
 
     }
