@@ -85,6 +85,8 @@ public class SSItems {
     //林業
     public static Item treeBranch;
 
+    public static Item plum;
+
     public static Item sapBottle;
     public static Item rubberBottle;
     public static Item mapleBottle;
@@ -242,6 +244,9 @@ public class SSItems {
         //林業
         treeBranch = new ItemSSBase().setUnlocalizedName("ss.tree_branch").setCreativeTab(SextiarySectorAPI.TabSSForestry);
         UtilRegistry.registerNormalItem(treeBranch, "tree_branch", "tree_branch");
+
+        plum = new ItemSSBase().setUnlocalizedName("ss.plum").setCreativeTab(SextiarySectorAPI.TabSSForestry);
+        UtilRegistry.registerNormalItem(plum, "plum", "fruit/plum");
 
         sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");
         UtilRegistry.registerNormalItem(sapBottle, "sap_bottle", "fluid/sap_bottle");
