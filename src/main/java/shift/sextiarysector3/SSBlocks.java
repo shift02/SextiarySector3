@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import shift.sextiarysector3.api.SextiarySectorAPI;
 import shift.sextiarysector3.api.season.Season;
@@ -190,7 +191,7 @@ public class SSBlocks {
         plumLog = new BlockSSLog().setUnlocalizedName("ss.plum_log");
         UtilRegistry.registerNormalBlock(plumLog, "plum_log", "forestry/plum_log");
 
-        plumLeaves = new BlockSSFruitLeaves(plumSapling, null, Season.SUMMER).setUnlocalizedName("ss.plum_leaves");
+        plumLeaves = new BlockSSFruitLeaves(plumSapling, new ItemStack(SSItems.plum), Season.SUMMER).setUnlocalizedName("ss.plum_leaves");
         UtilRegistry.registerNormalBlock(plumLeaves, new ItemSSLeaves((BlockLeaves) plumLeaves), "plum_leaves", "forestry/plum_leaves");
 
         spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");
