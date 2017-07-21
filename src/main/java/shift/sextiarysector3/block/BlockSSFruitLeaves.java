@@ -36,6 +36,7 @@ public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
             float hitZ) {
 
         if (this.getAge(state) < this.getMaxAge()) return false;
+        if (!this.canGrow(worldIn, pos, state, worldIn.isRemote)) return false;
 
         if (!worldIn.isRemote) {
 
