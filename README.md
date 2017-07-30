@@ -9,6 +9,10 @@ Minecraftに第六次産業の概念を追加するMOD
 
 https://github.com/shift02/SextiarySector3-Localization
 
+## License ライセンス
+
+[![MMPL_J](https://img.shields.io/badge/license-MMPL__%20J-blue.svg)](http://tsoft-web.com/nokiyen/minecraft/modding/MMPL_J)
+
 ## Link
 
 - Forum(非公式Forum) http://forum.minecraftuser.jp/viewtopic.php?f=13&t=32954
