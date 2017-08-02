@@ -130,6 +130,8 @@ public class SSItems {
     //経済
     public static ItemShopMemory creeperMemory;
 
+    public static Item glassCup;
+
     public static void initItem() {
 
         bluestone = new ItemSSBase().setUnlocalizedName("ss.bluestone");
@@ -324,6 +326,8 @@ public class SSItems {
         //経済
         creeperMemory = (ItemShopMemory) new ItemShopMemory("creeper").setUnlocalizedName("ss.creeper_memory");
         UtilRegistry.registerNormalItem(creeperMemory, "creeper_memory", "memory/creeper_memory");
+
+        //料理
 
     }
 }
