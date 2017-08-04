@@ -15,6 +15,7 @@ import shift.sextiarysector3.item.ItemRubberGroves;
 import shift.sextiarysector3.item.ItemSSArmor;
 import shift.sextiarysector3.item.ItemSSAxe;
 import shift.sextiarysector3.item.ItemSSBase;
+import shift.sextiarysector3.item.ItemSSFood;
 import shift.sextiarysector3.item.ItemSSHoe;
 import shift.sextiarysector3.item.ItemSSPickaxe;
 import shift.sextiarysector3.item.ItemSSShield;
@@ -247,7 +248,7 @@ public class SSItems {
         treeBranch = new ItemSSBase().setUnlocalizedName("ss.tree_branch").setCreativeTab(SextiarySectorAPI.TabSSForestry);
         UtilRegistry.registerNormalItem(treeBranch, "tree_branch", "tree_branch");
 
-        plum = new ItemSSBase().setUnlocalizedName("ss.plum").setCreativeTab(SextiarySectorAPI.TabSSForestry);
+        plum = new ItemSSFood(1, 1.5f, false).setUnlocalizedName("ss.plum").setCreativeTab(SextiarySectorAPI.TabSSForestry);
         UtilRegistry.registerNormalItem(plum, "plum", "fruit/plum");
 
         sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");
