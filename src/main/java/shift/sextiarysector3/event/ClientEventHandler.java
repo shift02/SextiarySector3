@@ -25,6 +25,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import shift.sextiarysector3.SSItems;
@@ -335,6 +336,17 @@ public class ClientEventHandler {
         }
 
         GlStateManager.enableCull();
+    }
+
+    //Block破壊
+    @SubscribeEvent
+    public void renderExtraBlockBreak(RenderWorldLastEvent event) {
+
+        //event.getContext()
+
+        //RenderGlobal.c.drawBlockDamageTexture(null, null, null, 0);
+        //event.getContext().sendBlockBreakProgress(0, null, 0);
+
     }
 
 }
