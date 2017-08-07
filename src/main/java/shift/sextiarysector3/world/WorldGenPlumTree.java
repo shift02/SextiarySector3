@@ -22,7 +22,7 @@ public class WorldGenPlumTree extends WorldGenAbstractTree {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        int i = rand.nextInt(3) + rand.nextInt(3) + 4;
+        int i = rand.nextInt(3) + rand.nextInt(2) + 4;
         boolean flag = true;
 
         if (position.getY() >= 1 && position.getY() + i + 1 <= 256) {
