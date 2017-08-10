@@ -2,9 +2,16 @@ package shift.sextiarysector3.block;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -15,9 +22,36 @@ public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
 
     public Season season;
 
-    public BlockSSFruitLeaves(Block sapling, Season season) {
+    public ItemStack fruit;
+
+    public BlockSSFruitLeaves(Block sapling, ItemStack fruit, Season season) {
         super(sapling);
+        this.fruit = fruit;
         this.season = season;
+
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY,
+            float hitZ) {
+
+        if (this.getAge(state) < this.getMaxAge()) return false;
+        if (!this.canGrow(worldIn, pos, state, worldIn.isRemote)) return false;
+
+        if (!worldIn.isRemote) {
+
+            //worldIn.playSoundEffect(x, y, z, "random.break", 1.0F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
+            //worldIn.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 0.8F, 0.4F);
+
+            EntityItem eItem = new EntityItem(worldIn, pos.getX() + 0.5d, pos.getY() + 0.6d, pos.getZ() + 0.5d, fruit.copy());
+
+            worldIn.spawnEntityInWorld(eItem);
+
+        }
+
+        worldIn.setBlockState(pos, state.withProperty(AGE, 0), 2);
+
+        return true;
 
     }
 

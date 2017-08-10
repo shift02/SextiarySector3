@@ -15,6 +15,7 @@ import shift.sextiarysector3.item.ItemRubberGroves;
 import shift.sextiarysector3.item.ItemSSArmor;
 import shift.sextiarysector3.item.ItemSSAxe;
 import shift.sextiarysector3.item.ItemSSBase;
+import shift.sextiarysector3.item.ItemSSFood;
 import shift.sextiarysector3.item.ItemSSHoe;
 import shift.sextiarysector3.item.ItemSSPickaxe;
 import shift.sextiarysector3.item.ItemSSShield;
@@ -85,6 +86,8 @@ public class SSItems {
     //林業
     public static Item treeBranch;
 
+    public static Item plum;
+
     public static Item sapBottle;
     public static Item rubberBottle;
     public static Item mapleBottle;
@@ -127,6 +130,8 @@ public class SSItems {
 
     //経済
     public static ItemShopMemory creeperMemory;
+
+    public static Item glassCup;
 
     public static void initItem() {
 
@@ -243,6 +248,9 @@ public class SSItems {
         treeBranch = new ItemSSBase().setUnlocalizedName("ss.tree_branch").setCreativeTab(SextiarySectorAPI.TabSSForestry);
         UtilRegistry.registerNormalItem(treeBranch, "tree_branch", "tree_branch");
 
+        plum = new ItemSSFood(1, 1.5f, false).setUnlocalizedName("ss.plum").setCreativeTab(SextiarySectorAPI.TabSSForestry);
+        UtilRegistry.registerNormalItem(plum, "plum", "fruit/plum");
+
         sapBottle = new ItemSapBottle().setUnlocalizedName("ss.sap_bottle");
         UtilRegistry.registerNormalItem(sapBottle, "sap_bottle", "fluid/sap_bottle");
 
@@ -319,6 +327,8 @@ public class SSItems {
         //経済
         creeperMemory = (ItemShopMemory) new ItemShopMemory("creeper").setUnlocalizedName("ss.creeper_memory");
         UtilRegistry.registerNormalItem(creeperMemory, "creeper_memory", "memory/creeper_memory");
+
+        //料理
 
     }
 }
