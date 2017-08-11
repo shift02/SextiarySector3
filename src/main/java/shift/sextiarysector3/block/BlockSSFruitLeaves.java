@@ -28,6 +28,7 @@ public class BlockSSFruitLeaves extends BlockSSLeaves implements IGrowable {
         super(sapling);
         this.fruit = fruit;
         this.season = season;
+        this.setHardness(0.3F);
 
     }
 
