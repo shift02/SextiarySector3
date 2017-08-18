@@ -82,6 +82,10 @@ public class SSBlocks {
     public static Block plumLog;
     public static Block plumLeaves;
 
+    public static Block sakuraSapling;
+    public static Block sakuraLog;
+    public static Block sakuraLeaves;
+
     public static Block spile;
 
     //樹液
