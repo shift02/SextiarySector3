@@ -30,6 +30,7 @@ import shift.sextiarysector3.block.BlockSSOre;
 import shift.sextiarysector3.block.BlockSSPressurePlate;
 import shift.sextiarysector3.block.BlockSSPressurePlate.Sensitivity;
 import shift.sextiarysector3.block.BlockSSSapling;
+import shift.sextiarysector3.block.BlockSakuraSapling;
 import shift.sextiarysector3.block.BlockSanctuary;
 import shift.sextiarysector3.block.BlockSapCauldron;
 import shift.sextiarysector3.block.BlockSapCauldron.Sap;
@@ -197,6 +198,15 @@ public class SSBlocks {
 
         plumLeaves = new BlockSSFruitLeaves(plumSapling, new ItemStack(SSItems.plum), Season.SUMMER).setUnlocalizedName("ss.plum_leaves");
         UtilRegistry.registerNormalBlock(plumLeaves, new ItemSSLeaves((BlockLeaves) plumLeaves), "plum_leaves", "forestry/plum_leaves");
+
+        sakuraSapling = new BlockSakuraSapling().setUnlocalizedName("ss.sakura_sapling");
+        UtilRegistry.registerNormalBlock(sakuraSapling, "sakura_sapling", "forestry/sakura_sapling");
+
+        sakuraLog = new BlockSSLog().setUnlocalizedName("ss.sakura_log");
+        UtilRegistry.registerNormalBlock(sakuraLog, "sakura_log", "forestry/sakura_log");
+
+        sakuraLeaves = new BlockSSLeaves(sakuraSapling).setUnlocalizedName("ss.sakura_leaves");
+        UtilRegistry.registerNormalBlock(sakuraLeaves, new ItemSSLeaves((BlockLeaves) sakuraLeaves), "sakura_leaves", "forestry/sakura_leaves");
 
         spile = new BlockSpile().setUnlocalizedName("ss.spile").setUnlocalizedName("ss.spile");
         UtilRegistry.registerNormalBlock(spile, "spile", "spile");
