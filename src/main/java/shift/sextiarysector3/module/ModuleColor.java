@@ -116,7 +116,7 @@ public class ModuleColor implements IModule {
 
                 if (tintIndex > 0) return 0xFFFFFF;
 
-                if (tintIndex == 0 && SeasonManager.getInstance().getSeason(mc.theWorld) == Season.SPRING) return 0xfce0e0;
+                if (tintIndex == 0 && SeasonManager.getInstance().getSeason(mc.theWorld) == Season.SPRING) return 0xF6CEF5;
 
                 return (worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic());
 
