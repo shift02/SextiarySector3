@@ -70,7 +70,7 @@ public class ModuleShop implements IModule {
         //春
         creeper.addProduct(Season.SPRING, new ProductBase(new ItemStack(SSBlocks.plumSapling, 1), 7000));
 
-        creeper.addProduct(Season.SPRING, new ProductBase(new ItemStack(SSBlocks.sakuraSapling, 1), 8400));
+        creeper.addProduct(Season.SPRING, new ProductBase(new ItemStack(SSBlocks.sakuraSapling, 1), 8200));
 
         SSItems.creeperMemory.setShopData(creeper);
 
