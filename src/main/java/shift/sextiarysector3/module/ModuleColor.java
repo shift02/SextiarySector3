@@ -116,7 +116,7 @@ public class ModuleColor implements IModule {
 
                 if (tintIndex > 0) return 0xFFFFFF;
 
-                if (tintIndex == 0 && SeasonManager.getInstance().getSeason(mc.theWorld) == Season.SPRING) return 0xF6CEF5;
+                if (tintIndex == 0 && SeasonManager.getInstance().getSeason(mc.theWorld) == Season.SPRING) return 0xf670f5;
 
                 return (worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic());
 
@@ -169,6 +169,14 @@ public class ModuleColor implements IModule {
                 return block.colorMultiplier(iblockstate, (IBlockAccess) null, (BlockPos) null, tintIndex);
             }
         }, new Block[] { SSBlocks.plumLeaves });
+
+        itemcolors.registerItemColorHandler(new IItemColor() {
+            @Override
+            public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+                IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+                return block.colorMultiplier(iblockstate, (IBlockAccess) null, (BlockPos) null, tintIndex);
+            }
+        }, new Block[] { SSBlocks.sakuraLeaves });
 
         //ポーション
         itemcolors.registerItemColorHandler(new IItemColor() {
