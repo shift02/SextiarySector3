@@ -5,6 +5,10 @@
 
 Minecraftに第六次産業の概念を追加するMOD 
 
+## 動作環境
+
+- Minecraft 1.10.2  
+
 ## Localization
 
 https://github.com/shift02/SextiarySector3-Localization
