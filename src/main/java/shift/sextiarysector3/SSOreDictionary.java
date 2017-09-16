@@ -45,11 +45,13 @@ public class SSOreDictionary {
         OreDictionary.registerOre("treeSapling", SSBlocks.rubberSapling);
         OreDictionary.registerOre("treeSapling", SSBlocks.mapleSapling);
         OreDictionary.registerOre("treeSapling", SSBlocks.plumSapling);
+        OreDictionary.registerOre("treeSapling", SSBlocks.sakuraSapling);
 
         //treeLeaves
         OreDictionary.registerOre("treeLeaves", SSBlocks.rubberLeaves);
         OreDictionary.registerOre("treeLeaves", SSBlocks.mapleLeaves);
         OreDictionary.registerOre("treeLeaves", SSBlocks.plumLeaves);
+        OreDictionary.registerOre("treeLeaves", SSBlocks.sakuraLeaves);
 
         OreDictionary.registerOre("plastic", SSItems.plastic);
         OreDictionary.registerOre("rubber", SSItems.rubber);
