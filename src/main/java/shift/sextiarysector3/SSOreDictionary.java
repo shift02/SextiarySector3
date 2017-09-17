@@ -25,6 +25,8 @@ public class SSOreDictionary {
         OreDictionary.registerOre("nuggetSilver", SSItems.silverNugget);
 
         //Dust
+        OreDictionary.registerOre("dustCoal", SSItems.coalDust);
+
         OreDictionary.registerOre("dustIron", SSItems.ironDust);
         OreDictionary.registerOre("dustGold", SSItems.goldDust);
         OreDictionary.registerOre("dustCopper", SSItems.copperDust);
