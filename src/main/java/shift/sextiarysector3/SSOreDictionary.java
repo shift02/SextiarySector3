@@ -39,6 +39,9 @@ public class SSOreDictionary {
         OreDictionary.registerOre("blockSilver", SSBlocks.silverBlock);
         OreDictionary.registerOre("blockOrichalcum", SSBlocks.orichalcumBlock);
 
+        //Other_Block
+        OreDictionary.registerOre("blockPlastic", SSBlocks.plasticBlock);
+
         //Log
         OreDictionary.registerOre("logWood", SSBlocks.rubberLog);
         OreDictionary.registerOre("logWood", SSBlocks.mapleLog);
