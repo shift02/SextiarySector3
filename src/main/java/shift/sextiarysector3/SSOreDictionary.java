@@ -41,6 +41,7 @@ public class SSOreDictionary {
 
         //Other_Block
         OreDictionary.registerOre("blockPlastic", SSBlocks.plasticBlock);
+        OreDictionary.registerOre("blockRubber", SSBlocks.rubberBlock);
 
         //Log
         OreDictionary.registerOre("logWood", SSBlocks.rubberLog);
