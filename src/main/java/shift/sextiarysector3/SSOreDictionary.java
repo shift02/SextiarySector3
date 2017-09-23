@@ -44,6 +44,7 @@ public class SSOreDictionary {
         OreDictionary.registerOre("blockRubber", SSBlocks.rubberBlock);
 
         OreDictionary.registerOre("chestPlastic", SSBlocks.plasticChest);
+        OreDictionary.registerOre("chestWood", SSBlocks.creeperChest);
 
         OreDictionary.registerOre("blockConveyor", SSBlocks.conveyor);
 
@@ -72,8 +73,6 @@ public class SSOreDictionary {
         OreDictionary.registerOre("itemDepthMeter", SSItems.depthMeter);
 
         OreDictionary.registerOre("blockWool", new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE));
-
-        OreDictionary.registerOre("chestWood", SSBlocks.creeperChest);
 
         //PlasticChest
         OreDictionary.registerOre("chestPlastic", SSBlocks.plasticChest);
