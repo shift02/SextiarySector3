@@ -233,7 +233,7 @@ public class SSBlocks {
 
         //Large鉱石
         coalLargeOre = new BlockLargeOre(SSItems.coalDust, Blocks.COAL_ORE, 1).setUnlocalizedName("ss.coal_large_ore");
-        UtilRegistry.registerNormalBlock(coalLargeOre, "coal_largeore_ore", "ore/coal_large_ore");
+        UtilRegistry.registerNormalBlock(coalLargeOre, "coal_large_ore", "ore/coal_large_ore");
 
         ironLargeOre = new BlockLargeOre(SSItems.ironDust, Blocks.IRON_ORE, 2).setUnlocalizedName("ss.iron_large_ore");
         UtilRegistry.registerNormalBlock(ironLargeOre, "iron_large_ore", "ore/iron_large_ore");
