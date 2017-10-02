@@ -83,6 +83,8 @@ public class SSOreDictionary {
         //Other
         OreDictionary.registerOre("syrupMaple", SSItems.mapleBottle);
 
+        OreDictionary.registerOre("itemSpanner", SSItems.ironSpanner);
+
     }
 
 }
