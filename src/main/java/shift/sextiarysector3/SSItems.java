@@ -133,6 +133,8 @@ public class SSItems {
 
     public static Item glassCup;
 
+    public static Item plumJuice;
+
     public static void initItem() {
 
         bluestone = new ItemSSBase().setUnlocalizedName("ss.bluestone");
