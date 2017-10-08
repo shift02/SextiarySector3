@@ -131,6 +131,7 @@ public class SSItems {
     //経済
     public static ItemShopMemory creeperMemory;
 
+    //料理
     public static Item glassCup;
 
     public static Item plumJuice;
@@ -331,6 +332,8 @@ public class SSItems {
         UtilRegistry.registerNormalItem(creeperMemory, "creeper_memory", "memory/creeper_memory");
 
         //料理
+        plumJuice = new ItemSSBase().setUnlocalizedName("ss.plum_juice").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        UtilRegistry.registerNormalItem(plumJuice, "plum_juice", "fluid/plum_juice");
 
     }
 }
