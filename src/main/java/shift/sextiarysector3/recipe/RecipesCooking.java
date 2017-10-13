@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import shift.sextiarysector3.SSBlocks;
 import shift.sextiarysector3.SSItems;
 import shift.sextiarysector3.recipe.template.ShapedPotionCakeOreRecipe;
@@ -50,6 +51,12 @@ public class RecipesCooking {
                     }));
 
         }
+
+        p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.plumJuice, 1),
+                new Object[] {
+                        Items.GLASS_BOTTLE,
+                        SSItems.plum
+                }));
 
     }
 
